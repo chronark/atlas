@@ -46,8 +46,6 @@ steps:
     image: node:12
     commands:
       - yarn test:unit
-    environment:
-      - CI=true
 
   e2e_tests:
     title: e2e test
