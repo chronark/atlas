@@ -1,0 +1,67 @@
+version: "1.0"
+stages:
+  - prepare
+  - linting
+  - test
+  - build
+  - push
+steps:
+  main_clone:
+    type: "git-clone"
+    description: "Cloning main repository..."
+    repo: "chronark/atlas"
+    revision: "${{CF_BRANCH}}"
+    stage: "prepare"
+  installation:
+    title: Installing Dependencies
+    stage: prepare
+    image: node:12
+    commands:
+      - yarn install
+
+  eslint:
+    title: eslint
+    stage: linting
+    image: node:12
+    commands:
+      - yarn lint
+
+  prettier:
+    title: prettier
+    stage: linting
+    image: node:12
+    commands:
+      - yarn prettier
+
+  tsc:
+    title: type_assertions
+    stage: test
+    image: node:12
+    commands:
+      - yarn tsc
+
+  unit_tests:
+    title: Unit test
+    stage: test
+    image: node:12
+    commands:
+      - yarn test:unit
+    environment:
+      - CI=true
+
+  e2e_tests:
+    title: e2e test
+    stage: test
+    image: node:12
+    commands:
+      - yarn test:e2e
+    environment:
+      - CI=true
+
+  build:
+    title: build
+    stage: build
+    type: build
+    image_name: chronark/atlas
+    tag: latest
+    dockerfile: Dockerfile
