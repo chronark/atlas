@@ -2,6 +2,30 @@ name: CI
 
 on: [push]
 jobs:
+  security:
+    runs-on: ubuntu-latest
+    name: secutiry checks
+    steps:
+      - uses: actions/checkout@v1
+      - name: Secret Scan
+
+  linting:
+    runs-on: ubuntu-latest
+    name: linting
+    steps:
+      - uses: actions/checkout@v1
+      - name: Hadolint Action
+        uses: brpaz/hadolint-action@v1.0.2
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: eslint
+        run: yarn lint
+
+      - name: prettier
+        run: yarn prettier
+
   integration:
     runs-on: ubuntu-latest
     name: integration
@@ -14,9 +38,6 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-
-      - name: Lint
-        run: yarn format
 
       - name: Typecheck
         run: yarn tsc
@@ -54,3 +75,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: docker.pkg.github.com
+          tags: "latest"
