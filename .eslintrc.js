@@ -8,7 +8,7 @@ module.exports = {
       version: "detect",
     },
   },
-  plugins: ["@typescript-eslint", "jest", "promise", "react", "testcafe", "jsdoc"],
+  plugins: ["@typescript-eslint", "jest", "promise", "react", "cypress", "jsdoc"],
   extends: [
     "standard",
     "eslint:recommended",
@@ -17,7 +17,7 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:react/recommended",
     "prettier/@typescript-eslint",
-    "plugin:testcafe/recommended",
+    "plugin:cypress/recommended",
     "plugin:jsdoc/recommended",
   ],
   env: {
