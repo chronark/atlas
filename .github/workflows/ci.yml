@@ -26,6 +26,11 @@ jobs:
       - name: prettier
         run: yarn prettier
 
+      - name: Run codacy-analysis-cli
+        uses: mrfyda/codacy-analysis-cli-action@master
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+
   integration:
     runs-on: ubuntu-latest
     name: integration
