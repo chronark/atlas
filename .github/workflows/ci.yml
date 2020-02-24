@@ -4,7 +4,7 @@ on: push
 jobs:
   linting:
     runs-on: ubuntu-latest
-    name: linting
+    name: Lint
     steps:
       - uses: actions/checkout@v1
 
@@ -48,7 +48,7 @@ jobs:
 
   building:
     runs-on: ubuntu-latest
-    name: build
+    name: Build
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
