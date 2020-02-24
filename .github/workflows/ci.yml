@@ -1,35 +1,63 @@
 name: CI
 
-on: [push]
+on: push
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: ["12"]
-    runs-on: ${{ matrix.os }}
-    name: ${{matrix.os }} - node_${{matrix.node}}
+  linting:
+    runs-on: ubuntu-latest
+    name: Lint
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Hadolint Action
+        uses: brpaz/hadolint-action@v1.0.2
+
+      - name: eslint
+        run: yarn lint
+
+      - name: prettier
+        run: yarn prettier
+
+  testing:
+    runs-on: ubuntu-latest
+    name: Test
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: ${{matrix.node}}
+          node-version: 12
 
       - name: Install dependencies
         run: yarn install
 
-      - name: Lint
-        run: yarn format
-
       - name: Typecheck
         run: yarn tsc
-
-      - name: Build
-        run: yarn build
 
       - name: Unittests
         run: yarn test:unit
 
       - name: Integration tests
-        run: yarn test:e2e:ci
+        uses: cypress-io/github-action@v1.16.1
+        with:
+          build: ./node_modules/.bin/webpack --mode=production
+          start: npm run serve
+          wait-on: http://localhost:5000
+
+  building:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
