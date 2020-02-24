@@ -27,7 +27,7 @@ jobs:
       - name: Integration tests
         uses: cypress-io/github-action@v1.16.1
         with:
-          build: npm run build
+          build: ./node_modules/.bin/webpack --mode=production
           start: npm run serve
           wait-on: http://localhost:5000
 
@@ -45,12 +45,12 @@ jobs:
         run: yarn install
 
       - name: Build
-        run: yarn build
+        run: ./node_modules/.bin/webpack --mode=production
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: chronark/atlas
+          name: chronark/atlas:latest
           username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: docker.pkg.github.com
