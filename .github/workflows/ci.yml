@@ -31,7 +31,7 @@ jobs:
         uses: cypress-io/github-action@v1.16.1
         with:
           build: npm run build
-          start: npm serve
+          start: npm run serve
           wait-on: http://localhost:5000
 
       - name: Publish to Registry
