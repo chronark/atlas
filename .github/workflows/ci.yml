@@ -2,15 +2,6 @@ name: CI
 
 on: [push]
 jobs:
-  security:
-    runs-on: ubuntu-latest
-    name: secutiry checks
-    steps:
-      - uses: actions/checkout@v1
-
-      - name: Secret Scan
-        uses: max/secret-scan@1.0.0
-
   linting:
     runs-on: ubuntu-latest
     name: linting
