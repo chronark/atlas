@@ -1,0 +1,63 @@
+name: CI
+
+on: push
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    name: Lint
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Hadolint Action
+        uses: brpaz/hadolint-action@v1.0.2
+
+      - name: eslint
+        run: yarn lint
+
+      - name: prettier
+        run: yarn prettier
+
+  testing:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Typecheck
+        run: yarn tsc
+
+      - name: Unittests
+        run: yarn test:unit
+
+      - name: Integration tests
+        uses: cypress-io/github-action@v1.16.1
+        with:
+          build: ./node_modules/.bin/webpack --mode=production
+          start: npm run serve
+          wait-on: http://localhost:5000
+
+  building:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
