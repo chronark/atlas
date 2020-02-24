@@ -48,13 +48,11 @@ steps:
       - yarn test:unit
 
   e2e_tests:
-    title: e2e test
     stage: test
-    image: node:12
+    image: cypress/base
+    title: "Running E2E tests"
     commands:
-      - yarn test:e2e
-    environment:
-      - CI=true
+      - 'cypress run'  
 
   build:
     title: build
