@@ -7,13 +7,16 @@ jobs:
     name: secutiry checks
     steps:
       - uses: actions/checkout@v1
+
       - name: Secret Scan
+        uses: max/secret-scan@1.0.0
 
   linting:
     runs-on: ubuntu-latest
     name: linting
     steps:
       - uses: actions/checkout@v1
+
       - name: Hadolint Action
         uses: brpaz/hadolint-action@v1.0.2
 
