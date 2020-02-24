@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
 jobs:
   linting:
     runs-on: ubuntu-latest
@@ -19,11 +19,6 @@ jobs:
 
       - name: prettier
         run: yarn prettier
-
-      - name: Run codacy-analysis-cli
-        uses: mrfyda/codacy-analysis-cli-action@master
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
   integration:
     runs-on: ubuntu-latest
@@ -51,9 +46,9 @@ jobs:
           start: npm run serve
           wait-on: http://localhost:5000
 
-  publish:
+  build:
     runs-on: ubuntu-latest
-    name: publish
+    name: build
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
@@ -64,10 +59,5 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
-        with:
-          name: chronark/atlas/map
-          username: ${{ github.actor }}
-          password: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          registry: docker.pkg.github.com
+      - name: Build
+        run: yarn build
