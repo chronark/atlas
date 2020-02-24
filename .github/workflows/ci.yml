@@ -3,18 +3,14 @@ name: CI
 on: [push]
 jobs:
   build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node: ["12"]
-    runs-on: ${{ matrix.os }}
-    name: ${{matrix.os }} - node_${{matrix.node}}
+    runs-on: ubuntu-latest
+    name: CI
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          node-version: ${{matrix.node}}
+          node-version: 12
 
       - name: Install dependencies
         run: yarn install
@@ -33,6 +29,10 @@ jobs:
 
       - name: Integration tests
         uses: cypress-io/github-action@v1.16.1
+        with:
+          build: npm run build
+          start: npm serve
+          wait-on: http://localhost:5000
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
