@@ -8,11 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Hadolint Action
-        uses: brpaz/hadolint-action@v1.0.2
-
       - name: Install dependencies
         run: yarn install
+
+      - name: Hadolint Action
+        uses: brpaz/hadolint-action@v1.0.2
 
       - name: eslint
         run: yarn lint
@@ -72,6 +72,6 @@ jobs:
         with:
           name: chronark/atlas/latest
           username: ${{ github.actor }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           registry: docker.pkg.github.com
           tags: "latest"
