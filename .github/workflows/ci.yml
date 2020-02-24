@@ -1,6 +1,6 @@
 name: CI
 
-on: [push, pull_request]
+on: push
 jobs:
   linting:
     runs-on: ubuntu-latest
@@ -20,9 +20,9 @@ jobs:
       - name: prettier
         run: yarn prettier
 
-  integration:
+  testing:
     runs-on: ubuntu-latest
-    name: integration
+    name: Test
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
@@ -46,7 +46,7 @@ jobs:
           start: npm run serve
           wait-on: http://localhost:5000
 
-  build:
+  building:
     runs-on: ubuntu-latest
     name: build
     steps:
