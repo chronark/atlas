@@ -33,3 +33,11 @@ jobs:
 
       - name: Integration tests
         uses: cypress-io/github-action@v1.16.1
+
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: chronark/atlas
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: docker.pkg.github.com
