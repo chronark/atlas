@@ -13,7 +13,7 @@ module.exports = {
     },
   },
 */
-  roots: ["./__tests__/unit/"],
+  roots: ["./"],
   testURL: "http://localhost",
   testPathIgnorePatterns: ["/dist/", "node_modules"],
   transform: {
