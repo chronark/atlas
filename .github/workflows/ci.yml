@@ -51,9 +51,9 @@ jobs:
           start: npm run serve
           wait-on: http://localhost:5000
 
-  build:
+  publish:
     runs-on: ubuntu-latest
-    name: build
+    name: publish
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
@@ -64,14 +64,10 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build
-        run: ./node_modules/.bin/webpack --mode=production
-
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: chronark/atlas/latest
+          name: chronark/atlas/map
           username: ${{ github.actor }}
           password: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           registry: docker.pkg.github.com
-          tags: "latest"
