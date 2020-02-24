@@ -2,9 +2,9 @@ name: CI
 
 on: [push]
 jobs:
-  build:
+  integration:
     runs-on: ubuntu-latest
-    name: CI
+    name: integration
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
@@ -21,9 +21,6 @@ jobs:
       - name: Typecheck
         run: yarn tsc
 
-      - name: Build
-        run: yarn build
-
       - name: Unittests
         run: yarn test:unit
 
@@ -33,6 +30,22 @@ jobs:
           build: npm run build
           start: npm run serve
           wait-on: http://localhost:5000
+
+  build:
+    runs-on: ubuntu-latest
+    name: build
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
