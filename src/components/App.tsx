@@ -4,11 +4,7 @@ import React, { useState } from "react"
 import { connect } from "react-redux"
 
 import { Job } from "../types/customTypes"
-import Form from "./Form"
 import MapComponent from "./MapComponent"
-import Menu from "./Menu"
-import Modal from "./Modal"
-import Statistics from "./Statistics"
 interface State {
   modal: { isShowing: boolean }
   isFullsceen: boolean
@@ -32,13 +28,6 @@ const App: React.FunctionComponent<Props> = props => {
     }))
   }
 
-  const toggleModal = (): void => {
-    setState(prevState => ({
-      ...prevState,
-      modal: { isShowing: !state.modal.isShowing },
-    }))
-  }
-
   return (
     <div
       className={
@@ -46,14 +35,7 @@ const App: React.FunctionComponent<Props> = props => {
       }
     >
       <div>
-        <Menu isFullscreen={state.isFullscreen} toggleModal={toggleModal} toggleFullscreen={toggleFullscreen}></Menu>
-        <Statistics></Statistics>
         <MapComponent></MapComponent>
-        {state.modal.isShowing ? (
-          <Modal show={state.modal.isShowing} toggle={toggleModal}>
-            <Form></Form>
-          </Modal>
-        ) : null}
       </div>
     </div>
   )
