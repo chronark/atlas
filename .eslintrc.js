@@ -1,21 +1,11 @@
 module.exports = {
-  /*
-  settings configuration from here:
-  https://github.com/yannickcr/eslint-plugin-react#configura
-*/
-  settings: {
-    react: {
-      version: "detect",
-    },
-  },
-  plugins: ["@typescript-eslint", "jest", "promise", "react", "cypress", "jsdoc"],
+  plugins: ["@typescript-eslint", "jest", "promise", "cypress", "jsdoc"],
   extends: [
     "standard",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:jest/recommended",
     "plugin:prettier/recommended",
-    "plugin:react/recommended",
     "prettier/@typescript-eslint",
     "plugin:cypress/recommended",
     "plugin:jsdoc/recommended",
@@ -42,7 +32,6 @@ module.exports = {
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
-    "react/prop-types": "off",
     "no-console": "warn",
 
     // jsdoc

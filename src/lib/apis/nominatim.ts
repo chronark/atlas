@@ -1,7 +1,3 @@
-/**
- *
- */
-
 import axios from "axios"
 import { log } from "../logger"
 import { GeoJSON } from "geojson"

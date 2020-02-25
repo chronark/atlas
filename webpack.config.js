@@ -7,7 +7,7 @@ const path = require("path")
 module.exports = {
   node: { fs: "empty" },
 
-  entry: ["@babel/polyfill", "./src/lib/index.tsx"],
+  entry: ["@babel/polyfill", "./src/lib/index.ts"],
   output: {
     filename: "atlas.js",
     chunkFilename: "[name].atlas.js",
@@ -28,7 +28,7 @@ module.exports = {
     stats: "normal",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    extensions: [".ts", ".js", ".jsx"],
   },
   module: {
     rules: [
@@ -47,7 +47,7 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         use: ["babel-loader", "ts-loader"],
       },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
