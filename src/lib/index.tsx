@@ -2,16 +2,6 @@ import "../../static/css/ol-ext.css"
 import "../../static/css/ol.css"
 import "../../static/css/tailwind.css"
 
-import React from "react"
-import ReactDOM from "react-dom"
-import { Provider } from "react-redux"
+import Map from "./map"
 
-import App from "../components/App"
-import store from "../redux/store"
-
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById("map-container"),
-)
+const map = new Map("map-container")
