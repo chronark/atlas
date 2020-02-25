@@ -50,14 +50,11 @@ export default class Map {
     this.store = new Store()
 
     this.olmap = this.buildMap()
-    this.loadJobs()
     this.addControls()
     this.addCircleSelect()
     this.addCountryLayer()
     this.buildJobLayer()
   }
-
-  
 
   /**
    * Creates a named layer and adds it to the existing openlayers map.
