@@ -1,7 +1,7 @@
 import "../../static/css/ol-ext.css"
 import "../../static/css/ol.css"
 import "../../static/css/tailwind.css"
-import Store from "./store"
+import Store from "./store/store"
 
 import Map from "./map"
 
@@ -9,15 +9,6 @@ const map = new Map("map-container")
 
 const initialState = {
   items: ["I made this", "Another thing"],
-}
-
-const actions = {
-  addItem(store: Store, payload: any): void {
-    store.commit("addItem", payload)
-  },
-  clearItem(store: Store, payload: any) {
-    store.commit("clearItem", payload)
-  },
 }
 
 const mutations = {
