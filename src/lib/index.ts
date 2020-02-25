@@ -4,32 +4,16 @@ import "../../static/css/tailwind.css"
 import { Job } from "../types/customTypes"
 import Store from "./state/store"
 import { log } from "../lib/logger"
-
+import Sample from "../lib/apis/sample"
 import Map from "./map"
 
 const map = new Map("map-container")
 
-const store = new Store()
+map.store.getEvents().subscribe("stateChange", () => log.debug("State is", store.getState()))
 
-store.getEvents().subscribe("stateChange", () => log.debug("State is", store.getState()))
 
-const jobs: Job[] = [
-  {
-    corp: "string",
-    locations: [
-      {
-        lon: 11.0767,
-        lat: 49.4521,
-      },
-    ],
-    date: "string",
-    id: 1,
-    logo: "string",
-    score: 1,
-    title: "string",
-    type: "string",
-    url: "string",
-  },
-]
+new Sample().jobs(200).then((jobs: Job[]) => {
+    map.setJobs(jobs)
+  })
 
-store.dispatch("setJobs", jobs)
+

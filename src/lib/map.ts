@@ -34,7 +34,7 @@ export default class Map {
   public jobs: Job[]
   private mapID: string
   public olmap: OLMap
-  private store: Store
+  public store: Store
   private JobLayer: JobLayer
   private zIndices: Record<string, number>
 
@@ -57,11 +57,7 @@ export default class Map {
     this.buildJobLayer()
   }
 
-  loadJobs(): void {
-    new Sample().jobs(200).then((jobs: Job[]) => {
-      this.store.dispatch("setAllJobs", jobs)
-    })
-  }
+  
 
   /**
    * Creates a named layer and adds it to the existing openlayers map.
@@ -338,6 +334,7 @@ export default class Map {
 
   public setJobs(jobs: Job[]): void {
     log.debug("Setting jobs", jobs)
+    this.store.dispatch("setJobs", jobs)
     this.JobLayer.clear()
     this.JobLayer.addJobs(jobs)
   }
