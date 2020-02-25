@@ -1,4 +1,3 @@
-
 export default {
   addItem(store: Store, payload: any): void {
     store.commit("addItem", payload)
