@@ -1,31 +1,35 @@
 import "../../static/css/ol-ext.css"
 import "../../static/css/ol.css"
 import "../../static/css/tailwind.css"
-import Store from "./store/store"
+import { Job } from "../types/customTypes"
+import Store from "./state/store"
+import { log } from "../lib/logger"
 
 import Map from "./map"
 
 const map = new Map("map-container")
 
-const initialState = {
-  items: ["I made this", "Another thing"],
-}
+const store = new Store()
 
-const mutations = {
-  addItem(state: Record<string, any>, payload: any) {
-    state.items.push(payload)
+store.getEvents().subscribe("stateChange", () => log.debug("State is", store.getState()))
 
-    return state
+const jobs: Job[] = [
+  {
+    corp: "string",
+    locations: [
+      {
+        lon: 11.0767,
+        lat: 49.4521,
+      },
+    ],
+    date: "string",
+    id: 1,
+    logo: "string",
+    score: 1,
+    title: "string",
+    type: "string",
+    url: "string",
   },
-  clearItem(state: Record<string, any>, payload: any) {
-    state.items.splice(payload.index, 1)
+]
 
-    return state
-  },
-}
-const store = new Store(actions, mutations, initialState)
-
-store.getEvents().subscribe("stateChange", () => console.log(store.getState()))
-console.log(store.getState())
-const index = 0
-store.dispatch("clearItem", { index })
+store.dispatch("setJobs", jobs)

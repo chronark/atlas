@@ -27,12 +27,14 @@ import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
 import Sample from "./apis/sample"
 import { filterJobs } from "./geometryFilter"
 import Charon from "./apis/charon"
+import Store from "./state/store"
 import { countryLayerStyle } from "../styles/countryStyle"
 
 export default class Map {
   public jobs: Job[]
   private mapID: string
   public olmap: OLMap
+  private store: Store
   private JobLayer: JobLayer
   private zIndices: Record<string, number>
 
@@ -45,8 +47,8 @@ export default class Map {
       circleSelect: 10,
       jobs: 1000,
     }
+    this.store = new Store()
 
-    this.jobs = []
     this.olmap = this.buildMap()
     this.loadJobs()
     this.addControls()
@@ -57,7 +59,7 @@ export default class Map {
 
   loadJobs(): void {
     new Sample().jobs(200).then((jobs: Job[]) => {
-      store.dispatch(setAllJobs(jobs))
+      this.store.dispatch("setAllJobs", jobs)
     })
   }
 

@@ -1,20 +1,31 @@
 import PubSub from "./pubsub"
+import actions from "./actions"
+import mutations from "./mutations"
+
+export type State = Record<string, any>
+
+const initialState: State = {
+  jobs: {
+    all: [],
+    visible: [],
+  },
+}
 
 export default class Store {
   private actions: Record<string, any>
   private mutations: Record<string, any>
-  private state: Record<string, any>
+  private state: State
   private status: string
   private events: PubSub
 
-  constructor(actions: Record<string, any>, mutations: Record<string, any>, initialState: Record<string, any>) {
+  constructor(state = initialState) {
     this.actions = actions
     this.mutations = mutations
     /* eslint-disable */
     const self = this
 
-    this.state = new Proxy(initialState, {
-      set: function(state: Record<string, any>, key: string, value: any): boolean {
+    this.state = new Proxy(state, {
+      set: function(state: State, key: string, value: any): boolean {
         state[key] = value
         console.log(`stateChange: ${key}: ${value}`)
         self.events.publish("stateChange", self.state)
