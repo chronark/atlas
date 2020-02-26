@@ -2,7 +2,6 @@ import Map from "./map"
 import { toLonLat } from "ol/proj"
 import Charon from "./apis/charon"
 import Store from "./state/store"
-import { addSelectedCountries, addCountry, removeSelectedCountries } from "../redux/countries/actions"
 import { GeoJSON } from "ol/format"
 import { areCoordinatesInGeometry } from "./geometryFilter"
 

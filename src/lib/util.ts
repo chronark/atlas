@@ -1,13 +1,4 @@
 /**
- * @param list1
- * @param list2
- */
-export function mergeUnique(list1: any[], list2: any[]): any[] {
-  const merged = list1.concat(list2)
-  return merged.filter((item, idx) => merged.indexOf(item) === idx)
-}
-
-/**
  * Remove an item from a list.
  *
  * @param list - A list of items.

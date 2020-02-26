@@ -1,26 +1,4 @@
-import { bound, mergeUnique, removeFrom, removeListFromList } from "../../src/lib/util"
-
-describe("mergeUnique()", () => {
-  describe("when there are no duplicates", () => {
-    const testCases = [
-      {
-        input: {
-          list1: [{ key: "value" }, { otherKey: "otherValue" }],
-          list2: [{ thirdKey: "thirdValue" }],
-        },
-        want: [{ key: "value" }, { otherKey: "otherValue" }, { thirdKey: "thirdValue" }],
-      },
-    ]
-    testCases.forEach(tc => {
-      const originalArray = tc.input.list
-      it("should return the correct array", () => {
-        const result = mergeUnique(tc.input.list1, tc.input.list2)
-        expect(result).toStrictEqual(tc.want)
-      })
-    })
-  })
-})
-
+import { bound, removeFrom, removeListFromList } from "../../src/lib/util"
 describe("removeFrom()", () => {
   describe("when there are no duplicates", () => {
     const testCases = [

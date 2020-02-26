@@ -22,9 +22,6 @@ import { log } from "./logger"
 import { countryLayer } from "./countryLayer"
 import BaseLayer from "ol/layer/Base"
 import Geometry from "ol/geom/Geometry"
-import store from "../redux/store"
-import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
-import Sample from "./apis/sample"
 import { filterJobs } from "./geometryFilter"
 import Charon from "./apis/charon"
 import Store from "./state/store"
@@ -204,11 +201,11 @@ export default class Map {
     const onEnd = (): void => {
       const circle = getCircle()
       if (circle) {
-        const filteredJobs = filterJobs(store.getState().jobs.allJobs, {
-          countries: store.getState().countries.selectedCountries,
+        const filteredJobs = filterJobs(this.store.getState().jobs.all, {
+          countries: this.store.getState().countries.selected,
           circle: circle,
         })
-        store.dispatch(setShownJobs(filteredJobs))
+        this.store.dispatch("setVisibleJobs", filteredJobs)
       }
     }
 

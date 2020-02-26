@@ -1,20 +1,20 @@
-import State from "./store"
+import Store from "./store"
 import { Job } from "../../types/customTypes"
 
 export default {
-  setJobs(state: State, payload: Job[]): void {
-    state.commit("setJobs", payload)
+  setJobs(ctx: Store, payload: Job[]): void {
+    ctx.commit("setJobs", payload)
   },
-  setVisibleJobs(state: State, payload: Job[]) {
-    state.commit("clearItem", payload)
+  setVisibleJobs(ctx: Store, payload: Job[]) {
+    ctx.commit("clearItem", payload)
   },
-  addCountry(state: State, payload: Record<string, any>): void {
-    state.commit("addCountry", payload)
+  addCountries(ctx: Store, payload: Record<string, any>): void {
+    ctx.commit("addCountries", payload)
   },
-  selectCountry(state: State, payload: Record<string, any>): void {
-    state.commit("selectountry", payload)
+  selectCountries(ctx: Store, payload: string[]): void {
+    ctx.commit("selectountry", payload)
   },
-  unselectCountry(state: State, payload: Record<string, any>): void {
-    state.commit("unselectCountry", payload)
+  unselectCountries(ctx: Store, payload: string[]): void {
+    ctx.commit("unselectCountry", payload)
   },
 }
