@@ -1,10 +1,7 @@
-/**
- *
- */
 import Map from "./map"
 import { toLonLat } from "ol/proj"
 import Charon from "./apis/charon"
-import store from "../redux/store"
+import Store from "./state/store"
 import { addSelectedCountries, addCountry, removeSelectedCountries } from "../redux/countries/actions"
 import { GeoJSON } from "ol/format"
 import { areCoordinatesInGeometry } from "./geometryFilter"
@@ -15,9 +12,9 @@ const convertGeoJsonToGeometries = (geojson: Record<string, any>): (Record<strin
   }).readFeatures(geojson)
   return features.map(feature => feature.getGeometry())
 }
-const getCachedGeometry = (event: any): Record<string, any> => {
+const getCachedGeometry = (store: Store, event: any): Record<string, any> => {
   const [lon, lat] = toLonLat(event.coordinate)
-  const matches = store.get().countries.allCountries.filter(geometry => {
+  const matches = store.getState().countries.allCountries.filter((geometry: Record<string, any>) => {
     return areCoordinatesInGeometry([lon, lat], geometry)
   })
   return matches[0]
@@ -25,11 +22,11 @@ const getCachedGeometry = (event: any): Record<string, any> => {
 
 const countryLayer = (map: Map): void => {
   map.olmap.on("singleclick", async (event: any) => {
-    const cachedGeometry = getCachedGeometry(event)
+    const cachedGeometry = getCachedGeometry(map.store, event)
     if (cachedGeometry) {
-      store.get().countries.selectedCountries.includes(cachedGeometry)
-        ? store.dispatch(removeSelectedCountries([cachedGeometry]))
-        : store.dispatch(addSelectedCountries([cachedGeometry]))
+      map.store.getState().countries.selected.includes(cachedGeometry)
+        ? map.store.dispatch("unselectCountries", [cachedGeometry])
+        : map.store.dispatch("selectCountries", [cachedGeometry])
     } else {
       const [lon, lat] = toLonLat(event.coordinate)
       const geojson = await new Charon().reverseGeocoding(lat, lon)
@@ -38,10 +35,10 @@ const countryLayer = (map: Map): void => {
         if (geometries) {
           geometries.forEach(geometry => {
             if (geometry) {
-              if (!store.get().countries.allCountries.includes(geometry)) {
-                store.dispatch(addCountry(geometry))
+              if (!map.store.getState().countries.allCountries.includes(geometry)) {
+                map.store.dispatch("addCountry", geometry)
               }
-              store.dispatch(addSelectedCountries([geometry]))
+              map.store.dispatch("selectCountries", [geometry])
             }
           })
         }

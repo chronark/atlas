@@ -1,13 +1,28 @@
 import PubSub from "./pubsub"
 import actions from "./actions"
 import mutations from "./mutations"
+import { Job } from "../../types/customTypes"
 
-export type State = Record<string, any>
+export interface State {
+  jobs: {
+    all: Job[]
+    visible: Job[]
+  }
+  countries: {
+    all: Record<string, any>[]
+    selected: Record<string, any>[]
+  }
+  [key: string]: any
+}
 
 const initialState: State = {
   jobs: {
     all: [],
     visible: [],
+  },
+  countries: {
+    all: [],
+    selected: [],
   },
 }
 
