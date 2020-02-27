@@ -64,7 +64,7 @@ export default class Map {
   }
 
   addJobFilterHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_VISIBLE_JOBS"], () => {
+    this.store.events.subscribe(["STATE_CHANGE_JOBS_ALL", "STATE_CHANGE_COUNTRIES_SELECTED"], () => {
       let newShownJobs: Job[] = []
 
       if (this.store.getState().countries.selected.length === 0) {
@@ -75,7 +75,7 @@ export default class Map {
         })
       }
       console.error("addJobFilterHook firing")
-
+      console.log(this.store.getState().jobs.all)
       this.store.dispatch("setVisibleJobs", newShownJobs)
     })
   }

@@ -60,7 +60,7 @@ export class Store {
   }
 
   public dispatch(actionName: string, payload: any): boolean {
-    log.debug("Calling action:", { actionName })
+    log.debug("Calling action:", { actionName, payload })
     if (typeof this.actions[actionName] !== "function") {
       log.error(`Action "${actionName}" doesn't exist.`)
       return false
@@ -70,7 +70,7 @@ export class Store {
   }
 
   public commit(mutationName: string, payload: any): boolean {
-    log.debug("Calling mutation:", { mutationName })
+    log.debug("Calling mutation:", { mutationName, payload })
 
     if (typeof this.mutations[mutationName] !== "function") {
       log.error(`Mutation "${mutationName}" doesn't exist`)

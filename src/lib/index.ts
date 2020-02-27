@@ -8,15 +8,17 @@ import Map from "./map"
 
 const map = new Map("map-container")
 
-map.store.events.subscribe(["STATE_CHANGE"], () => log.info("State is now", map.store.getState()))
+map.store.events.subscribe(["STATE_CHANGE"], () => log.debug("State is now", map.store.getState()))
 
 // Update UI
-map.store.events.subscribe(["STATE_CHANGE"], () => {
+map.store.events.subscribe(["STATE_CHANGE_JOBS_ALL"], () => {
   const allJobsCounter = document.getElementById("allJobsCounter")
-  const visibleJobsCounter = document.getElementById("visibleJobsCounter")
   if (allJobsCounter) {
     allJobsCounter.innerText = map.store.getState().jobs.all.length
   }
+})
+map.store.events.subscribe(["STATE_CHANGE"], () => {
+  const visibleJobsCounter = document.getElementById("visibleJobsCounter")
   if (visibleJobsCounter) {
     visibleJobsCounter.innerText = map.store.getState().jobs.visible.length
   }
