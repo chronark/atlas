@@ -1,4 +1,4 @@
-import { bound, removeFrom, removeListFromList } from "../../src/lib/util"
+import { bound, removeFrom, removeListFromList } from "./util"
 describe("removeFrom()", () => {
   describe("when there are no duplicates", () => {
     const testCases = [
