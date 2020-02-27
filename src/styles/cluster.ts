@@ -31,7 +31,6 @@ export default class ClusterStyle {
   }
 
   private colorByScore(score: number, minScore = 0.5): string {
-    log.debug("Calculating color by score")
     if (score < 0 || score > 1) {
       throw new RangeError("score must be between 0 and 1, including 0 and 1.")
     }

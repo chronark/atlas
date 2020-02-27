@@ -51,6 +51,14 @@ export default class Map {
     this.addCircleSelect()
     this.addCountryLayer()
     this.buildJobLayer()
+
+    this.addCountryHook()
+  }
+
+  addCountryHook(): void {
+    this.store.events.subscribe("STATE_CHANGE", () => {
+      this.countryLayerFromGeometry(this.store.getState().countries.selected)
+    })
   }
 
   /**
@@ -201,8 +209,8 @@ export default class Map {
     const onEnd = (): void => {
       const circle = getCircle()
       if (circle) {
-        const filteredJobs = filterJobs(this.store.state.jobs.all, {
-          countries: this.store.state.countries.selected,
+        const filteredJobs = filterJobs(this.store.getState().jobs.all, {
+          countries: this.store.getState().countries.selected,
           circle: circle,
         })
         this.store.dispatch("setVisibleJobs", filteredJobs)

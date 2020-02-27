@@ -24,7 +24,7 @@ export class Store {
   private mutations: Record<string, Mutation>
   private status: string
   public events: PubSub
-  public state: State
+  private state: State
 
   constructor(actions: Record<string, Action>, mutations: Record<string, Mutation>, state?: State) {
     this.actions = actions
@@ -32,21 +32,25 @@ export class Store {
     this.mutations = mutations
     this.status = "resting"
 
-    this.state = new Proxy(state || initialState(), {
-      set: (state: State, key: string, value: any): boolean => {
-        state[key] = value
-        log.debug(`stateChange: ${key}: ${value}`)
-        this.events.publish("stateChange", this.state)
-        if (this.status !== "mutation") {
-          log.warn(`You should use a mutation to set ${key}`)
-        }
-        this.status = "resting"
-        return true
-      },
-    })
+    this.state = state || initialState()
+  }
+
+  getState(): State {
+    return this.state
+  }
+
+  private setState(state: State): void {
+    this.state = state
+    log.debug(`stateChange: ${this.state}`)
+    this.events.publish("STATE_CHANGE", this.state)
+    if (this.status !== "mutation") {
+      log.warn("You should use a mutation to set state")
+    }
+    this.status = "resting"
   }
 
   public dispatch(actionName: string, payload: any): boolean {
+    log.debug("Calling action:", { actionName })
     if (typeof this.actions[actionName] !== "function") {
       log.error(`Action "${actionName}" doesn't exist.`)
       return false
@@ -56,13 +60,16 @@ export class Store {
   }
 
   public commit(mutationName: string, payload: any): boolean {
+    log.debug("Calling mutation:", { mutationName })
+
     if (typeof this.mutations[mutationName] !== "function") {
-      log.debug(`Mutation "${mutationName}" doesn't exist`)
+      log.error(`Mutation "${mutationName}" doesn't exist`)
       return false
     }
     this.status = "mutation"
-    const newState = this.mutations[mutationName](this.state, payload)
-    this.state = { ...this.state, ...newState }
+    const nextState = this.mutations[mutationName](this.state, payload)
+
+    this.setState(nextState)
     return true
   }
 }

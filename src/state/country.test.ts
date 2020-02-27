@@ -20,7 +20,7 @@ describe("country actions", () => {
 
         const success = store.dispatch("addCountries", countries)
         expect(success).toBe(true)
-        expect(store.state.countries.all).toStrictEqual(countries)
+        expect(store.getState().countries.all).toStrictEqual(countries)
       })
 
       it("should handle multiple countries", () => {
@@ -29,7 +29,7 @@ describe("country actions", () => {
 
         const success = store.dispatch("addCountries", countries)
         expect(success).toBe(true)
-        expect(store.state.countries.all).toStrictEqual(countries)
+        expect(store.getState().countries.all).toStrictEqual(countries)
       })
     })
 
@@ -47,7 +47,7 @@ describe("country actions", () => {
 
         const success = store.dispatch("addCountries", countries)
         expect(success).toBe(true)
-        expect(store.state.countries.all).toStrictEqual(want)
+        expect(store.getState().countries.all).toStrictEqual(want)
       })
 
       it("should handle multiple countries", () => {
@@ -63,7 +63,7 @@ describe("country actions", () => {
         const want = [{ USA: "data" }, { GER: "data" }, { ITA: "data" }, { RUS: "data" }, { ARG: "data" }]
         const success = store.dispatch("addCountries", countries)
         expect(success).toBe(true)
-        expect(store.state.countries.all).toStrictEqual(want)
+        expect(store.getState().countries.all).toStrictEqual(want)
       })
     })
   })
@@ -77,7 +77,7 @@ describe("country actions", () => {
 
         const success = store.dispatch("selectCountries", countries)
         expect(success).toBe(true)
-        expect(store.state.countries.selected).toStrictEqual(countries)
+        expect(store.getState().countries.selected).toStrictEqual(countries)
       })
 
       it("should handle multiple countries", () => {
@@ -87,7 +87,7 @@ describe("country actions", () => {
 
         const success = store.dispatch("selectCountries", countries)
         expect(success).toBe(true)
-        expect(store.state.countries.selected).toStrictEqual(countries)
+        expect(store.getState().countries.selected).toStrictEqual(countries)
       })
     })
 
@@ -108,8 +108,8 @@ describe("country actions", () => {
 
         expect(success).toBe(true)
         // Workaround because jest cannot match arrays that might have different order of elements.
-        expect(store.state.countries.selected.length).toBe(want.length)
-        expect(new Set(store.state.countries.selected)).toEqual(new Set(want))
+        expect(store.getState().countries.selected.length).toBe(want.length)
+        expect(new Set(store.getState().countries.selected)).toEqual(new Set(want))
       })
 
       it("should handle multiple countries", () => {
@@ -126,8 +126,8 @@ describe("country actions", () => {
 
         expect(success).toBe(true)
         // Workaround because jest cannot match arrays that might have different order of elements.
-        expect(store.state.countries.selected.length).toBe(want.length)
-        expect(new Set(store.state.countries.selected)).toEqual(new Set(want))
+        expect(store.getState().countries.selected.length).toBe(want.length)
+        expect(new Set(store.getState().countries.selected)).toEqual(new Set(want))
       })
     })
   })

@@ -8,7 +8,21 @@ import Map from "./map"
 
 const map = new Map("map-container")
 
-map.store.events.subscribe("stateChange", () => log.info("State is now", map.store.state.jobs.all))
+map.store.events.subscribe("STATE_CHANGE", () => log.info("State is now", map.store.getState()))
+
+// Update UI
+map.store.events.subscribe("STATE_CHANGE", () => {
+  console.log("jobs update")
+  const allJobsCounter = document.getElementById("allJobsCounter")
+  const visibleJobsCounter = document.getElementById("visibleJobsCounter")
+  if (allJobsCounter) {
+    allJobsCounter.innerText = map.store.getState().jobs.all.length
+  }
+  if (visibleJobsCounter) {
+    console.log("visibleJobs update")
+    visibleJobsCounter.innerText = map.store.getState().jobs.visible.length
+  }
+})
 
 new Sample().jobs(200).then((jobs: Job[]) => {
   map.setJobs(jobs)
