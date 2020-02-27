@@ -5,6 +5,8 @@ import { log } from "../lib/logger"
 
 export type State = Record<string, any>
 
+// This is a function in order to return a fresh state every time.
+// I had issues where the initialState was changed by side effects.
 export const initialState = (): State => {
   return {
     jobs: {
