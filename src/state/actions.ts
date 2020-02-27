@@ -20,7 +20,7 @@ export const jobActions: Record<string, Action> = {
     return ctx.commit("setJobs", payload)
   },
   setVisibleJobs(ctx: Store, payload: Job[]) {
-    return ctx.commit("clearItem", payload)
+    return ctx.commit("setVisibleJobs", payload)
   },
 }
 export const actions: Record<string, Action> = { ...countryActions, ...jobActions }

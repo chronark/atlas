@@ -27,5 +27,9 @@ export const jobMutations = {
     state.jobs.all = payload
     return state
   },
+  setVisibleJobs(state: State, payload: Job[]): State {
+    state.jobs.visible = payload
+    return state
+  },
 }
 export const mutations = { ...countryMutations, ...jobMutations }

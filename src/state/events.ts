@@ -1,14 +1,16 @@
-export default class PubSub {
+export default class Events {
   private events: Record<string, any>
   constructor() {
     this.events = {}
   }
 
-  public subscribe(event: string, callback: CallableFunction): void {
-    if (!this.events.hasOwnProperty(event)) {
-      this.events[event] = []
-    }
-    return this.events[event].push(callback)
+  public subscribe(events: string[], callback: CallableFunction): void {
+    events.forEach(event => {
+      if (!this.events.hasOwnProperty(event)) {
+        this.events[event] = []
+      }
+      this.events[event].push(callback)
+    })
   }
 
   public publish(event: string, data = {}): Record<string, any> {

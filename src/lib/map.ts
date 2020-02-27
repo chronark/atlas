@@ -53,11 +53,30 @@ export default class Map {
     this.buildJobLayer()
 
     this.addCountryHook()
+    this.addJobFilterHook()
   }
 
   addCountryHook(): void {
-    this.store.events.subscribe("STATE_CHANGE", () => {
+    this.store.events.subscribe(["STATE_CHANGE_COUNTRIES_SELECTED", "STATE_CHANGE_JOBS_ALL"], () => {
+      console.error("addCountryHook firing")
       this.countryLayerFromGeometry(this.store.getState().countries.selected)
+    })
+  }
+
+  addJobFilterHook(): void {
+    this.store.events.subscribe(["STATE_CHANGE_VISIBLE_JOBS"], () => {
+      let newShownJobs: Job[] = []
+
+      if (this.store.getState().countries.selected.length === 0) {
+        newShownJobs = this.store.getState().jobs.all
+      } else {
+        newShownJobs = filterJobs(this.store.getState().jobs.all, {
+          countries: this.store.getState().countries.selected,
+        })
+      }
+      console.error("addJobFilterHook firing")
+
+      this.store.dispatch("setVisibleJobs", newShownJobs)
     })
   }
 

@@ -69,7 +69,7 @@ describe("Store()", () => {
       jest.spyOn(store.events, "publish")
 
       const mockCallback = jest.fn(payload => {})
-      store.events.subscribe("STATE_CHANGE", mockCallback)
+      store.events.subscribe(["STATE_CHANGE"], mockCallback)
       const success = store.dispatch("setCounterAction", 2)
       expect(success).toBe(true)
 
