@@ -4,7 +4,7 @@ describe("Store()", () => {
   describe("when no state is passed", () => {
     it("should have default initial state ", () => {
       const store = new Store()
-      expect(store.getState()).toEqual(initialState)
+      expect(store.state).toEqual(initialState)
     })
   })
   describe("when an initialState is passed", () => {
@@ -20,7 +20,7 @@ describe("Store()", () => {
         },
       }
       const store = new Store(customState)
-      expect(store.getState()).toStrictEqual(customState)
+      expect(store.state).toStrictEqual(customState)
     })
   })
 })

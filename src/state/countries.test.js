@@ -9,7 +9,7 @@ describe("country actions", () => {
 
         store.dispatch("addCountries", countries)
 
-        expect(store.getState().countries.all).toEqual(countries)
+        expect(store.state.countries.all).toEqual(countries)
       })
 
       it("should handle multiple countries", () => {
@@ -18,7 +18,7 @@ describe("country actions", () => {
 
         store.dispatch("addCountries", countries)
 
-        expect(store.getState().countries.all).toEqual(countries)
+        expect(store.state.countries.all).toEqual(countries)
       })
     })
 
@@ -40,7 +40,7 @@ describe("country actions", () => {
 
         store.dispatch("addCountries", countries)
 
-        expect(store.getState().countries.all).toEqual(want)
+        expect(store.state.countries.all).toEqual(want)
       })
 
       it("should handle multiple countries", () => {
@@ -57,9 +57,9 @@ describe("country actions", () => {
         const store = new Store()
         const countries = [{ RUS: "data" }, { ARG: "data" }]
         const want = [{ USA: "data" }, { GER: "data" }, { ITA: "data" }, { RUS: "data" }, { ARG: "data" }]
-        expect(store.getState()).toBe(initialState)
+        expect(store.state).toBe(initialState)
         store.dispatch("addCountries", countries)
-        expect(store.getState().countries.all).toEqual(countries)
+        expect(store.state.countries.all).toEqual(countries)
       })
     })
   })
@@ -72,7 +72,7 @@ describe("country actions", () => {
 
         store.dispatch("selectCountries", countries)
 
-        expect(store.getState().countries.selected).toEqual(countries)
+        expect(store.state.countries.selected).toEqual(countries)
       })
 
       it("should handle multiple countries", () => {
@@ -81,7 +81,7 @@ describe("country actions", () => {
 
         store.dispatch("selectCountries", countries)
 
-        expect(store.getState().countries.selected).toEqual(countries)
+        expect(store.state.countries.selected).toEqual(countries)
       })
     })
 
@@ -103,7 +103,7 @@ describe("country actions", () => {
 
         store.dispatch("selectCountries", countries)
 
-        expect(store.getState().countries.selected).toEqual(want)
+        expect(store.state.countries.selected).toEqual(want)
       })
 
       it("should handle multiple countries", () => {
@@ -121,7 +121,7 @@ describe("country actions", () => {
         const countries = ["RUS", "ARG"]
         const want = ["USA", "GER", "ITA", "RUS", "ARG"]
         store.dispatch("selectCountries", countries)
-        expect(store.getState().countries.selected).toEqual(want)
+        expect(store.state.countries.selected).toEqual(want)
       })
     })
   })

@@ -24,7 +24,7 @@ import BaseLayer from "ol/layer/Base"
 import Geometry from "ol/geom/Geometry"
 import { filterJobs } from "./geometryFilter"
 import Charon from "./apis/charon"
-import Store from "./state/store"
+import Store from "../state/store"
 import { countryLayerStyle } from "../styles/countryStyle"
 
 export default class Map {
@@ -201,8 +201,8 @@ export default class Map {
     const onEnd = (): void => {
       const circle = getCircle()
       if (circle) {
-        const filteredJobs = filterJobs(this.store.getState().jobs.all, {
-          countries: this.store.getState().countries.selected,
+        const filteredJobs = filterJobs(this.store.state.jobs.all, {
+          countries: this.store.state.countries.selected,
           circle: circle,
         })
         this.store.dispatch("setVisibleJobs", filteredJobs)
