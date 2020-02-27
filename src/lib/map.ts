@@ -24,7 +24,7 @@ import BaseLayer from "ol/layer/Base"
 import Geometry from "ol/geom/Geometry"
 import { filterJobs } from "./geometryFilter"
 import Charon from "./apis/charon"
-import Store from "../state/store"
+import { newDefaultStore, Store } from "../state/store"
 import { countryLayerStyle } from "../styles/countryStyle"
 
 export default class Map {
@@ -44,7 +44,7 @@ export default class Map {
       circleSelect: 10,
       jobs: 1000,
     }
-    this.store = new Store()
+    this.store = newDefaultStore()
 
     this.olmap = this.buildMap()
     this.addControls()

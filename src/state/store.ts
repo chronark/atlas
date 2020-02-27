@@ -1,46 +1,36 @@
 import PubSub from "./pubsub"
-import actions from "./actions"
-import mutations from "./mutations"
-import { Job } from "../types/customTypes"
+import { Action, actions } from "./actions"
+import { Mutation, mutations } from "./mutations"
 import { log } from "../lib/logger"
 
-export interface State {
-  jobs: {
-    all: Job[]
-    visible: Job[]
-  }
-  countries: {
-    all: Record<string, any>[]
-    selected: Record<string, any>[]
-  }
-  [key: string]: any
-}
+export type State = Record<string, any>
 
-export const initialState: State = {
-  jobs: {
-    all: [],
-    visible: [],
-  },
-  countries: {
-    all: [],
-    selected: [],
-  },
+export const initialState = (): State => {
+  return {
+    jobs: {
+      all: [],
+      visible: [],
+    },
+    countries: {
+      all: [],
+      selected: [],
+    },
+  }
 }
-
-export default class Store {
-  private actions: Record<string, any>
-  private mutations: Record<string, any>
+export class Store {
+  private actions: Record<string, Action>
+  private mutations: Record<string, Mutation>
   private status: string
   public events: PubSub
   public state: State
 
-  constructor(state = initialState) {
+  constructor(actions: Record<string, Action>, mutations: Record<string, Mutation>, state?: State) {
     this.actions = actions
     this.events = new PubSub()
     this.mutations = mutations
     this.status = "resting"
 
-    this.state = new Proxy(state, {
+    this.state = new Proxy(state || initialState(), {
       set: (state: State, key: string, value: any): boolean => {
         state[key] = value
         log.debug(`stateChange: ${key}: ${value}`)
@@ -60,9 +50,7 @@ export default class Store {
       return false
     }
     this.status = "action"
-    this.actions[actionName](this, payload)
-
-    return true
+    return this.actions[actionName](this, payload)
   }
 
   public commit(mutationName: string, payload: any): boolean {
@@ -72,7 +60,16 @@ export default class Store {
     }
     this.status = "mutation"
     const newState = this.mutations[mutationName](this.state, payload)
-    this.state = Object.assign(this.state, newState)
+    this.state = { ...this.state, ...newState }
     return true
   }
+}
+
+/**
+ * NewDefaultStore creates a Store instance with the default actions, mutations and initialState.
+ *
+ * @returns A Store instance.
+ */
+export function newDefaultStore(): Store {
+  return new Store(actions, mutations, initialState())
 }

@@ -1,7 +1,7 @@
 import Map from "./map"
 import { toLonLat } from "ol/proj"
 import Charon from "./apis/charon"
-import Store from "../state/store"
+import { Store } from "../state/store"
 import { GeoJSON } from "ol/format"
 import { areCoordinatesInGeometry } from "./geometryFilter"
 
