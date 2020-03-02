@@ -2,7 +2,7 @@ import Events from "./events"
 import { Action, actions } from "./actions"
 import { Mutation, mutations } from "./mutations"
 import { log } from "../lib/logger"
-import { visibleJobsHook, allCountriesHook, allJobsHook, selectedCountriesHook } from "./hooks"
+import allHooks from "./hooks"
 export type State = Record<string, any>
 
 enum Status {
@@ -99,10 +99,5 @@ export class Store {
  * @returns A Store instance.
  */
 export function newDefaultStore(): Store {
-  return new Store(actions, mutations, initialState(), [
-    visibleJobsHook,
-    allCountriesHook,
-    allJobsHook,
-    selectedCountriesHook,
-  ])
+  return new Store(actions, mutations, initialState(), allHooks)
 }

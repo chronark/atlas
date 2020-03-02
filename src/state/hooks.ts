@@ -24,3 +24,5 @@ export const selectedCountriesHook = (currentState: State, nextState: State, eve
     events.publish("STATE_CHANGE_COUNTRIES_SELECTED")
   }
 }
+
+export default [visibleJobsHook, allJobsHook, allCountriesHook, selectedCountriesHook]
