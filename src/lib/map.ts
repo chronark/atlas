@@ -53,11 +53,18 @@ export default class Map {
 
     this.addCountryHook()
     this.addJobFilterHook()
+    this.addVisibleJobsHook()
+  }
+
+  addVisibleJobsHook(): void {
+    this.store.events.subscribe(["STATE_CHANGE_JOBS_VISIBLE"], () => {
+      const visibleJobs = this.store.getState().jobs.visible
+      this.JobLayer.setJobs(visibleJobs)
+    })
   }
 
   addCountryHook(): void {
     this.store.events.subscribe(["STATE_CHANGE_COUNTRIES_SELECTED", "STATE_CHANGE_JOBS_ALL"], () => {
-      console.error("addCountryHook firing", this.store.getState().countries.selected)
       this.countryLayerFromGeometry(this.store.getState().countries.selected)
     })
   }
@@ -350,10 +357,7 @@ export default class Map {
   }
 
   public setJobs(jobs: Job[]): void {
-    log.debug("Setting jobs", jobs)
     this.store.dispatch("setJobs", jobs)
-
-    this.JobLayer.setJobs(this.store.getState().jobs.visible)
   }
 
   private setView(lon: number, lat: number, zoom: number): void {
