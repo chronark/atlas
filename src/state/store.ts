@@ -5,6 +5,12 @@ import { log } from "../lib/logger"
 import { visibleJobsHook, allCountriesHook, allJobsHook, selectedCountriesHook } from "./hooks"
 export type State = Record<string, any>
 
+enum Status {
+  action,
+  listening,
+  mutation,
+}
+
 export type Hook = (currentState: State, nextState: State, events: Events) => void
 
 // This is a function in order to return a fresh state every time.
@@ -24,7 +30,7 @@ export const initialState = (): State => {
 export class Store {
   private actions: Record<string, Action>
   private mutations: Record<string, Mutation>
-  private status: string
+  private status: Status
   public events: Events
   private state: State
   public hooks: Hook[]
@@ -33,7 +39,7 @@ export class Store {
     this.actions = actions
     this.events = new Events()
     this.mutations = mutations
-    this.status = "resting"
+    this.status = Status.listening
     this.hooks = hooks || []
 
     this.state = state || initialState()
@@ -53,10 +59,10 @@ export class Store {
     this.state = nextState
     log.debug(`stateChange: ${this.state}`)
     this.events.publish("STATE_CHANGE", this.state)
-    if (this.status !== "mutation") {
+    if (this.status !== Status.mutation) {
       log.warn("You should use a mutation to set state")
     }
-    this.status = "resting"
+    this.status = Status.listening
   }
 
   public dispatch(actionName: string, payload: any): boolean {
@@ -65,7 +71,7 @@ export class Store {
       log.error(`Action "${actionName}" doesn't exist.`)
       return false
     }
-    this.status = "action"
+    this.status = Status.action
     return this.actions[actionName](this, payload)
   }
 
@@ -76,7 +82,7 @@ export class Store {
       log.error(`Mutation "${mutationName}" doesn't exist`)
       return false
     }
-    this.status = "mutation"
+    this.status = Status.mutation
 
     const clonedState = JSON.parse(JSON.stringify(this.state))
     const nextState = this.mutations[mutationName](clonedState, payload)
