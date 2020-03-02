@@ -1,6 +1,7 @@
-import { State } from "./store"
 import { removeListFromList, unique } from "../lib/util"
+
 import { Job } from "../types/customTypes"
+import { State } from "./store"
 
 export type Mutation = (state: State, payload: any) => State
 

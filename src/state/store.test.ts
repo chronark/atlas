@@ -1,4 +1,4 @@
-import { Store, State, initialState } from "./store"
+import { State, Store, initialState } from "./store"
 
 describe("Store()", () => {
   describe("constructor()", () => {
@@ -68,7 +68,7 @@ describe("Store()", () => {
       const store = new Store({ setCounterAction }, { setCounterMutation }, initialState)
       jest.spyOn(store.events, "publish")
 
-      const mockCallback = jest.fn(payload => {})
+      const mockCallback = jest.fn(payload => payload)
       store.events.subscribe(["STATE_CHANGE"], mockCallback)
       const success = store.dispatch("setCounterAction", 2)
       expect(success).toBe(true)

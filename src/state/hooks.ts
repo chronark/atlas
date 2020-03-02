@@ -1,5 +1,5 @@
-import { State } from "./store"
 import Events from "./events"
+import { State } from "./store"
 
 export const visibleJobsHook = (currentState: State, nextState: State, events: Events): void => {
   if (JSON.stringify(currentState.jobs.visible) !== JSON.stringify(nextState.jobs.visible)) {

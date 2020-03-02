@@ -1,5 +1,6 @@
-import { GeocodingResponseObject } from "../../types/customTypes"
 import Axios from "axios"
+import { GeocodingResponseObject } from "../../types/customTypes"
+
 export default class Charon {
   private serverURL: string
   public constructor() {

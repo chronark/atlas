@@ -1,13 +1,13 @@
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
-import Feature from "ol/Feature"
-import Point from "ol/geom/Point"
-import { fromLonLat } from "ol/proj.js"
 import Cluster from "ol/source/Cluster"
-import VectorSource from "ol/source/Vector"
-import Layer from "ol/layer/Layer"
 import ClusterStyle from "../styles/cluster"
+import Feature from "ol/Feature"
 import { Job } from "../types/customTypes"
+import Layer from "ol/layer/Layer"
+import Point from "ol/geom/Point"
 import VectorLayer from "ol/layer/Vector"
+import VectorSource from "ol/source/Vector"
+import { fromLonLat } from "ol/proj.js"
 
 export default class JobLayer extends Layer {
   public cluster: Cluster

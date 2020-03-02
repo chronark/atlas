@@ -33,7 +33,15 @@ module.exports = {
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
     "no-console": "warn",
-
+    "sort-imports": [
+      "error",
+      {
+        ignoreCase: false,
+        ignoreDeclarationSort: false,
+        ignoreMemberSort: false,
+        memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
+      },
+    ],
     // jsdoc
     "jsdoc/check-access": "warn",
     "jsdoc/check-values": "warn",

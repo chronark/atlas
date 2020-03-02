@@ -1,8 +1,10 @@
-import Events from "./events"
 import { Action, actions } from "./actions"
 import { Mutation, mutations } from "./mutations"
-import { log } from "../lib/logger"
+
+import Events from "./events"
 import allHooks from "./hooks"
+import { log } from "../lib/logger"
+
 export type State = Record<string, any>
 
 enum Status {

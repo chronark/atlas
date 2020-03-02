@@ -1,5 +1,5 @@
-import { Store } from "./store"
 import { Job } from "../types/customTypes"
+import { Store } from "./store"
 
 export type Action = (ctx: Store, payload: any) => boolean
 
