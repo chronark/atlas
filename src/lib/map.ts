@@ -28,7 +28,6 @@ import { newDefaultStore, Store } from "../state/store"
 import { countryLayerStyle } from "../styles/countryStyle"
 
 export default class Map {
-  public jobs: Job[]
   private mapID: string
   public olmap: OLMap
   public store: Store
@@ -58,7 +57,7 @@ export default class Map {
 
   addCountryHook(): void {
     this.store.events.subscribe(["STATE_CHANGE_COUNTRIES_SELECTED", "STATE_CHANGE_JOBS_ALL"], () => {
-      console.error("addCountryHook firing")
+      console.error("addCountryHook firing", this.store.getState().countries.selected)
       this.countryLayerFromGeometry(this.store.getState().countries.selected)
     })
   }
@@ -66,7 +65,6 @@ export default class Map {
   addJobFilterHook(): void {
     this.store.events.subscribe(["STATE_CHANGE_JOBS_ALL", "STATE_CHANGE_COUNTRIES_SELECTED"], () => {
       let newShownJobs: Job[] = []
-
       if (this.store.getState().countries.selected.length === 0) {
         newShownJobs = this.store.getState().jobs.all
       } else {
@@ -74,8 +72,6 @@ export default class Map {
           countries: this.store.getState().countries.selected,
         })
       }
-      console.error("addJobFilterHook firing")
-      console.log(this.store.getState().jobs.all)
       this.store.dispatch("setVisibleJobs", newShownJobs)
     })
   }
@@ -355,9 +351,9 @@ export default class Map {
 
   public setJobs(jobs: Job[]): void {
     log.debug("Setting jobs", jobs)
-    this.store.dispatch("setJobs", jobs)
     this.JobLayer.clear()
     this.JobLayer.addJobs(jobs)
+    this.store.dispatch("setJobs", jobs)
   }
 
   private setView(lon: number, lat: number, zoom: number): void {
