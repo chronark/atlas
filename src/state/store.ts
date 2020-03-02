@@ -64,7 +64,6 @@ export class Store {
     })
 
     this.status = Status.listening
-    console.log("newState", this.state)
   }
 
   public dispatch(actionName: string, payload: any): boolean {
