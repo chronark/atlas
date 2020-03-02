@@ -351,9 +351,9 @@ export default class Map {
 
   public setJobs(jobs: Job[]): void {
     log.debug("Setting jobs", jobs)
-    this.JobLayer.clear()
-    this.JobLayer.addJobs(jobs)
     this.store.dispatch("setJobs", jobs)
+
+    this.JobLayer.setJobs(this.store.getState().jobs.visible)
   }
 
   private setView(lon: number, lat: number, zoom: number): void {
