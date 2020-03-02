@@ -94,7 +94,7 @@ export class Store {
 }
 
 /**
- * NewDefaultStore creates a Store instance with the default actions, mutations and initialState.
+ * NewDefaultStore creates a Store instance with the default actions, mutations, initialState and all hooks.
  *
  * @returns A Store instance.
  */
