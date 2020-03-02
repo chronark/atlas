@@ -7,18 +7,18 @@ import Map from "./map"
 
 const map = new Map("map-container")
 
-map.store.events.subscribe(["STATE_CHANGE"], () => log.debug("State is now", map.store.getState()))
-
 // Update UI
 map.store.events.subscribe(["STATE_CHANGE_JOBS_ALL"], () => {
   const allJobsCounter = document.getElementById("allJobsCounter")
   if (allJobsCounter) {
+    console.error("all jobs firing", map.store.getState().jobs.all)
     allJobsCounter.innerText = map.store.getState().jobs.all.length
   }
 })
-map.store.events.subscribe(["STATE_CHANGE"], () => {
+map.store.events.subscribe(["STATE_CHANGE_JOBS_VISIBLE"], () => {
   const visibleJobsCounter = document.getElementById("visibleJobsCounter")
   if (visibleJobsCounter) {
+    console.error("visible jobs firing", map.store.getState().jobs.visible)
     visibleJobsCounter.innerText = map.store.getState().jobs.visible.length
   }
 })
