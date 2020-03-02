@@ -50,19 +50,21 @@ export class Store {
   }
 
   private setState(nextState: State): void {
-    console.error(this.state, nextState, this.state === nextState)
-
-    this.hooks.forEach(h => {
-      h(this.state, nextState, this.events)
-    })
-
-    this.state = nextState
-    log.debug(`stateChange: ${this.state}`)
-    this.events.publish("STATE_CHANGE", this.state)
     if (this.status !== Status.mutation) {
       log.warn("You should use a mutation to set state")
     }
+
+    const oldState = Object.assign({}, this.state)
+
+    this.state = Object.assign({}, nextState)
+
+    this.events.publish("STATE_CHANGE", this.state)
+    this.hooks.forEach(hook => {
+      hook(oldState, nextState, this.events)
+    })
+
     this.status = Status.listening
+    console.log("newState", this.state)
   }
 
   public dispatch(actionName: string, payload: any): boolean {
