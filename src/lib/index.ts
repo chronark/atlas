@@ -1,6 +1,3 @@
-import "../../static/css/ol-ext.css"
-import "../../static/css/ol.css"
-
 import { Job } from "../types/customTypes"
 import Map from "./map"
 import Sample from "../lib/apis/sample"

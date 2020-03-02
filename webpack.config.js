@@ -43,10 +43,6 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
-      {
         test: /\.ts$/,
         use: ["babel-loader", "ts-loader"],
       },
