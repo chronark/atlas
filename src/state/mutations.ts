@@ -1,18 +1,19 @@
 import { removeListFromList, unique } from "../lib/util"
 
+import { Geometry } from "ol/geom"
 import { Job } from "../types/customTypes"
 import { State } from "./store"
 
 export type Mutation = (state: State, payload: any) => State
 
 export const countryMutations = {
-  addCountries(state: State, payload: Record<string, any>[]): State {
+  addCountries(state: State, payload: Geometry[]): State {
     const combined = state.countries.all.concat(payload)
     state.countries.all = unique(combined)
     return state
   },
 
-  selectCountries(state: State, payload: Record<string, any>[]): State {
+  selectCountries(state: State, payload: Geometry[]): State {
     const combined = state.countries.selected.concat(payload)
     state.countries.selected = unique(combined)
     return state

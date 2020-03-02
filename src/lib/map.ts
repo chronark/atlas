@@ -270,25 +270,7 @@ export default class Map {
     return layer
   }
 
-  private getRadius(circle: Feature): number {
-    return circle.get("values_").geometry.getRadius()
-  }
-
-  private makeFeatureFromCircle(circleFeature: Feature): Feature {
-    return new Feature({
-      geometry: fromCircle(circleFeature.get("geometry")),
-      //  TODO the following style seems to have no effect
-      style: new Style({
-        fill: new Fill({
-          color: "rgba(0,0,0,0)",
-        }),
-        stroke: new Stroke({
-          color: "rgba(0,0,0,0)",
-          width: 0,
-        }),
-      }),
-    })
-  }
+  
 
   private getLayersByNames(names: string[]): BaseLayer[] {
     const allLayers = this.olmap.getLayers()

@@ -11,13 +11,13 @@ const map = new Map("map-container")
 map.store.events.subscribe(["STATE_CHANGE_JOBS_ALL"], () => {
   const allJobsCounter = document.getElementById("allJobsCounter")
   if (allJobsCounter) {
-    allJobsCounter.innerText = map.store.getState().jobs.all.length
+    allJobsCounter.innerText = map.store.getState().jobs.all.length.toString()
   }
 })
 map.store.events.subscribe(["STATE_CHANGE_JOBS_VISIBLE"], () => {
   const visibleJobsCounter = document.getElementById("visibleJobsCounter")
   if (visibleJobsCounter) {
-    visibleJobsCounter.innerText = map.store.getState().jobs.visible.length
+    visibleJobsCounter.innerText = map.store.getState().jobs.visible.length.toString()
   }
 })
 

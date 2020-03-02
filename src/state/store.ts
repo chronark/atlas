@@ -2,10 +2,22 @@ import { Action, actions } from "./actions"
 import { Mutation, mutations } from "./mutations"
 
 import Events from "./events"
+import {Geometry} from "ol/geom"
+import {Job} from "../types/customTypes"
 import allHooks from "./hooks"
 import { log } from "../lib/logger"
 
-export type State = Record<string, any>
+// export type State = Record<string, any>
+export type State = {
+  jobs: {
+    all: Job[],
+    visible: Job[],
+  },
+  countries: {
+    all: Geometry[],
+    selected:Geometry[],
+  }
+}
 
 enum Status {
   action,

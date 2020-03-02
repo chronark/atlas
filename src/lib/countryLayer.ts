@@ -3,6 +3,7 @@ import Feature from "ol/Feature"
 import { GeoJSON } from "ol/format"
 import { Geometry } from "ol/geom"
 import Map from "./map"
+import { MapBrowserEvent } from "ol"
 import { Store } from "../state/store"
 import { areCoordinatesInGeometry } from "./geometryFilter"
 import { toLonLat } from "ol/proj"
@@ -17,18 +18,19 @@ function convertGeoJsonToGeometries(geojson: Record<string, any>): (Geometry | u
   const features: Feature[] = new GeoJSON({
     featureProjection: "EPSG:3857",
   }).readFeatures(geojson)
-  return features.map(feature => feature.getGeometry())
+  return features.map((feature: Feature) => feature.getGeometry())
 }
-const getCachedGeometry = (store: Store, event: any): Record<string, any> => {
+const getCachedGeometry = (store: Store, event: MapBrowserEvent): Geometry => {
   const [lon, lat] = toLonLat(event.coordinate)
   const matches = store.getState().countries.all.filter((geometry: Geometry) => {
+    console.log(geometry)
     return areCoordinatesInGeometry([lon, lat], geometry)
   })
   return matches[0]
 }
 
 const countryLayer = (map: Map): void => {
-  map.olmap.on("singleclick", async (event: any) => {
+  map.olmap.on("singleclick", async (event: MapBrowserEvent) => {
     const cachedGeometry = getCachedGeometry(map.store, event)
     if (cachedGeometry) {
       map.store.getState().countries.selected.includes(cachedGeometry)
