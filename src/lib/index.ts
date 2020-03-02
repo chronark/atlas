@@ -1,6 +1,5 @@
 import "../../static/css/ol-ext.css"
 import "../../static/css/ol.css"
-import "../../static/css/tailwind.css"
 import { Job } from "../types/customTypes"
 import { log } from "../lib/logger"
 import Sample from "../lib/apis/sample"

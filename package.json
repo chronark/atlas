@@ -19,7 +19,7 @@
     "e2e": "./node_modules/.bin/cypress open",
     "e2e:ci": "./node_modules/.bin/cypress run",
     "format": "yarn prettier && yarn lint",
-    "prettier": "prettier --write ./**/*.{js,jsx,ts,tsx,json} --loglevel warn",
+    "prettier": "prettier --write ./**/*.{js,ts,json} --loglevel warn",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./",
     "serve": "serve ./dist",
     "test:e2e": "start-server-and-test buildandserve http://localhost:5000 e2e",
