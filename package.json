@@ -60,7 +60,6 @@
     "@typescript-eslint/parser": "2.15.0",
     "babel-loader": "8.0.6",
     "babel-plugin-macros": "2.8.0",
-    "copy-webpack-plugin": "5.1.1",
     "core-js": "3.6.4",
     "css-loader": "3.4.2",
     "cypress": "4.1.0",
