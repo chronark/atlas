@@ -22,7 +22,7 @@ function convertGeoJsonToGeometries(geojson: Record<string, any>): (Geometry | u
 }
 const getCachedGeometry = (store: Store, event: MapBrowserEvent): Geometry => {
   const [lon, lat] = toLonLat(event.coordinate)
-  const matches = store.getState().countries.all.filter((geometry: Geometry) => {
+  const matches = store.getState().geometries.all.filter((geometry: Geometry) => {
     console.log(geometry)
     return areCoordinatesInGeometry([lon, lat], geometry)
   })
@@ -33,9 +33,9 @@ const countryLayer = (map: Map): void => {
   map.olmap.on("singleclick", async (event: MapBrowserEvent) => {
     const cachedGeometry = getCachedGeometry(map.store, event)
     if (cachedGeometry) {
-      map.store.getState().countries.selected.includes(cachedGeometry)
-        ? map.store.dispatch("unselectCountries", [cachedGeometry])
-        : map.store.dispatch("selectCountries", [cachedGeometry])
+      map.store.getState().geometries.selected.includes(cachedGeometry)
+        ? map.store.dispatch("unselectGeometries", [cachedGeometry])
+        : map.store.dispatch("selectGeometries", [cachedGeometry])
     } else {
       const [lon, lat] = toLonLat(event.coordinate)
       const geojson = await new Charon().reverseGeocoding(lat, lon)
@@ -44,10 +44,10 @@ const countryLayer = (map: Map): void => {
         if (geometries) {
           geometries.forEach(geometry => {
             if (geometry) {
-              if (!map.store.getState().countries.all.includes(geometry)) {
-                map.store.dispatch("addCountries", geometry)
+              if (!map.store.getState().geometries.all.includes(geometry)) {
+                map.store.dispatch("addGeometries", [geometry])
               }
-              map.store.dispatch("selectCountries", [geometry])
+              map.store.dispatch("selectGeometries", [geometry])
             }
           })
         }

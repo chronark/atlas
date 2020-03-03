@@ -13,16 +13,16 @@ export const allJobsHook = (currentState: State, nextState: State, events: Event
   }
 }
 
-export const allCountriesHook = (currentState: State, nextState: State, events: Events): void => {
-  if (JSON.stringify(currentState.countries.all) !== JSON.stringify(nextState.countries.all)) {
-    events.publish("STATE_CHANGE_COUNTRIES_ALL")
+export const allGeometriesHook = (currentState: State, nextState: State, events: Events): void => {
+  if (JSON.stringify(currentState.geometries.all) !== JSON.stringify(nextState.geometries.all)) {
+    events.publish("STATE_CHANGE_GEOMETRIES_ALL")
   }
 }
 
-export const selectedCountriesHook = (currentState: State, nextState: State, events: Events): void => {
-  if (JSON.stringify(currentState.countries.selected) !== JSON.stringify(nextState.countries.selected)) {
-    events.publish("STATE_CHANGE_COUNTRIES_SELECTED")
+export const selectedGeometriesHook = (currentState: State, nextState: State, events: Events): void => {
+  if (JSON.stringify(currentState.geometries.selected) !== JSON.stringify(nextState.geometries.selected)) {
+    events.publish("STATE_CHANGE_GEOMETRIES_SELECTED")
   }
 }
 
-export default [visibleJobsHook, allJobsHook, allCountriesHook, selectedCountriesHook]
+export default [visibleJobsHook, allJobsHook, allGeometriesHook, selectedGeometriesHook]

@@ -2,20 +2,19 @@ import { Action, actions } from "./actions"
 import { Mutation, mutations } from "./mutations"
 
 import Events from "./events"
-import {Geometry} from "ol/geom"
-import {Job} from "../types/customTypes"
+import { Geometry } from "ol/geom"
+import { Job } from "../types/customTypes"
 import allHooks from "./hooks"
 import { log } from "../lib/logger"
 
-// export type State = Record<string, any>
 export type State = {
   jobs: {
-    all: Job[],
-    visible: Job[],
-  },
-  countries: {
-    all: Geometry[],
-    selected:Geometry[],
+    all: Job[]
+    visible: Job[]
+  }
+  geometries: {
+    all: Geometry[]
+    selected: Geometry[]
   }
 }
 
@@ -35,7 +34,7 @@ export const initialState = (): State => {
       all: [],
       visible: [],
     },
-    countries: {
+    geometries: {
       all: [],
       selected: [],
     },

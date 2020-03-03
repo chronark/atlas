@@ -51,7 +51,7 @@ export default class Map {
     this.addCountryLayer()
     this.buildJobLayer()
 
-    this.addCountryHook()
+    this.addGeometriesHook()
     this.addJobFilterHook()
     this.addVisibleJobsHook()
   }
@@ -63,20 +63,20 @@ export default class Map {
     })
   }
 
-  addCountryHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_COUNTRIES_SELECTED", "STATE_CHANGE_JOBS_ALL"], () => {
-      this.countryLayerFromGeometry(this.store.getState().countries.selected)
+  addGeometriesHook(): void {
+    this.store.events.subscribe(["STATE_CHANGE_GEOMETRIES_SELECTED", "STATE_CHANGE_JOBS_ALL"], () => {
+      this.countryLayerFromGeometry(this.store.getState().geometries.selected)
     })
   }
 
   addJobFilterHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_JOBS_ALL", "STATE_CHANGE_COUNTRIES_SELECTED"], () => {
+    this.store.events.subscribe(["STATE_CHANGE_JOBS_ALL", "STATE_CHANGE_GEOMETRIES_SELECTED"], () => {
       let newShownJobs: Job[] = []
-      if (this.store.getState().countries.selected.length === 0) {
+      if (this.store.getState().geometries.selected.length === 0) {
         newShownJobs = this.store.getState().jobs.all
       } else {
         newShownJobs = filterJobs(this.store.getState().jobs.all, {
-          countries: this.store.getState().countries.selected,
+          geometries: this.store.getState().geometries.selected,
         })
       }
       this.store.dispatch("setVisibleJobs", newShownJobs)
@@ -232,7 +232,7 @@ export default class Map {
       const circle = getCircle()
       if (circle) {
         const filteredJobs = filterJobs(this.store.getState().jobs.all, {
-          countries: this.store.getState().countries.selected,
+          geometries: this.store.getState().geometries.selected,
           circle: circle,
         })
         this.store.dispatch("setVisibleJobs", filteredJobs)
@@ -269,8 +269,6 @@ export default class Map {
     }
     return layer
   }
-
-  
 
   private getLayersByNames(names: string[]): BaseLayer[] {
     const allLayers = this.olmap.getLayers()

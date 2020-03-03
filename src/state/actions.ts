@@ -1,17 +1,18 @@
+import { Geometry } from "ol/geom"
 import { Job } from "../types/customTypes"
 import { Store } from "./store"
 
 export type Action = (ctx: Store, payload: any) => boolean
 
 export const countryActions: Record<string, Action> = {
-  addCountries(ctx: Store, payload: Record<string, any>[]): boolean {
-    return ctx.commit("addCountries", payload)
+  addGeometries(ctx: Store, payload: Geometry[]): boolean {
+    return ctx.commit("addGeometries", payload)
   },
-  selectCountries(ctx: Store, payload: Record<string, any>[]): boolean {
-    return ctx.commit("selectCountries", payload)
+  selectGeometries(ctx: Store, payload: Geometry[]): boolean {
+    return ctx.commit("selectGeometries", payload)
   },
-  unselectCountries(ctx: Store, payload: Record<string, any>[]): boolean {
-    return ctx.commit("unselectCountries", payload)
+  unselectGeometries(ctx: Store, payload: Record<string, any>[]): boolean {
+    return ctx.commit("unselectGeometries", payload)
   },
 }
 
