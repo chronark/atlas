@@ -16,6 +16,7 @@ export type State = {
     all: Geometry[]
     selected: Geometry[]
   }
+  [key: string]: any
 }
 
 enum Status {
@@ -40,12 +41,14 @@ export const initialState = (): State => {
     },
   }
 }
+
+
 export class Store {
   private actions: Record<string, Action>
   private mutations: Record<string, Mutation>
   private status: Status
   public events: Events
-  private state: State
+  public state: State
   public hooks: Hook[]
 
   constructor(actions: Record<string, Action>, mutations: Record<string, Mutation>, state?: State, hooks?: Hook[]) {
@@ -55,28 +58,28 @@ export class Store {
     this.status = Status.listening
     this.hooks = hooks || []
 
-    this.state = state || initialState()
+    this.state = new Proxy(state || initialState(), {
+      
+      set: (state: State, key: string, value: any): boolean  => {
+        // TODO
+        /*
+        Make state a flat object and create hooks for each change
+
+        */ 
+        console.log(state[key], value, state[key] === value)
+        state[key] = value
+
+        this.events.publish("STATE_CHANGE", state)
+        console.log("stateChange: ", key, value)
+        return true
+      }
+    })
   }
 
   getState(): State {
     return this.state
-  }
 
-  private setState(nextState: State): void {
-    if (this.status !== Status.mutation) {
-      log.warn("You should use a mutation to set state")
-    }
 
-    const oldState = Object.assign({}, this.state)
-
-    this.state = Object.assign({}, nextState)
-
-    this.events.publish("STATE_CHANGE", this.state)
-    this.hooks.forEach(hook => {
-      hook(oldState, nextState, this.events)
-    })
-
-    this.status = Status.listening
   }
 
   public dispatch(actionName: string, payload: any): boolean {
@@ -98,10 +101,8 @@ export class Store {
     }
     this.status = Status.mutation
 
-    const clonedState = JSON.parse(JSON.stringify(this.state))
-    const nextState = this.mutations[mutationName](clonedState, payload)
-
-    this.setState(nextState)
+    let nextState =  this.mutations[mutationName](this.state, payload)
+    this.state = Object.assign(this.state, nextState)
     return true
   }
 }
