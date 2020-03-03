@@ -1,6 +1,5 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 
-const CopyPlugin = require("copy-webpack-plugin")
 const HtmlPlugin = require("html-webpack-plugin")
 const path = require("path")
 
@@ -50,7 +49,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new CopyPlugin([{ from: "static", to: "static" }]),
     new HtmlPlugin({
       template: "./src/lib/index.html",
     }),
