@@ -21,8 +21,6 @@ enum Status {
   mutation,
 }
 
-export type Hook = (currentState: State, nextState: State, events: Events) => void
-
 // This is a function in order to return a fresh state every time.
 // I had issues where the initialState was changed by side effects.
 export const initialState = (): State => {
@@ -40,7 +38,6 @@ export class Store {
   private status: Status
   public events: Events
   private state: State
-  public hooks: Hook[]
 
   constructor(actions: Record<string, Action>, mutations: Record<string, Mutation>, state?: State) {
     this.actions = actions
@@ -51,12 +48,10 @@ export class Store {
     this.state = new Proxy(state || initialState(), {
       set: (state: State, key: string, value: Job[] | Geometry[]): boolean => {
         state[key] = value
-        console.group(key)
+
         this.events.publish("STATE_CHANGE", state)
         this.events.publish("STATE_CHANGE_" + key.toUpperCase(), state)
 
-        console.warn("stateChange: ", key, value.length)
-        console.groupEnd()
         this.status = Status.listening
         return true
       },
