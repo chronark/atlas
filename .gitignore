@@ -10,3 +10,4 @@ __tests__/e2e/reports
 docs/build
 docs/docs/typedoc
 cypress/videos
+cypress/screenshots

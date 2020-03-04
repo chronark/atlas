@@ -1,11 +1,11 @@
 import BaseLayer from "ol/layer/Layer"
+import Charon from "./charon"
+import { MVT } from "ol/format"
 import TileLayer from "ol/layer/Tile"
 import VectorTileLayer from "ol/layer/VectorTile"
-import Charon from "./charon"
-import stylefunction from "ol-mapbox-style/stylefunction"
-import { MVT } from "ol/format"
 import VectorTileSource from "ol/source/VectorTile"
 import XYZ from "ol/source/XYZ"
+import stylefunction from "ol-mapbox-style/stylefunction"
 
 /**
  * Interface for both OSM and Mapbox layer generation.

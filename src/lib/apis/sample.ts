@@ -1,11 +1,6 @@
-/**
- * @module map
- */
-
 import { Job } from "../../types/customTypes"
-import { log } from "../logger"
 import axios from "axios"
-import CircleStyle from "ol/style/Circle"
+import { log } from "../logger"
 
 export default class Sample {
   private getLocations(cities: Record<string, any>[], locationCount: number): { lat: number; lon: number }[] {
