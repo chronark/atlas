@@ -7120,10 +7120,10 @@ obuf@^1.0.0, obuf@^1.1.2:
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
-ol-ext@3.1.8:
-  version "3.1.8"
-  resolved "https://registry.yarnpkg.com/ol-ext/-/ol-ext-3.1.8.tgz#1e5b5fb2a9be4e33709e14034d2f9e9d113c6c88"
-  integrity sha512-LVSzXS3tyzjhWfJD4azxyhSgTO02pgP8I8n2cl6Ll/ag/hMAPWpL4SVaDWRPL1Nzze2y4aA5TbpYXQrijkx27Q==
+ol-ext@3.1.10:
+  version "3.1.10"
+  resolved "https://registry.yarnpkg.com/ol-ext/-/ol-ext-3.1.10.tgz#576a7b81d96d9d4e154d12fe327ea91b9961e08b"
+  integrity sha512-KrnSgGjzGIglL9FfUAMRu2IzW3b1BH+v+Z2qq85pJKQ+MTpG+yG6pC+9sBDg6RNIXPpRKciysP+pezCKSsqjoA==
   dependencies:
     gulp-jsdoc3 "^2.0.0"
 
