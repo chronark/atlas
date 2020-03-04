@@ -18,7 +18,7 @@
     "dev": "webpack-dev-server --progress",
     "e2e": "./node_modules/.bin/cypress open",
     "e2e:ci": "./node_modules/.bin/cypress run",
-    "format": "yarn prettier && yarn lint",
+    "fmt": "yarn prettier && yarn lint",
     "prettier": "prettier --write ./**/*.{js,ts,json} --loglevel warn",
     "lint": "eslint --fix --ext .js,.ts ./",
     "serve": "serve ./dist",
@@ -29,7 +29,7 @@
     "docs:buildTypes": "yarn typedoc",
     "docs:show": "yarn docs:buildTypes && cd docs && yarn start",
     "docs:build": "yarn docs:buildTypes && cd docs && yarn build",
-    "test:full": "yarn install && yarn format && yarn tsc && yarn test:unit && yarn build && yarn test:e2e:ci"
+    "test:full": "yarn install && yarn fmt && yarn tsc && yarn test:unit && yarn build && yarn test:e2e:ci"
   },
   "husky": {
     "hooks": {

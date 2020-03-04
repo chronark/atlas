@@ -2,10 +2,18 @@ import { Action, actions } from "./actions"
 import { Mutation, mutations } from "./mutations"
 
 import Events from "./events"
-import allHooks from "./hooks"
+import { Geometry } from "ol/geom"
+import { Job } from "../types/customTypes"
 import { log } from "../lib/logger"
 
-export type State = Record<string, any>
+export type State = {
+  allJobs: Job[]
+  visibleJobs: Job[]
+  allGeometries: Geometry[]
+  selectedGeometries: Geometry[]
+  test?: string
+  [key: string]: any
+}
 
 enum Status {
   action,
@@ -13,59 +21,45 @@ enum Status {
   mutation,
 }
 
-export type Hook = (currentState: State, nextState: State, events: Events) => void
-
 // This is a function in order to return a fresh state every time.
 // I had issues where the initialState was changed by side effects.
 export const initialState = (): State => {
   return {
-    jobs: {
-      all: [],
-      visible: [],
-    },
-    countries: {
-      all: [],
-      selected: [],
-    },
+    allJobs: [],
+    visibleJobs: [],
+    allGeometries: [],
+    selectedGeometries: [],
   }
 }
+
 export class Store {
   private actions: Record<string, Action>
   private mutations: Record<string, Mutation>
   private status: Status
   public events: Events
   private state: State
-  public hooks: Hook[]
 
-  constructor(actions: Record<string, Action>, mutations: Record<string, Mutation>, state?: State, hooks?: Hook[]) {
+  constructor(actions: Record<string, Action>, mutations: Record<string, Mutation>, state?: State) {
     this.actions = actions
     this.events = new Events()
     this.mutations = mutations
     this.status = Status.listening
-    this.hooks = hooks || []
 
-    this.state = state || initialState()
+    this.state = new Proxy(state || initialState(), {
+      set: (state: State, key: string, value: Job[] | Geometry[]): boolean => {
+        state[key] = value
+
+        this.events.publish("STATE_CHANGE", state)
+        this.events.publish("STATE_CHANGE_" + key.toUpperCase(), state)
+
+        this.status = Status.listening
+        return true
+      },
+    })
   }
 
   getState(): State {
     return this.state
-  }
-
-  private setState(nextState: State): void {
-    if (this.status !== Status.mutation) {
-      log.warn("You should use a mutation to set state")
-    }
-
-    const oldState = Object.assign({}, this.state)
-
-    this.state = Object.assign({}, nextState)
-
-    this.events.publish("STATE_CHANGE", this.state)
-    this.hooks.forEach(hook => {
-      hook(oldState, nextState, this.events)
-    })
-
-    this.status = Status.listening
   }
 
   public dispatch(actionName: string, payload: any): boolean {
@@ -87,11 +81,7 @@ export class Store {
     }
     this.status = Status.mutation
 
-    const clonedState = JSON.parse(JSON.stringify(this.state))
-    const nextState = this.mutations[mutationName](clonedState, payload)
-
-    this.setState(nextState)
-    return true
+    return this.mutations[mutationName](this.state, payload)
   }
 }
 
@@ -101,5 +91,5 @@ export class Store {
  * @returns A Store instance.
  */
 export function newDefaultStore(): Store {
-  return new Store(actions, mutations, initialState(), allHooks)
+  return new Store(actions, mutations, initialState())
 }
