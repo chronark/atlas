@@ -1,6 +1,6 @@
 import { State } from "./store"
 
-type stateCallback = (state: State) => void
+export type stateCallback = (state: State) => void
 
 export default class Events {
   private events: Record<string, any>

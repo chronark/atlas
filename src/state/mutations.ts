@@ -6,7 +6,7 @@ import { State } from "./store"
 
 export type Mutation = (state: State, payload: any) => boolean
 
-export const countryMutations = {
+export const geometryMutations = {
   addGeometries(state: State, payload: Geometry[]): boolean {
     const combined = state.allGeometries.concat(payload)
     state.allGeometries = unique(combined)
@@ -34,4 +34,4 @@ export const jobMutations = {
     return true
   },
 }
-export const mutations = { ...countryMutations, ...jobMutations }
+export const mutations = { ...geometryMutations, ...jobMutations }

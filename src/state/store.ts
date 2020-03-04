@@ -11,7 +11,8 @@ export type State = {
   visibleJobs: Job[]
   allGeometries: Geometry[]
   selectedGeometries: Geometry[]
-  [key: string]: Job[] | Geometry[]
+  test?: string
+  [key: string]: any
 }
 
 enum Status {
