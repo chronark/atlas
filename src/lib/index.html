@@ -3,12 +3,48 @@
   <head>
     <meta charset="utf-8" />
     <title>Atlas</title>
+
+    <link rel="stylesheet" type="text/css" href="https://openlayers.org/en/latest/css/ol.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/ol-ext@3.1.10/dist/ol-ext.min.css" />
   </head>
 
-  <body style="background-color: #e9e9e9;">
+  <body style="background-color: #f2f2f2;">
+    <div>
+      <div>
+        <h5>All Jobs</h5>
+        <h3 id="allJobsCounter">{jobs.all.length}</h3>
+      </div>
+
+      <div>
+        <h5>Visible Jobs</h5>
+        <h3 id="visibleJobsCounter">{jobs.visible.length}</h3>
+      </div>
+    </div>
+    <form class="w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative">
+      <input id="searchForm" type="search" defaultValue="Nürnberg" />
+      <button id="searchSubmit" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <path
+            d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+          ></path>
+        </svg>
+      </button>
+    </form>
+    <div>
+      <div>
+        <h5>All Jobs</h5>
+        <h3 /h3>
+      </div>
+
+      <div>
+        <h5>Shown Jobs</h5>
+        <h3>{props.jobs.shownJobs.length}</h3>
+      </div>
+    </div>
     <div
       id="map-container"
       style="
+      height: 500px;
       overflow: hidden;
       border-radius: 5px;
       margin: 25px;

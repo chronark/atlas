@@ -1,23 +1,27 @@
-/**
- *
- */
-import Map from "./map"
-import { toLonLat } from "ol/proj"
 import Charon from "./apis/charon"
-import store from "../redux/store"
-import { addSelectedCountries, addCountry, removeSelectedCountries } from "../redux/countries/actions"
+import Feature from "ol/Feature"
 import { GeoJSON } from "ol/format"
+import { Geometry } from "ol/geom"
+import Map from "./map"
+import { Store } from "../state/store"
 import { areCoordinatesInGeometry } from "./geometryFilter"
+import { toLonLat } from "ol/proj"
 
-const convertGeoJsonToGeometries = (geojson: Record<string, any>): (Record<string, any> | undefined)[] => {
-  const features = new GeoJSON({
+/**
+ * Creates a Geometry object from geojson data.
+ *
+ * @param geojson - A geojson object you want to convert.
+ * @returns GeometryFeatures.
+ */
+function convertGeoJsonToGeometries(geojson: Record<string, any>): (Geometry | undefined)[] {
+  const features: Feature[] = new GeoJSON({
     featureProjection: "EPSG:3857",
   }).readFeatures(geojson)
   return features.map(feature => feature.getGeometry())
 }
-const getCachedGeometry = (event: any): Record<string, any> => {
+const getCachedGeometry = (store: Store, event: any): Record<string, any> => {
   const [lon, lat] = toLonLat(event.coordinate)
-  const matches = store.getState().countries.allCountries.filter(geometry => {
+  const matches = store.getState().countries.all.filter((geometry: Geometry) => {
     return areCoordinatesInGeometry([lon, lat], geometry)
   })
   return matches[0]
@@ -25,11 +29,11 @@ const getCachedGeometry = (event: any): Record<string, any> => {
 
 const countryLayer = (map: Map): void => {
   map.olmap.on("singleclick", async (event: any) => {
-    const cachedGeometry = getCachedGeometry(event)
+    const cachedGeometry = getCachedGeometry(map.store, event)
     if (cachedGeometry) {
-      store.getState().countries.selectedCountries.includes(cachedGeometry)
-        ? store.dispatch(removeSelectedCountries([cachedGeometry]))
-        : store.dispatch(addSelectedCountries([cachedGeometry]))
+      map.store.getState().countries.selected.includes(cachedGeometry)
+        ? map.store.dispatch("unselectCountries", [cachedGeometry])
+        : map.store.dispatch("selectCountries", [cachedGeometry])
     } else {
       const [lon, lat] = toLonLat(event.coordinate)
       const geojson = await new Charon().reverseGeocoding(lat, lon)
@@ -38,10 +42,10 @@ const countryLayer = (map: Map): void => {
         if (geometries) {
           geometries.forEach(geometry => {
             if (geometry) {
-              if (!store.getState().countries.allCountries.includes(geometry)) {
-                store.dispatch(addCountry(geometry))
+              if (!map.store.getState().countries.all.includes(geometry)) {
+                map.store.dispatch("addCountries", geometry)
               }
-              store.dispatch(addSelectedCountries([geometry]))
+              map.store.dispatch("selectCountries", [geometry])
             }
           })
         }

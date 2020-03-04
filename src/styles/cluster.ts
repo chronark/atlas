@@ -1,11 +1,10 @@
 import { Stroke, Style, Text } from "ol/style.js"
-import Fill from "ol/style/Fill"
-import RegularShape from "ol/style/RegularShape"
 
-import { log } from "../lib/logger"
-import { bound } from "../lib/util"
-import { Job } from "../types/customTypes"
 import { Feature } from "ol"
+import Fill from "ol/style/Fill"
+import { Job } from "../types/customTypes"
+import RegularShape from "ol/style/RegularShape"
+import { bound } from "../lib/util"
 
 export default class ClusterStyle {
   private colorGradient: string[]
@@ -31,7 +30,6 @@ export default class ClusterStyle {
   }
 
   private colorByScore(score: number, minScore = 0.5): string {
-    log.debug("Calculating color by score")
     if (score < 0 || score > 1) {
       throw new RangeError("score must be between 0 and 1, including 0 and 1.")
     }

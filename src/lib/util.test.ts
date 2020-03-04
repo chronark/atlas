@@ -1,5 +1,4 @@
-import { bound, removeFrom, removeListFromList } from "../../src/lib/util"
-
+import { bound, removeFrom, removeListFromList, unique } from "./util"
 describe("removeFrom()", () => {
   describe("when there are no duplicates", () => {
     const testCases = [
@@ -209,7 +208,7 @@ describe("removeListFromList()", () => {
         const originalArray = tc.input.list2
         it("should return the correct array", () => {
           const result = removeListFromList(tc.input.list2, tc.input.list1)
-          tc.input.list2.forEach(element => {
+          tc.input.list2.forEach((element: any) => {
             expect(result.includes(element)).toBe(false)
           })
         })
@@ -314,7 +313,7 @@ describe("removeListFromList()", () => {
         const originalArray = tc.input.list2
         it("should return the correct array", () => {
           const result = removeListFromList(tc.input.list2, tc.input.list1)
-          tc.input.list2.forEach(element => {
+          tc.input.list2.forEach((element: any) => {
             expect(result.includes(element)).toBe(false)
           })
         })
@@ -340,6 +339,135 @@ describe("bound()", () => {
   describe("value is above upper limit", () => {
     it("should return lower limit", () => {
       expect(bound(424, 1414, 500)).toEqual(500)
+    })
+  })
+})
+describe("unique()", () => {
+  describe("when there are no duplicates", () => {
+    const testCases = [
+      {
+        type: "string",
+        input: {
+          list: [
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "Aliquam tincidunt mauris eu risus.",
+            "Vestibulum commodo felis quis tortor.",
+            "Ut aliquam sollicitudin leo.",
+            "Cras iaculis ultricies nulla.",
+            "Donec quis dui at dolor tempor interdum.",
+          ],
+        },
+      },
+      {
+        type: "number",
+        input: {
+          list: [1, 2, 3, 4],
+        },
+      },
+      {
+        type: "object",
+        input: {
+          list: [
+            {
+              key: "value",
+            },
+            {
+              otherKey: [1, 2],
+            },
+            {
+              yetAnotherKey: 1,
+            },
+          ],
+        },
+      },
+    ]
+    testCases.forEach(tc => {
+      describe(`for type ${tc.type}`, () => {
+        const originalArray = tc.input.list
+        it("should return the correct array", () => {
+          const result = unique(tc.input.list)
+          expect(result).toEqual(tc.input.list)
+        })
+        it("should not mutate the original array", () => {
+          expect(originalArray).toEqual(tc.input.list)
+        })
+      })
+    })
+  })
+  describe("whith duplicates", () => {
+    const testCases = [
+      {
+        type: "string",
+        input: {
+          list: [
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "Aliquam tincidunt mauris eu risus.",
+            "Aliquam tincidunt mauris eu risus.",
+            "Vestibulum commodo felis quis tortor.",
+            "Ut aliquam sollicitudin leo.",
+            "Ut aliquam sollicitudin leo.",
+            "Cras iaculis ultricies nulla.",
+            "Donec quis dui at dolor tempor interdum.",
+          ],
+          want: [
+            "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+            "Aliquam tincidunt mauris eu risus.",
+            "Vestibulum commodo felis quis tortor.",
+            "Ut aliquam sollicitudin leo.",
+            "Cras iaculis ultricies nulla.",
+            "Donec quis dui at dolor tempor interdum.",
+          ],
+        },
+      },
+      {
+        type: "number",
+        input: {
+          list: [1, 2, 3, 4, 4, 5],
+          want: [1, 2, 3, 4, 5],
+        },
+      },
+      {
+        type: "object",
+        input: {
+          list: [
+            {
+              key: "value",
+            },
+            {
+              key: "value",
+            },
+            {
+              otherKey: [1, 2],
+            },
+            {
+              yetAnotherKey: 1,
+            },
+          ],
+          want: [
+            {
+              key: "value",
+            },
+            {
+              otherKey: [1, 2],
+            },
+            {
+              yetAnotherKey: 1,
+            },
+          ],
+        },
+      },
+    ]
+    testCases.forEach(tc => {
+      describe(`for type ${tc.type}`, () => {
+        const originalArray = tc.input.list
+        it("should return the correct array", () => {
+          const result = unique(tc.input.list)
+          expect(result).toEqual(tc.input.want)
+        })
+        it("should not mutate the original array", () => {
+          expect(originalArray).toEqual(tc.input.list)
+        })
+      })
     })
   })
 })

@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-empty-function */
 
 import { LogObject } from "../types/customTypes"
 

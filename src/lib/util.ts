@@ -36,3 +36,22 @@ export function removeListFromList(list1: any[], list2: any[]): any[] {
 export function bound(lower: number, value: number, upper: number): number {
   return Math.max(lower, Math.min(value, upper))
 }
+
+/**
+ * Removes all duplicates from an array.
+ *
+ * @param list - An array with duplicates.
+ * @returns A filtered array where all items are unique.
+ */
+export function unique(list: any[]): any[] {
+  const result = []
+  const map = new Map()
+  for (const item of list) {
+    const json = JSON.stringify(item)
+    if (!map.has(json)) {
+      map.set(json, true)
+      result.push(item)
+    }
+  }
+  return result
+}

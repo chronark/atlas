@@ -1,13 +1,12 @@
 /* eslint @typescript-eslint/no-var-requires: "off" */
 
-const CopyPlugin = require("copy-webpack-plugin")
 const HtmlPlugin = require("html-webpack-plugin")
 const path = require("path")
 
 module.exports = {
   node: { fs: "empty" },
 
-  entry: ["@babel/polyfill", "./src/lib/index.tsx"],
+  entry: ["@babel/polyfill", "./src/lib/index.ts"],
   output: {
     filename: "atlas.js",
     chunkFilename: "[name].atlas.js",
@@ -28,7 +27,7 @@ module.exports = {
     stats: "normal",
   },
   resolve: {
-    extensions: [".ts", ".tsx", ".js", ".jsx"],
+    extensions: [".ts", ".js", ".jsx"],
   },
   module: {
     rules: [
@@ -43,18 +42,13 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         use: ["babel-loader", "ts-loader"],
       },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
     ],
   },
   plugins: [
-    new CopyPlugin([{ from: "static", to: "static" }]),
     new HtmlPlugin({
       template: "./src/lib/index.html",
     }),

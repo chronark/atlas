@@ -1,38 +1,36 @@
-import { Map as OLMap } from "ol"
-import Bar from "ol-ext/control/Bar"
-import Button from "ol-ext/control/Button"
-import View from "ol/View"
-import LayerPopup from "ol-ext/control/LayerPopup"
-import { Attribution, Zoom, OverviewMap } from "ol/control"
-import FullScreen from "ol/control/FullScreen"
-import { shiftKeyOnly } from "ol/events/condition"
-import GeoJSON from "ol/format/GeoJSON"
-import polygonStyle from "../styles/polygon"
-import Feature from "ol/Feature"
-import { fromCircle } from "ol/geom/Polygon"
+import { Attribution, OverviewMap, Zoom } from "ol/control"
 import { Draw, Modify } from "ol/interaction"
 import { Fill, Stroke, Style } from "ol/style"
-import { OSMLayer, MapboxLayer } from "./apis/tileLayers"
-import VectorLayer from "ol/layer/Vector"
+import { Store, newDefaultStore } from "../state/store"
 import { fromLonLat, transformExtent } from "ol/proj"
-import VectorSource from "ol/source/Vector"
-import { Job, GeocodingResponseObject } from "../types/customTypes"
-import JobLayer from "./jobLayer"
-import { log } from "./logger"
-import { countryLayer } from "./countryLayer"
+
+import Bar from "ol-ext/control/Bar"
 import BaseLayer from "ol/layer/Base"
+import Button from "ol-ext/control/Button"
+import Feature from "ol/Feature"
+import FullScreen from "ol/control/FullScreen"
+import GeoJSON from "ol/format/GeoJSON"
 import Geometry from "ol/geom/Geometry"
-import store from "../redux/store"
-import { setAllJobs, setShownJobs } from "../redux/jobs/actions"
-import Sample from "./apis/sample"
-import { filterJobs } from "./geometryFilter"
-import Charon from "./apis/charon"
+import { Job } from "../types/customTypes"
+import JobLayer from "./jobLayer"
+import LayerPopup from "ol-ext/control/LayerPopup"
+import { Map as OLMap } from "ol"
+import { OSMLayer } from "./apis/tileLayers"
+import VectorLayer from "ol/layer/Vector"
+import VectorSource from "ol/source/Vector"
+import View from "ol/View"
+import { countryLayer } from "./countryLayer"
 import { countryLayerStyle } from "../styles/countryStyle"
+import { filterJobs } from "./geometryFilter"
+import { fromCircle } from "ol/geom/Polygon"
+import { log } from "./logger"
+import polygonStyle from "../styles/polygon"
+import { shiftKeyOnly } from "ol/events/condition"
 
 export default class Map {
-  public jobs: Job[]
   private mapID: string
   public olmap: OLMap
+  public store: Store
   private JobLayer: JobLayer
   private zIndices: Record<string, number>
 
@@ -45,19 +43,43 @@ export default class Map {
       circleSelect: 10,
       jobs: 1000,
     }
+    this.store = newDefaultStore()
 
-    this.jobs = []
     this.olmap = this.buildMap()
-    this.loadJobs()
     this.addControls()
     this.addCircleSelect()
     this.addCountryLayer()
     this.buildJobLayer()
+
+    this.addCountryHook()
+    this.addJobFilterHook()
+    this.addVisibleJobsHook()
   }
 
-  loadJobs(): void {
-    new Sample().jobs(200).then((jobs: Job[]) => {
-      store.dispatch(setAllJobs(jobs))
+  addVisibleJobsHook(): void {
+    this.store.events.subscribe(["STATE_CHANGE_JOBS_VISIBLE"], () => {
+      const visibleJobs = this.store.getState().jobs.visible
+      this.JobLayer.setJobs(visibleJobs)
+    })
+  }
+
+  addCountryHook(): void {
+    this.store.events.subscribe(["STATE_CHANGE_COUNTRIES_SELECTED", "STATE_CHANGE_JOBS_ALL"], () => {
+      this.countryLayerFromGeometry(this.store.getState().countries.selected)
+    })
+  }
+
+  addJobFilterHook(): void {
+    this.store.events.subscribe(["STATE_CHANGE_JOBS_ALL", "STATE_CHANGE_COUNTRIES_SELECTED"], () => {
+      let newShownJobs: Job[] = []
+      if (this.store.getState().countries.selected.length === 0) {
+        newShownJobs = this.store.getState().jobs.all
+      } else {
+        newShownJobs = filterJobs(this.store.getState().jobs.all, {
+          countries: this.store.getState().countries.selected,
+        })
+      }
+      this.store.dispatch("setVisibleJobs", newShownJobs)
     })
   }
 
@@ -209,11 +231,11 @@ export default class Map {
     const onEnd = (): void => {
       const circle = getCircle()
       if (circle) {
-        const filteredJobs = filterJobs(store.getState().jobs.allJobs, {
-          countries: store.getState().countries.selectedCountries,
+        const filteredJobs = filterJobs(this.store.getState().jobs.all, {
+          countries: this.store.getState().countries.selected,
           circle: circle,
         })
-        store.dispatch(setShownJobs(filteredJobs))
+        this.store.dispatch("setVisibleJobs", filteredJobs)
       }
     }
 
@@ -335,9 +357,7 @@ export default class Map {
   }
 
   public setJobs(jobs: Job[]): void {
-    log.debug("Setting jobs", jobs)
-    this.JobLayer.clear()
-    this.JobLayer.addJobs(jobs)
+    this.store.dispatch("setJobs", jobs)
   }
 
   private setView(lon: number, lat: number, zoom: number): void {
