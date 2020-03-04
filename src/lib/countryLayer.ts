@@ -22,8 +22,7 @@ function convertGeoJsonToGeometries(geojson: Record<string, any>): (Geometry | u
 }
 const getCachedGeometry = (store: Store, event: MapBrowserEvent): Geometry => {
   const [lon, lat] = toLonLat(event.coordinate)
-  const matches = store.getState().geometries.all.filter((geometry: Geometry) => {
-    console.log(geometry)
+  const matches = store.getState().allGeometries.filter((geometry: Geometry) => {
     return areCoordinatesInGeometry([lon, lat], geometry)
   })
   return matches[0]
@@ -33,7 +32,7 @@ const countryLayer = (map: Map): void => {
   map.olmap.on("singleclick", async (event: MapBrowserEvent) => {
     const cachedGeometry = getCachedGeometry(map.store, event)
     if (cachedGeometry) {
-      map.store.getState().geometries.selected.includes(cachedGeometry)
+      map.store.getState().selectedGeometries.includes(cachedGeometry)
         ? map.store.dispatch("unselectGeometries", [cachedGeometry])
         : map.store.dispatch("selectGeometries", [cachedGeometry])
     } else {
@@ -44,7 +43,7 @@ const countryLayer = (map: Map): void => {
         if (geometries) {
           geometries.forEach(geometry => {
             if (geometry) {
-              if (!map.store.getState().geometries.all.includes(geometry)) {
+              if (!map.store.getState().allGeometries.includes(geometry)) {
                 map.store.dispatch("addGeometries", [geometry])
               }
               map.store.dispatch("selectGeometries", [geometry])

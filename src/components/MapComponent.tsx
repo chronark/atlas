@@ -22,13 +22,13 @@
 //   useEffect(() => {
 //     let newShownJobs: Job[] = []
 //     if (props.countries.selectedCountries.length === 0) {
-//       newShownJobs = props.jobs.allJobs
+//       newShownJobs = props.allJobsJobs
 //     } else {
-//       newShownJobs = filterJobs(props.jobs.allJobs, { countries: props.countries.selectedCountries })
+//       newShownJobs = filterJobs(props.allJobsJobs, { countries: props.countries.selectedCountries })
 //     }
 
 //     props.setShownJobs(newShownJobs)
-//   }, [props.countries.selectedCountries, props.jobs.allJobs])
+//   }, [props.countries.selectedCountries, props.allJobsJobs])
 
 //   /*
 //     Updating Jobs on map

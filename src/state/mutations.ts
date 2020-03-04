@@ -4,34 +4,34 @@ import { Geometry } from "ol/geom"
 import { Job } from "../types/customTypes"
 import { State } from "./store"
 
-export type Mutation = (state: State, payload: any) => State
+export type Mutation = (state: State, payload: any) => boolean
 
 export const countryMutations = {
-  addGeometries(state: State, payload: Geometry[]): State {
-    const combined = state.geometries.all.concat(payload)
-    state.geometries.all = unique(combined)
-    return state
+  addGeometries(state: State, payload: Geometry[]): boolean {
+    const combined = state.allGeometries.concat(payload)
+    state.allGeometries = unique(combined)
+    return true
   },
 
-  selectGeometries(state: State, payload: Geometry[]): State {
-    const combined = state.geometries.selected.concat(payload)
-    state.geometries.selected = unique(combined)
-    return state
+  selectGeometries(state: State, payload: Geometry[]): boolean {
+    const combined = state.selectedGeometries.concat(payload)
+    state.selectedGeometries = unique(combined)
+    return true
   },
 
-  unselectGeometries(state: State, payload: Record<string, any>[]): State {
-    state.geometries.selected = removeListFromList(payload, state.geometries.selected)
-    return state
+  unselectGeometries(state: State, payload: Record<string, any>[]): boolean {
+    state.selectedGeometries = removeListFromList(payload, state.selectedGeometries)
+    return true
   },
 }
 export const jobMutations = {
-  setJobs(state: State, payload: Job[]): State {
-    state.jobs.all = payload
-    return state
+  setJobs(state: State, payload: Job[]): boolean {
+    state.allJobs = payload
+    return true
   },
-  setVisibleJobs(state: State, payload: Job[]): State {
-    state.jobs.visible = payload
-    return state
+  setVisibleJobs(state: State, payload: Job[]): boolean {
+    state.visibleJobs = payload
+    return true
   },
 }
 export const mutations = { ...countryMutations, ...jobMutations }

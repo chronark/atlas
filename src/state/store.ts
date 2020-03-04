@@ -4,19 +4,14 @@ import { Mutation, mutations } from "./mutations"
 import Events from "./events"
 import { Geometry } from "ol/geom"
 import { Job } from "../types/customTypes"
-import allHooks from "./hooks"
 import { log } from "../lib/logger"
 
 export type State = {
-  jobs: {
-    all: Job[]
-    visible: Job[]
-  }
-  geometries: {
-    all: Geometry[]
-    selected: Geometry[]
-  }
-  [key: string]: any
+  allJobs: Job[]
+  visibleJobs: Job[]
+  allGeometries: Geometry[]
+  selectedGeometries: Geometry[]
+  [key: string]: Job[] | Geometry[]
 }
 
 enum Status {
@@ -31,55 +26,44 @@ export type Hook = (currentState: State, nextState: State, events: Events) => vo
 // I had issues where the initialState was changed by side effects.
 export const initialState = (): State => {
   return {
-    jobs: {
-      all: [],
-      visible: [],
-    },
-    geometries: {
-      all: [],
-      selected: [],
-    },
+    allJobs: [],
+    visibleJobs: [],
+    allGeometries: [],
+    selectedGeometries: [],
   }
 }
-
 
 export class Store {
   private actions: Record<string, Action>
   private mutations: Record<string, Mutation>
   private status: Status
   public events: Events
-  public state: State
+  private state: State
   public hooks: Hook[]
 
-  constructor(actions: Record<string, Action>, mutations: Record<string, Mutation>, state?: State, hooks?: Hook[]) {
+  constructor(actions: Record<string, Action>, mutations: Record<string, Mutation>, state?: State) {
     this.actions = actions
     this.events = new Events()
     this.mutations = mutations
     this.status = Status.listening
-    this.hooks = hooks || []
 
     this.state = new Proxy(state || initialState(), {
-      
-      set: (state: State, key: string, value: any): boolean  => {
-        // TODO
-        /*
-        Make state a flat object and create hooks for each change
-
-        */ 
-        console.log(state[key], value, state[key] === value)
+      set: (state: State, key: string, value: Job[] | Geometry[]): boolean => {
         state[key] = value
-
+        console.group(key)
         this.events.publish("STATE_CHANGE", state)
-        console.log("stateChange: ", key, value)
+        this.events.publish("STATE_CHANGE_" + key.toUpperCase(), state)
+
+        console.warn("stateChange: ", key, value.length)
+        console.groupEnd()
+        this.status = Status.listening
         return true
-      }
+      },
     })
   }
 
   getState(): State {
     return this.state
-
-
   }
 
   public dispatch(actionName: string, payload: any): boolean {
@@ -101,9 +85,7 @@ export class Store {
     }
     this.status = Status.mutation
 
-    let nextState =  this.mutations[mutationName](this.state, payload)
-    this.state = Object.assign(this.state, nextState)
-    return true
+    return this.mutations[mutationName](this.state, payload)
   }
 }
 
@@ -113,5 +95,5 @@ export class Store {
  * @returns A Store instance.
  */
 export function newDefaultStore(): Store {
-  return new Store(actions, mutations, initialState(), allHooks)
+  return new Store(actions, mutations, initialState())
 }
