@@ -51,32 +51,32 @@ export default class Map {
     this.addCountryLayer()
     this.buildJobLayer()
 
-    this.addCountryHook()
+    this.addGeometriesHook()
     this.addJobFilterHook()
     this.addVisibleJobsHook()
   }
 
   addVisibleJobsHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_JOBS_VISIBLE"], () => {
-      const visibleJobs = this.store.getState().jobs.visible
-      this.JobLayer.setJobs(visibleJobs)
+    this.store.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], state => {
+      this.JobLayer.setJobs(state.visibleJobs)
     })
   }
 
-  addCountryHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_COUNTRIES_SELECTED", "STATE_CHANGE_JOBS_ALL"], () => {
-      this.countryLayerFromGeometry(this.store.getState().countries.selected)
+  addGeometriesHook(): void {
+    this.store.events.subscribe(["STATE_CHANGE_SELECTEDGEOMETRIES", "STATE_CHANGE_ALLJOBS"], state => {
+      this.countryLayerFromGeometry(state.selectedGeometries)
     })
   }
 
   addJobFilterHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_JOBS_ALL", "STATE_CHANGE_COUNTRIES_SELECTED"], () => {
+    this.store.events.subscribe(["STATE_CHANGE_ALLJOBS", "STATE_CHANGE_SELECTEDGEOMETRIES"], state => {
       let newShownJobs: Job[] = []
-      if (this.store.getState().countries.selected.length === 0) {
-        newShownJobs = this.store.getState().jobs.all
+
+      if (this.store.getState().selectedGeometries.length === 0) {
+        newShownJobs = state.allJobs
       } else {
-        newShownJobs = filterJobs(this.store.getState().jobs.all, {
-          countries: this.store.getState().countries.selected,
+        newShownJobs = filterJobs(state.allJobs, {
+          geometries: state.selectedGeometries,
         })
       }
       this.store.dispatch("setVisibleJobs", newShownJobs)
@@ -231,8 +231,8 @@ export default class Map {
     const onEnd = (): void => {
       const circle = getCircle()
       if (circle) {
-        const filteredJobs = filterJobs(this.store.getState().jobs.all, {
-          countries: this.store.getState().countries.selected,
+        const filteredJobs = filterJobs(this.store.getState().allJobs, {
+          geometries: this.store.getState().selectedGeometries,
           circle: circle,
         })
         this.store.dispatch("setVisibleJobs", filteredJobs)
@@ -268,26 +268,6 @@ export default class Map {
       layer.getSource().clear()
     }
     return layer
-  }
-
-  private getRadius(circle: Feature): number {
-    return circle.get("values_").geometry.getRadius()
-  }
-
-  private makeFeatureFromCircle(circleFeature: Feature): Feature {
-    return new Feature({
-      geometry: fromCircle(circleFeature.get("geometry")),
-      //  TODO the following style seems to have no effect
-      style: new Style({
-        fill: new Fill({
-          color: "rgba(0,0,0,0)",
-        }),
-        stroke: new Stroke({
-          color: "rgba(0,0,0,0)",
-          width: 0,
-        }),
-      }),
-    })
   }
 
   private getLayersByNames(names: string[]): BaseLayer[] {

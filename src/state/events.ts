@@ -1,10 +1,14 @@
+import { State } from "./store"
+
+export type stateCallback = (state: State) => void
+
 export default class Events {
   private events: Record<string, any>
   constructor() {
     this.events = {}
   }
 
-  public subscribe(events: string[], callback: CallableFunction): void {
+  public subscribe(events: string[], callback: stateCallback): void {
     events.forEach(event => {
       if (!this.events.hasOwnProperty(event)) {
         this.events[event] = []
@@ -13,10 +17,9 @@ export default class Events {
     })
   }
 
-  public publish(event: string, data = {}): Record<string, any> {
-    if (!this.events.hasOwnProperty(event)) {
-      return {}
+  public publish(event: string, state: State): void {
+    if (this.events.hasOwnProperty(event)) {
+      this.events[event].forEach((callback: stateCallback) => callback(state))
     }
-    return this.events[event].map((callback: (data: Record<string, any>) => void) => callback(data))
   }
 }
