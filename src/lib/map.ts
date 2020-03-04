@@ -1,18 +1,19 @@
 import { Attribution, OverviewMap, Zoom } from "ol/control"
 import { Draw, Modify } from "ol/interaction"
-import { Fill, Stroke, Style } from "ol/style"
 import { Store, newDefaultStore } from "../state/store"
 import { fromLonLat, transformExtent } from "ol/proj"
 
 import Bar from "ol-ext/control/Bar"
 import BaseLayer from "ol/layer/Base"
 import Button from "ol-ext/control/Button"
+import Charon from "./apis/charon"
 import Feature from "ol/Feature"
 import FullScreen from "ol/control/FullScreen"
 import GeoJSON from "ol/format/GeoJSON"
 import Geometry from "ol/geom/Geometry"
 import { Job } from "../types/customTypes"
 import JobLayer from "./jobLayer"
+import Layer from "ol/layer/Layer"
 import LayerPopup from "ol-ext/control/LayerPopup"
 import { Map as OLMap } from "ol"
 import { OSMLayer } from "./apis/tileLayers"
@@ -22,7 +23,6 @@ import View from "ol/View"
 import { countryLayer } from "./countryLayer"
 import { countryLayerStyle } from "../styles/countryStyle"
 import { filterJobs } from "./geometryFilter"
-import { fromCircle } from "ol/geom/Polygon"
 import { log } from "./logger"
 import polygonStyle from "../styles/polygon"
 import { shiftKeyOnly } from "ol/events/condition"
@@ -54,6 +54,17 @@ export default class Map {
     this.addGeometriesHook()
     this.addJobFilterHook()
     this.addVisibleJobsHook()
+  }
+
+  async search(query: string): Promise<void> {
+    if (query.length > 0) {
+      const geojson = await new Charon().forwardGeocoding(query)
+      this.addFeatureFromGeojson(geojson)
+      const layers = this.getLayersByNames(["featureLayer"])
+      if (layers.length === 1) {
+        this.zoomToLayer(layers[0])
+      }
+    }
   }
 
   addVisibleJobsHook(): void {
@@ -345,8 +356,8 @@ export default class Map {
     this.olmap.getView().setZoom(zoom)
   }
 
-  public zoomToLayer(layer: VectorLayer): void {
-    const extent = layer.getSource().getExtent()
+  public zoomToLayer(layer: BaseLayer): void {
+    const extent = layer.getExtent()
     this.olmap.getView().fit(extent, { duration: 1500 })
   }
 

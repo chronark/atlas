@@ -29,7 +29,8 @@
     "docs:buildTypes": "yarn typedoc",
     "docs:show": "yarn docs:buildTypes && cd docs && yarn start",
     "docs:build": "yarn docs:buildTypes && cd docs && yarn build",
-    "test:full": "yarn install && yarn fmt && yarn tsc && yarn test:unit && yarn build && yarn test:e2e:ci"
+    "test:full": "yarn install && yarn fmt && yarn tsc && yarn test:unit && yarn build && yarn test:e2e:ci",
+    "docker": "docker build -t chronark/atlas . && docker run --rm -p 80:80 chronark/atlas"
   },
   "husky": {
     "hooks": {

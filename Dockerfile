@@ -8,6 +8,10 @@ COPY yarn.lock .
 RUN yarn install
 
 COPY . .
+COPY src .
+COPY babel.config.js .
+COPY tsconfig.json .
+COPY webpack.config.js .
 RUN yarn build
 
 FROM nginx:1.17-alpine
