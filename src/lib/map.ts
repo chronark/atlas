@@ -7,6 +7,7 @@ import Bar from "ol-ext/control/Bar"
 import BaseLayer from "ol/layer/Base"
 import Button from "ol-ext/control/Button"
 import Charon from "./apis/charon"
+import { Extent } from "ol/extent"
 import Feature from "ol/Feature"
 import FullScreen from "ol/control/FullScreen"
 import GeoJSON from "ol/format/GeoJSON"
@@ -281,12 +282,12 @@ export default class Map {
     return layer
   }
 
-  private getLayersByNames(names: string[]): BaseLayer[] {
+  private getLayersByNames(names: string[]): VectorLayer[] {
     const allLayers = this.olmap.getLayers()
-    const filteredLayers: BaseLayer[] = []
+    const filteredLayers: VectorLayer[] = []
     allLayers.forEach(layer => {
       if (names.includes(layer.get("name"))) {
-        filteredLayers.push(layer)
+        filteredLayers.push(layer as VectorLayer)
       }
     })
     return filteredLayers
@@ -356,13 +357,12 @@ export default class Map {
     this.olmap.getView().setZoom(zoom)
   }
 
-  public zoomToLayer(layer: BaseLayer): void {
-    const extent = layer.getExtent()
-    this.olmap.getView().fit(extent, { duration: 1500 })
+  public zoomToLayer(layer: VectorLayer): void {
+    const extent = layer.getSource().getExtent()
+    this.zoomToExtent(extent)
   }
 
-  public zoomToBBox(bbox: [number, number, number, number]): void {
-    const extent = transformExtent(bbox, "EPSG:4326", "EPSG:3857")
+  public zoomToExtent(extent: Extent): void {
     this.olmap.getView().fit(extent, { duration: 1500 })
   }
 }

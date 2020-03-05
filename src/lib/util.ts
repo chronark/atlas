@@ -1,3 +1,6 @@
+import { Extent } from "ol/extent"
+import { transformExtent } from "ol/proj"
+
 /**
  * Remove an item from a list.
  *
@@ -54,4 +57,11 @@ export function unique(list: any[]): any[] {
     }
   }
   return result
+}
+
+/**
+ * @param bbox
+ */
+function bboxToExtent(bbox: [number, number, number, number]): Extent {
+  return transformExtent(bbox, "EPSG:4326", "EPSG:3857")
 }
