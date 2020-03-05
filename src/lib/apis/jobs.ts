@@ -13,7 +13,7 @@ export class Jobs {
 
   private async fetchRawJobs(): Promise<RawSearch> {
     return fetch(this.url).then(response => {
-      if (response.status !== 200) {
+      if (!response.ok) {
         console.error(`Could not fetch jobs from ${this.url}, response was: `, response)
       }
       return response.json()
@@ -40,18 +40,14 @@ export class Jobs {
         // TODO a score must be added
         score: Math.random(),
         title: rawJob.titel,
-        type: rawJob.titel,
+        type: rawJob.typ,
         url: rawJob.url,
       }
     })
   }
 
   public async get(): Promise<Job[]> {
-    console.time("loading jobs")
     const rawJobs = await this.fetchRawJobs()
-    const cleanJobs = this.transform(rawJobs)
-    console.timeEnd("loading jobs")
-    console.log(cleanJobs)
-    return cleanJobs
+    return this.transform(rawJobs)
   }
 }
