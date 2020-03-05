@@ -11,24 +11,18 @@
   <body style="background-color: #f2f2f2;">
     <div>
       <div>
-        <h5>All Jobs</h5>
-        <h3 id="allJobsCounter">{allJobs.length}</h3>
+        <span>All Jobs</span>
+        <span id="allJobsCounter">{allJobs.length}</span>
       </div>
 
       <div>
-        <h5>Visible Jobs</h5>
-        <h3 id="visibleJobsCounter">{visibleJobs.length}</h3>
+        <span>Visible Jobs</span>
+        <span id="visibleJobsCounter">{visibleJobs.length}</span>
       </div>
     </div>
-    <form class="w-full mx-auto max-w-sm content-center py-4 lg:py-0 relative">
-      <input id="searchForm" type="search" defaultValue="Nürnberg" />
-      <button id="searchSubmit" type="button">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path
-            d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
-          ></path>
-        </svg>
-      </button>
+    <form id="searchForm">
+      <input id="searchField" type="text" value="Nürnberg" />
+      <button id="searchSubmit" type="submit">Search</button>
     </form>
     <div
       id="map-container"

@@ -67,7 +67,7 @@ describe("HTML Tests", () => {
   })
 
   it("can enter a search string", () => {
-    cy.get("#searchForm").type("{selectall} Germany")
+    cy.get("#searchField").type("{selectall} Germany")
   })
 
   it("can submit search by mouseclick", () => {
@@ -75,6 +75,6 @@ describe("HTML Tests", () => {
   })
 
   it("can submit search by pressing enter", () => {
-    cy.get("#searchForm").type("{enter}")
+    cy.get("#searchField").type("{enter}")
   })
 })

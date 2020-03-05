@@ -19,6 +19,17 @@ map.store.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state: State) => {
   }
 })
 
+// Search
+const searchField = document.getElementById("searchField") as HTMLInputElement
+const searchForm = document.getElementById("searchForm")
+if (searchField !== null && searchForm !== null) {
+  searchForm.addEventListener("submit", event => {
+    const query = searchField.value
+    map.search(query)
+    event.preventDefault()
+  })
+}
+
 new Sample().jobs(200).then((jobs: Job[]) => {
   map.setJobs(jobs)
 })
