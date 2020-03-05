@@ -26,8 +26,12 @@ export class Jobs {
         corp: rawJob.firma,
         locations: [
           {
-            lon: parseFloat(rawJob.lng),
-            lat: parseFloat(rawJob.lat),
+            /*
+             parseFloat seems to result in the same value but the jobs won't get displayed.
+             so I am using Number() here
+            */
+            lon: Number(rawJob.lng),
+            lat: Number(rawJob.lat),
           },
         ],
         date: rawJob.datum,
@@ -43,10 +47,11 @@ export class Jobs {
   }
 
   public async get(): Promise<Job[]> {
-    console.time()
+    console.time("loading jobs")
     const rawJobs = await this.fetchRawJobs()
     const cleanJobs = this.transform(rawJobs)
-    console.timeEnd()
+    console.timeEnd("loading jobs")
+    console.log(cleanJobs)
     return cleanJobs
   }
 }
