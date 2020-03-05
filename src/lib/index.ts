@@ -28,4 +28,5 @@ if (searchField !== null && searchForm !== null) {
     event.preventDefault()
   })
 }
-new Jobs().get().then(jobs => map.setJobs(jobs))
+// Using local source because of CORS problems.
+new Jobs("./rawJobs.json").get().then(jobs => map.setJobs(jobs))

@@ -12,13 +12,12 @@ export class Jobs {
   }
 
   private async fetchRawJobs(): Promise<RawSearch> {
-    return axios.get(this.url)
-    // .then(response => {
-    //   if (response.status !== 200) {
-    //     console.error(`Could not fetch jobs from ${this.url}, response was: `, response)
-    //   }
-    //   return response.json()
-    // })
+    return fetch(this.url).then(response => {
+      if (response.status !== 200) {
+        console.error(`Could not fetch jobs from ${this.url}, response was: `, response)
+      }
+      return response.json()
+    })
   }
 
   private transform(rawSearch: RawSearch): Job[] {
@@ -44,7 +43,10 @@ export class Jobs {
   }
 
   public async get(): Promise<Job[]> {
+    console.time()
     const rawJobs = await this.fetchRawJobs()
-    return this.transform(rawJobs)
+    const cleanJobs = this.transform(rawJobs)
+    console.timeEnd()
+    return cleanJobs
   }
 }
