@@ -1228,10 +1228,10 @@
   resolved "https://registry.yarnpkg.com/@mapbox/jsonlint-lines-primitives/-/jsonlint-lines-primitives-2.0.2.tgz#ce56e539f83552b58d10d672ea4d6fc9adc7b234"
   integrity sha1-zlblOfg1UrWNENZy6k1vya3HsjQ=
 
-"@mapbox/mapbox-gl-style-spec@^13.9.0":
-  version "13.10.2"
-  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-gl-style-spec/-/mapbox-gl-style-spec-13.10.2.tgz#790766d69ef99abcfc87a538e37b8646cc5ce6d2"
-  integrity sha512-GTn2tpKQjNL3iRc5LVJmRDVn28nlce53krGxjujJFWTD+Or1eEtO6ybmNya4OdT09e26jPnbVM94NClQVRxSbg==
+"@mapbox/mapbox-gl-style-spec@^13.11.0":
+  version "13.12.0"
+  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-gl-style-spec/-/mapbox-gl-style-spec-13.12.0.tgz#c97a394ea6b014a61734fce86a8154b5d00598e2"
+  integrity sha512-tRSvlYUI73LOkvS1iQhVwnltoI/QC4ZaLOAS6NM6zx0NwJfsGUJDPucsaKif8l7Sce1ECLd8LYs1MRCyJjdo5Q==
   dependencies:
     "@mapbox/jsonlint-lines-primitives" "~2.0.2"
     "@mapbox/unitbezier" "^0.0.0"
@@ -7209,12 +7209,12 @@ ol-ext@3.1.10:
   dependencies:
     gulp-jsdoc3 "^2.0.0"
 
-ol-mapbox-style@5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-5.0.2.tgz#5fe656e14d99feff16bd7cf687ebc7083eef4787"
-  integrity sha512-uXerYhr1FIs+pVtDgPu2oiAFtBULBIXgKcZo4AorSTXoHDyu0tv+IVmPTU0UoMS44pbJQJS8tvEJVf36mteyng==
+ol-mapbox-style@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-6.0.1.tgz#dc053f6d48e687d42373c9bf1705c0047a473a88"
+  integrity sha512-+yIQk4gnb+nMPBuP+8H+orsXQi2okiTvOmnS1IPFBMCAyQurKsfUVuwCmvXS1FYewkD3EryOxtUOug7AFArZkg==
   dependencies:
-    "@mapbox/mapbox-gl-style-spec" "^13.9.0"
+    "@mapbox/mapbox-gl-style-spec" "^13.11.0"
     mapbox-to-css-font "^2.4.0"
     webfont-matcher "^1.1.0"
 
