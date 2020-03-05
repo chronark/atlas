@@ -29,4 +29,6 @@ if (searchField !== null && searchForm !== null) {
   })
 }
 // Using local source because of CORS problems.
-new Jobs("./rawJobs.json").get().then(jobs => map.setJobs(jobs))
+new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs.json")
+  .get()
+  .then(jobs => map.setJobs(jobs))
