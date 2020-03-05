@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "axios": "0.19.2",
-    "ol": "6.1.1",
+    "ol": "6.2.1",
     "ol-ext": "3.1.10",
     "ol-mapbox-style": "5.0.2"
   },
@@ -99,7 +99,7 @@
     "ts-loader": "6.2.1",
     "typedoc": "0.16.11",
     "typedoc-plugin-markdown": "2.2.17",
-    "typescript": "3.7.5",
+    "typescript": "3.8.3",
     "webpack": "4.42.0",
     "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.10.3"
