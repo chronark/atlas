@@ -1,6 +1,5 @@
-import { Job } from "../types/customTypes"
+import { Jobs } from "../lib/apis/jobs"
 import Map from "./map"
-import Sample from "../lib/apis/sample"
 import { State } from "../state/store"
 
 const map = new Map("map-container")
@@ -29,7 +28,5 @@ if (searchField !== null && searchForm !== null) {
     event.preventDefault()
   })
 }
-
-new Sample().jobs(200).then((jobs: Job[]) => {
-  map.setJobs(jobs)
-})
+// Using local source because of CORS problems.
+new Jobs("./rawJobs.json").get().then(jobs => map.setJobs(jobs))

@@ -12,6 +12,7 @@ export interface RawJob {
 }
 
 export interface RawLocation {
+  country: string
   IDs: string
   jobs: number[]
   lat: string
@@ -20,6 +21,7 @@ export interface RawLocation {
   weight: number
 }
 
+// Interface from https://jobboerse.th-nuernberg.de/srv.php/en/Suche/offers
 export interface RawSearch {
   jobs: RawJob[]
   orte: RawLocation[]
