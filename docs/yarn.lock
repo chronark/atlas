@@ -910,10 +910,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@docusaurus/core@2.0.0-alpha.47":
-  version "2.0.0-alpha.47"
-  resolved "https://registry.yarnpkg.com/@docusaurus/core/-/core-2.0.0-alpha.47.tgz#761f33d8d5603f2784733ffe803074ff030142e5"
-  integrity sha512-mGGy6OodSFeBdGDDT8feJIlwGuZnPRHUta2681qm6cs3bIteRNsvZiQxNpk9dnuJxWXzFuJzhE3jZTbyFGHQ4A==
+"@docusaurus/core@2.0.0-alpha.48":
+  version "2.0.0-alpha.48"
+  resolved "https://registry.yarnpkg.com/@docusaurus/core/-/core-2.0.0-alpha.48.tgz#b1561bc20650ca97a193c0c72fad5d1745504289"
+  integrity sha512-9PSjxopEkpb47ig0ZtuhurnH3Hokxi1prXWFFccmz86lDDgWxCctHqHdmItePbGqsIvihkNRUcG3uzGxXSQcGQ==
   dependencies:
     "@babel/core" "^7.7.4"
     "@babel/plugin-syntax-dynamic-import" "^7.7.4"
@@ -922,7 +922,7 @@
     "@babel/preset-react" "^7.7.4"
     "@babel/preset-typescript" "^7.7.4"
     "@babel/runtime" "^7.7.4"
-    "@docusaurus/utils" "^2.0.0-alpha.47"
+    "@docusaurus/utils" "^2.0.0-alpha.48"
     "@endiliey/static-site-generator-webpack-plugin" "^4.0.0"
     babel-loader "^8.0.6"
     babel-plugin-dynamic-import-node "^2.3.0"
@@ -1102,10 +1102,10 @@
     gray-matter "^4.0.2"
     lodash "^4.17.15"
 
-"@docusaurus/utils@^2.0.0-alpha.47":
-  version "2.0.0-alpha.47"
-  resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-2.0.0-alpha.47.tgz#7c91fd4d09425bddadbc899604d37e5b78296e90"
-  integrity sha512-d35381c28C6h55E5ITbMNOyKs5rJrL4tNEdfxYIVJGs2lG7ksajrULN7lcicKQKLsSHXFLpWjvzqy2Zo02D1+w==
+"@docusaurus/utils@^2.0.0-alpha.48":
+  version "2.0.0-alpha.48"
+  resolved "https://registry.yarnpkg.com/@docusaurus/utils/-/utils-2.0.0-alpha.48.tgz#4025b323208411c2fa1c13847b00fe6d0ae7f396"
+  integrity sha512-xrFhWPfFU9upAN1Sn3lIb9B9iNsnA6BLFy9Q6VmiSbPagmLlgvyW/Z6yBoSA0j4mDuAAuF4zl3m50d5MXYFKFA==
   dependencies:
     escape-string-regexp "^2.0.0"
     fs-extra "^8.1.0"
