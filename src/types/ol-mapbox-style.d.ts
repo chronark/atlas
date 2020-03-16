@@ -1,1 +1,1 @@
-declare module "ol-mapbox-style/stylefunction"
+declare module "ol-mapbox-style/dist/stylefunction"
