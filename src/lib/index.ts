@@ -1,4 +1,4 @@
-import { Jobs } from "../lib/apis/jobs"
+import { Jobs } from "../apis/jobs"
 import Map from "./map"
 import { State } from "../state/store"
 
