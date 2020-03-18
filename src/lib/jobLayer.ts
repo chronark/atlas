@@ -16,15 +16,13 @@ import { fromLonLat } from "ol/proj.js"
 import { isSingleLocation } from "./util"
 import polygonStyle from "../styles/polygon"
 
-export default class JobLayer extends Layer {
-  public cluster: Cluster
+export default class JobLayer {
+  private cluster: Cluster
   public animatedCluster: VectorLayer
   public areas: VectorLayer
   private style: JobStyle
 
   public constructor(distance = 40) {
-    super({})
-
     this.style = new JobStyle()
 
     // sets up an empty cluster layer
@@ -36,9 +34,7 @@ export default class JobLayer extends Layer {
     this.animatedCluster = new AnimatedCluster({
       name: "Jobs",
       source: this.cluster,
-      style: (cluster: Feature) => {
-        return this.style.clusterStyle(cluster)
-      },
+      style: (cluster: Feature) => this.style.clusterStyle(cluster),
     })
     this.areas = new VectorLayer({
       source: new VectorSource(),
@@ -46,12 +42,22 @@ export default class JobLayer extends Layer {
   }
 
   public setJobs(jobs: Job[]): void {
+    const { areas, points } = this.createFeatures(jobs)
+
+    this.cluster.getSource().clear()
+    this.cluster.getSource().addFeatures(points)
+
+    this.areas.getSource().clear()
+    this.areas.getSource().addFeatures(areas)
+  }
+
+  private createFeatures(jobs: Job[]): { areas: Feature[]; points: Feature[] } {
     const points: Feature[] = []
     const areas: Feature[] = []
     jobs.forEach(job => {
       job.locations.forEach((location: Location) => {
         if (isSingleLocation(location)) {
-          const newFeature = this.createSingleLoationFeature(location, job)
+          const newFeature = this.createSingleLoationFeature(location)
           newFeature.set("job", job, false)
           points.push(newFeature)
         } else {
@@ -61,32 +67,17 @@ export default class JobLayer extends Layer {
         }
       })
     })
-    this.cluster.getSource().clear()
-    this.cluster.getSource().addFeatures(points)
-    this.areas.getSource().clear()
-    this.areas.getSource().addFeatures(areas)
 
-    console.log("debug", this.areas.getSource().getFeatures())
+    return { areas, points }
   }
 
-  private createSingleLoationFeature(location: SingleLocation, job: Job): Feature {
-    const newFeature = new Feature({
+  private createSingleLoationFeature(location: SingleLocation): Feature {
+    return new Feature({
       geometry: new Point(fromLonLat([location.lon, location.lat])),
     })
-
-    return newFeature
   }
 
   private createAreaFeature(location: Area): Feature {
-    console.log(location)
-    const coordinates: Polygon[] = []
-    // location.forEach(l => {
-    //   if (l.geometry.coordinates !== undefined) {
-    //     coordinates.push(new Polygon(l.geometry.coordinates))
-    //   }
-    // })
-    // const geometry = new MultiPolygon(coordinates)
-
     const newFeature = new GeoJSON({
       featureProjection: "EPSG:3857",
     }).readFeature({
@@ -95,15 +86,5 @@ export default class JobLayer extends Layer {
     })
     newFeature.setStyle(this.style.areaStyle(newFeature))
     return newFeature
-    // return new Feature({
-    //   geometry: geometry,
-    //   style: countryLayerStyle(),
-    // })
-  }
-
-  public clear(): void {
-    if (this.cluster.getSource()) {
-      this.cluster.getSource().clear()
-    }
   }
 }
