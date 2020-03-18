@@ -1,10 +1,7 @@
 import { GeocodingResponseObject, Location } from "../types/customTypes"
 
-import GeoJSON from "ol/format/GeoJSON"
 import { Jobs } from "../apis/jobs"
 import Map from "./map"
-import MultiPolygon from "ol/geom/MultiPolygon"
-import Polygon from "ol/geom/Polygon"
 import { State } from "../state/store"
 
 const map = new Map("map-container")

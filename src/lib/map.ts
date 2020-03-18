@@ -2,7 +2,6 @@ import { Attribution, OverviewMap, Zoom } from "ol/control"
 import { Draw, Modify } from "ol/interaction"
 import { GeocodingResponseObject, Job } from "../types/customTypes"
 import { Store, newDefaultStore } from "../state/store"
-import { fromLonLat, transformExtent } from "ol/proj"
 
 import Bar from "ol-ext/control/Bar"
 import BaseLayer from "ol/layer/Base"
@@ -14,7 +13,6 @@ import FullScreen from "ol/control/FullScreen"
 import GeoJSON from "ol/format/GeoJSON"
 import Geometry from "ol/geom/Geometry"
 import JobLayer from "./jobLayer"
-import Layer from "ol/layer/Layer"
 import LayerPopup from "ol-ext/control/LayerPopup"
 import { Map as OLMap } from "ol"
 import { OSMLayer } from "../apis/tileLayers"
@@ -24,6 +22,7 @@ import View from "ol/View"
 import { countryLayer } from "./countryLayer"
 import { countryLayerStyle } from "../styles/countryStyle"
 import { filterJobs } from "./geometryFilter"
+import { fromLonLat } from "ol/proj"
 import { log } from "./logger"
 import polygonStyle from "../styles/polygon"
 import { shiftKeyOnly } from "ol/events/condition"
@@ -351,12 +350,6 @@ export default class Map {
     this.JobLayer.animatedCluster.setZIndex(this.zIndices.jobs)
     this.addLayer(this.JobLayer.animatedCluster, { name: "cluster" })
     this.addLayer(this.JobLayer.areas, { name: "areas" })
-    console.log(
-      "areas:",
-      this.getLayersByNames(["areas"])[0]
-        .getSource()
-        .getFeatures(),
-    )
   }
 
   public setJobs(jobs: Job[]): void {

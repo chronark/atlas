@@ -1,20 +1,15 @@
 import { Area, Job, Location, SingleLocation } from "../types/customTypes"
-import { Geometry, MultiPolygon, Point, Polygon } from "ol/geom"
-import { convertGeoJsonToGeometries, countryLayer } from "./countryLayer"
 
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
 import Cluster from "ol/source/Cluster"
 import Feature from "ol/Feature"
 import GeoJSON from "ol/format/GeoJSON"
 import JobStyle from "../styles/jobs"
-import Layer from "ol/layer/Layer"
-import Map from "./map"
+import { Point } from "ol/geom"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
-import { countryLayerStyle } from "../styles/countryStyle"
 import { fromLonLat } from "ol/proj.js"
 import { isSingleLocation } from "./util"
-import polygonStyle from "../styles/polygon"
 
 export default class JobLayer {
   private cluster: Cluster

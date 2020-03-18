@@ -1,9 +1,9 @@
-import { containsXY, getIntersection } from "ol/extent"
+import { bboxToExtent, isSingleLocation } from "./util"
+import { containsXY, intersects } from "ol/extent"
 
 import { Geometry } from "ol/geom"
 import { Job } from "../types/customTypes"
 import { fromLonLat } from "ol/proj"
-import { isSingleLocation } from "./util"
 
 export const areCoordinatesInGeometry = (
   lonLat: [number, number],
@@ -23,12 +23,23 @@ const getJobsInGeometry = (jobs: Job[], geometries: Geometry[]): Job[] => {
   geometries.forEach(geometry => {
     const newJobs = jobs.filter(job => {
       const locationsInsideGeometry = job.locations.filter(location => {
-        let lat, lon: number
         if (isSingleLocation(location)) {
           return areCoordinatesInGeometry([location.lon, location.lat], geometry)
         } else {
+          // location is an Area here
           // TODO implement more accurate check
-          return true // getIntersection(geometry.getExtent(), location.getExtent())
+          // Right now this only checks for intersescting extends which can be very inaccurate for countries with many islands for example.
+          let isInside = false
+          for (const l of location) {
+            if (l.bbox) {
+              const extent = bboxToExtent(l.bbox as [number, number, number, number])
+              if (intersects(extent, geometry.getExtent())) {
+                isInside = true
+                break
+              }
+            }
+          }
+          return isInside
         }
       })
       if (locationsInsideGeometry.length > 0) {

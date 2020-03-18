@@ -1,4 +1,4 @@
-import { Area, FeaturesEntity, Location, SingleLocation } from "../types/customTypes"
+import { Location, SingleLocation } from "../types/customTypes"
 
 import { Extent } from "ol/extent"
 import { transformExtent } from "ol/proj"
@@ -62,14 +62,20 @@ export function unique(list: any[]): any[] {
 }
 
 /**
- * @param bbox
+ * Transforms a bounding box to an Extent in EPSG:3875 format.
+ *
+ * @param bbox - A bounding box of a feature, layer or anything else.
+ * @returns An Extent in EPSG-3875 format.
  */
-function bboxToExtent(bbox: [number, number, number, number]): Extent {
+export function bboxToExtent(bbox: [number, number, number, number]): Extent {
   return transformExtent(bbox, "EPSG:4326", "EPSG:3857")
 }
 
 /**
- * @param location
+ * Typeguard for SingleLocation.
+ *
+ * @param location - A location object that is either a SingleLocation or an Area.
+ * @returns True if location is a SingleLocation.
  */
 export function isSingleLocation(location: Location): location is SingleLocation {
   return (
