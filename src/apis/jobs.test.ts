@@ -1,4 +1,4 @@
-import { Job, RawSearch } from "../../types/customTypes"
+import { Job, RawSearch } from "../types/customTypes"
 
 import { Jobs } from "./jobs"
 

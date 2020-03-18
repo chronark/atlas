@@ -1,6 +1,8 @@
+import { bboxToExtent, isSingleLocation } from "./util"
+import { containsXY, intersects } from "ol/extent"
+
 import { Geometry } from "ol/geom"
 import { Job } from "../types/customTypes"
-import { containsXY } from "ol/extent"
 import { fromLonLat } from "ol/proj"
 
 export const areCoordinatesInGeometry = (
@@ -16,22 +18,37 @@ export const areCoordinatesInGeometry = (
   return result
 }
 
-const getJobsInGeometry = (jobs: Job[], geometry: Geometry[]): Job[] => {
+const getJobsInGeometry = (jobs: Job[], geometries: Geometry[]): Job[] => {
   let newShownJobs: Job[] = []
-  geometry.forEach(geometryFeature => {
-    if (geometryFeature) {
-      const newJobs = jobs.filter(job => {
-        const locationsInsideGeometry = job.locations.filter(location => {
-          return areCoordinatesInGeometry([location.lon, location.lat], geometryFeature)
-        })
-        if (locationsInsideGeometry.length > 0) {
-          job.locations = locationsInsideGeometry
-          return true
+  geometries.forEach(geometry => {
+    const newJobs = jobs.filter(job => {
+      const locationsInsideGeometry = job.locations.filter(location => {
+        if (isSingleLocation(location)) {
+          return areCoordinatesInGeometry([location.lon, location.lat], geometry)
+        } else {
+          // location is an Area here
+          // TODO implement more accurate check
+          // Right now this only checks for intersescting extends which can be very inaccurate for countries with many islands for example.
+          let isInside = false
+          for (const l of location) {
+            if (l.bbox) {
+              const extent = bboxToExtent(l.bbox as [number, number, number, number])
+              if (intersects(extent, geometry.getExtent())) {
+                isInside = true
+                break
+              }
+            }
+          }
+          return isInside
         }
-        return false
       })
-      newShownJobs = newShownJobs.concat(newJobs)
-    }
+      if (locationsInsideGeometry.length > 0) {
+        job.locations = locationsInsideGeometry
+        return true
+      }
+      return false
+    })
+    newShownJobs = newShownJobs.concat(newJobs)
   })
   return newShownJobs
 }

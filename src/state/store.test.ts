@@ -86,6 +86,7 @@ describe("Store()", () => {
       const wantState = Object.assign(initialState(), {
         test: 2,
       })
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
       const mockCallback: stateCallback = jest.fn(state => {})
       store.events.subscribe(["STATE_CHANGE"], mockCallback)
       const success = store.dispatch("setTestAction", 2)

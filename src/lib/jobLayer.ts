@@ -1,20 +1,25 @@
+import { Area, Job, Location, SingleLocation } from "../types/customTypes"
+
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
 import Cluster from "ol/source/Cluster"
-import ClusterStyle from "../styles/cluster"
 import Feature from "ol/Feature"
-import { Job } from "../types/customTypes"
-import Layer from "ol/layer/Layer"
-import Point from "ol/geom/Point"
+import GeoJSON from "ol/format/GeoJSON"
+import JobStyle from "../styles/jobs"
+import { Point } from "ol/geom"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import { fromLonLat } from "ol/proj.js"
+import { isSingleLocation } from "./util"
 
-export default class JobLayer extends Layer {
-  public cluster: Cluster
+export default class JobLayer {
+  private cluster: Cluster
   public animatedCluster: VectorLayer
+  public areas: VectorLayer
+  private style: JobStyle
 
   public constructor(distance = 40) {
-    super({})
+    this.style = new JobStyle()
+
     // sets up an empty cluster layer
     this.cluster = new Cluster({
       distance: distance,
@@ -24,33 +29,57 @@ export default class JobLayer extends Layer {
     this.animatedCluster = new AnimatedCluster({
       name: "Jobs",
       source: this.cluster,
-      style(cluster: Feature) {
-        return new ClusterStyle().style(cluster)
-      },
+      style: (cluster: Feature) => this.style.clusterStyle(cluster),
+    })
+    this.areas = new VectorLayer({
+      source: new VectorSource(),
     })
   }
 
   public setJobs(jobs: Job[]): void {
-    const features: Feature[] = []
+    const { areas, points } = this.createFeatures(jobs)
 
-    jobs.forEach(job => {
-      job.locations.forEach(location => {
-        const newFeature = new Feature({
-          geometry: new Point(fromLonLat([location.lon, location.lat])),
-        })
-        // Store the job data for future evaluation like score calculation etc.
-        newFeature.set("job", job, false)
-
-        features.push(newFeature)
-      })
-    })
     this.cluster.getSource().clear()
-    this.cluster.getSource().addFeatures(features)
+    this.cluster.getSource().addFeatures(points)
+
+    this.areas.getSource().clear()
+    this.areas.getSource().addFeatures(areas)
   }
 
-  public clear(): void {
-    if (this.cluster.getSource()) {
-      this.cluster.getSource().clear()
-    }
+  private createFeatures(jobs: Job[]): { areas: Feature[]; points: Feature[] } {
+    const points: Feature[] = []
+    const areas: Feature[] = []
+    jobs.forEach(job => {
+      job.locations.forEach((location: Location) => {
+        if (isSingleLocation(location)) {
+          const newFeature = this.createSingleLoationFeature(location)
+          newFeature.set("job", job, false)
+          points.push(newFeature)
+        } else {
+          const newArea = this.createAreaFeature(location)
+          newArea.set("job", job, false)
+          areas.push(newArea)
+        }
+      })
+    })
+
+    return { areas, points }
+  }
+
+  private createSingleLoationFeature(location: SingleLocation): Feature {
+    return new Feature({
+      geometry: new Point(fromLonLat([location.lon, location.lat])),
+    })
+  }
+
+  private createAreaFeature(location: Area): Feature {
+    const newFeature = new GeoJSON({
+      featureProjection: "EPSG:3857",
+    }).readFeature({
+      type: "Feature",
+      geometry: location[0].geometry,
+    })
+    newFeature.setStyle(this.style.areaStyle(newFeature))
+    return newFeature
   }
 }

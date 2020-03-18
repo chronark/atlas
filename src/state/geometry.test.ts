@@ -1,6 +1,6 @@
-import { Circle, Geometry } from "ol/geom"
 import { State, Store } from "./store"
 
+import { Circle } from "ol/geom"
 import { geometryActions } from "./actions"
 import { geometryMutations } from "./mutations"
 

@@ -1,6 +1,6 @@
-import { Job } from "../../types/customTypes"
+import { Job } from "../types/customTypes"
 import axios from "axios"
-import { log } from "../logger"
+import { log } from "../lib/logger"
 
 export default class Sample {
   private getLocations(cities: Record<string, any>[], locationCount: number): { lat: number; lon: number }[] {

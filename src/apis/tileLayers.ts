@@ -5,7 +5,7 @@ import TileLayer from "ol/layer/Tile"
 import VectorTileLayer from "ol/layer/VectorTile"
 import VectorTileSource from "ol/source/VectorTile"
 import XYZ from "ol/source/XYZ"
-import stylefunction from "ol-mapbox-style/stylefunction"
+import stylefunction from "ol-mapbox-style/dist/stylefunction"
 
 /**
  * Interface for both OSM and Mapbox layer generation.

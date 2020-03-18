@@ -1,6 +1,6 @@
-import { Job, RawSearch } from "../../types/customTypes"
+import { Job, RawSearch } from "../types/customTypes"
 
-import axios from "axios"
+import { log } from "../lib/logger"
 
 export class Jobs {
   private url = "https://jobboerse.th-nuernberg.de/srv.php/en/Suche/offers"
@@ -14,7 +14,7 @@ export class Jobs {
   private async fetchRawJobs(): Promise<RawSearch> {
     return fetch(this.url).then(response => {
       if (!response.ok) {
-        console.error(`Could not fetch jobs from ${this.url}, response was: `, response)
+        log.error(`Could not fetch jobs from ${this.url}, response was: `, response)
       }
       return response.json()
     })
