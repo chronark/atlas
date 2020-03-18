@@ -4,9 +4,9 @@ import { convertGeoJsonToGeometries, countryLayer } from "./countryLayer"
 
 import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
 import Cluster from "ol/source/Cluster"
-import ClusterStyle from "../styles/cluster"
 import Feature from "ol/Feature"
 import GeoJSON from "ol/format/GeoJSON"
+import JobStyle from "../styles/jobs"
 import Layer from "ol/layer/Layer"
 import Map from "./map"
 import VectorLayer from "ol/layer/Vector"
@@ -20,9 +20,13 @@ export default class JobLayer extends Layer {
   public cluster: Cluster
   public animatedCluster: VectorLayer
   public areas: VectorLayer
+  private style: JobStyle
 
   public constructor(distance = 40) {
     super({})
+
+    this.style = new JobStyle()
+
     // sets up an empty cluster layer
     this.cluster = new Cluster({
       distance: distance,
@@ -32,13 +36,12 @@ export default class JobLayer extends Layer {
     this.animatedCluster = new AnimatedCluster({
       name: "Jobs",
       source: this.cluster,
-      style(cluster: Feature) {
-        return new ClusterStyle().style(cluster)
+      style: (cluster: Feature) => {
+        return this.style.clusterStyle(cluster)
       },
     })
     this.areas = new VectorLayer({
       source: new VectorSource(),
-      style: countryLayerStyle({ isSelected: true }),
     })
   }
 
@@ -84,13 +87,14 @@ export default class JobLayer extends Layer {
     // })
     // const geometry = new MultiPolygon(coordinates)
 
-    return new GeoJSON({
+    const newFeature = new GeoJSON({
       featureProjection: "EPSG:3857",
     }).readFeature({
       type: "Feature",
       geometry: location[0].geometry,
     })
-
+    newFeature.setStyle(this.style.areaStyle(newFeature))
+    return newFeature
     // return new Feature({
     //   geometry: geometry,
     //   style: countryLayerStyle(),

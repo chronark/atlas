@@ -75,7 +75,6 @@ export default class Map {
   addVisibleJobsHook(): void {
     this.store.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], state => {
       this.JobLayer.setJobs(state.visibleJobs)
-      this.zoomToLayer(this.JobLayer.areas)
     })
   }
 

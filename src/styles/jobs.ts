@@ -1,35 +1,36 @@
 import { Stroke, Style, Text } from "ol/style.js"
 
+import { Color } from "./color"
 import { Feature } from "ol"
 import Fill from "ol/style/Fill"
 import { Job } from "../types/customTypes"
 import RegularShape from "ol/style/RegularShape"
 import { bound } from "../lib/util"
 
-export default class ClusterStyle {
-  private colorGradient: string[]
+export default class JobStyle {
+  private colorGradient: Color[]
 
   public constructor(
-    colorGradient: string[] = [
-      "rgb(112,148,194)",
-      "rgb(103,142,191)",
-      "rgb(93,135,188)",
-      "rgb(84,129,186)",
-      "rgb(47,103,174)",
-      "rgb(75,122,183)",
-      "rgb(65,116,180)",
-      "rgb(56,109,177)",
-      "rgb(37,96,171)",
-      "rgb(28,90,168)",
-      "rgb(19,83,166)",
-      "rgb(9,77,163)",
-      "rgb(0,70,160)",
+    colorGradient: Color[] = [
+      new Color(112, 148, 194),
+      new Color(103, 142, 191),
+      new Color(93, 135, 188),
+      new Color(84, 129, 186),
+      new Color(47, 103, 174),
+      new Color(75, 122, 183),
+      new Color(65, 116, 180),
+      new Color(56, 109, 177),
+      new Color(37, 96, 171),
+      new Color(28, 90, 168),
+      new Color(19, 83, 166),
+      new Color(9, 77, 163),
+      new Color(0, 70, 160),
     ],
   ) {
     this.colorGradient = colorGradient
   }
 
-  private colorByScore(score: number, minScore = 0.5): string {
+  private colorByScore(score: number, minScore = 0.5): Color {
     if (score < 0 || score > 1) {
       throw new RangeError("score must be between 0 and 1, including 0 and 1.")
     }
@@ -63,7 +64,7 @@ export default class ClusterStyle {
         angle: Math.PI,
         radius: radius,
         stroke: new Stroke({
-          color: this.colorByScore(score, 0.5),
+          color: this.colorByScore(score, 0.5).rgb(),
           width: bound(1, radius / 4, radius),
           lineCap: "square",
           lineJoin: "miter",
@@ -82,7 +83,7 @@ export default class ClusterStyle {
     })
   }
 
-  public style(cluster: Feature): Style[] {
+  public clusterStyle(cluster: Feature): Style[] {
     const features: Feature[] = cluster.get("features")
     const size = features.length
     if (size === 1) {
@@ -94,6 +95,19 @@ export default class ClusterStyle {
 
       return [style]
     }
+  }
+
+  public areaStyle(feature: Feature): Style {
+    const color = this.colorByScore(this.getScore(feature))
+    return new Style({
+      stroke: new Stroke({
+        color: color.rgb(),
+        width: 1,
+      }),
+      fill: new Fill({
+        color: color.rgba(0.2),
+      }),
+    })
   }
 
   private getScore(feature: Feature): number {
