@@ -27,11 +27,8 @@ export interface RawSearch {
   orte: RawLocation[]
 }
 
-/**
- * The location for a job.
- * Address has to be added later on.
- */
-export interface Location {
+export type Area = FeaturesEntity[]
+export interface SingleLocation {
   /**
    * Latitude of the location.
    */
@@ -41,6 +38,13 @@ export interface Location {
    */
   lon: number
 }
+
+/**
+ * The location for a job.
+ * Address has to be added later on.
+ */
+export type Location = Area | SingleLocation
+
 /**
  * A Job listing with all relevant data.
  */
@@ -114,6 +118,7 @@ export interface Properties {
   landmark?: boolean
   category?: string
 }
+
 export interface Geometry {
   type: string
   coordinates?: number[]

@@ -14,7 +14,7 @@ import { toLonLat } from "ol/proj"
  * @param geojson - A geojson object you want to convert.
  * @returns GeometryFeatures.
  */
-function convertGeoJsonToGeometries(geojson: Record<string, any>): (Geometry | undefined)[] {
+export function convertGeoJsonToGeometries(geojson: Record<string, any>): (Geometry | undefined)[] {
   const features: Feature[] = new GeoJSON({
     featureProjection: "EPSG:3857",
   }).readFeatures(geojson)

@@ -1,5 +1,6 @@
 import { Attribution, OverviewMap, Zoom } from "ol/control"
 import { Draw, Modify } from "ol/interaction"
+import { GeocodingResponseObject, Job } from "../types/customTypes"
 import { Store, newDefaultStore } from "../state/store"
 import { fromLonLat, transformExtent } from "ol/proj"
 
@@ -12,7 +13,6 @@ import Feature from "ol/Feature"
 import FullScreen from "ol/control/FullScreen"
 import GeoJSON from "ol/format/GeoJSON"
 import Geometry from "ol/geom/Geometry"
-import { Job } from "../types/customTypes"
 import JobLayer from "./jobLayer"
 import Layer from "ol/layer/Layer"
 import LayerPopup from "ol-ext/control/LayerPopup"
@@ -60,6 +60,10 @@ export default class Map {
   async search(query: string): Promise<void> {
     if (query.length > 0) {
       const geojson = await new Charon().forwardGeocoding(query)
+      if (geojson === undefined) {
+        log.error("Could not find " + query)
+        return
+      }
       this.addFeatureFromGeojson(geojson)
       const layers = this.getLayersByNames(["featureLayer"])
       if (layers.length === 1) {
@@ -149,7 +153,7 @@ export default class Map {
     return layer
   }
 
-  public addFeatureFromGeojson(geojson: any): VectorLayer {
+  public addFeatureFromGeojson(geojson: GeocodingResponseObject): VectorLayer {
     const layerName = "featureLayer"
     const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
       style: countryLayerStyle({ isSelected: true }),
@@ -346,6 +350,7 @@ export default class Map {
     this.JobLayer = new JobLayer(60)
     this.JobLayer.animatedCluster.setZIndex(this.zIndices.jobs)
     this.addLayer(this.JobLayer.animatedCluster, { name: "cluster" })
+    this.addLayer(this.JobLayer.areas, { name: "areas" })
   }
 
   public setJobs(jobs: Job[]): void {

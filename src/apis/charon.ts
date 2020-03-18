@@ -15,7 +15,7 @@ export default class Charon {
     return fetch(this.serverURL + "/style").then(r => r.json())
   }
 
-  public async forwardGeocoding(query: string): Promise<Record<string, any> | undefined> {
+  public async forwardGeocoding(query: string): Promise<GeocodingResponseObject | undefined> {
     const response = await Axios.get(this.serverURL + `/geocoding/forward/?query=${query}`)
     if (response.status === 200) {
       return response.data

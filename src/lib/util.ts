@@ -1,3 +1,5 @@
+import { Area, FeaturesEntity, Location, SingleLocation } from "../types/customTypes"
+
 import { Extent } from "ol/extent"
 import { transformExtent } from "ol/proj"
 
@@ -64,4 +66,15 @@ export function unique(list: any[]): any[] {
  */
 function bboxToExtent(bbox: [number, number, number, number]): Extent {
   return transformExtent(bbox, "EPSG:4326", "EPSG:3857")
+}
+
+/**
+ * @param location
+ */
+export function isSingleLocation(location: Location): location is SingleLocation {
+  return (
+    location !== undefined &&
+    (location as SingleLocation).lat !== undefined &&
+    (location as SingleLocation).lon !== undefined
+  )
 }
