@@ -35,7 +35,6 @@ if (searchField !== null && searchForm !== null) {
 }
 // Using local source because of CORS problems.
 new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs.json").get().then(jobs => {
-  console.log("rawJobs length", jobs.length)
   fetch("https://nominatim.openstreetmap.org/search?q=bayern&format=geojson&polygon_geojson=1&limit=1")
     .then(response => response.json())
     .then((geojson: GeocodingResponseObject) => geojson.features)
@@ -52,8 +51,6 @@ new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs
         type: "",
         url: "",
       })
-      console.log(jobs[jobs.length - 1])
       map.setJobs(jobs)
-      console.log("Job length", jobs.length)
     })
 })

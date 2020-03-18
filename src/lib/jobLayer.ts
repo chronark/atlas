@@ -6,7 +6,9 @@ import AnimatedCluster from "ol-ext/layer/AnimatedCluster"
 import Cluster from "ol/source/Cluster"
 import ClusterStyle from "../styles/cluster"
 import Feature from "ol/Feature"
+import GeoJSON from "ol/format/GeoJSON"
 import Layer from "ol/layer/Layer"
+import Map from "./map"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import { countryLayerStyle } from "../styles/countryStyle"
@@ -36,20 +38,19 @@ export default class JobLayer extends Layer {
     })
     this.areas = new VectorLayer({
       source: new VectorSource(),
-      style: countryLayerStyle(),
+      style: countryLayerStyle({ isSelected: true }),
     })
   }
 
   public setJobs(jobs: Job[]): void {
-    const features: Feature[] = []
+    const points: Feature[] = []
     const areas: Feature[] = []
-    console.log(jobs.length)
     jobs.forEach(job => {
       job.locations.forEach((location: Location) => {
         if (isSingleLocation(location)) {
           const newFeature = this.createSingleLoationFeature(location, job)
           newFeature.set("job", job, false)
-          features.push(newFeature)
+          points.push(newFeature)
         } else {
           const newArea = this.createAreaFeature(location)
           newArea.set("job", job, false)
@@ -58,11 +59,11 @@ export default class JobLayer extends Layer {
       })
     })
     this.cluster.getSource().clear()
-    console.warn(features[features.length - 1])
-    this.cluster.getSource().addFeatures(features.slice(0, 5000))
+    this.cluster.getSource().addFeatures(points)
     this.areas.getSource().clear()
     this.areas.getSource().addFeatures(areas)
-    console.log(areas)
+
+    console.log("debug", this.areas.getSource().getFeatures())
   }
 
   private createSingleLoationFeature(location: SingleLocation, job: Job): Feature {
@@ -74,17 +75,26 @@ export default class JobLayer extends Layer {
   }
 
   private createAreaFeature(location: Area): Feature {
+    console.log(location)
     const coordinates: Polygon[] = []
-    location.forEach(l => {
-      if (l.geometry.coordinates !== undefined) {
-        coordinates.push(new Polygon(l.geometry.coordinates))
-      }
+    // location.forEach(l => {
+    //   if (l.geometry.coordinates !== undefined) {
+    //     coordinates.push(new Polygon(l.geometry.coordinates))
+    //   }
+    // })
+    // const geometry = new MultiPolygon(coordinates)
+
+    return new GeoJSON({
+      featureProjection: "EPSG:3857",
+    }).readFeature({
+      type: "Feature",
+      geometry: location[0].geometry,
     })
 
-    return new Feature({
-      geometry: new MultiPolygon(coordinates),
-      style: polygonStyle(),
-    })
+    // return new Feature({
+    //   geometry: geometry,
+    //   style: countryLayerStyle(),
+    // })
   }
 
   public clear(): void {

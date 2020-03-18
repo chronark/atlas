@@ -75,6 +75,7 @@ export default class Map {
   addVisibleJobsHook(): void {
     this.store.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], state => {
       this.JobLayer.setJobs(state.visibleJobs)
+      this.zoomToLayer(this.JobLayer.areas)
     })
   }
 
@@ -351,6 +352,12 @@ export default class Map {
     this.JobLayer.animatedCluster.setZIndex(this.zIndices.jobs)
     this.addLayer(this.JobLayer.animatedCluster, { name: "cluster" })
     this.addLayer(this.JobLayer.areas, { name: "areas" })
+    console.log(
+      "areas:",
+      this.getLayersByNames(["areas"])[0]
+        .getSource()
+        .getFeatures(),
+    )
   }
 
   public setJobs(jobs: Job[]): void {
