@@ -7077,10 +7077,10 @@ ol-ext@3.1.10:
   dependencies:
     gulp-jsdoc3 "^2.0.0"
 
-ol-mapbox-style@6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-6.0.1.tgz#dc053f6d48e687d42373c9bf1705c0047a473a88"
-  integrity sha512-+yIQk4gnb+nMPBuP+8H+orsXQi2okiTvOmnS1IPFBMCAyQurKsfUVuwCmvXS1FYewkD3EryOxtUOug7AFArZkg==
+ol-mapbox-style@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-6.1.0.tgz#0ee8b4dc6bae9cb469afcceec56079f164fea694"
+  integrity sha512-52nrvbYi8+Zkn4+4EZ92ZJMCLW50RKCgtPm7LNXyZJkz/PCtRZJ440Jy4hPWMON7swV2O9Xjyg+HD8Xv00VFgw==
   dependencies:
     "@mapbox/mapbox-gl-style-spec" "^13.11.0"
     mapbox-to-css-font "^2.4.0"
