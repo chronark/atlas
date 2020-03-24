@@ -1155,18 +1155,24 @@
   resolved "https://registry.yarnpkg.com/@mapbox/jsonlint-lines-primitives/-/jsonlint-lines-primitives-2.0.2.tgz#ce56e539f83552b58d10d672ea4d6fc9adc7b234"
   integrity sha1-zlblOfg1UrWNENZy6k1vya3HsjQ=
 
-"@mapbox/mapbox-gl-style-spec@^13.11.0":
-  version "13.12.0"
-  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-gl-style-spec/-/mapbox-gl-style-spec-13.12.0.tgz#c97a394ea6b014a61734fce86a8154b5d00598e2"
-  integrity sha512-tRSvlYUI73LOkvS1iQhVwnltoI/QC4ZaLOAS6NM6zx0NwJfsGUJDPucsaKif8l7Sce1ECLd8LYs1MRCyJjdo5Q==
+"@mapbox/mapbox-gl-style-spec@13.13.0":
+  version "13.13.0"
+  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-gl-style-spec/-/mapbox-gl-style-spec-13.13.0.tgz#07795603dd98c645ff6678ee4aea5476072e460a"
+  integrity sha512-PBXa/Bw2G87NZckBZqY3omI3THF5MYQQY5B1IZWVLI7Ujsy149cjC8Sm1Ub1BgAnyslepdjtwWVS43IOjVYmUw==
   dependencies:
     "@mapbox/jsonlint-lines-primitives" "~2.0.2"
+    "@mapbox/point-geometry" "^0.1.0"
     "@mapbox/unitbezier" "^0.0.0"
     csscolorparser "~1.0.2"
     json-stringify-pretty-compact "^2.0.0"
     minimist "0.0.8"
     rw "^1.3.3"
     sort-object "^0.3.2"
+
+"@mapbox/point-geometry@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@mapbox/point-geometry/-/point-geometry-0.1.0.tgz#8a83f9335c7860effa2eeeca254332aa0aeed8f2"
+  integrity sha1-ioP5M1x4YO/6Lu7KJUMyqgru2PI=
 
 "@mapbox/unitbezier@^0.0.0":
   version "0.0.0"
@@ -7222,12 +7228,12 @@ ol-ext@3.1.10:
   dependencies:
     gulp-jsdoc3 "^2.0.0"
 
-ol-mapbox-style@6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-6.1.0.tgz#0ee8b4dc6bae9cb469afcceec56079f164fea694"
-  integrity sha512-52nrvbYi8+Zkn4+4EZ92ZJMCLW50RKCgtPm7LNXyZJkz/PCtRZJ440Jy4hPWMON7swV2O9Xjyg+HD8Xv00VFgw==
+ol-mapbox-style@6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/ol-mapbox-style/-/ol-mapbox-style-6.1.1.tgz#db5f3f6d51f96a725a34681a372da16a995aaac8"
+  integrity sha512-0Hgz2BX2tWe1ZNPMLpJkLdm3XI6ILrFbgmJIvdrlDYRce2ul1mXLmkJmbyLFs2tozsBJDcPJmI55UsKbiKg6ow==
   dependencies:
-    "@mapbox/mapbox-gl-style-spec" "^13.11.0"
+    "@mapbox/mapbox-gl-style-spec" "13.13.0"
     mapbox-to-css-font "^2.4.0"
     webfont-matcher "^1.1.0"
 
