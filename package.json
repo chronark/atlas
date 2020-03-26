@@ -42,7 +42,7 @@
   "dependencies": {
     "axios": "0.19.2",
     "ol": "6.2.1",
-    "ol-ext": "3.1.10",
+    "ol-ext": "3.1.11",
     "ol-mapbox-style": "6.1.1"
   },
   "devDependencies": {
