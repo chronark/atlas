@@ -1,5 +1,6 @@
 import { GeocodingResponseObject, Location } from "../types/customTypes"
 
+import Charon from "../apis/charon"
 import { Jobs } from "../apis/jobs"
 import Map from "./map"
 import { State } from "../state/store"
@@ -32,13 +33,11 @@ if (searchField !== null && searchForm !== null) {
 }
 // Using local source because of CORS problems.
 new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs.json").get().then(jobs => {
-  fetch("https://nominatim.openstreetmap.org/search?q=bayern&format=geojson&polygon_geojson=1&limit=1")
-    .then(response => response.json())
-    .then((geojson: GeocodingResponseObject) => geojson.features)
-    .then((bayern: Location) => {
+  new Charon().forwardGeocoding("Bayern").then((geojson: GeocodingResponseObject | undefined) => {
+    if (geojson) {
       jobs.push({
         corp: "Bayern",
-        locations: [bayern],
+        locations: [geojson.features],
         date: "",
         id: 0,
         logo: "",
@@ -49,5 +48,6 @@ new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs
         url: "",
       })
       map.setJobs(jobs)
-    })
+    }
+  })
 })

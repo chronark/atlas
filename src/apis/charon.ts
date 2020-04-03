@@ -4,7 +4,7 @@ import { GeocodingResponseObject } from "../types/customTypes"
 export default class Charon {
   private serverURL: string
   public constructor() {
-    this.serverURL = "http://jbs-osm-test.informatik.fh-nuernberg.de:52000"
+    this.serverURL = process.env.CHARON_URL + ":52000"
   }
 
   public getTileURL(): string {
