@@ -2,6 +2,7 @@
 
 const HtmlPlugin = require("html-webpack-plugin")
 const path = require("path")
+const webpack = require("webpack")
 
 module.exports = {
   node: { fs: "empty" },
@@ -51,6 +52,9 @@ module.exports = {
   plugins: [
     new HtmlPlugin({
       template: "./src/lib/index.html",
+    }),
+    new webpack.EnvironmentPlugin({
+      CHARON_URL: "http://jbs-osm-test.informatik.fh-nuernberg.de",
     }),
   ],
 }
