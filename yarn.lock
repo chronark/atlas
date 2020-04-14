@@ -1451,10 +1451,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.35.tgz#1e61b226c14380f4384f70cfe49a65c2c553ad2b"
   integrity sha512-ASYsaKecA7TUsDrqIGPNk3JeEox0z/0XR/WsJJ8BIX/9+SkMSImQXKWfU/yBrSyc7ZSE/NPqLu36Nur0miCFfQ==
 
-"@types/ol@6.3.0":
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/@types/ol/-/ol-6.3.0.tgz#ad9f3dd19c3a774e0a2600a1619d449b0f76196f"
-  integrity sha512-5e1WvHO2YsQR3o70m6IPrklIB62Azw6Fh8DBHEIO9apMujhHIeu4nhoriakhYMi1RodLA3FcNLcBWb4zC8gZnQ==
+"@types/ol@6.3.1":
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/@types/ol/-/ol-6.3.1.tgz#cff923a0d5433f3db66946234f3e65238185ca02"
+  integrity sha512-EfScx11HU/aCha+hU8jo+34BuTDIBIwOHFGjwGYEPfMh7FbYlKLMDcWjn6RM2w4eRnOmQXHqDfL8uObyJs1EmQ==
   dependencies:
     "@types/arcgis-rest-api" "*"
     "@types/geojson" "*"
