@@ -28,13 +28,13 @@ test("ol-attribution", async (t) => {
   await t.click(attribution).expect(attribution.innerText).contains("OpenStreetMap")
 })
 
-test("can click canvas", async (t) => {
+test.skip("can click canvas", async (t) => {
   const canvas = Selector("canvas")
   await t.expect(canvas.exists).ok()
   await t.setTestSpeed(0.1).click(canvas, { offsetX: 100, offsetY: 100 })
 })
 
-test("can enter a search string", async (t) => {
+test.skip("can enter a search string", async (t) => {
   const searchBar = Selector("#searchForm")
   const searchSubmit = Selector("#searchSubmit")
   await t.expect(searchBar.exists).ok()
