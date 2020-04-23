@@ -98,7 +98,7 @@ jobs:
           name: dist
 
       - name: Integration tests
-        run: yarn tsc
+        run: yarn test:e2e
         env:
           CI: true
           BROWSER: ${{matrix.browser}}
