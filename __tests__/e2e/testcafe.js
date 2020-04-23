@@ -31,7 +31,9 @@ createTestCafe("localhost", 1337, 1338)
       .concurrency(config.concurrency)
       .src("__tests__/e2e/*.test.ts")
       .tsConfigPath("tsconfig.testcafe.json")
+
       .run({
+        disableScreenshots: true,
         stopOnFirstFail: config.stopOnFirstfail,
       })
   })
@@ -42,6 +44,5 @@ createTestCafe("localhost", 1337, 1338)
   .catch((error) => {
     console.error(error)
     testcafe.close()
+    process.exit(1)
   })
-
-process.exitCode = 1
