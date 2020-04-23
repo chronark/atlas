@@ -68,11 +68,15 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build project
-        run: yarn build
+      - name: Load build directory
+        uses: actions/download-artifact@v1
+        with:
+          name: dist
 
       - name: Integration tests
-        run: export BROWSER=${{ matrix.browser }} && yarn test:e2e:ci
+        run: yarn test:e2e:ci
+        env:
+          BROWSER: ${{matrix.browser}}
 
   building:
     runs-on: ubuntu-latest
@@ -89,3 +93,9 @@ jobs:
 
       - name: Build
         run: yarn build
+
+      - name: Cache build directory
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: dist
