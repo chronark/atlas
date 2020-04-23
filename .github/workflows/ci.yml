@@ -88,8 +88,8 @@ jobs:
   integration_tests:
     strategy:
       matrix:
-        browser: ["firefox:headless", "chrome:headless", "ie", "edge"]
         os: ["windows-latest", "macos-latest", "ubuntu-latest"]
+        browser: ["firefox", "chrome", "ie", "edge"]
     runs-on: ${{ matrix.os }}
     name: Integration Tests
     steps:
