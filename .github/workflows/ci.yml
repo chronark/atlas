@@ -55,8 +55,8 @@ jobs:
   integration_tests:
     strategy:
       matrix:
-        browser: ["firefox:headless", "chrome:headless"]
-    runs-on: ubuntu-latest
+        browser: ["firefox:headless", "chrome:headless", "ie", "edge"]
+    runs-on: windows-latest
     name: Integration Tests
     steps:
       - uses: actions/checkout@v1
