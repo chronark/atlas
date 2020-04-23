@@ -67,11 +67,6 @@ jobs:
         with:
           node-version: 12
 
-      - name: Load node_modules
-        uses: actions/download-artifact@v1
-        with:
-          name: node_modules
-
       - name: Install dependencies
         run: yarn install
 
@@ -101,12 +96,6 @@ jobs:
 
       - name: Build
         run: yarn build
-
-      - name: Cache node_modules
-        uses: actions/upload-artifact@v1
-        with:
-          name: node_modules
-          path: node_modules
 
       - name: Cache build directory
         uses: actions/upload-artifact@v1
