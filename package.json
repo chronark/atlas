@@ -21,7 +21,6 @@
     "lint": "eslint --fix --ext .js,.ts ./",
     "prettier": "prettier --write ./**/*.{js,ts,json} --loglevel warn",
     "serve": "serve ./dist",
-    "test:e2e:ci": "export CI=true && yarn test:e2e",
     "test:e2e": "yarn tsc:testcafe && yarn testcafe",
     "test:full": "yarn install && yarn fmt && yarn tsc && yarn test:unit && yarn build && yarn test:e2e:ci",
     "test:unit": "jest",

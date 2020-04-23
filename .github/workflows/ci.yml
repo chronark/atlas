@@ -74,8 +74,9 @@ jobs:
           name: dist
 
       - name: Integration tests
-        run: yarn test:e2e:ci
+        run: yarn test:e2e
         env:
+          CI: true
           BROWSER: ${{matrix.browser}}
 
   building:
