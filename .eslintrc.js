@@ -82,7 +82,6 @@ module.exports = {
         memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
       },
     ],
-    // jsdoc
     ...jsdocRules,
   },
 }
