@@ -1,16 +1,21 @@
 /* eslint-disable no-console */
 const createTestCafe = require("testcafe")
 
-let testcafe = null
+let testcafe
 
-let browsers = process.env.CI ? ["chrome:headless", "firefox:headless"] : ["all"]
-let concurrency = 1
-let stopOnFirstfail = false
-if (process.env.IE_ONLY) {
-  browsers = ["ie"]
-  concurrency = 2
-  stopOnFirstfail = true
+const defaultConfig = {
+  browsers: ["all"],
+  concurrency: 4,
+  stopOnFirstfail: false,
 }
+
+const ciConfig = {
+  browsers: ["chrome:headless", "firefox:headless"],
+  concurrency: 1,
+  stopOnFirstfail: true,
+}
+
+const config = process.env.CI ? ciConfig : defaultConfig
 
 createTestCafe("localhost", 1337, 1338)
   .then((tc) => {
@@ -19,12 +24,12 @@ createTestCafe("localhost", 1337, 1338)
 
     return runner
       .startApp("yarn serve", 5000)
-      .browsers(browsers)
-      .concurrency(concurrency)
+      .browsers(config.browsers)
+      .concurrency(config.concurrency)
       .src("__tests__/e2e/*.test.ts")
       .tsConfigPath("tsconfig.testcafe.json")
       .run({
-        stopOnFirstfail: stopOnFirstfail,
+        stopOnFirstFail: config.stopOnFirstfail,
       })
   })
   .then((failedCount) => {
