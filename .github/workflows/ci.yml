@@ -52,13 +52,13 @@ jobs:
       - name: Unittests
         run: yarn test:unit
 
-  integration_tests:
+  integration_firefox:
     needs: build
     strategy:
       matrix:
-        os: ["windows-latest"]
-        browser: ["firefox", "chrome", "ie", "edge"]
-    runs-on: ${{ matrix.os }}
+        browser: ["firefox"]
+        os: ["windows-latest", "macos-latest", "ubuntu-latest"]
+    runs-on: "windows-latest"
     name: Integration Tests
     steps:
       - uses: actions/checkout@v1
