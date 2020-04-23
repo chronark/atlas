@@ -54,6 +54,9 @@ jobs:
 
       -
   integration_tests:
+    strategy:
+      matrix:
+        browser: ["firefox:headless", "chrome:headless"]
     runs-on: ubuntu-latest
     name: Integration Tests
     steps:
@@ -70,7 +73,8 @@ jobs:
         run: yarn build
 
       - name: Integration tests
-        run: yarn test:e2e:ci
+        run: export BROWSER=${{ matrix.browser }} && yarn test:e2e:ci
+
   building:
     runs-on: ubuntu-latest
     name: Build

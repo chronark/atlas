@@ -16,6 +16,9 @@ const ciConfig = {
 }
 
 const config = process.env.CI ? ciConfig : defaultConfig
+if (process.env.BROWSER) {
+  config.browsers = [process.env.BROWSER]
+}
 
 createTestCafe("localhost", 1337, 1338)
   .then((tc) => {
