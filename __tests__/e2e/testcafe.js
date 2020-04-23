@@ -3,7 +3,7 @@ const createTestCafe = require("testcafe")
 
 let testcafe = null
 
-let browsers = process.env.CI ? ["chrome:headless"] : ["all"]
+let browsers = process.env.CI ? ["chrome:headless", "firefox:headless"] : ["all"]
 let concurrency = 1
 let stopOnFirstfail = false
 if (process.env.IE_ONLY) {
