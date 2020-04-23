@@ -126,7 +126,7 @@ jobs:
           CI: true
           BROWSER: ${{matrix.browser}}
 
-  building:
+  build:
     runs-on: ubuntu-latest
     name: Build
     steps:
