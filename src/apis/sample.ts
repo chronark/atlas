@@ -20,7 +20,7 @@ export default class Sample {
     // TODO selfhost these files
     const cities = await axios
       .get("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json")
-      .then(response => response.data)
+      .then((response) => response.data)
 
     const jobs: Job[] = []
     let i = 0

@@ -12,7 +12,7 @@ export class Jobs {
   }
 
   private async fetchRawJobs(): Promise<RawSearch> {
-    return fetch(this.url).then(response => {
+    return fetch(this.url).then((response) => {
       if (!response.ok) {
         log.error(`Could not fetch jobs from ${this.url}, response was: `, response)
       }
@@ -21,7 +21,7 @@ export class Jobs {
   }
 
   private transform(rawSearch: RawSearch): Job[] {
-    return rawSearch.jobs.map(rawJob => {
+    return rawSearch.jobs.map((rawJob) => {
       return {
         corp: rawJob.firma,
         locations: [

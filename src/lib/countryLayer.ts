@@ -41,7 +41,7 @@ const countryLayer = (map: Map): void => {
       if (geojson) {
         const geometries = convertGeoJsonToGeometries(geojson)
         if (geometries) {
-          geometries.forEach(geometry => {
+          geometries.forEach((geometry) => {
             if (geometry) {
               if (!map.store.getState().allGeometries.includes(geometry)) {
                 map.store.dispatch("addGeometries", [geometry])

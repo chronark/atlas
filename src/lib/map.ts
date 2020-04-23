@@ -72,19 +72,19 @@ export default class Map {
   }
 
   addVisibleJobsHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], state => {
+    this.store.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state) => {
       this.JobLayer.setJobs(state.visibleJobs)
     })
   }
 
   addGeometriesHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_SELECTEDGEOMETRIES", "STATE_CHANGE_ALLJOBS"], state => {
+    this.store.events.subscribe(["STATE_CHANGE_SELECTEDGEOMETRIES", "STATE_CHANGE_ALLJOBS"], (state) => {
       this.countryLayerFromGeometry(state.selectedGeometries)
     })
   }
 
   addJobFilterHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_ALLJOBS", "STATE_CHANGE_SELECTEDGEOMETRIES"], state => {
+    this.store.events.subscribe(["STATE_CHANGE_ALLJOBS", "STATE_CHANGE_SELECTEDGEOMETRIES"], (state) => {
       let newShownJobs: Job[] = []
 
       if (this.store.getState().selectedGeometries.length === 0) {
@@ -111,13 +111,7 @@ export default class Map {
   private addLayer(layer: BaseLayer, opts: { name?: string; overwrite?: boolean } = {}): void {
     const { name = "", overwrite = false } = opts
 
-    if (
-      this.olmap
-        .getLayers()
-        .getArray()
-        .indexOf(layer) === -1 ||
-      overwrite
-    ) {
+    if (this.olmap.getLayers().getArray().indexOf(layer) === -1 || overwrite) {
       if (name !== "") {
         layer.set("name", name)
       }
@@ -138,7 +132,7 @@ export default class Map {
       layer.getSource().clear()
     }
     const source = new VectorSource()
-    const features = geometry.map(g => {
+    const features = geometry.map((g) => {
       return new Feature({
         geometry: g,
       })
@@ -288,7 +282,7 @@ export default class Map {
   private getLayersByNames(names: string[]): VectorLayer[] {
     const allLayers = this.olmap.getLayers()
     const filteredLayers: VectorLayer[] = []
-    allLayers.forEach(layer => {
+    allLayers.forEach((layer) => {
       if (names.includes(layer.get("name"))) {
         filteredLayers.push(layer as VectorLayer)
       }

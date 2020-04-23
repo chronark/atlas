@@ -25,14 +25,14 @@ map.store.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state: State) => {
 const searchField = document.getElementById("searchField") as HTMLInputElement
 const searchForm = document.getElementById("searchForm")
 if (searchField !== null && searchForm !== null) {
-  searchForm.addEventListener("submit", event => {
+  searchForm.addEventListener("submit", (event) => {
     const query = searchField.value
     map.search(query)
     event.preventDefault()
   })
 }
 // Using local source because of CORS problems.
-new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs.json").get().then(jobs => {
+new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs.json").get().then((jobs) => {
   new Charon().forwardGeocoding("Bayern").then((geojson: GeocodingResponseObject | undefined) => {
     if (geojson) {
       jobs.push({
