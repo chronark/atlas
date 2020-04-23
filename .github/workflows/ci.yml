@@ -67,6 +67,11 @@ jobs:
         with:
           node-version: 12
 
+      - name: Load node_modules
+        uses: actions/download-artifact@v1
+        with:
+          name: node_modules
+
       - name: Install dependencies
         run: yarn install
 
@@ -80,6 +85,24 @@ jobs:
         env:
           CI: true
           BROWSER: ${{matrix.browser}}
+
+  install:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: yarn install
+      - name: Cache node_modules
+        uses: actions/upload-artifact@v1
+        with:
+          name: node_modules
+          path: node_modules
 
   build:
     runs-on: ubuntu-latest
