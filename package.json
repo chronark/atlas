@@ -86,7 +86,6 @@
     "start-server-and-test": "1.11.0",
     "style-loader": "1.1.4",
     "testcafe": "^1.8.4",
-    "testcafe-live": "^0.1.4",
     "ts-jest": "25.4.0",
     "ts-loader": "7.0.0",
     "typedoc": "0.17.4",
