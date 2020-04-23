@@ -52,13 +52,14 @@ jobs:
       - name: Unittests
         run: yarn test:unit
 
-  integration_firefox:
+  integration:
     needs: build
     strategy:
       matrix:
-        browser: ["firefox"]
-        os: ["windows-latest", "macos-latest", "ubuntu-latest"]
-    runs-on: "windows-latest"
+        include:
+          - os: windows-latest
+            browser: firefox
+    runs-on: ${{ matrix.os }}
     name: Integration Tests
     steps:
       - uses: actions/checkout@v1
@@ -81,118 +82,6 @@ jobs:
           CI: true
           BROWSER: ${{matrix.browser}}
 
-  integration_chrome:
-    needs: build
-    strategy:
-      matrix:
-        browser: ["chrome"]
-        os: ["windows-latest", "macos-latest", "ubuntu-latest"]
-    runs-on: "windows-latest"
-    name: Integration Tests
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Load build directory
-        uses: actions/download-artifact@v1
-        with:
-          name: dist
-
-      - name: Integration tests
-        run: yarn test:e2e
-        env:
-          CI: true
-          BROWSER: ${{matrix.browser}}
-  integration_ie:
-    needs: build
-    strategy:
-      matrix:
-        browser: ["ie"]
-        os: ["windows-latest"]
-    runs-on: "windows-latest"
-    name: Integration Tests
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Load build directory
-        uses: actions/download-artifact@v1
-        with:
-          name: dist
-
-      - name: Integration tests
-        run: yarn test:e2e
-        env:
-          CI: true
-          BROWSER: ${{matrix.browser}}
-  integration_edge:
-    needs: build
-    strategy:
-      matrix:
-        browser: ["edge"]
-        os: ["windows-latest"]
-    runs-on: "windows-latest"
-    name: Integration Tests
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Load build directory
-        uses: actions/download-artifact@v1
-        with:
-          name: dist
-
-      - name: Integration tests
-        run: yarn test:e2e
-        env:
-          CI: true
-          BROWSER: ${{matrix.browser}}
-  integration_safari:
-    needs: build
-    strategy:
-      matrix:
-        browser: ["safari"]
-        os: ["macos-latest"]
-    runs-on: "windows-latest"
-    name: Integration Tests
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      - name: Install dependencies
-        run: yarn install
-
-      - name: Load build directory
-        uses: actions/download-artifact@v1
-        with:
-          name: dist
-
-      - name: Integration tests
-        run: yarn test:e2e
-        env:
-          CI: true
-          BROWSER: ${{matrix.browser}}
   build:
     runs-on: ubuntu-latest
     name: Build
