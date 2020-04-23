@@ -61,7 +61,7 @@ describe("jobs", () => {
       },
     ]
 
-    tt.forEach(tc => {
+    tt.forEach((tc) => {
       jest.resetAllMocks()
       jest.spyOn(Math, "random").mockImplementation(() => 1)
       window.fetch = jest.fn().mockImplementation(() => {

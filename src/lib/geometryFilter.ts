@@ -20,9 +20,9 @@ export const areCoordinatesInGeometry = (
 
 const getJobsInGeometry = (jobs: Job[], geometries: Geometry[]): Job[] => {
   let newShownJobs: Job[] = []
-  geometries.forEach(geometry => {
-    const newJobs = jobs.filter(job => {
-      const locationsInsideGeometry = job.locations.filter(location => {
+  geometries.forEach((geometry) => {
+    const newJobs = jobs.filter((job) => {
+      const locationsInsideGeometry = job.locations.filter((location) => {
         if (isSingleLocation(location)) {
           return areCoordinatesInGeometry([location.lon, location.lat], geometry)
         } else {

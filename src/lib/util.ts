@@ -11,7 +11,7 @@ import { transformExtent } from "ol/proj"
  * @returns List without entry.
  */
 export function removeFrom(list: any[], entry: any): any[] {
-  return list.filter(value => {
+  return list.filter((value) => {
     return value !== entry
   })
 }
@@ -25,7 +25,7 @@ export function removeFrom(list: any[], entry: any): any[] {
  */
 export function removeListFromList(list1: any[], list2: any[]): any[] {
   const unique = [...new Set(list1)]
-  return list2.filter(value => {
+  return list2.filter((value) => {
     return !unique.includes(value)
   })
 }

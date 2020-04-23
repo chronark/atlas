@@ -1,4 +1,4 @@
-module.exports = api => {
+module.exports = (api) => {
   const plugins = []
   const isTest = api.env("test")
   if (isTest) {

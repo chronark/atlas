@@ -12,7 +12,7 @@ export default class Charon {
   }
 
   public getStyle(): Promise<Record<string, any>> {
-    return fetch(this.serverURL + "/style").then(r => r.json())
+    return fetch(this.serverURL + "/style").then((r) => r.json())
   }
 
   public async forwardGeocoding(query: string): Promise<GeocodingResponseObject | undefined> {
