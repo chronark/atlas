@@ -52,7 +52,6 @@ jobs:
       - name: Unittests
         run: yarn test:unit
 
-      -
   integration_tests:
     strategy:
       matrix:
