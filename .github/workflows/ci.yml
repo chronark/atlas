@@ -89,25 +89,25 @@ jobs:
       matrix:
         include:
           - os: windows-latest
-            browser: firefox
+            browser: firefox:headless
           - os: windows-latest
-            browser: chrome
+            browser: chrome:headless
           - os: windows-latest
             browser: ie
           - os: windows-latest
-            browser: edge
+            browser: edge:headless
 
           - os: ubuntu-latest
             browser: firefox:headless
           - os: ubuntu-latest
             browser: chrome:headless
 
-          - os: macos-latest
-            browser: firefox
-          - os: macos-latest
-            browser: chrome
-          - os: macos-latest
-            browser: safari
+          # - os: macos-latest
+          #   browser: firefox
+          # - os: macos-latest
+          #   browser: chrome
+          # - os: macos-latest
+          #   browser: Microsoft Edge
 
     runs-on: ${{ matrix.os }}
     name: Integration Tests
