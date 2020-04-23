@@ -42,4 +42,5 @@ createTestCafe("localhost", 1337, 1338)
   .catch((error) => {
     console.error(error)
     testcafe.close()
+    process.exit(1)
   })
