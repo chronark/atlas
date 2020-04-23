@@ -89,7 +89,8 @@ jobs:
     strategy:
       matrix:
         browser: ["firefox:headless", "chrome:headless", "ie", "edge"]
-    runs-on: windows-latest
+        os: ["windows-latest", "macos-latest", "ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
     name: Integration Tests
     steps:
       - uses: actions/checkout@v1
