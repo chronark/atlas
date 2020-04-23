@@ -67,9 +67,9 @@ jobs:
             browser: edge
 
           - os: ubuntu-latest
-            browser: firefox
+            browser: firefox:headless
           - os: ubuntu-latest
-            browser: chrome
+            browser: chrome:headless
 
           - os: macos-latest
             browser: firefox
