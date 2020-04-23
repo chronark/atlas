@@ -59,6 +59,14 @@ jobs:
         include:
           - os: windows-latest
             browser: firefox
+          - os: windows-latest
+            browser: chrome
+          - os: windows-latest
+            browser: ie
+          - os: windows-latest
+            browser: edge
+          - os: windows-latest
+            browser: opera
     runs-on: ${{ matrix.os }}
     name: Integration Tests
     steps:
