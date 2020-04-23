@@ -44,4 +44,4 @@ createTestCafe("localhost", 1337, 1338)
     testcafe.close()
   })
 
-process.exit(1)
+process.exitCode = 1
