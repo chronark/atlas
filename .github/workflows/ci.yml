@@ -95,11 +95,16 @@ jobs:
         with:
           name: dist
 
-      - name: Integration tests
-        run: yarn test:e2e
-        env:
-          CI: true
-          BROWSER: ${{matrix.browser}}
+      - name: Install TestCafe from 'npm' and Run Tests
+        uses: DevExpress/testcafe-action@latest
+        with:
+          args: "chrome __tests__/e2e/*.test.ts"
+
+      # - name: Integration tests
+      #   run: yarn test:e2e
+      #   env:
+      #     CI: true
+      #     BROWSER: ${{matrix.browser}}
 
   build:
     runs-on: ubuntu-latest
