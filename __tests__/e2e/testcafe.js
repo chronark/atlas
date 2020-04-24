@@ -37,9 +37,11 @@ createTestCafe("localhost", 1337, 1338)
         stopOnFirstFail: config.stopOnFirstfail,
       })
   })
-  .then((failed) => {
-    console.warn(failed)
+  .then((failedCount) => {
     testcafe.close()
+    if (failedCount > 0) {
+      process.exit(1)
+    }
   })
   .catch((error) => {
     console.error(error)
