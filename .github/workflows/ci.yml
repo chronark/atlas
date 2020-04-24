@@ -58,19 +58,19 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: windows-latest
-            browser: firefox:headless
-          - os: windows-latest
-            browser: chrome:headless
-          - os: windows-latest
-            browser: ie
-          - os: windows-latest
-            browser: edge:headless
+          # - os: windows-latest
+          #   browser: firefox:headless
+          # - os: windows-latest
+          #   browser: chrome:headless
+          # - os: windows-latest
+          #   browser: ie
+          # - os: windows-latest
+          #   browser: edge:headless
 
+          # - os: ubuntu-latest
+          #   browser: firefox
           - os: ubuntu-latest
-            browser: firefox:headless
-          - os: ubuntu-latest
-            browser: chrome:headless
+            browser: chrome
 
           # - os: macos-latest
           #   browser: firefox
