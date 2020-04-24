@@ -7,7 +7,7 @@ jobs:
     name: Lint
     steps:
       - uses: actions/checkout@v1
-    
+
       - name: Install dependencies
         run: yarn install
 
@@ -29,7 +29,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-     
+
       - name: Install dependencies
         run: yarn install
 
@@ -45,7 +45,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-     
+
       - name: Install dependencies
         run: yarn install
 
@@ -67,11 +67,10 @@ jobs:
           # - os: windows-latest
           #   browser: edge:headless
 
-          # - os: ubuntu-latest
-          #   browser: firefox
           - os: ubuntu-latest
-            browser: chrome
-
+            browser: firefox
+          # - os: ubuntu-latest
+          #   browser: chrome
           # - os: macos-latest
           #   browser: firefox
           # - os: macos-latest
@@ -88,7 +87,6 @@ jobs:
         with:
           node-version: 12
 
-      
       - name: Install dependencies
         run: yarn install
 
