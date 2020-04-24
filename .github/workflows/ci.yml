@@ -67,10 +67,10 @@ jobs:
           - os: windows-latest
             browser: edge:headless
 
-          # - os: ubuntu-latest
-          #   browser: firefox
-          # - os: ubuntu-latest
-          #   browser: chrome
+          - os: ubuntu-latest
+            browser: firefox
+          - os: ubuntu-latest
+            browser: chrome
           # - os: macos-latest
           #   browser: firefox
           # - os: macos-latest
