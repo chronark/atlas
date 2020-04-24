@@ -60,12 +60,13 @@ jobs:
         include:
           - os: windows-latest
             browser: firefox:headless
-          # - os: windows-latest
-          #   browser: chrome:headless
-          # - os: windows-latest
-          #   browser: ie
-          # - os: windows-latest
-          #   browser: edge:headless
+          - os: windows-latest
+            browser: chrome:headless
+          - os: windows-latest
+            browser: ie
+          - os: windows-latest
+            browser: edge:headless
+
           # - os: ubuntu-latest
           #   browser: firefox
           # - os: ubuntu-latest
