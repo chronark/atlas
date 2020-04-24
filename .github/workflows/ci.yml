@@ -66,15 +66,18 @@ jobs:
             browser: ie
           - os: windows-latest
             browser: edge:headless
+          - os: windows-latest
+            brwoser: chromium:headless
 
           - os: ubuntu-latest
             browser: firefox:headless
           - os: ubuntu-latest
             browser: chrome:headless
           - os: ubuntu-latest
-            brwoser: "chromium"
-          # - os: macos-latest
-          #   browser: firefox
+            brwoser: chromium:headless
+
+          - os: macos-latest
+            browser: firefox
           # - os: macos-latest
           #   browser: chrome
           # - os: macos-latest
