@@ -20,9 +20,9 @@ jobs:
       - name: prettier
         run: yarn prettier
 
-  testing:
+  typechecks:
     runs-on: ubuntu-latest
-    name: Test
+    name: Typecheck
     steps:
       - uses: actions/checkout@v1
       - name: Setup node
@@ -36,17 +36,78 @@ jobs:
       - name: Typecheck
         run: yarn tsc
 
+  unittests:
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: yarn install
+
       - name: Unittests
         run: yarn test:unit
 
-      - name: Integration tests
-        uses: cypress-io/github-action@v1.16.1
-        with:
-          build: ./node_modules/.bin/webpack --mode=production
-          start: npm run serve
-          wait-on: http://localhost:5000
+  integration:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            browser: firefox:headless
+          - os: windows-latest
+            browser: chrome:headless
+          - os: windows-latest
+            browser: ie
+          - os: windows-latest
+            browser: edge:headless
+          - os: windows-latest
+            brwoser: chromium:headless
 
-  building:
+          - os: ubuntu-latest
+            browser: firefox:headless
+          - os: ubuntu-latest
+            browser: chrome:headless
+          - os: ubuntu-latest
+            brwoser: chromium:headless
+
+          # Enable these once testcafe works on github's macos machines
+          # - os: macos-latest
+          #   browser: firefox
+          # - os: macos-latest
+          #   browser: chrome
+          # - os: macos-latest
+          #   browser: Microsoft Edge
+
+    runs-on: ${{ matrix.os }}
+    name: Integration Tests
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Load build directory
+        uses: actions/download-artifact@v1
+        with:
+          name: dist
+
+      - name: Integration tests
+        run: yarn test:e2e
+        env:
+          CI: true
+          BROWSER: ${{matrix.browser}}
+
+  build:
     runs-on: ubuntu-latest
     name: Build
     steps:
@@ -61,3 +122,9 @@ jobs:
 
       - name: Build
         run: yarn build
+
+      - name: Cache build directory
+        uses: actions/upload-artifact@v1
+        with:
+          name: dist
+          path: dist

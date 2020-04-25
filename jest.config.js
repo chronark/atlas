@@ -15,7 +15,7 @@ module.exports = {
 */
   roots: ["./"],
   testURL: "http://localhost",
-  testPathIgnorePatterns: ["/dist/", "node_modules"],
+  testPathIgnorePatterns: ["/dist/", "node_modules", "__tests__/e2e"],
   transform: {
     "^.+\\.jsx?$": "babel-jest",
     "^.+\\.tsx?$": "ts-jest",
