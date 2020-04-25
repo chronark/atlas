@@ -22,7 +22,7 @@
     "prettier": "prettier --write ./**/*.{js,ts,json} --loglevel warn",
     "serve": "serve ./dist",
     "test:e2e": "node ./__tests__/e2e/testcafe.js",
-    "test:full": "yarn install && yarn fmt && yarn tsc && yarn test:unit && yarn build && yarn test:e2e:ci",
+    "test:full": "yarn install && yarn fmt && yarn tsc && yarn test:unit && yarn build && export CI=true && yarn test:e2e",
     "test:unit": "jest",
     "tsc": "yarn tsc:default && yarn tsc:testcafe",
     "tsc:testcafe": "yarn tsc:default -p ./tsconfig.testcafe.json ",
