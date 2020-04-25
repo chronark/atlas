@@ -9,7 +9,7 @@ export default class Events {
   }
 
   public subscribe(events: string[], callback: stateCallback): void {
-    events.forEach(event => {
+    events.forEach((event) => {
       if (!this.events.hasOwnProperty(event)) {
         this.events[event] = []
       }
