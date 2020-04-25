@@ -77,12 +77,12 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "extract-text-webpack-plugin": "3.0.2",
-    "html-webpack-plugin": "3.2.0",
+    "html-webpack-plugin": "4.0.0-beta.8",
     "husky": "4.2.5",
     "jest": "25.3.0",
     "jest-canvas-mock": "2.2.0",
-    "prettier": "2.0.4",
     "lint-staged": "10.1.6",
+    "prettier": "2.0.4",
     "regenerator-runtime": "0.13.5",
     "require-context.macro": "1.2.2",
     "serve": "11.3.0",
@@ -94,7 +94,7 @@
     "typedoc": "0.17.4",
     "typedoc-plugin-markdown": "2.2.17",
     "typescript": "3.8.3",
-    "webpack": "4.42.1",
+    "webpack": "^5.0.0-beta.13",
     "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.10.3"
   }

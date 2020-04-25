@@ -5,19 +5,12 @@ const path = require("path")
 const webpack = require("webpack")
 
 module.exports = {
-  node: { fs: "empty" },
-
   entry: ["@babel/polyfill", "./src/lib/index.ts"],
   output: {
     filename: "atlas.js",
     chunkFilename: "[name].atlas.js",
     library: "atlas",
     path: path.resolve(__dirname, "dist"),
-  },
-  optimization: {
-    splitChunks: {
-      chunks: "all",
-    },
   },
   devtool: "source-map",
   devServer: {
