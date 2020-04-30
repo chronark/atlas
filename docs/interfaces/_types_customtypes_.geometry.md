@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["types/customTypes"](../modules/_types_customtypes_.md) › [Geometry](_types_customtypes_.geometry.md)
+[Atlas documentation](../globals.md) › ["types/customTypes"](../modules/_types_customtypes_.md) › [Geometry](_types_customtypes_.geometry.md)
 
 # Interface: Geometry
 
@@ -19,7 +19,7 @@
 
 • **coordinates**: *number[]*
 
-*Defined in [types/customTypes.ts:124](https://github.com/chronark/atlas/blob/76cab4c/src/types/customTypes.ts#L124)*
+*Defined in [types/customTypes.ts:124](https://github.com/chronark/atlas/blob/e7527d8/src/types/customTypes.ts#L124)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **type**: *string*
 
-*Defined in [types/customTypes.ts:123](https://github.com/chronark/atlas/blob/76cab4c/src/types/customTypes.ts#L123)*
+*Defined in [types/customTypes.ts:123](https://github.com/chronark/atlas/blob/e7527d8/src/types/customTypes.ts#L123)*

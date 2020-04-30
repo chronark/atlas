@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["styles/jobs"](_styles_jobs_.md)
+[Atlas documentation](../globals.md) › ["styles/jobs"](_styles_jobs_.md)
 
 # Module: "styles/jobs"
 

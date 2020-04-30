@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["styles/countryStyle"](_styles_countrystyle_.md)
+[Atlas documentation](../globals.md) › ["styles/countryStyle"](_styles_countrystyle_.md)
 
 # Module: "styles/countryStyle"
 
@@ -14,7 +14,7 @@
 
 ▸ **countryLayerStyle**(`__namedParameters`: object): *Style*
 
-*Defined in [styles/countryStyle.ts:5](https://github.com/chronark/atlas/blob/76cab4c/src/styles/countryStyle.ts#L5)*
+*Defined in [styles/countryStyle.ts:5](https://github.com/chronark/atlas/blob/e7527d8/src/styles/countryStyle.ts#L5)*
 
 **Parameters:**
 

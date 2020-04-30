@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["types/customTypes"](../modules/_types_customtypes_.md) › [RawSearch](_types_customtypes_.rawsearch.md)
+[Atlas documentation](../globals.md) › ["types/customTypes"](../modules/_types_customtypes_.md) › [RawSearch](_types_customtypes_.rawsearch.md)
 
 # Interface: RawSearch
 
@@ -19,7 +19,7 @@
 
 • **jobs**: *[RawJob](_types_customtypes_.rawjob.md)[]*
 
-*Defined in [types/customTypes.ts:26](https://github.com/chronark/atlas/blob/76cab4c/src/types/customTypes.ts#L26)*
+*Defined in [types/customTypes.ts:26](https://github.com/chronark/atlas/blob/e7527d8/src/types/customTypes.ts#L26)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **orte**: *[RawLocation](_types_customtypes_.rawlocation.md)[]*
 
-*Defined in [types/customTypes.ts:27](https://github.com/chronark/atlas/blob/76cab4c/src/types/customTypes.ts#L27)*
+*Defined in [types/customTypes.ts:27](https://github.com/chronark/atlas/blob/e7527d8/src/types/customTypes.ts#L27)*

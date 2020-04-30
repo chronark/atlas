@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["state/geometry.test"](_state_geometry_test_.md)
+[Atlas documentation](../globals.md) › ["state/geometry.test"](_state_geometry_test_.md)
 
 # Module: "state/geometry.test"
 
@@ -24,7 +24,7 @@
   new Circle([5, 5], 5),
 ]
 
-*Defined in [state/geometry.test.ts:7](https://github.com/chronark/atlas/blob/76cab4c/src/state/geometry.test.ts#L7)*
+*Defined in [state/geometry.test.ts:7](https://github.com/chronark/atlas/blob/e7527d8/src/state/geometry.test.ts#L7)*
 
 ## Functions
 
@@ -32,6 +32,6 @@
 
 ▸ **initialState**(): *[State](_state_store_.md#state)*
 
-*Defined in [state/geometry.test.ts:15](https://github.com/chronark/atlas/blob/76cab4c/src/state/geometry.test.ts#L15)*
+*Defined in [state/geometry.test.ts:15](https://github.com/chronark/atlas/blob/e7527d8/src/state/geometry.test.ts#L15)*
 
 **Returns:** *[State](_state_store_.md#state)*

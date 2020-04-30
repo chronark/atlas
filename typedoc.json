@@ -1,8 +1,8 @@
 {
   "hideGenerator": true,
-  "mode": "file",
+  "mode": "modules",
   "name": "Atlas documentation",
-  "out": "./docs/markdown",
+  "out": "./docs",
   "readme": "./README.md",
   "theme": "markdown",
   "plugin": ["typedoc-plugin-markdown"]

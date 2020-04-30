@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["types/customTypes"](../modules/_types_customtypes_.md) › [SingleLocation](_types_customtypes_.singlelocation.md)
+[Atlas documentation](../globals.md) › ["types/customTypes"](../modules/_types_customtypes_.md) › [SingleLocation](_types_customtypes_.singlelocation.md)
 
 # Interface: SingleLocation
 
@@ -19,7 +19,7 @@
 
 • **lat**: *number*
 
-*Defined in [types/customTypes.ts:35](https://github.com/chronark/atlas/blob/76cab4c/src/types/customTypes.ts#L35)*
+*Defined in [types/customTypes.ts:35](https://github.com/chronark/atlas/blob/e7527d8/src/types/customTypes.ts#L35)*
 
 Latitude of the location.
 
@@ -29,6 +29,6 @@ ___
 
 • **lon**: *number*
 
-*Defined in [types/customTypes.ts:39](https://github.com/chronark/atlas/blob/76cab4c/src/types/customTypes.ts#L39)*
+*Defined in [types/customTypes.ts:39](https://github.com/chronark/atlas/blob/e7527d8/src/types/customTypes.ts#L39)*
 
 Longitude of the location.

@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["types/customTypes"](../modules/_types_customtypes_.md) › [GeocodingResponseObject](_types_customtypes_.geocodingresponseobject.md)
+[Atlas documentation](../globals.md) › ["types/customTypes"](../modules/_types_customtypes_.md) › [GeocodingResponseObject](_types_customtypes_.geocodingresponseobject.md)
 
 # Interface: GeocodingResponseObject
 
@@ -21,7 +21,7 @@
 
 • **attribution**: *string*
 
-*Defined in [types/customTypes.ts:97](https://github.com/chronark/atlas/blob/76cab4c/src/types/customTypes.ts#L97)*
+*Defined in [types/customTypes.ts:97](https://github.com/chronark/atlas/blob/e7527d8/src/types/customTypes.ts#L97)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **features**: *[FeaturesEntity](_types_customtypes_.featuresentity.md)[]*
 
-*Defined in [types/customTypes.ts:96](https://github.com/chronark/atlas/blob/76cab4c/src/types/customTypes.ts#L96)*
+*Defined in [types/customTypes.ts:96](https://github.com/chronark/atlas/blob/e7527d8/src/types/customTypes.ts#L96)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **query**: *string*
 
-*Defined in [types/customTypes.ts:95](https://github.com/chronark/atlas/blob/76cab4c/src/types/customTypes.ts#L95)*
+*Defined in [types/customTypes.ts:95](https://github.com/chronark/atlas/blob/e7527d8/src/types/customTypes.ts#L95)*
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **type**: *string*
 
-*Defined in [types/customTypes.ts:94](https://github.com/chronark/atlas/blob/76cab4c/src/types/customTypes.ts#L94)*
+*Defined in [types/customTypes.ts:94](https://github.com/chronark/atlas/blob/e7527d8/src/types/customTypes.ts#L94)*

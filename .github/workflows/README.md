@@ -5,4 +5,6 @@
 
 > Mapping library for jobs
 
-WIP
+## Documentation
+
+[docs](docs/README.md)

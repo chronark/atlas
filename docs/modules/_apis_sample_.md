@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["apis/sample"](_apis_sample_.md)
+[Atlas documentation](../globals.md) › ["apis/sample"](_apis_sample_.md)
 
 # Module: "apis/sample"
 

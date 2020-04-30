@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["apis/tileLayers"](_apis_tilelayers_.md)
+[Atlas documentation](../globals.md) › ["apis/tileLayers"](_apis_tilelayers_.md)
 
 # Module: "apis/tileLayers"
 

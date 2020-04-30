@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["styles/color"](_styles_color_.md)
+[Atlas documentation](../globals.md) › ["styles/color"](_styles_color_.md)
 
 # Module: "styles/color"
 

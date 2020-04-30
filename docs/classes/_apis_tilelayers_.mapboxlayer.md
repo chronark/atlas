@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["apis/tileLayers"](../modules/_apis_tilelayers_.md) › [MapboxLayer](_apis_tilelayers_.mapboxlayer.md)
+[Atlas documentation](../globals.md) › ["apis/tileLayers"](../modules/_apis_tilelayers_.md) › [MapboxLayer](_apis_tilelayers_.mapboxlayer.md)
 
 # Class: MapboxLayer
 
@@ -23,7 +23,7 @@
 
 ▸ **applyMapboxStyle**(`mapboxLayer`: VectorTileLayer): *Promise‹void›*
 
-*Defined in [apis/tileLayers.ts:56](https://github.com/chronark/atlas/blob/76cab4c/src/apis/tileLayers.ts#L56)*
+*Defined in [apis/tileLayers.ts:56](https://github.com/chronark/atlas/blob/e7527d8/src/apis/tileLayers.ts#L56)*
 
 **Parameters:**
 
@@ -41,6 +41,6 @@ ___
 
 *Implementation of [TileLayerGenerator](../interfaces/_apis_tilelayers_.tilelayergenerator.md)*
 
-*Defined in [apis/tileLayers.ts:41](https://github.com/chronark/atlas/blob/76cab4c/src/apis/tileLayers.ts#L41)*
+*Defined in [apis/tileLayers.ts:41](https://github.com/chronark/atlas/blob/e7527d8/src/apis/tileLayers.ts#L41)*
 
 **Returns:** *BaseLayer*

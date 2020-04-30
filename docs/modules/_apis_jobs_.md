@@ -1,4 +1,4 @@
-[Atlas documentation](../README.md) › [Globals](../globals.md) › ["apis/jobs"](_apis_jobs_.md)
+[Atlas documentation](../globals.md) › ["apis/jobs"](_apis_jobs_.md)
 
 # Module: "apis/jobs"
 
