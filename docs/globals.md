@@ -90,7 +90,7 @@
 
 Ƭ **Action**: *function*
 
-*Defined in [state/actions.ts:5](https://github.com/chronark/atlas/blob/5df157b/src/state/actions.ts#L5)*
+*Defined in [state/actions.ts:5](https://github.com/chronark/atlas/blob/11701e8/src/state/actions.ts#L5)*
 
 #### Type declaration:
 
@@ -109,7 +109,7 @@ ___
 
 Ƭ **Area**: *[FeaturesEntity](interfaces/featuresentity.md)[]*
 
-*Defined in [types/customTypes.ts:30](https://github.com/chronark/atlas/blob/5df157b/src/types/customTypes.ts#L30)*
+*Defined in [types/customTypes.ts:30](https://github.com/chronark/atlas/blob/11701e8/src/types/customTypes.ts#L30)*
 
 ___
 
@@ -117,7 +117,7 @@ ___
 
 Ƭ **Location**: *[Area](globals.md#area) | [SingleLocation](interfaces/singlelocation.md)*
 
-*Defined in [types/customTypes.ts:46](https://github.com/chronark/atlas/blob/5df157b/src/types/customTypes.ts#L46)*
+*Defined in [types/customTypes.ts:46](https://github.com/chronark/atlas/blob/11701e8/src/types/customTypes.ts#L46)*
 
 The location for a job.
 Address has to be added later on.
@@ -128,7 +128,7 @@ ___
 
 Ƭ **LogObject**: *Record‹string, any› | number*
 
-*Defined in [types/customTypes.ts:91](https://github.com/chronark/atlas/blob/5df157b/src/types/customTypes.ts#L91)*
+*Defined in [types/customTypes.ts:91](https://github.com/chronark/atlas/blob/11701e8/src/types/customTypes.ts#L91)*
 
 ___
 
@@ -136,7 +136,7 @@ ___
 
 Ƭ **Mutation**: *function*
 
-*Defined in [state/mutations.ts:7](https://github.com/chronark/atlas/blob/5df157b/src/state/mutations.ts#L7)*
+*Defined in [state/mutations.ts:7](https://github.com/chronark/atlas/blob/11701e8/src/state/mutations.ts#L7)*
 
 #### Type declaration:
 
@@ -155,7 +155,7 @@ ___
 
 Ƭ **State**: *object*
 
-*Defined in [state/store.ts:9](https://github.com/chronark/atlas/blob/5df157b/src/state/store.ts#L9)*
+*Defined in [state/store.ts:9](https://github.com/chronark/atlas/blob/11701e8/src/state/store.ts#L9)*
 
 #### Type declaration:
 
@@ -177,7 +177,7 @@ ___
 
 Ƭ **stateCallback**: *function*
 
-*Defined in [state/events.ts:3](https://github.com/chronark/atlas/blob/5df157b/src/state/events.ts#L3)*
+*Defined in [state/events.ts:3](https://github.com/chronark/atlas/blob/11701e8/src/state/events.ts#L3)*
 
 #### Type declaration:
 
@@ -201,7 +201,7 @@ Name | Type |
   new Circle([5, 5], 5),
 ]
 
-*Defined in [state/geometry.test.ts:7](https://github.com/chronark/atlas/blob/5df157b/src/state/geometry.test.ts#L7)*
+*Defined in [state/geometry.test.ts:7](https://github.com/chronark/atlas/blob/11701e8/src/state/geometry.test.ts#L7)*
 
 ___
 
@@ -209,7 +209,7 @@ ___
 
 • **log**: *[Logger](classes/logger.md)‹›* = new Logger()
 
-*Defined in [lib/logger.ts:60](https://github.com/chronark/atlas/blob/5df157b/src/lib/logger.ts#L60)*
+*Defined in [lib/logger.ts:60](https://github.com/chronark/atlas/blob/11701e8/src/lib/logger.ts#L60)*
 
 ___
 
@@ -217,7 +217,7 @@ ___
 
 • **map**: *[Map](classes/map.md)‹›* = new Map("map-container")
 
-*Defined in [lib/index.ts:8](https://github.com/chronark/atlas/blob/5df157b/src/lib/index.ts#L8)*
+*Defined in [lib/index.ts:8](https://github.com/chronark/atlas/blob/11701e8/src/lib/index.ts#L8)*
 
 ___
 
@@ -225,7 +225,7 @@ ___
 
 • **searchField**: *HTMLInputElement* = document.getElementById("searchField") as HTMLInputElement
 
-*Defined in [lib/index.ts:25](https://github.com/chronark/atlas/blob/5df157b/src/lib/index.ts#L25)*
+*Defined in [lib/index.ts:25](https://github.com/chronark/atlas/blob/11701e8/src/lib/index.ts#L25)*
 
 ___
 
@@ -233,7 +233,7 @@ ___
 
 • **searchForm**: *null | HTMLElement* = document.getElementById("searchForm")
 
-*Defined in [lib/index.ts:26](https://github.com/chronark/atlas/blob/5df157b/src/lib/index.ts#L26)*
+*Defined in [lib/index.ts:26](https://github.com/chronark/atlas/blob/11701e8/src/lib/index.ts#L26)*
 
 ## Functions
 
@@ -241,7 +241,7 @@ ___
 
 ▸ **areCoordinatesInGeometry**(`lonLat`: [number, number], `geometry`: Geometry, `checkExtentFirst`: boolean): *boolean*
 
-*Defined in [lib/geometryFilter.ts:8](https://github.com/chronark/atlas/blob/5df157b/src/lib/geometryFilter.ts#L8)*
+*Defined in [lib/geometryFilter.ts:8](https://github.com/chronark/atlas/blob/11701e8/src/lib/geometryFilter.ts#L8)*
 
 **Parameters:**
 
@@ -259,7 +259,7 @@ ___
 
 ▸ **bboxToExtent**(`bbox`: [number, number, number, number]): *Extent*
 
-*Defined in [lib/util.ts:70](https://github.com/chronark/atlas/blob/5df157b/src/lib/util.ts#L70)*
+*Defined in [lib/util.ts:70](https://github.com/chronark/atlas/blob/11701e8/src/lib/util.ts#L70)*
 
 Transforms a bounding box to an Extent in EPSG:3875 format.
 
@@ -279,7 +279,7 @@ ___
 
 ▸ **bound**(`lower`: number, `value`: number, `upper`: number): *number*
 
-*Defined in [lib/util.ts:41](https://github.com/chronark/atlas/blob/5df157b/src/lib/util.ts#L41)*
+*Defined in [lib/util.ts:41](https://github.com/chronark/atlas/blob/11701e8/src/lib/util.ts#L41)*
 
 Return value if it is between lower and upper, otherwise return the boundary value.
 
@@ -301,7 +301,7 @@ ___
 
 ▸ **convertGeoJsonToGeometries**(`geojson`: Record‹string, any›): *undefined | Geometry‹›[]*
 
-*Defined in [lib/countryLayer.ts:17](https://github.com/chronark/atlas/blob/5df157b/src/lib/countryLayer.ts#L17)*
+*Defined in [lib/countryLayer.ts:17](https://github.com/chronark/atlas/blob/11701e8/src/lib/countryLayer.ts#L17)*
 
 Creates a Geometry object from geojson data.
 
@@ -321,7 +321,7 @@ ___
 
 ▸ **countryLayer**(`map`: [Map](classes/map.md)): *void*
 
-*Defined in [lib/countryLayer.ts:31](https://github.com/chronark/atlas/blob/5df157b/src/lib/countryLayer.ts#L31)*
+*Defined in [lib/countryLayer.ts:31](https://github.com/chronark/atlas/blob/11701e8/src/lib/countryLayer.ts#L31)*
 
 **Parameters:**
 
@@ -337,7 +337,7 @@ ___
 
 ▸ **countryLayerStyle**(`__namedParameters`: object): *Style*
 
-*Defined in [styles/countryStyle.ts:5](https://github.com/chronark/atlas/blob/5df157b/src/styles/countryStyle.ts#L5)*
+*Defined in [styles/countryStyle.ts:5](https://github.com/chronark/atlas/blob/11701e8/src/styles/countryStyle.ts#L5)*
 
 **Parameters:**
 
@@ -355,7 +355,7 @@ ___
 
 ▸ **filterJobs**(`jobs`: [Job](interfaces/job.md)[], `filter`: object): *[Job](interfaces/job.md)[]*
 
-*Defined in [lib/geometryFilter.ts:63](https://github.com/chronark/atlas/blob/5df157b/src/lib/geometryFilter.ts#L63)*
+*Defined in [lib/geometryFilter.ts:63](https://github.com/chronark/atlas/blob/11701e8/src/lib/geometryFilter.ts#L63)*
 
 **Parameters:**
 
@@ -376,7 +376,7 @@ ___
 
 ▸ **filterJobsByGeometry**(`jobs`: [Job](interfaces/job.md)[], `geometry`: Geometry[]): *[Job](interfaces/job.md)[]*
 
-*Defined in [lib/geometryFilter.ts:56](https://github.com/chronark/atlas/blob/5df157b/src/lib/geometryFilter.ts#L56)*
+*Defined in [lib/geometryFilter.ts:56](https://github.com/chronark/atlas/blob/11701e8/src/lib/geometryFilter.ts#L56)*
 
 **Parameters:**
 
@@ -393,7 +393,7 @@ ___
 
 ▸ **getCachedGeometry**(`store`: [Store](classes/store.md), `event`: MapBrowserEvent): *Geometry*
 
-*Defined in [lib/countryLayer.ts:23](https://github.com/chronark/atlas/blob/5df157b/src/lib/countryLayer.ts#L23)*
+*Defined in [lib/countryLayer.ts:23](https://github.com/chronark/atlas/blob/11701e8/src/lib/countryLayer.ts#L23)*
 
 **Parameters:**
 
@@ -410,7 +410,7 @@ ___
 
 ▸ **getJobsInGeometry**(`jobs`: [Job](interfaces/job.md)[], `geometries`: Geometry[]): *[Job](interfaces/job.md)[]*
 
-*Defined in [lib/geometryFilter.ts:21](https://github.com/chronark/atlas/blob/5df157b/src/lib/geometryFilter.ts#L21)*
+*Defined in [lib/geometryFilter.ts:21](https://github.com/chronark/atlas/blob/11701e8/src/lib/geometryFilter.ts#L21)*
 
 **Parameters:**
 
@@ -427,13 +427,13 @@ ___
 
 ▸ **initialState**(): *[State](globals.md#state)*
 
-*Defined in [state/store.ts:26](https://github.com/chronark/atlas/blob/5df157b/src/state/store.ts#L26)*
+*Defined in [state/store.ts:26](https://github.com/chronark/atlas/blob/11701e8/src/state/store.ts#L26)*
 
 **Returns:** *[State](globals.md#state)*
 
 ▸ **initialState**(): *[State](globals.md#state)*
 
-*Defined in [state/geometry.test.ts:15](https://github.com/chronark/atlas/blob/5df157b/src/state/geometry.test.ts#L15)*
+*Defined in [state/geometry.test.ts:15](https://github.com/chronark/atlas/blob/11701e8/src/state/geometry.test.ts#L15)*
 
 **Returns:** *[State](globals.md#state)*
 
@@ -443,7 +443,7 @@ ___
 
 ▸ **isSingleLocation**(`location`: [Location](globals.md#location)): *location is SingleLocation*
 
-*Defined in [lib/util.ts:80](https://github.com/chronark/atlas/blob/5df157b/src/lib/util.ts#L80)*
+*Defined in [lib/util.ts:80](https://github.com/chronark/atlas/blob/11701e8/src/lib/util.ts#L80)*
 
 Typeguard for SingleLocation.
 
@@ -463,7 +463,7 @@ ___
 
 ▸ **newDefaultStore**(): *[Store](classes/store.md)*
 
-*Defined in [state/store.ts:93](https://github.com/chronark/atlas/blob/5df157b/src/state/store.ts#L93)*
+*Defined in [state/store.ts:93](https://github.com/chronark/atlas/blob/11701e8/src/state/store.ts#L93)*
 
 NewDefaultStore creates a Store instance with the default actions, mutations, initialState and all hooks.
 
@@ -477,7 +477,7 @@ ___
 
 ▸ **polygonStyle**(`__namedParameters`: object): *Style*
 
-*Defined in [styles/polygon.ts:5](https://github.com/chronark/atlas/blob/5df157b/src/styles/polygon.ts#L5)*
+*Defined in [styles/polygon.ts:5](https://github.com/chronark/atlas/blob/11701e8/src/styles/polygon.ts#L5)*
 
 **Parameters:**
 
@@ -495,7 +495,7 @@ ___
 
 ▸ **removeFrom**(`list`: any[], `entry`: any): *any[]*
 
-*Defined in [lib/util.ts:13](https://github.com/chronark/atlas/blob/5df157b/src/lib/util.ts#L13)*
+*Defined in [lib/util.ts:13](https://github.com/chronark/atlas/blob/11701e8/src/lib/util.ts#L13)*
 
 Remove an item from a list.
 
@@ -516,7 +516,7 @@ ___
 
 ▸ **removeListFromList**(`list1`: any[], `list2`: any[]): *any[]*
 
-*Defined in [lib/util.ts:26](https://github.com/chronark/atlas/blob/5df157b/src/lib/util.ts#L26)*
+*Defined in [lib/util.ts:26](https://github.com/chronark/atlas/blob/11701e8/src/lib/util.ts#L26)*
 
 Remove every item in list1 from list2.
 
@@ -537,7 +537,7 @@ ___
 
 ▸ **unique**(`list`: any[]): *any[]*
 
-*Defined in [lib/util.ts:51](https://github.com/chronark/atlas/blob/5df157b/src/lib/util.ts#L51)*
+*Defined in [lib/util.ts:51](https://github.com/chronark/atlas/blob/11701e8/src/lib/util.ts#L51)*
 
 Removes all duplicates from an array.
 
@@ -557,7 +557,7 @@ A filtered array where all items are unique.
 
 ### ▪ **actions**: *object*
 
-*Defined in [state/actions.ts:27](https://github.com/chronark/atlas/blob/5df157b/src/state/actions.ts#L27)*
+*Defined in [state/actions.ts:27](https://github.com/chronark/atlas/blob/11701e8/src/state/actions.ts#L27)*
 
 ___
 
@@ -565,13 +565,13 @@ ___
 
 ### ▪ **geometryActions**: *object*
 
-*Defined in [state/actions.ts:7](https://github.com/chronark/atlas/blob/5df157b/src/state/actions.ts#L7)*
+*Defined in [state/actions.ts:7](https://github.com/chronark/atlas/blob/11701e8/src/state/actions.ts#L7)*
 
 ###  addGeometries
 
 ▸ **addGeometries**(`ctx`: [Store](classes/store.md), `payload`: Geometry[]): *boolean*
 
-*Defined in [state/actions.ts:8](https://github.com/chronark/atlas/blob/5df157b/src/state/actions.ts#L8)*
+*Defined in [state/actions.ts:8](https://github.com/chronark/atlas/blob/11701e8/src/state/actions.ts#L8)*
 
 **Parameters:**
 
@@ -586,7 +586,7 @@ Name | Type |
 
 ▸ **selectGeometries**(`ctx`: [Store](classes/store.md), `payload`: Geometry[]): *boolean*
 
-*Defined in [state/actions.ts:11](https://github.com/chronark/atlas/blob/5df157b/src/state/actions.ts#L11)*
+*Defined in [state/actions.ts:11](https://github.com/chronark/atlas/blob/11701e8/src/state/actions.ts#L11)*
 
 **Parameters:**
 
@@ -601,7 +601,7 @@ Name | Type |
 
 ▸ **unselectGeometries**(`ctx`: [Store](classes/store.md), `payload`: Record‹string, any›[]): *boolean*
 
-*Defined in [state/actions.ts:14](https://github.com/chronark/atlas/blob/5df157b/src/state/actions.ts#L14)*
+*Defined in [state/actions.ts:14](https://github.com/chronark/atlas/blob/11701e8/src/state/actions.ts#L14)*
 
 **Parameters:**
 
@@ -618,13 +618,13 @@ ___
 
 ### ▪ **geometryMutations**: *object*
 
-*Defined in [state/mutations.ts:9](https://github.com/chronark/atlas/blob/5df157b/src/state/mutations.ts#L9)*
+*Defined in [state/mutations.ts:9](https://github.com/chronark/atlas/blob/11701e8/src/state/mutations.ts#L9)*
 
 ###  addGeometries
 
 ▸ **addGeometries**(`state`: [State](globals.md#state), `payload`: Geometry[]): *boolean*
 
-*Defined in [state/mutations.ts:10](https://github.com/chronark/atlas/blob/5df157b/src/state/mutations.ts#L10)*
+*Defined in [state/mutations.ts:10](https://github.com/chronark/atlas/blob/11701e8/src/state/mutations.ts#L10)*
 
 **Parameters:**
 
@@ -639,7 +639,7 @@ Name | Type |
 
 ▸ **selectGeometries**(`state`: [State](globals.md#state), `payload`: Geometry[]): *boolean*
 
-*Defined in [state/mutations.ts:16](https://github.com/chronark/atlas/blob/5df157b/src/state/mutations.ts#L16)*
+*Defined in [state/mutations.ts:16](https://github.com/chronark/atlas/blob/11701e8/src/state/mutations.ts#L16)*
 
 **Parameters:**
 
@@ -654,7 +654,7 @@ Name | Type |
 
 ▸ **unselectGeometries**(`state`: [State](globals.md#state), `payload`: Record‹string, any›[]): *boolean*
 
-*Defined in [state/mutations.ts:22](https://github.com/chronark/atlas/blob/5df157b/src/state/mutations.ts#L22)*
+*Defined in [state/mutations.ts:22](https://github.com/chronark/atlas/blob/11701e8/src/state/mutations.ts#L22)*
 
 **Parameters:**
 
@@ -671,13 +671,13 @@ ___
 
 ### ▪ **jobActions**: *object*
 
-*Defined in [state/actions.ts:19](https://github.com/chronark/atlas/blob/5df157b/src/state/actions.ts#L19)*
+*Defined in [state/actions.ts:19](https://github.com/chronark/atlas/blob/11701e8/src/state/actions.ts#L19)*
 
 ###  setJobs
 
 ▸ **setJobs**(`ctx`: [Store](classes/store.md), `payload`: [Job](interfaces/job.md)[]): *boolean*
 
-*Defined in [state/actions.ts:20](https://github.com/chronark/atlas/blob/5df157b/src/state/actions.ts#L20)*
+*Defined in [state/actions.ts:20](https://github.com/chronark/atlas/blob/11701e8/src/state/actions.ts#L20)*
 
 **Parameters:**
 
@@ -692,7 +692,7 @@ Name | Type |
 
 ▸ **setVisibleJobs**(`ctx`: [Store](classes/store.md), `payload`: [Job](interfaces/job.md)[]): *boolean*
 
-*Defined in [state/actions.ts:23](https://github.com/chronark/atlas/blob/5df157b/src/state/actions.ts#L23)*
+*Defined in [state/actions.ts:23](https://github.com/chronark/atlas/blob/11701e8/src/state/actions.ts#L23)*
 
 **Parameters:**
 
@@ -709,13 +709,13 @@ ___
 
 ### ▪ **jobMutations**: *object*
 
-*Defined in [state/mutations.ts:27](https://github.com/chronark/atlas/blob/5df157b/src/state/mutations.ts#L27)*
+*Defined in [state/mutations.ts:27](https://github.com/chronark/atlas/blob/11701e8/src/state/mutations.ts#L27)*
 
 ###  setJobs
 
 ▸ **setJobs**(`state`: [State](globals.md#state), `payload`: [Job](interfaces/job.md)[]): *boolean*
 
-*Defined in [state/mutations.ts:28](https://github.com/chronark/atlas/blob/5df157b/src/state/mutations.ts#L28)*
+*Defined in [state/mutations.ts:28](https://github.com/chronark/atlas/blob/11701e8/src/state/mutations.ts#L28)*
 
 **Parameters:**
 
@@ -730,7 +730,7 @@ Name | Type |
 
 ▸ **setVisibleJobs**(`state`: [State](globals.md#state), `payload`: [Job](interfaces/job.md)[]): *boolean*
 
-*Defined in [state/mutations.ts:32](https://github.com/chronark/atlas/blob/5df157b/src/state/mutations.ts#L32)*
+*Defined in [state/mutations.ts:32](https://github.com/chronark/atlas/blob/11701e8/src/state/mutations.ts#L32)*
 
 **Parameters:**
 
@@ -747,4 +747,4 @@ ___
 
 ### ▪ **mutations**: *object*
 
-*Defined in [state/mutations.ts:37](https://github.com/chronark/atlas/blob/5df157b/src/state/mutations.ts#L37)*
+*Defined in [state/mutations.ts:37](https://github.com/chronark/atlas/blob/11701e8/src/state/mutations.ts#L37)*

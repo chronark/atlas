@@ -27,7 +27,7 @@
 
 \+ **new Events**(): *[Events](events.md)*
 
-*Defined in [state/events.ts:6](https://github.com/chronark/atlas/blob/5df157b/src/state/events.ts#L6)*
+*Defined in [state/events.ts:6](https://github.com/chronark/atlas/blob/11701e8/src/state/events.ts#L6)*
 
 **Returns:** *[Events](events.md)*
 
@@ -37,7 +37,7 @@
 
 • **events**: *Record‹string, any›*
 
-*Defined in [state/events.ts:6](https://github.com/chronark/atlas/blob/5df157b/src/state/events.ts#L6)*
+*Defined in [state/events.ts:6](https://github.com/chronark/atlas/blob/11701e8/src/state/events.ts#L6)*
 
 ## Methods
 
@@ -45,7 +45,7 @@
 
 ▸ **publish**(`event`: string, `state`: [State](../globals.md#state)): *void*
 
-*Defined in [state/events.ts:20](https://github.com/chronark/atlas/blob/5df157b/src/state/events.ts#L20)*
+*Defined in [state/events.ts:20](https://github.com/chronark/atlas/blob/11701e8/src/state/events.ts#L20)*
 
 **Parameters:**
 
@@ -62,7 +62,7 @@ ___
 
 ▸ **subscribe**(`events`: string[], `callback`: [stateCallback](../globals.md#statecallback)): *void*
 
-*Defined in [state/events.ts:11](https://github.com/chronark/atlas/blob/5df157b/src/state/events.ts#L11)*
+*Defined in [state/events.ts:11](https://github.com/chronark/atlas/blob/11701e8/src/state/events.ts#L11)*
 
 **Parameters:**
 

@@ -32,7 +32,7 @@
 
 \+ **new JobLayer**(`distance`: number): *[JobLayer](joblayer.md)*
 
-*Defined in [lib/jobLayer.ts:18](https://github.com/chronark/atlas/blob/5df157b/src/lib/jobLayer.ts#L18)*
+*Defined in [lib/jobLayer.ts:18](https://github.com/chronark/atlas/blob/11701e8/src/lib/jobLayer.ts#L18)*
 
 **Parameters:**
 
@@ -48,7 +48,7 @@ Name | Type | Default |
 
 • **animatedCluster**: *VectorLayer*
 
-*Defined in [lib/jobLayer.ts:16](https://github.com/chronark/atlas/blob/5df157b/src/lib/jobLayer.ts#L16)*
+*Defined in [lib/jobLayer.ts:16](https://github.com/chronark/atlas/blob/11701e8/src/lib/jobLayer.ts#L16)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **areas**: *VectorLayer*
 
-*Defined in [lib/jobLayer.ts:17](https://github.com/chronark/atlas/blob/5df157b/src/lib/jobLayer.ts#L17)*
+*Defined in [lib/jobLayer.ts:17](https://github.com/chronark/atlas/blob/11701e8/src/lib/jobLayer.ts#L17)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **cluster**: *Cluster*
 
-*Defined in [lib/jobLayer.ts:15](https://github.com/chronark/atlas/blob/5df157b/src/lib/jobLayer.ts#L15)*
+*Defined in [lib/jobLayer.ts:15](https://github.com/chronark/atlas/blob/11701e8/src/lib/jobLayer.ts#L15)*
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 • **style**: *[JobStyle](jobstyle.md)*
 
-*Defined in [lib/jobLayer.ts:18](https://github.com/chronark/atlas/blob/5df157b/src/lib/jobLayer.ts#L18)*
+*Defined in [lib/jobLayer.ts:18](https://github.com/chronark/atlas/blob/11701e8/src/lib/jobLayer.ts#L18)*
 
 ## Methods
 
@@ -80,7 +80,7 @@ ___
 
 ▸ **createAreaFeature**(`location`: [Area](../globals.md#area)): *Feature*
 
-*Defined in [lib/jobLayer.ts:75](https://github.com/chronark/atlas/blob/5df157b/src/lib/jobLayer.ts#L75)*
+*Defined in [lib/jobLayer.ts:75](https://github.com/chronark/atlas/blob/11701e8/src/lib/jobLayer.ts#L75)*
 
 **Parameters:**
 
@@ -96,7 +96,7 @@ ___
 
 ▸ **createFeatures**(`jobs`: [Job](../interfaces/job.md)[]): *object*
 
-*Defined in [lib/jobLayer.ts:49](https://github.com/chronark/atlas/blob/5df157b/src/lib/jobLayer.ts#L49)*
+*Defined in [lib/jobLayer.ts:49](https://github.com/chronark/atlas/blob/11701e8/src/lib/jobLayer.ts#L49)*
 
 **Parameters:**
 
@@ -116,7 +116,7 @@ ___
 
 ▸ **createSingleLoationFeature**(`location`: [SingleLocation](../interfaces/singlelocation.md)): *Feature*
 
-*Defined in [lib/jobLayer.ts:69](https://github.com/chronark/atlas/blob/5df157b/src/lib/jobLayer.ts#L69)*
+*Defined in [lib/jobLayer.ts:69](https://github.com/chronark/atlas/blob/11701e8/src/lib/jobLayer.ts#L69)*
 
 **Parameters:**
 
@@ -132,7 +132,7 @@ ___
 
 ▸ **setJobs**(`jobs`: [Job](../interfaces/job.md)[]): *void*
 
-*Defined in [lib/jobLayer.ts:39](https://github.com/chronark/atlas/blob/5df157b/src/lib/jobLayer.ts#L39)*
+*Defined in [lib/jobLayer.ts:39](https://github.com/chronark/atlas/blob/11701e8/src/lib/jobLayer.ts#L39)*
 
 **Parameters:**
 
