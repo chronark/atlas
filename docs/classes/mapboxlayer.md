@@ -23,7 +23,7 @@
 
 ▸ **applyMapboxStyle**(`mapboxLayer`: VectorTileLayer): *Promise‹void›*
 
-*Defined in [apis/tileLayers.ts:56](https://github.com/chronark/atlas/blob/e581107/src/apis/tileLayers.ts#L56)*
+*Defined in [apis/tileLayers.ts:56](https://github.com/chronark/atlas/blob/88749ce/src/apis/tileLayers.ts#L56)*
 
 **Parameters:**
 
@@ -41,6 +41,6 @@ ___
 
 *Implementation of [TileLayerGenerator](../interfaces/tilelayergenerator.md)*
 
-*Defined in [apis/tileLayers.ts:41](https://github.com/chronark/atlas/blob/e581107/src/apis/tileLayers.ts#L41)*
+*Defined in [apis/tileLayers.ts:41](https://github.com/chronark/atlas/blob/88749ce/src/apis/tileLayers.ts#L41)*
 
 **Returns:** *BaseLayer*
