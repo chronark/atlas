@@ -42,9 +42,10 @@ module.exports = {
     ],
     "Classes": [
       "typedoc/classes/charon",
-      "typedoc/classes/clusterstyle",
+      "typedoc/classes/color",
       "typedoc/classes/events",
       "typedoc/classes/joblayer",
+      "typedoc/classes/jobstyle",
       "typedoc/classes/jobs",
       "typedoc/classes/logger",
       "typedoc/classes/map",
@@ -59,11 +60,11 @@ module.exports = {
       "typedoc/interfaces/geocodingresponseobject",
       "typedoc/interfaces/geometry",
       "typedoc/interfaces/job",
-      "typedoc/interfaces/location",
       "typedoc/interfaces/properties",
       "typedoc/interfaces/rawjob",
       "typedoc/interfaces/rawlocation",
       "typedoc/interfaces/rawsearch",
+      "typedoc/interfaces/singlelocation",
       "typedoc/interfaces/tilelayergenerator"
     ],
     "Enums": [
