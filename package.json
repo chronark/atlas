@@ -14,9 +14,6 @@
     "buildandserve": "yarn build && yarn serve",
     "dev": "webpack-dev-server --progress",
     "docker": "docker build -t chronark/atlas . && docker run --rm -p 80:80 chronark/atlas",
-    "docs:build": "yarn docs:buildTypes && cd docs && yarn && yarn build",
-    "docs:buildTypes": "yarn typedoc",
-    "docs:show": "yarn docs:buildTypes && cd docs && yarn start",
     "fmt": "yarn prettier && yarn lint",
     "lint": "eslint --fix --ext .js,.ts ./",
     "prettier": "prettier --write ./**/*.{js,ts,json} --loglevel warn",
@@ -31,7 +28,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
+      "pre-commit": "yarn typedoc && lint-staged && yarn test:unit",
       "pre-push": "yarn test:unit"
     }
   },
