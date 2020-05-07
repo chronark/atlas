@@ -32,7 +32,7 @@
 
 \+ **new Store**(`actions`: Record‹string, [Action](../modules/_state_actions_.md#action)›, `mutations`: Record‹string, [Mutation](../modules/_state_mutations_.md#mutation)›, `state?`: [State](../modules/_state_store_.md#state)): *[Store](_state_store_.store.md)*
 
-*Defined in [state/store.ts:40](https://github.com/chronark/atlas/blob/aeefe26/src/state/store.ts#L40)*
+*Defined in [state/store.ts:40](https://github.com/chronark/atlas/blob/8711648/src/state/store.ts#L40)*
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ Name | Type |
 
 • **actions**: *Record‹string, [Action](../modules/_state_actions_.md#action)›*
 
-*Defined in [state/store.ts:36](https://github.com/chronark/atlas/blob/aeefe26/src/state/store.ts#L36)*
+*Defined in [state/store.ts:36](https://github.com/chronark/atlas/blob/8711648/src/state/store.ts#L36)*
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 • **events**: *[Events](_state_events_.events.md)*
 
-*Defined in [state/store.ts:39](https://github.com/chronark/atlas/blob/aeefe26/src/state/store.ts#L39)*
+*Defined in [state/store.ts:39](https://github.com/chronark/atlas/blob/8711648/src/state/store.ts#L39)*
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 • **mutations**: *Record‹string, [Mutation](../modules/_state_mutations_.md#mutation)›*
 
-*Defined in [state/store.ts:37](https://github.com/chronark/atlas/blob/aeefe26/src/state/store.ts#L37)*
+*Defined in [state/store.ts:37](https://github.com/chronark/atlas/blob/8711648/src/state/store.ts#L37)*
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 • **state**: *[State](../modules/_state_store_.md#state)*
 
-*Defined in [state/store.ts:40](https://github.com/chronark/atlas/blob/aeefe26/src/state/store.ts#L40)*
+*Defined in [state/store.ts:40](https://github.com/chronark/atlas/blob/8711648/src/state/store.ts#L40)*
 
 ___
 
@@ -82,7 +82,7 @@ ___
 
 • **status**: *[Status](../enums/_state_store_.status.md)*
 
-*Defined in [state/store.ts:38](https://github.com/chronark/atlas/blob/aeefe26/src/state/store.ts#L38)*
+*Defined in [state/store.ts:38](https://github.com/chronark/atlas/blob/8711648/src/state/store.ts#L38)*
 
 ## Methods
 
@@ -90,7 +90,7 @@ ___
 
 ▸ **commit**(`mutationName`: string, `payload`: any): *boolean*
 
-*Defined in [state/store.ts:75](https://github.com/chronark/atlas/blob/aeefe26/src/state/store.ts#L75)*
+*Defined in [state/store.ts:75](https://github.com/chronark/atlas/blob/8711648/src/state/store.ts#L75)*
 
 **Parameters:**
 
@@ -107,7 +107,7 @@ ___
 
 ▸ **dispatch**(`actionName`: string, `payload`: any): *boolean*
 
-*Defined in [state/store.ts:65](https://github.com/chronark/atlas/blob/aeefe26/src/state/store.ts#L65)*
+*Defined in [state/store.ts:65](https://github.com/chronark/atlas/blob/8711648/src/state/store.ts#L65)*
 
 **Parameters:**
 
@@ -124,6 +124,6 @@ ___
 
 ▸ **getState**(): *[State](../modules/_state_store_.md#state)*
 
-*Defined in [state/store.ts:61](https://github.com/chronark/atlas/blob/aeefe26/src/state/store.ts#L61)*
+*Defined in [state/store.ts:61](https://github.com/chronark/atlas/blob/8711648/src/state/store.ts#L61)*
 
 **Returns:** *[State](../modules/_state_store_.md#state)*

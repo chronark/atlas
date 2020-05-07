@@ -16,7 +16,7 @@
 
 ▸ **convertGeoJsonToGeometries**(`geojson`: Record‹string, any›): *undefined | Geometry‹›[]*
 
-*Defined in [lib/countryLayer.ts:17](https://github.com/chronark/atlas/blob/aeefe26/src/lib/countryLayer.ts#L17)*
+*Defined in [lib/countryLayer.ts:17](https://github.com/chronark/atlas/blob/8711648/src/lib/countryLayer.ts#L17)*
 
 Creates a Geometry object from geojson data.
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **countryLayer**(`map`: [Map](../classes/_lib_map_.map.md)): *void*
 
-*Defined in [lib/countryLayer.ts:31](https://github.com/chronark/atlas/blob/aeefe26/src/lib/countryLayer.ts#L31)*
+*Defined in [lib/countryLayer.ts:31](https://github.com/chronark/atlas/blob/8711648/src/lib/countryLayer.ts#L31)*
 
 **Parameters:**
 
@@ -52,7 +52,7 @@ ___
 
 ▸ **getCachedGeometry**(`store`: [Store](../classes/_state_store_.store.md), `event`: MapBrowserEvent): *Geometry*
 
-*Defined in [lib/countryLayer.ts:23](https://github.com/chronark/atlas/blob/aeefe26/src/lib/countryLayer.ts#L23)*
+*Defined in [lib/countryLayer.ts:23](https://github.com/chronark/atlas/blob/8711648/src/lib/countryLayer.ts#L23)*
 
 **Parameters:**
 
