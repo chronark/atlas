@@ -27,7 +27,7 @@
 
 \+ **new Logger**(): *[Logger](_lib_logger_.logger.md)*
 
-*Defined in [lib/logger.ts:6](https://github.com/chronark/atlas/blob/4376b4d/src/lib/logger.ts#L6)*
+*Defined in [lib/logger.ts:6](https://github.com/chronark/atlas/blob/6f04484/src/lib/logger.ts#L6)*
 
 **Returns:** *[Logger](_lib_logger_.logger.md)*
 
@@ -37,7 +37,7 @@
 
 ▸ **buildPayload**(`level`: string, `payload`: [LogObject](../modules/_types_customtypes_.md#logobject)): *[LogObject](../modules/_types_customtypes_.md#logobject)*
 
-*Defined in [lib/logger.ts:30](https://github.com/chronark/atlas/blob/4376b4d/src/lib/logger.ts#L30)*
+*Defined in [lib/logger.ts:30](https://github.com/chronark/atlas/blob/6f04484/src/lib/logger.ts#L30)*
 
 **Parameters:**
 
@@ -54,7 +54,7 @@ ___
 
 ▸ **debug**(`text`: string, `payload`: [LogObject](../modules/_types_customtypes_.md#logobject)): *void*
 
-*Defined in [lib/logger.ts:39](https://github.com/chronark/atlas/blob/4376b4d/src/lib/logger.ts#L39)*
+*Defined in [lib/logger.ts:39](https://github.com/chronark/atlas/blob/6f04484/src/lib/logger.ts#L39)*
 
 **Parameters:**
 
@@ -71,7 +71,7 @@ ___
 
 ▸ **disableConsole**(): *void*
 
-*Defined in [lib/logger.ts:21](https://github.com/chronark/atlas/blob/4376b4d/src/lib/logger.ts#L21)*
+*Defined in [lib/logger.ts:21](https://github.com/chronark/atlas/blob/6f04484/src/lib/logger.ts#L21)*
 
 **Returns:** *void*
 
@@ -81,7 +81,7 @@ ___
 
 ▸ **error**(`text`: string, `payload`: [LogObject](../modules/_types_customtypes_.md#logobject)): *void*
 
-*Defined in [lib/logger.ts:54](https://github.com/chronark/atlas/blob/4376b4d/src/lib/logger.ts#L54)*
+*Defined in [lib/logger.ts:54](https://github.com/chronark/atlas/blob/6f04484/src/lib/logger.ts#L54)*
 
 **Parameters:**
 
@@ -98,7 +98,7 @@ ___
 
 ▸ **info**(`text`: string, `payload`: [LogObject](../modules/_types_customtypes_.md#logobject)): *void*
 
-*Defined in [lib/logger.ts:44](https://github.com/chronark/atlas/blob/4376b4d/src/lib/logger.ts#L44)*
+*Defined in [lib/logger.ts:44](https://github.com/chronark/atlas/blob/6f04484/src/lib/logger.ts#L44)*
 
 **Parameters:**
 
@@ -115,7 +115,7 @@ ___
 
 ▸ **warn**(`text`: string, `payload`: [LogObject](../modules/_types_customtypes_.md#logobject)): *void*
 
-*Defined in [lib/logger.ts:49](https://github.com/chronark/atlas/blob/4376b4d/src/lib/logger.ts#L49)*
+*Defined in [lib/logger.ts:49](https://github.com/chronark/atlas/blob/6f04484/src/lib/logger.ts#L49)*
 
 **Parameters:**
 
