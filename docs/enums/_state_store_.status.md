@@ -16,7 +16,7 @@
 
 • **action**:
 
-*Defined in [state/store.ts:19](https://github.com/chronark/atlas/blob/e7527d8/src/state/store.ts#L19)*
+*Defined in [state/store.ts:19](https://github.com/chronark/atlas/blob/4376b4d/src/state/store.ts#L19)*
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 • **listening**:
 
-*Defined in [state/store.ts:20](https://github.com/chronark/atlas/blob/e7527d8/src/state/store.ts#L20)*
+*Defined in [state/store.ts:20](https://github.com/chronark/atlas/blob/4376b4d/src/state/store.ts#L20)*
 
 ___
 
@@ -32,4 +32,4 @@ ___
 
 • **mutation**:
 
-*Defined in [state/store.ts:21](https://github.com/chronark/atlas/blob/e7527d8/src/state/store.ts#L21)*
+*Defined in [state/store.ts:21](https://github.com/chronark/atlas/blob/4376b4d/src/state/store.ts#L21)*
