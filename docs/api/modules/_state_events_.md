@@ -18,7 +18,7 @@
 
 Ƭ **stateCallback**: *function*
 
-*Defined in [state/events.ts:3](https://github.com/chronark/atlas/blob/b457830/src/state/events.ts#L3)*
+*Defined in [state/events.ts:3](https://github.com/chronark/atlas/blob/feb671c/src/state/events.ts#L3)*
 
 #### Type declaration:
 

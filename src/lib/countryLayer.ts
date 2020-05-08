@@ -28,31 +28,27 @@ const getCachedGeometry = (store: Store, event: MapBrowserEvent): Geometry => {
   return matches[0]
 }
 
-const countryLayer = (map: Map): void => {
-  map.olmap.on("singleclick", async (event: MapBrowserEvent) => {
-    const cachedGeometry = getCachedGeometry(map.store, event)
-    if (cachedGeometry) {
-      map.store.getState().selectedGeometries.includes(cachedGeometry)
-        ? map.store.dispatch("unselectGeometries", [cachedGeometry])
-        : map.store.dispatch("selectGeometries", [cachedGeometry])
-    } else {
-      const [lon, lat] = toLonLat(event.coordinate)
-      const geojson = await new Charon().reverseGeocoding(lat, lon)
-      if (geojson) {
-        const geometries = convertGeoJsonToGeometries(geojson)
-        if (geometries) {
-          geometries.forEach((geometry) => {
-            if (geometry) {
-              if (!map.store.getState().allGeometries.includes(geometry)) {
-                map.store.dispatch("addGeometries", [geometry])
-              }
-              map.store.dispatch("selectGeometries", [geometry])
+export const updateCountryLayer = async (map: Map, event: MapBrowserEvent): Promise<void> => {
+  const cachedGeometry = getCachedGeometry(map.store, event)
+  if (cachedGeometry) {
+    map.store.getState().selectedGeometries.includes(cachedGeometry)
+      ? map.store.dispatch("unselectGeometries", [cachedGeometry])
+      : map.store.dispatch("selectGeometries", [cachedGeometry])
+  } else {
+    const [lon, lat] = toLonLat(event.coordinate)
+    const geojson = await new Charon().reverseGeocoding(lat, lon)
+    if (geojson) {
+      const geometries = convertGeoJsonToGeometries(geojson)
+      if (geometries) {
+        geometries.forEach((geometry) => {
+          if (geometry) {
+            if (!map.store.getState().allGeometries.includes(geometry)) {
+              map.store.dispatch("addGeometries", [geometry])
             }
-          })
-        }
+            map.store.dispatch("selectGeometries", [geometry])
+          }
+        })
       }
     }
-  })
+  }
 }
-
-export { countryLayer }

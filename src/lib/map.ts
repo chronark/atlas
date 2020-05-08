@@ -2,29 +2,30 @@ import { Attribution, OverviewMap, Zoom } from "ol/control"
 import { Draw, Modify } from "ol/interaction"
 import { GeocodingResponseObject, Job } from "../types/customTypes"
 import { Store, newDefaultStore } from "../state/store"
-
+import { MapBrowserEvent, Map as OLMap } from "ol"
+import { updateCountryLayer } from "./countryLayer"
 import Bar from "ol-ext/control/Bar"
 import BaseLayer from "ol/layer/Base"
 import Button from "ol-ext/control/Button"
 import Charon from "../apis/charon"
 import { Extent } from "ol/extent"
-import Feature from "ol/Feature"
+import Feature, { FeatureLike } from "ol/Feature"
 import FullScreen from "ol/control/FullScreen"
 import GeoJSON from "ol/format/GeoJSON"
 import Geometry from "ol/geom/Geometry"
 import JobLayer from "./jobLayer"
-import { Map as OLMap } from "ol"
+
 import { OSMLayer } from "../apis/tileLayers"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import View from "ol/View"
-import { countryLayer } from "./countryLayer"
 import { countryLayerStyle } from "../styles/countryStyle"
 import { filterJobs } from "./geometryFilter"
 import { fromLonLat } from "ol/proj"
 import { log } from "./logger"
 import polygonStyle from "../styles/polygon"
-import { shiftKeyOnly } from "ol/events/condition"
+import { shiftKeyOnly, click } from "ol/events/condition"
+import Select from "ol/interaction/Select"
 
 export default class Map {
   private mapID: string
@@ -47,12 +48,62 @@ export default class Map {
     this.olmap = this.buildMap()
     this.addControls()
     this.addCircleSelect()
-    this.addCountryLayer()
     this.buildJobLayer()
 
     this.addGeometriesHook()
     this.addJobFilterHook()
     this.addVisibleJobsHook()
+    this.addSelect()
+  }
+
+  /**
+   * Create an object with all features the user clicked on.
+   * ForEachFeatureAtPixel will be used to make a with the feature and its layer.
+   * So we basically generated a list with [layer, feature] elements.
+   * This function will turn it into an object with layer names as keys and features
+   * 
+   * Since clusters return a FeatureLike object that is basically a wrapper for a list
+   * of individual features, we catch that case and unwrap the FeatureLike.
+   * 
+   * 
+   * as values.
+   *
+   * @private
+   * @param e - An event that contains the pixel values where the user clicked.
+   * @returns An Object with layers as keys and a list of features as values.
+   * @memberof Map
+   */
+  private getAffectedFeaturesByLayer(e: MapBrowserEvent): Record<string, Feature[]> {
+    const features: Record<string, Feature[]> = {}
+
+    this.olmap.forEachFeatureAtPixel(e.pixel, (f: FeatureLike, layer: BaseLayer) => {
+      const layerName: string = layer.get("name")
+
+      // Create new keys
+      if (!features.hasOwnProperty(layerName)) {
+        features[layerName] = []
+      }
+
+      // Case for a job cluster
+      if (f.getProperties() && f.getProperties().features) {
+        f.getProperties().features.forEach((f: Feature) => {
+          features[layerName].push(f)
+        })
+        // Case for a country
+      } else {
+        features[layerName].push(f.getProperties().geometry)
+      }
+    })
+    return features
+  }
+
+
+  private addSelect(): void {
+    this.olmap.on("click", (e: MapBrowserEvent) => {
+      const features = this.getAffectedFeaturesByLayer(e)
+      // updateCountryLayer(this, e)
+      console.log(features)
+    })
   }
 
   async search(query: string): Promise<void> {
@@ -116,10 +167,6 @@ export default class Map {
       }
       this.olmap.addLayer(layer)
     }
-  }
-
-  addCountryLayer(): void {
-    countryLayer(this)
   }
 
   public countryLayerFromGeometry(geometry: Record<string, any>[]): VectorLayer {

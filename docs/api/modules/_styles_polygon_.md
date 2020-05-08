@@ -14,7 +14,7 @@
 
 ▸ **polygonStyle**(`__namedParameters`: object): *Style*
 
-*Defined in [styles/polygon.ts:11](https://github.com/chronark/atlas/blob/b457830/src/styles/polygon.ts#L11)*
+*Defined in [styles/polygon.ts:11](https://github.com/chronark/atlas/blob/feb671c/src/styles/polygon.ts#L11)*
 
 Create a style for polygons.
 

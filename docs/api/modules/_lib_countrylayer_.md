@@ -7,8 +7,8 @@
 ### Functions
 
 * [convertGeoJsonToGeometries](_lib_countrylayer_.md#convertgeojsontogeometries)
-* [countryLayer](_lib_countrylayer_.md#const-countrylayer)
 * [getCachedGeometry](_lib_countrylayer_.md#const-getcachedgeometry)
+* [updateCountryLayer](_lib_countrylayer_.md#const-updatecountrylayer)
 
 ## Functions
 
@@ -16,7 +16,7 @@
 
 ▸ **convertGeoJsonToGeometries**(`geojson`: Record‹string, any›): *undefined | Geometry‹›[]*
 
-*Defined in [lib/countryLayer.ts:17](https://github.com/chronark/atlas/blob/b457830/src/lib/countryLayer.ts#L17)*
+*Defined in [lib/countryLayer.ts:17](https://github.com/chronark/atlas/blob/feb671c/src/lib/countryLayer.ts#L17)*
 
 Creates a Geometry object from geojson data.
 
@@ -32,27 +32,11 @@ GeometryFeatures.
 
 ___
 
-### `Const` countryLayer
-
-▸ **countryLayer**(`map`: [Map](../classes/_lib_map_.map.md)): *void*
-
-*Defined in [lib/countryLayer.ts:31](https://github.com/chronark/atlas/blob/b457830/src/lib/countryLayer.ts#L31)*
-
-**Parameters:**
-
-Name | Type |
------- | ------ |
-`map` | [Map](../classes/_lib_map_.map.md) |
-
-**Returns:** *void*
-
-___
-
 ### `Const` getCachedGeometry
 
 ▸ **getCachedGeometry**(`store`: [Store](../classes/_state_store_.store.md), `event`: MapBrowserEvent): *Geometry*
 
-*Defined in [lib/countryLayer.ts:23](https://github.com/chronark/atlas/blob/b457830/src/lib/countryLayer.ts#L23)*
+*Defined in [lib/countryLayer.ts:23](https://github.com/chronark/atlas/blob/feb671c/src/lib/countryLayer.ts#L23)*
 
 **Parameters:**
 
@@ -62,3 +46,20 @@ Name | Type |
 `event` | MapBrowserEvent |
 
 **Returns:** *Geometry*
+
+___
+
+### `Const` updateCountryLayer
+
+▸ **updateCountryLayer**(`map`: [Map](../classes/_lib_map_.map.md), `event`: MapBrowserEvent): *Promise‹void›*
+
+*Defined in [lib/countryLayer.ts:31](https://github.com/chronark/atlas/blob/feb671c/src/lib/countryLayer.ts#L31)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`map` | [Map](../classes/_lib_map_.map.md) |
+`event` | MapBrowserEvent |
+
+**Returns:** *Promise‹void›*
