@@ -26,7 +26,7 @@ TileLayerGeneerator implementation for OpenStreetMap.
 
 *Implementation of [TileLayerGenerator](../interfaces/_apis_tilelayers_.tilelayergenerator.md)*
 
-*Defined in [apis/tileLayers.ts:28](https://github.com/chronark/atlas/blob/77d7c19/src/apis/tileLayers.ts#L28)*
+*Defined in [apis/tileLayers.ts:28](https://github.com/chronark/atlas/blob/5333653/src/apis/tileLayers.ts#L28)*
 
 Creates a basic raster layer with tiles from osm.
 

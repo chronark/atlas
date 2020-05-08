@@ -9,16 +9,16 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Hadolint Action
         uses: brpaz/hadolint-action@v1.0.2
 
       - name: eslint
-        run: yarn lint
+        run: npm run lint
 
       - name: prettier
-        run: yarn prettier
+        run: npm run prettier
 
   typechecks:
     runs-on: ubuntu-latest
@@ -31,10 +31,10 @@ jobs:
           node-version: 12
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Typecheck
-        run: yarn tsc
+        run: npm run tsc
 
   unittests:
     runs-on: ubuntu-latest
@@ -47,10 +47,10 @@ jobs:
           node-version: 12
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Unittests
-        run: yarn test:unit
+        run: npm run test:unit
 
   integration:
     needs: build
@@ -94,7 +94,7 @@ jobs:
           node-version: 12
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Load build directory
         uses: actions/download-artifact@v1
@@ -102,7 +102,7 @@ jobs:
           name: dist
 
       - name: Integration tests
-        run: yarn test:e2e
+        run: npm run test:e2e
         env:
           CI: true
           BROWSER: ${{matrix.browser}}
@@ -118,10 +118,10 @@ jobs:
           node-version: 12
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Build
-        run: yarn build
+        run: npm run build
 
       - name: Cache build directory
         uses: actions/upload-artifact@v1

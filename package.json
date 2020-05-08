@@ -11,25 +11,24 @@
   "author": "Andreas Thomas <andreas.thomas@th-nuernberg.de>",
   "scripts": {
     "build": "webpack --mode=production --progress",
-    "buildandserve": "yarn build && yarn serve",
+    "buildandserve": "npm run build && npm run serve",
     "dev": "webpack-dev-server --progress",
     "docker": "docker build -t chronark/atlas . && docker run --rm -p 80:80 chronark/atlas",
-    "fmt": "yarn prettier && yarn lint",
+    "fmt": "npm run prettier && npm run lint",
     "lint": "eslint --fix --ext .js,.ts ./",
     "prettier": "prettier --write ./**/*.{js,ts,json} --loglevel warn",
     "serve": "serve ./dist",
     "test:e2e": "node ./__tests__/e2e/testcafe.js",
-    "test:full": "yarn install && yarn fmt && yarn tsc && yarn test:unit && yarn build && yarn test:e2e:ci",
+    "test:full": "npm run install && npm run fmt && npm run tsc && npm run test:unit && npm run build && npm run test:e2e:ci",
     "test:unit": "jest",
-    "tsc": "yarn tsc:default && yarn tsc:testcafe",
-    "tsc:testcafe": "yarn tsc:default -p ./tsconfig.testcafe.json ",
+    "tsc": "npm run tsc:default && npm run tsc:testcafe",
+    "tsc:testcafe": "npm run tsc:default -- -p ./tsconfig.testcafe.json ",
     "tsc:default": "./node_modules/.bin/tsc --noEmit --pretty",
     "updateJobs": "curl https://jobboerse.th-nuernberg.de/srv.php/en/Suche/offers > ./static/rawJobs.json && prettier --write ./static/rawJobs.json"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn typedoc && git add docs/ && lint-staged && yarn test:unit",
-      "pre-push": "yarn test:unit"
+      "pre-commit": "./node_modules/.bin/typedoc && git add ./docs && lint-staged && npm run test:unit"
     }
   },
   "dependencies": {
@@ -71,7 +70,7 @@
     "extract-text-webpack-plugin": "3.0.2",
     "html-webpack-plugin": "3.2.0",
     "husky": "4.2.5",
-    "jest": "25.5.4",
+    "jest": "26.0.1",
     "jest-canvas-mock": "2.2.0",
     "lint-staged": "10.2.2",
     "prettier": "2.0.4",

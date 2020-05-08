@@ -17,7 +17,7 @@ jobs:
           node-version: 12
 
       - name: Install dependencies
-        run: yarn install
+        run: npm install
 
       - name: Publish to Registry
         uses: elgohr/Publish-Docker-Github-Action@master
