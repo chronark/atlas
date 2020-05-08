@@ -20,7 +20,7 @@
 
 ▸ **bboxToExtent**(`bbox`: [number, number, number, number]): *Extent*
 
-*Defined in [lib/util.ts:70](https://github.com/chronark/atlas/blob/2aeb7b0/src/lib/util.ts#L70)*
+*Defined in [lib/util.ts:70](https://github.com/chronark/atlas/blob/b422706/src/lib/util.ts#L70)*
 
 Transforms a bounding box to an Extent in EPSG:3875 format.
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **bound**(`lower`: number, `value`: number, `upper`: number): *number*
 
-*Defined in [lib/util.ts:41](https://github.com/chronark/atlas/blob/2aeb7b0/src/lib/util.ts#L41)*
+*Defined in [lib/util.ts:41](https://github.com/chronark/atlas/blob/b422706/src/lib/util.ts#L41)*
 
 Return value if it is between lower and upper, otherwise return the boundary value.
 
@@ -62,15 +62,19 @@ ___
 
 ▸ **carthesianProduct**(`array`: any[][]): *any[][]*
 
-*Defined in [lib/util.ts:89](https://github.com/chronark/atlas/blob/2aeb7b0/src/lib/util.ts#L89)*
+*Defined in [lib/util.ts:93](https://github.com/chronark/atlas/blob/b422706/src/lib/util.ts#L93)*
+
+Calcualte the carthesian product of n vectors.
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`array` | any[][] |
+Name | Type | Description |
+------ | ------ | ------ |
+`array` | any[][] | The vectors you want to multiply. |
 
 **Returns:** *any[][]*
+
+Carthesian product of all vectors.
 
 ___
 
@@ -78,7 +82,7 @@ ___
 
 ▸ **isSingleLocation**(`location`: [Location](_types_customtypes_.md#location)): *location is SingleLocation*
 
-*Defined in [lib/util.ts:80](https://github.com/chronark/atlas/blob/2aeb7b0/src/lib/util.ts#L80)*
+*Defined in [lib/util.ts:80](https://github.com/chronark/atlas/blob/b422706/src/lib/util.ts#L80)*
 
 Typeguard for SingleLocation.
 
@@ -98,7 +102,7 @@ ___
 
 ▸ **removeFrom**(`list`: any[], `entry`: any): *any[]*
 
-*Defined in [lib/util.ts:13](https://github.com/chronark/atlas/blob/2aeb7b0/src/lib/util.ts#L13)*
+*Defined in [lib/util.ts:13](https://github.com/chronark/atlas/blob/b422706/src/lib/util.ts#L13)*
 
 Remove an item from a list.
 
@@ -119,7 +123,7 @@ ___
 
 ▸ **removeListFromList**(`list1`: any[], `list2`: any[]): *any[]*
 
-*Defined in [lib/util.ts:26](https://github.com/chronark/atlas/blob/2aeb7b0/src/lib/util.ts#L26)*
+*Defined in [lib/util.ts:26](https://github.com/chronark/atlas/blob/b422706/src/lib/util.ts#L26)*
 
 Remove every item in list1 from list2.
 
@@ -140,7 +144,7 @@ ___
 
 ▸ **unique**(`list`: any[]): *any[]*
 
-*Defined in [lib/util.ts:51](https://github.com/chronark/atlas/blob/2aeb7b0/src/lib/util.ts#L51)*
+*Defined in [lib/util.ts:51](https://github.com/chronark/atlas/blob/b422706/src/lib/util.ts#L51)*
 
 Removes all duplicates from an array.
 

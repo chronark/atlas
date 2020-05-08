@@ -19,16 +19,16 @@
     "prettier": "prettier --write ./**/*.{js,ts,json} --loglevel warn",
     "serve": "serve ./dist",
     "test:e2e": "node ./__tests__/e2e/testcafe.js",
-    "test:full": "npm run install && npm run fmt && npm run tsc && npm run test:unit && npm run build && npm run test:e2e:ci",
-    "test:unit": "jest",
+    "test:full": "npm install && npm run fmt && npm run tsc && npm run test && npm run build && export CI=true && npm run test:e2e",
+    "test": "jest",
     "tsc": "npm run tsc:default && npm run tsc:testcafe",
-    "tsc:testcafe": "npm run tsc:default -- -p ./tsconfig.testcafe.json ",
+    "tsc:testcafe": "npm run tsc:default -- -p ./tsconfig.testcafe.json",
     "tsc:default": "./node_modules/.bin/tsc --noEmit --pretty",
     "updateJobs": "curl https://jobboerse.th-nuernberg.de/srv.php/en/Suche/offers > ./static/rawJobs.json && prettier --write ./static/rawJobs.json"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "./node_modules/.bin/typedoc && git add docs/api && npm run tsc && lint-staged && npm run test:unit"
+      "pre-commit": "./node_modules/.bin/typedoc && git add docs/api && npm run tsc && lint-staged && npm run test"
     }
   },
   "dependencies": {

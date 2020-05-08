@@ -1,9 +1,8 @@
-import { GeocodingResponseObject, Location } from "../types/customTypes"
-
 import Charon from "../apis/charon"
 import { Jobs } from "../apis/jobs"
-import Map from "./map"
 import { State } from "../state/store"
+import { GeocodingResponseObject } from "../types/customTypes"
+import Map from "./map"
 
 const map = new Map("map-container")
 
