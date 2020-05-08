@@ -22,13 +22,13 @@
     "test:full": "npm run install && npm run fmt && npm run tsc && npm run test:unit && npm run build && npm run test:e2e:ci",
     "test:unit": "jest",
     "tsc": "npm run tsc:default && npm run tsc:testcafe",
-    "tsc:testcafe": "npm run tsc:default -- -p ./__tests__/tsconfig.testcafe.json ",
+    "tsc:testcafe": "npm run tsc:default -- -p ./tsconfig.testcafe.json ",
     "tsc:default": "./node_modules/.bin/tsc --noEmit --pretty",
     "updateJobs": "curl https://jobboerse.th-nuernberg.de/srv.php/en/Suche/offers > ./static/rawJobs.json && prettier --write ./static/rawJobs.json"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "./node_modules/.bin/typedoc && git add ./docs && lint-staged && npm run test:unit"
+      "pre-commit": "./node_modules/.bin/typedoc && git add ./docs && npm run tsc && lint-staged && npm run test:unit"
     }
   },
   "dependencies": {
