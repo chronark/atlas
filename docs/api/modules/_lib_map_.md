@@ -1,4 +1,4 @@
-[Atlas documentation](../globals.md) › ["lib/map"](_lib_map_.md)
+[Atlas documentation](../README.md) › [Globals](../globals.md) › ["lib/map"](_lib_map_.md)
 
 # Module: "lib/map"
 

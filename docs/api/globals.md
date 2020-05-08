@@ -1,4 +1,4 @@
-[Atlas documentation](globals.md)
+[Atlas documentation](README.md) › [Globals](globals.md)
 
 # Atlas documentation
 

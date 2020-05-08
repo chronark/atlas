@@ -1,7 +1,3 @@
-[Atlas documentation](README.md) › [Globals](globals.md)
-
-# Atlas documentation
-
 <div align="center">
 <h1>Atlas</h1>
  <a 
@@ -31,6 +27,5 @@
 
 If you want to set a new centerpoint and zoom level, call setView right after creating the map:
 
-    
     const map = new Map()
     map.setView(lon: number, lat: number, zoom: number)

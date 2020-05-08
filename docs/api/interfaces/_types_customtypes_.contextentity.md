@@ -1,4 +1,4 @@
-[Atlas documentation](../globals.md) › ["types/customTypes"](../modules/_types_customtypes_.md) › [ContextEntity](_types_customtypes_.contextentity.md)
+[Atlas documentation](../README.md) › [Globals](../globals.md) › ["types/customTypes"](../modules/_types_customtypes_.md) › [ContextEntity](_types_customtypes_.contextentity.md)
 
 # Interface: ContextEntity
 
@@ -21,7 +21,7 @@
 
 • **id**: *string*
 
-*Defined in [types/customTypes.ts:127](https://github.com/chronark/atlas/blob/137d647/src/types/customTypes.ts#L127)*
+*Defined in [types/customTypes.ts:127](https://github.com/chronark/atlas/blob/2aeb7b0/src/types/customTypes.ts#L127)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **short_code**? : *undefined | string*
 
-*Defined in [types/customTypes.ts:130](https://github.com/chronark/atlas/blob/137d647/src/types/customTypes.ts#L130)*
+*Defined in [types/customTypes.ts:130](https://github.com/chronark/atlas/blob/2aeb7b0/src/types/customTypes.ts#L130)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **text**: *string*
 
-*Defined in [types/customTypes.ts:129](https://github.com/chronark/atlas/blob/137d647/src/types/customTypes.ts#L129)*
+*Defined in [types/customTypes.ts:129](https://github.com/chronark/atlas/blob/2aeb7b0/src/types/customTypes.ts#L129)*
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **wikidata**? : *undefined | string*
 
-*Defined in [types/customTypes.ts:128](https://github.com/chronark/atlas/blob/137d647/src/types/customTypes.ts#L128)*
+*Defined in [types/customTypes.ts:128](https://github.com/chronark/atlas/blob/2aeb7b0/src/types/customTypes.ts#L128)*

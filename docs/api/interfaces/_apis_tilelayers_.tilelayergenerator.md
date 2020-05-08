@@ -1,4 +1,4 @@
-[Atlas documentation](../globals.md) › ["apis/tileLayers"](../modules/_apis_tilelayers_.md) › [TileLayerGenerator](_apis_tilelayers_.tilelayergenerator.md)
+[Atlas documentation](../README.md) › [Globals](../globals.md) › ["apis/tileLayers"](../modules/_apis_tilelayers_.md) › [TileLayerGenerator](_apis_tilelayers_.tilelayergenerator.md)
 
 # Interface: TileLayerGenerator
 
@@ -27,6 +27,6 @@ Interface for both OSM and Mapbox layer generation.
 
 ▸ **getLayer**(): *BaseLayer*
 
-*Defined in [apis/tileLayers.ts:16](https://github.com/chronark/atlas/blob/137d647/src/apis/tileLayers.ts#L16)*
+*Defined in [apis/tileLayers.ts:16](https://github.com/chronark/atlas/blob/2aeb7b0/src/apis/tileLayers.ts#L16)*
 
 **Returns:** *BaseLayer*
