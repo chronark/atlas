@@ -43,7 +43,8 @@ describe("removeFrom()", () => {
         },
       },
     ]
-    testCases.forEach(tc => {
+
+    testCases.forEach((tc) => {
       describe(`for type ${tc.type}`, () => {
         const originalArray = tc.input.list
         it("should return the correct array", () => {
@@ -82,7 +83,7 @@ describe("removeFrom()", () => {
         },
       },
     ]
-    testCases.forEach(tc => {
+    testCases.forEach((tc) => {
       describe(`for type ${tc.type}`, () => {
         const originalArray = tc.input.list
         it("should return the correct array", () => {
@@ -140,7 +141,7 @@ describe("removeFrom()", () => {
         },
       },
     ]
-    testCases.forEach(tc => {
+    testCases.forEach((tc) => {
       describe(`for type ${tc.type}`, () => {
         const originalArray = tc.input.list
         it("should return the correct array", () => {
@@ -203,7 +204,7 @@ describe("removeListFromList()", () => {
         },
       },
     ]
-    testCases.forEach(tc => {
+    testCases.forEach((tc) => {
       describe(`for type ${tc.type}`, () => {
         const originalArray = tc.input.list2
         it("should return the correct array", () => {
@@ -246,12 +247,12 @@ describe("removeListFromList()", () => {
         },
       },
     ]
-    testCases.forEach(tc => {
+    testCases.forEach((tc) => {
       describe(`for type ${tc.type}`, () => {
         const originalArray = tc.input.list2
         it("should return the correct array", () => {
           const result = removeListFromList(tc.input.list2, tc.input.list1)
-          tc.input.list2.forEach(element => {
+          tc.input.list2.forEach((element) => {
             expect(result.includes(element)).toBe(false)
           })
         })
@@ -308,7 +309,7 @@ describe("removeListFromList()", () => {
         },
       },
     ]
-    testCases.forEach(tc => {
+    testCases.forEach((tc) => {
       describe(`for type ${tc.type}`, () => {
         const originalArray = tc.input.list2
         it("should return the correct array", () => {
@@ -381,7 +382,7 @@ describe("unique()", () => {
         },
       },
     ]
-    testCases.forEach(tc => {
+    testCases.forEach((tc) => {
       describe(`for type ${tc.type}`, () => {
         const originalArray = tc.input.list
         it("should return the correct array", () => {
@@ -457,7 +458,7 @@ describe("unique()", () => {
         },
       },
     ]
-    testCases.forEach(tc => {
+    testCases.forEach((tc) => {
       describe(`for type ${tc.type}`, () => {
         const originalArray = tc.input.list
         it("should return the correct array", () => {

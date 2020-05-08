@@ -49,7 +49,7 @@ export default class JobLayer {
   private createFeatures(jobs: Job[]): { areas: Feature[]; points: Feature[] } {
     const points: Feature[] = []
     const areas: Feature[] = []
-    jobs.forEach(job => {
+    jobs.forEach((job) => {
       job.locations.forEach((location: Location) => {
         if (isSingleLocation(location)) {
           const newFeature = this.createSingleLoationFeature(location)

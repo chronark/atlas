@@ -9,5 +9,3 @@ __tests__/e2e/reports
 /.vscode
 docs/build
 docs/docs/typedoc
-cypress/videos
-cypress/screenshots
