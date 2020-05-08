@@ -14,7 +14,9 @@
 
 ▸ **countryLayerStyle**(`__namedParameters`: object): *Style*
 
-*Defined in [styles/countryStyle.ts:5](https://github.com/chronark/atlas/blob/9436253/src/styles/countryStyle.ts#L5)*
+*Defined in [styles/countryStyle.ts:11](https://github.com/chronark/atlas/blob/b457830/src/styles/countryStyle.ts#L11)*
+
+Create a style for counrties.
 
 **Parameters:**
 
@@ -25,3 +27,5 @@ Name | Type | Default |
 `isSelected` | boolean | false |
 
 **Returns:** *Style*
+
+The style for the feature.

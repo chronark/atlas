@@ -2,6 +2,12 @@ import Fill from "ol/style/Fill"
 import Stroke from "ol/style/Stroke"
 import Style from "ol/style/Style"
 
+/**
+ * Create a style for counrties.
+ *
+ * @param isSelected - Determines the colors.
+ * @returns The style for the feature.
+ */
 export const countryLayerStyle = ({ isSelected = false }: { isSelected?: boolean } = {}): Style => {
   const selectedStyle = new Style({
     stroke: new Stroke({

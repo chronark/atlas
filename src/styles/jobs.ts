@@ -110,6 +110,14 @@ export default class JobStyle {
     })
   }
 
+  /**
+   * Extract the score from a feature object.
+   *
+   * @private
+   * @param  feature - The feature displaying a job.
+   * @returns A score between 0 and 1.
+   * @memberof JobStyle
+   */
   private getScore(feature: Feature): number {
     const subfeatures: Feature[] = feature.get("features")
 

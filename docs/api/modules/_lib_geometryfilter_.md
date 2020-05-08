@@ -17,7 +17,7 @@
 
 ▸ **areCoordinatesInGeometry**(`lonLat`: [number, number], `geometry`: Geometry, `checkExtentFirst`: boolean): *boolean*
 
-*Defined in [lib/geometryFilter.ts:8](https://github.com/chronark/atlas/blob/9436253/src/lib/geometryFilter.ts#L8)*
+*Defined in [lib/geometryFilter.ts:8](https://github.com/chronark/atlas/blob/b457830/src/lib/geometryFilter.ts#L8)*
 
 **Parameters:**
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **filterJobs**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[], `filter`: object): *[Job](../interfaces/_types_customtypes_.job.md)[]*
 
-*Defined in [lib/geometryFilter.ts:63](https://github.com/chronark/atlas/blob/9436253/src/lib/geometryFilter.ts#L63)*
+*Defined in [lib/geometryFilter.ts:63](https://github.com/chronark/atlas/blob/b457830/src/lib/geometryFilter.ts#L63)*
 
 **Parameters:**
 
@@ -56,7 +56,7 @@ ___
 
 ▸ **filterJobsByGeometry**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[], `geometry`: Geometry[]): *[Job](../interfaces/_types_customtypes_.job.md)[]*
 
-*Defined in [lib/geometryFilter.ts:56](https://github.com/chronark/atlas/blob/9436253/src/lib/geometryFilter.ts#L56)*
+*Defined in [lib/geometryFilter.ts:56](https://github.com/chronark/atlas/blob/b457830/src/lib/geometryFilter.ts#L56)*
 
 **Parameters:**
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **getJobsInGeometry**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[], `geometries`: Geometry[]): *[Job](../interfaces/_types_customtypes_.job.md)[]*
 
-*Defined in [lib/geometryFilter.ts:21](https://github.com/chronark/atlas/blob/9436253/src/lib/geometryFilter.ts#L21)*
+*Defined in [lib/geometryFilter.ts:21](https://github.com/chronark/atlas/blob/b457830/src/lib/geometryFilter.ts#L21)*
 
 **Parameters:**
 

@@ -14,7 +14,9 @@
 
 ▸ **polygonStyle**(`__namedParameters`: object): *Style*
 
-*Defined in [styles/polygon.ts:5](https://github.com/chronark/atlas/blob/9436253/src/styles/polygon.ts#L5)*
+*Defined in [styles/polygon.ts:11](https://github.com/chronark/atlas/blob/b457830/src/styles/polygon.ts#L11)*
+
+Create a style for polygons.
 
 **Parameters:**
 
@@ -25,3 +27,5 @@ Name | Type | Default |
 `isSelected` | boolean | false |
 
 **Returns:** *Style*
+
+A Style to be used for polygons.

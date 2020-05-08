@@ -32,7 +32,7 @@
 
 \+ **new JobStyle**(`colorGradient`: [Color](_styles_color_.color.md)[]): *[JobStyle](_styles_jobs_.jobstyle.md)*
 
-*Defined in [styles/jobs.ts:11](https://github.com/chronark/atlas/blob/9436253/src/styles/jobs.ts#L11)*
+*Defined in [styles/jobs.ts:11](https://github.com/chronark/atlas/blob/b457830/src/styles/jobs.ts#L11)*
 
 **Parameters:**
 
@@ -62,7 +62,7 @@ Name | Type | Default |
 
 • **colorGradient**: *[Color](_styles_color_.color.md)[]*
 
-*Defined in [styles/jobs.ts:11](https://github.com/chronark/atlas/blob/9436253/src/styles/jobs.ts#L11)*
+*Defined in [styles/jobs.ts:11](https://github.com/chronark/atlas/blob/b457830/src/styles/jobs.ts#L11)*
 
 ## Methods
 
@@ -70,7 +70,7 @@ Name | Type | Default |
 
 ▸ **areaStyle**(`feature`: Feature): *Style*
 
-*Defined in [styles/jobs.ts:100](https://github.com/chronark/atlas/blob/9436253/src/styles/jobs.ts#L100)*
+*Defined in [styles/jobs.ts:100](https://github.com/chronark/atlas/blob/b457830/src/styles/jobs.ts#L100)*
 
 **Parameters:**
 
@@ -86,7 +86,7 @@ ___
 
 ▸ **clusterStyle**(`cluster`: Feature): *Style[]*
 
-*Defined in [styles/jobs.ts:86](https://github.com/chronark/atlas/blob/9436253/src/styles/jobs.ts#L86)*
+*Defined in [styles/jobs.ts:86](https://github.com/chronark/atlas/blob/b457830/src/styles/jobs.ts#L86)*
 
 **Parameters:**
 
@@ -102,7 +102,7 @@ ___
 
 ▸ **colorByScore**(`score`: number, `minScore`: number): *[Color](_styles_color_.color.md)*
 
-*Defined in [styles/jobs.ts:33](https://github.com/chronark/atlas/blob/9436253/src/styles/jobs.ts#L33)*
+*Defined in [styles/jobs.ts:33](https://github.com/chronark/atlas/blob/b457830/src/styles/jobs.ts#L33)*
 
 **Parameters:**
 
@@ -119,15 +119,21 @@ ___
 
 ▸ **getScore**(`feature`: Feature): *number*
 
-*Defined in [styles/jobs.ts:113](https://github.com/chronark/atlas/blob/9436253/src/styles/jobs.ts#L113)*
+*Defined in [styles/jobs.ts:121](https://github.com/chronark/atlas/blob/b457830/src/styles/jobs.ts#L121)*
+
+Extract the score from a feature object.
+
+**`memberof`** JobStyle
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`feature` | Feature |
+Name | Type | Description |
+------ | ------ | ------ |
+`feature` | Feature | The feature displaying a job. |
 
 **Returns:** *number*
+
+A score between 0 and 1.
 
 ___
 
@@ -135,7 +141,7 @@ ___
 
 ▸ **maxScore**(`features`: Feature[]): *number*
 
-*Defined in [styles/jobs.ts:49](https://github.com/chronark/atlas/blob/9436253/src/styles/jobs.ts#L49)*
+*Defined in [styles/jobs.ts:49](https://github.com/chronark/atlas/blob/b457830/src/styles/jobs.ts#L49)*
 
 **Parameters:**
 
@@ -151,7 +157,7 @@ ___
 
 ▸ **polygonStyle**(`score`: number, `scale`: number, `size`: number): *Style*
 
-*Defined in [styles/jobs.ts:59](https://github.com/chronark/atlas/blob/9436253/src/styles/jobs.ts#L59)*
+*Defined in [styles/jobs.ts:59](https://github.com/chronark/atlas/blob/b457830/src/styles/jobs.ts#L59)*
 
 **Parameters:**
 
@@ -169,7 +175,7 @@ ___
 
 ▸ **selectedStyle**(`cluster`: Feature): *Style[]*
 
-*Defined in [styles/jobs.ts:124](https://github.com/chronark/atlas/blob/9436253/src/styles/jobs.ts#L124)*
+*Defined in [styles/jobs.ts:132](https://github.com/chronark/atlas/blob/b457830/src/styles/jobs.ts#L132)*
 
 **Parameters:**
 

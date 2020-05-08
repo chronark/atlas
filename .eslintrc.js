@@ -71,6 +71,18 @@ module.exports = {
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
     "no-console": "warn",
+    "require-jsdoc": [
+      "warn",
+      {
+        require: {
+          FunctionDeclaration: true,
+          MethodDefinition: true,
+          ClassDeclaration: true,
+          ArrowFunctionExpression: true,
+          FunctionExpression: true,
+        },
+      },
+    ],
     ...jsdocRules,
   },
 }

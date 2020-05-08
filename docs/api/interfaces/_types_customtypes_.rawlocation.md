@@ -24,7 +24,7 @@
 
 • **IDs**: *string*
 
-*Defined in [types/customTypes.ts:16](https://github.com/chronark/atlas/blob/9436253/src/types/customTypes.ts#L16)*
+*Defined in [types/customTypes.ts:16](https://github.com/chronark/atlas/blob/b457830/src/types/customTypes.ts#L16)*
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 • **country**: *string*
 
-*Defined in [types/customTypes.ts:15](https://github.com/chronark/atlas/blob/9436253/src/types/customTypes.ts#L15)*
+*Defined in [types/customTypes.ts:15](https://github.com/chronark/atlas/blob/b457830/src/types/customTypes.ts#L15)*
 
 ___
 
@@ -40,7 +40,7 @@ ___
 
 • **jobs**: *number[]*
 
-*Defined in [types/customTypes.ts:17](https://github.com/chronark/atlas/blob/9436253/src/types/customTypes.ts#L17)*
+*Defined in [types/customTypes.ts:17](https://github.com/chronark/atlas/blob/b457830/src/types/customTypes.ts#L17)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 • **lat**: *string*
 
-*Defined in [types/customTypes.ts:18](https://github.com/chronark/atlas/blob/9436253/src/types/customTypes.ts#L18)*
+*Defined in [types/customTypes.ts:18](https://github.com/chronark/atlas/blob/b457830/src/types/customTypes.ts#L18)*
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 • **lng**: *string*
 
-*Defined in [types/customTypes.ts:19](https://github.com/chronark/atlas/blob/9436253/src/types/customTypes.ts#L19)*
+*Defined in [types/customTypes.ts:19](https://github.com/chronark/atlas/blob/b457830/src/types/customTypes.ts#L19)*
 
 ___
 
@@ -64,7 +64,7 @@ ___
 
 • **titel**: *string*
 
-*Defined in [types/customTypes.ts:20](https://github.com/chronark/atlas/blob/9436253/src/types/customTypes.ts#L20)*
+*Defined in [types/customTypes.ts:20](https://github.com/chronark/atlas/blob/b457830/src/types/customTypes.ts#L20)*
 
 ___
 
@@ -72,4 +72,4 @@ ___
 
 • **weight**: *number*
 
-*Defined in [types/customTypes.ts:21](https://github.com/chronark/atlas/blob/9436253/src/types/customTypes.ts#L21)*
+*Defined in [types/customTypes.ts:21](https://github.com/chronark/atlas/blob/b457830/src/types/customTypes.ts#L21)*
