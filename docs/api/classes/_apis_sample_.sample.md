@@ -1,4 +1,4 @@
-[Atlas documentation](../globals.md) › ["apis/sample"](../modules/_apis_sample_.md) › [Sample](_apis_sample_.sample.md)
+[Atlas documentation](../README.md) › [Globals](../globals.md) › ["apis/sample"](../modules/_apis_sample_.md) › [Sample](_apis_sample_.sample.md)
 
 # Class: Sample
 
@@ -20,7 +20,7 @@
 
 ▸ **generateString**(`length`: number): *string*
 
-*Defined in [apis/sample.ts:45](https://github.com/chronark/atlas/blob/137d647/src/apis/sample.ts#L45)*
+*Defined in [apis/sample.ts:45](https://github.com/chronark/atlas/blob/2aeb7b0/src/apis/sample.ts#L45)*
 
 **Parameters:**
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **getLocations**(`cities`: Record‹string, any›[], `locationCount`: number): *object[]*
 
-*Defined in [apis/sample.ts:6](https://github.com/chronark/atlas/blob/137d647/src/apis/sample.ts#L6)*
+*Defined in [apis/sample.ts:6](https://github.com/chronark/atlas/blob/2aeb7b0/src/apis/sample.ts#L6)*
 
 **Parameters:**
 
@@ -53,7 +53,7 @@ ___
 
 ▸ **jobs**(`count`: number): *Promise‹[Job](../interfaces/_types_customtypes_.job.md)[]›*
 
-*Defined in [apis/sample.ts:18](https://github.com/chronark/atlas/blob/137d647/src/apis/sample.ts#L18)*
+*Defined in [apis/sample.ts:18](https://github.com/chronark/atlas/blob/2aeb7b0/src/apis/sample.ts#L18)*
 
 **Parameters:**
 

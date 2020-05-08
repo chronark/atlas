@@ -1,4 +1,4 @@
-[Atlas documentation](../globals.md) › ["state/events"](_state_events_.md)
+[Atlas documentation](../README.md) › [Globals](../globals.md) › ["state/events"](_state_events_.md)
 
 # Module: "state/events"
 
@@ -18,7 +18,7 @@
 
 Ƭ **stateCallback**: *function*
 
-*Defined in [state/events.ts:3](https://github.com/chronark/atlas/blob/137d647/src/state/events.ts#L3)*
+*Defined in [state/events.ts:3](https://github.com/chronark/atlas/blob/2aeb7b0/src/state/events.ts#L3)*
 
 #### Type declaration:
 
