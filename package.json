@@ -28,7 +28,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn typedoc && lint-staged && yarn test:unit",
+      "pre-commit": "yarn typedoc && git add docs/ && lint-staged && yarn test:unit",
       "pre-push": "yarn test:unit"
     }
   },
