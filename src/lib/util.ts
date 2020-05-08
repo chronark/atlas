@@ -84,3 +84,19 @@ export function isSingleLocation(location: Location): location is SingleLocation
     (location as SingleLocation).lon !== undefined
   )
 }
+
+
+export function carthesianProduct(array: any[][]): any[][] {
+  var results = [[]];
+  for (var i = 0; i < array.length; i++) {
+      var currentSubArray = array[i];
+      var temp = [];
+      for (var j = 0; j < results.length; j++) {
+          for (var k = 0; k < currentSubArray.length; k++) {
+              temp.push(results[j].concat(currentSubArray[k]));
+          }
+      }
+      results = temp;
+  }
+return results;
+}

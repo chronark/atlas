@@ -13,7 +13,6 @@ import FullScreen from "ol/control/FullScreen"
 import GeoJSON from "ol/format/GeoJSON"
 import Geometry from "ol/geom/Geometry"
 import JobLayer from "./jobLayer"
-import LayerPopup from "ol-ext/control/LayerPopup"
 import { Map as OLMap } from "ol"
 import { OSMLayer } from "../apis/tileLayers"
 import VectorLayer from "ol/layer/Vector"
@@ -317,7 +316,6 @@ export default class Map {
       new Attribution({
         collapsible: true,
       }),
-      new LayerPopup([rasterLayer]),
       new OverviewMap({
         layers: [rasterLayer],
       }),
@@ -350,7 +348,7 @@ export default class Map {
     this.store.dispatch("setJobs", jobs)
   }
 
-  private setView(lon: number, lat: number, zoom: number): void {
+  public setView(lon: number, lat: number, zoom: number): void {
     this.olmap.getView().setCenter([lat, lon])
     this.olmap.getView().setZoom(zoom)
   }

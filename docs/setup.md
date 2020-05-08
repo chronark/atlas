@@ -1,9 +1,6 @@
-# API documentation
-
-[Atlas documentation](./api/globals.md)
-
-
 # Setup
+
+
 
 ## Set initial state
 
