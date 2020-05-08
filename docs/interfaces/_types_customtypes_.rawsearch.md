@@ -19,7 +19,7 @@
 
 • **jobs**: *[RawJob](_types_customtypes_.rawjob.md)[]*
 
-*Defined in [types/customTypes.ts:26](https://github.com/chronark/atlas/blob/3b4704d/src/types/customTypes.ts#L26)*
+*Defined in [types/customTypes.ts:26](https://github.com/chronark/atlas/blob/ce984e8/src/types/customTypes.ts#L26)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **orte**: *[RawLocation](_types_customtypes_.rawlocation.md)[]*
 
-*Defined in [types/customTypes.ts:27](https://github.com/chronark/atlas/blob/3b4704d/src/types/customTypes.ts#L27)*
+*Defined in [types/customTypes.ts:27](https://github.com/chronark/atlas/blob/ce984e8/src/types/customTypes.ts#L27)*

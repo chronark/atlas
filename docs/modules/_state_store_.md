@@ -27,7 +27,7 @@
 
 Ƭ **State**: *object*
 
-*Defined in [state/store.ts:9](https://github.com/chronark/atlas/blob/3b4704d/src/state/store.ts#L9)*
+*Defined in [state/store.ts:9](https://github.com/chronark/atlas/blob/ce984e8/src/state/store.ts#L9)*
 
 #### Type declaration:
 
@@ -49,7 +49,7 @@
 
 ▸ **initialState**(): *[State](_state_store_.md#state)*
 
-*Defined in [state/store.ts:26](https://github.com/chronark/atlas/blob/3b4704d/src/state/store.ts#L26)*
+*Defined in [state/store.ts:26](https://github.com/chronark/atlas/blob/ce984e8/src/state/store.ts#L26)*
 
 **Returns:** *[State](_state_store_.md#state)*
 
@@ -59,7 +59,7 @@ ___
 
 ▸ **newDefaultStore**(): *[Store](../classes/_state_store_.store.md)*
 
-*Defined in [state/store.ts:93](https://github.com/chronark/atlas/blob/3b4704d/src/state/store.ts#L93)*
+*Defined in [state/store.ts:93](https://github.com/chronark/atlas/blob/ce984e8/src/state/store.ts#L93)*
 
 NewDefaultStore creates a Store instance with the default actions, mutations, initialState and all hooks.
 

@@ -16,7 +16,7 @@
 
 • **map**: *[Map](../classes/_lib_map_.map.md)‹›* = new Map("map-container")
 
-*Defined in [lib/index.ts:8](https://github.com/chronark/atlas/blob/3b4704d/src/lib/index.ts#L8)*
+*Defined in [lib/index.ts:8](https://github.com/chronark/atlas/blob/ce984e8/src/lib/index.ts#L8)*
 
 ___
 
@@ -24,7 +24,7 @@ ___
 
 • **searchField**: *HTMLInputElement* = document.getElementById("searchField") as HTMLInputElement
 
-*Defined in [lib/index.ts:25](https://github.com/chronark/atlas/blob/3b4704d/src/lib/index.ts#L25)*
+*Defined in [lib/index.ts:25](https://github.com/chronark/atlas/blob/ce984e8/src/lib/index.ts#L25)*
 
 ___
 
@@ -32,4 +32,4 @@ ___
 
 • **searchForm**: *null | HTMLElement* = document.getElementById("searchForm")
 
-*Defined in [lib/index.ts:26](https://github.com/chronark/atlas/blob/3b4704d/src/lib/index.ts#L26)*
+*Defined in [lib/index.ts:26](https://github.com/chronark/atlas/blob/ce984e8/src/lib/index.ts#L26)*
