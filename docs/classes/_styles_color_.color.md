@@ -30,7 +30,7 @@
 
 \+ **new Color**(`r`: number, `g`: number, `b`: number, `a?`: undefined | number): *[Color](_styles_color_.color.md)*
 
-*Defined in [styles/color.ts:5](https://github.com/chronark/atlas/blob/5333653/src/styles/color.ts#L5)*
+*Defined in [styles/color.ts:5](https://github.com/chronark/atlas/blob/b5d180b/src/styles/color.ts#L5)*
 
 **Parameters:**
 
@@ -49,7 +49,7 @@ Name | Type |
 
 • **a**: *number*
 
-*Defined in [styles/color.ts:5](https://github.com/chronark/atlas/blob/5333653/src/styles/color.ts#L5)*
+*Defined in [styles/color.ts:5](https://github.com/chronark/atlas/blob/b5d180b/src/styles/color.ts#L5)*
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 • **b**: *number*
 
-*Defined in [styles/color.ts:4](https://github.com/chronark/atlas/blob/5333653/src/styles/color.ts#L4)*
+*Defined in [styles/color.ts:4](https://github.com/chronark/atlas/blob/b5d180b/src/styles/color.ts#L4)*
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 • **g**: *number*
 
-*Defined in [styles/color.ts:3](https://github.com/chronark/atlas/blob/5333653/src/styles/color.ts#L3)*
+*Defined in [styles/color.ts:3](https://github.com/chronark/atlas/blob/b5d180b/src/styles/color.ts#L3)*
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 • **r**: *number*
 
-*Defined in [styles/color.ts:2](https://github.com/chronark/atlas/blob/5333653/src/styles/color.ts#L2)*
+*Defined in [styles/color.ts:2](https://github.com/chronark/atlas/blob/b5d180b/src/styles/color.ts#L2)*
 
 ## Methods
 
@@ -81,7 +81,7 @@ ___
 
 ▸ **rgb**(): *string*
 
-*Defined in [styles/color.ts:13](https://github.com/chronark/atlas/blob/5333653/src/styles/color.ts#L13)*
+*Defined in [styles/color.ts:13](https://github.com/chronark/atlas/blob/b5d180b/src/styles/color.ts#L13)*
 
 **Returns:** *string*
 
@@ -91,7 +91,7 @@ ___
 
 ▸ **rgba**(`a?`: undefined | number): *string*
 
-*Defined in [styles/color.ts:17](https://github.com/chronark/atlas/blob/5333653/src/styles/color.ts#L17)*
+*Defined in [styles/color.ts:17](https://github.com/chronark/atlas/blob/b5d180b/src/styles/color.ts#L17)*
 
 **Parameters:**
 
