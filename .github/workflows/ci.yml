@@ -50,7 +50,9 @@ jobs:
         run: npm install
 
       - name: Unittests
-        run: npm run test
+        run: npm run test --testRunner=@undefinedlabs/scope-agent/jest/testRunner --globalSetup=@undefinedlabs/scope-agent/jest/globalSetup --setupFilesAfterEnv=@undefinedlabs/scope-agent/jest/setupTests
+        env:
+          SCOPE_DSN: https://8921b65132ef4814afed8768bc007bb7@app.scope.dev/
 
   integration:
     needs: build

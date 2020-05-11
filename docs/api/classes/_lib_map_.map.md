@@ -53,7 +53,7 @@
 
 \+ **new Map**(`mapID`: string): *[Map](_lib_map_.map.md)*
 
-*Defined in [lib/map.ts:34](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L34)*
+*Defined in [lib/map.ts:34](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L34)*
 
 **Parameters:**
 
@@ -69,7 +69,7 @@ Name | Type |
 
 • **JobLayer**: *[JobLayer](_lib_joblayer_.joblayer.md)*
 
-*Defined in [lib/map.ts:33](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L33)*
+*Defined in [lib/map.ts:33](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L33)*
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 • **mapID**: *string*
 
-*Defined in [lib/map.ts:30](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L30)*
+*Defined in [lib/map.ts:30](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L30)*
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 • **olmap**: *OLMap*
 
-*Defined in [lib/map.ts:31](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L31)*
+*Defined in [lib/map.ts:31](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L31)*
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 • **store**: *[Store](_state_store_.store.md)*
 
-*Defined in [lib/map.ts:32](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L32)*
+*Defined in [lib/map.ts:32](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L32)*
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 • **zIndices**: *Record‹string, number›*
 
-*Defined in [lib/map.ts:34](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L34)*
+*Defined in [lib/map.ts:34](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L34)*
 
 ## Methods
 
@@ -109,7 +109,7 @@ ___
 
 ▸ **addCircleSelect**(): *void*
 
-*Defined in [lib/map.ts:208](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L208)*
+*Defined in [lib/map.ts:208](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L208)*
 
 **Returns:** *void*
 
@@ -119,7 +119,7 @@ ___
 
 ▸ **addControls**(): *any*
 
-*Defined in [lib/map.ts:170](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L170)*
+*Defined in [lib/map.ts:170](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L170)*
 
 **Returns:** *any*
 
@@ -129,7 +129,7 @@ ___
 
 ▸ **addCountryLayer**(): *void*
 
-*Defined in [lib/map.ts:121](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L121)*
+*Defined in [lib/map.ts:121](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L121)*
 
 **Returns:** *void*
 
@@ -139,7 +139,7 @@ ___
 
 ▸ **addFeatureFromGeojson**(`geojson`: [GeocodingResponseObject](../interfaces/_types_customtypes_.geocodingresponseobject.md)): *VectorLayer*
 
-*Defined in [lib/map.ts:148](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L148)*
+*Defined in [lib/map.ts:148](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L148)*
 
 **Parameters:**
 
@@ -155,7 +155,7 @@ ___
 
 ▸ **addGeometriesHook**(): *void*
 
-*Defined in [lib/map.ts:79](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L79)*
+*Defined in [lib/map.ts:79](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L79)*
 
 **Returns:** *void*
 
@@ -165,7 +165,7 @@ ___
 
 ▸ **addJobFilterHook**(): *void*
 
-*Defined in [lib/map.ts:85](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L85)*
+*Defined in [lib/map.ts:85](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L85)*
 
 **Returns:** *void*
 
@@ -175,7 +175,7 @@ ___
 
 ▸ **addLayer**(`layer`: BaseLayer, `opts`: object): *void*
 
-*Defined in [lib/map.ts:110](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L110)*
+*Defined in [lib/map.ts:110](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L110)*
 
 Creates a named layer and adds it to the existing openlayers map.
 By default a layer is not overwritten.
@@ -203,7 +203,7 @@ ___
 
 ▸ **addVisibleJobsHook**(): *void*
 
-*Defined in [lib/map.ts:73](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L73)*
+*Defined in [lib/map.ts:73](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L73)*
 
 **Returns:** *void*
 
@@ -213,7 +213,7 @@ ___
 
 ▸ **buildJobLayer**(): *void*
 
-*Defined in [lib/map.ts:340](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L340)*
+*Defined in [lib/map.ts:340](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L340)*
 
 **Returns:** *void*
 
@@ -223,7 +223,7 @@ ___
 
 ▸ **buildMap**(): *OLMap*
 
-*Defined in [lib/map.ts:311](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L311)*
+*Defined in [lib/map.ts:311](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L311)*
 
 **Returns:** *OLMap*
 
@@ -233,7 +233,7 @@ ___
 
 ▸ **circleSelectRemoveButton**(): *void*
 
-*Defined in [lib/map.ts:180](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L180)*
+*Defined in [lib/map.ts:180](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L180)*
 
 **Returns:** *void*
 
@@ -243,7 +243,7 @@ ___
 
 ▸ **clearSource**(`layer`: VectorLayer): *VectorLayer*
 
-*Defined in [lib/map.ts:274](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L274)*
+*Defined in [lib/map.ts:274](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L274)*
 
 **Parameters:**
 
@@ -259,7 +259,7 @@ ___
 
 ▸ **countryLayerFromGeometry**(`geometry`: Record‹string, any›[]): *VectorLayer*
 
-*Defined in [lib/map.ts:125](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L125)*
+*Defined in [lib/map.ts:125](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L125)*
 
 **Parameters:**
 
@@ -275,7 +275,7 @@ ___
 
 ▸ **getDrawLayer**(`__namedParameters`: object): *VectorLayer*
 
-*Defined in [lib/map.ts:260](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L260)*
+*Defined in [lib/map.ts:260](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L260)*
 
 **Parameters:**
 
@@ -293,7 +293,7 @@ ___
 
 ▸ **getLayersByNames**(`names`: string[]): *VectorLayer[]*
 
-*Defined in [lib/map.ts:281](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L281)*
+*Defined in [lib/map.ts:281](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L281)*
 
 **Parameters:**
 
@@ -309,7 +309,7 @@ ___
 
 ▸ **getOrCreateLayer**(`name`: string, `opts`: Record‹string, any›): *[VectorLayer, boolean]*
 
-*Defined in [lib/map.ts:292](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L292)*
+*Defined in [lib/map.ts:292](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L292)*
 
 **Parameters:**
 
@@ -326,7 +326,7 @@ ___
 
 ▸ **handleCircleSelectEvents**(`draw`: Draw, `modify`: Modify): *void*
 
-*Defined in [lib/map.ts:229](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L229)*
+*Defined in [lib/map.ts:229](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L229)*
 
 **Parameters:**
 
@@ -343,7 +343,7 @@ ___
 
 ▸ **removeLayersByNames**(`names`: string[]): *void*
 
-*Defined in [lib/map.ts:191](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L191)*
+*Defined in [lib/map.ts:191](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L191)*
 
 **Parameters:**
 
@@ -359,7 +359,7 @@ ___
 
 ▸ **search**(`query`: string): *Promise‹void›*
 
-*Defined in [lib/map.ts:58](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L58)*
+*Defined in [lib/map.ts:58](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L58)*
 
 **Parameters:**
 
@@ -375,7 +375,7 @@ ___
 
 ▸ **setJobs**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[]): *void*
 
-*Defined in [lib/map.ts:347](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L347)*
+*Defined in [lib/map.ts:347](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L347)*
 
 **Parameters:**
 
@@ -391,7 +391,7 @@ ___
 
 ▸ **setView**(`lon`: number, `lat`: number, `zoom`: number): *void*
 
-*Defined in [lib/map.ts:351](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L351)*
+*Defined in [lib/map.ts:351](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L351)*
 
 **Parameters:**
 
@@ -409,7 +409,7 @@ ___
 
 ▸ **zoomTo**(`center`: number[], `zoom`: number): *void*
 
-*Defined in [lib/map.ts:200](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L200)*
+*Defined in [lib/map.ts:200](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L200)*
 
 **Parameters:**
 
@@ -426,7 +426,7 @@ ___
 
 ▸ **zoomToExtent**(`extent`: Extent): *void*
 
-*Defined in [lib/map.ts:361](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L361)*
+*Defined in [lib/map.ts:361](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L361)*
 
 **Parameters:**
 
@@ -442,7 +442,7 @@ ___
 
 ▸ **zoomToLayer**(`layer`: VectorLayer): *void*
 
-*Defined in [lib/map.ts:356](https://github.com/chronark/atlas/blob/e6359aa/src/lib/map.ts#L356)*
+*Defined in [lib/map.ts:356](https://github.com/chronark/atlas/blob/aadb4be/src/lib/map.ts#L356)*
 
 **Parameters:**
 

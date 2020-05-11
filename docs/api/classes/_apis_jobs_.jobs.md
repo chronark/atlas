@@ -28,7 +28,7 @@
 
 \+ **new Jobs**(`url?`: undefined | string): *[Jobs](_apis_jobs_.jobs.md)*
 
-*Defined in [apis/jobs.ts:6](https://github.com/chronark/atlas/blob/e6359aa/src/apis/jobs.ts#L6)*
+*Defined in [apis/jobs.ts:6](https://github.com/chronark/atlas/blob/aadb4be/src/apis/jobs.ts#L6)*
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ Name | Type |
 
 • **url**: *string* = "https://jobboerse.th-nuernberg.de/srv.php/en/Suche/offers"
 
-*Defined in [apis/jobs.ts:6](https://github.com/chronark/atlas/blob/e6359aa/src/apis/jobs.ts#L6)*
+*Defined in [apis/jobs.ts:6](https://github.com/chronark/atlas/blob/aadb4be/src/apis/jobs.ts#L6)*
 
 ## Methods
 
@@ -52,7 +52,7 @@ Name | Type |
 
 ▸ **fetchRawJobs**(): *Promise‹[RawSearch](../interfaces/_types_customtypes_.rawsearch.md)›*
 
-*Defined in [apis/jobs.ts:14](https://github.com/chronark/atlas/blob/e6359aa/src/apis/jobs.ts#L14)*
+*Defined in [apis/jobs.ts:14](https://github.com/chronark/atlas/blob/aadb4be/src/apis/jobs.ts#L14)*
 
 **Returns:** *Promise‹[RawSearch](../interfaces/_types_customtypes_.rawsearch.md)›*
 
@@ -62,7 +62,7 @@ ___
 
 ▸ **get**(): *Promise‹[Job](../interfaces/_types_customtypes_.job.md)[]›*
 
-*Defined in [apis/jobs.ts:49](https://github.com/chronark/atlas/blob/e6359aa/src/apis/jobs.ts#L49)*
+*Defined in [apis/jobs.ts:49](https://github.com/chronark/atlas/blob/aadb4be/src/apis/jobs.ts#L49)*
 
 **Returns:** *Promise‹[Job](../interfaces/_types_customtypes_.job.md)[]›*
 
@@ -72,7 +72,7 @@ ___
 
 ▸ **transform**(`rawSearch`: [RawSearch](../interfaces/_types_customtypes_.rawsearch.md)): *[Job](../interfaces/_types_customtypes_.job.md)[]*
 
-*Defined in [apis/jobs.ts:23](https://github.com/chronark/atlas/blob/e6359aa/src/apis/jobs.ts#L23)*
+*Defined in [apis/jobs.ts:23](https://github.com/chronark/atlas/blob/aadb4be/src/apis/jobs.ts#L23)*
 
 **Parameters:**
 
