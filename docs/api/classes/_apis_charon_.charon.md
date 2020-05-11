@@ -29,7 +29,7 @@
 
 \+ **new Charon**(): *[Charon](_apis_charon_.charon.md)*
 
-*Defined in [apis/charon.ts:5](https://github.com/chronark/atlas/blob/9436253/src/apis/charon.ts#L5)*
+*Defined in [apis/charon.ts:5](https://github.com/chronark/atlas/blob/e6359aa/src/apis/charon.ts#L5)*
 
 **Returns:** *[Charon](_apis_charon_.charon.md)*
 
@@ -39,7 +39,7 @@
 
 • **serverURL**: *string*
 
-*Defined in [apis/charon.ts:5](https://github.com/chronark/atlas/blob/9436253/src/apis/charon.ts#L5)*
+*Defined in [apis/charon.ts:5](https://github.com/chronark/atlas/blob/e6359aa/src/apis/charon.ts#L5)*
 
 ## Methods
 
@@ -47,7 +47,7 @@
 
 ▸ **forwardGeocoding**(`query`: string): *Promise‹[GeocodingResponseObject](../interfaces/_types_customtypes_.geocodingresponseobject.md) | undefined›*
 
-*Defined in [apis/charon.ts:18](https://github.com/chronark/atlas/blob/9436253/src/apis/charon.ts#L18)*
+*Defined in [apis/charon.ts:18](https://github.com/chronark/atlas/blob/e6359aa/src/apis/charon.ts#L18)*
 
 **Parameters:**
 
@@ -63,7 +63,7 @@ ___
 
 ▸ **getStyle**(): *Promise‹Record‹string, any››*
 
-*Defined in [apis/charon.ts:14](https://github.com/chronark/atlas/blob/9436253/src/apis/charon.ts#L14)*
+*Defined in [apis/charon.ts:14](https://github.com/chronark/atlas/blob/e6359aa/src/apis/charon.ts#L14)*
 
 **Returns:** *Promise‹Record‹string, any››*
 
@@ -73,7 +73,7 @@ ___
 
 ▸ **getTileURL**(): *string*
 
-*Defined in [apis/charon.ts:10](https://github.com/chronark/atlas/blob/9436253/src/apis/charon.ts#L10)*
+*Defined in [apis/charon.ts:10](https://github.com/chronark/atlas/blob/e6359aa/src/apis/charon.ts#L10)*
 
 **Returns:** *string*
 
@@ -83,7 +83,7 @@ ___
 
 ▸ **reverseGeocoding**(`lat`: number, `lon`: number): *Promise‹[GeocodingResponseObject](../interfaces/_types_customtypes_.geocodingresponseobject.md) | undefined›*
 
-*Defined in [apis/charon.ts:25](https://github.com/chronark/atlas/blob/9436253/src/apis/charon.ts#L25)*
+*Defined in [apis/charon.ts:25](https://github.com/chronark/atlas/blob/e6359aa/src/apis/charon.ts#L25)*
 
 **Parameters:**
 
