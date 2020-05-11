@@ -18,4 +18,4 @@
 
 • **log**: *[Logger](../classes/_lib_logger_.logger.md)‹›* = new Logger()
 
-*Defined in [lib/logger.ts:60](https://github.com/chronark/atlas/blob/eb59b04/src/lib/logger.ts#L60)*
+*Defined in [lib/logger.ts:60](https://github.com/chronark/atlas/blob/7501b49/src/lib/logger.ts#L60)*

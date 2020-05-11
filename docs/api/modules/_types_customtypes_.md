@@ -29,7 +29,7 @@
 
 Ƭ **Area**: *[FeaturesEntity](../interfaces/_types_customtypes_.featuresentity.md)[]*
 
-*Defined in [types/customTypes.ts:30](https://github.com/chronark/atlas/blob/eb59b04/src/types/customTypes.ts#L30)*
+*Defined in [types/customTypes.ts:30](https://github.com/chronark/atlas/blob/7501b49/src/types/customTypes.ts#L30)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 Ƭ **Location**: *[Area](_types_customtypes_.md#area) | [SingleLocation](../interfaces/_types_customtypes_.singlelocation.md)*
 
-*Defined in [types/customTypes.ts:46](https://github.com/chronark/atlas/blob/eb59b04/src/types/customTypes.ts#L46)*
+*Defined in [types/customTypes.ts:46](https://github.com/chronark/atlas/blob/7501b49/src/types/customTypes.ts#L46)*
 
 The location for a job.
 Address has to be added later on.
@@ -48,4 +48,4 @@ ___
 
 Ƭ **LogObject**: *Record‹string, any› | number*
 
-*Defined in [types/customTypes.ts:91](https://github.com/chronark/atlas/blob/eb59b04/src/types/customTypes.ts#L91)*
+*Defined in [types/customTypes.ts:91](https://github.com/chronark/atlas/blob/7501b49/src/types/customTypes.ts#L91)*
