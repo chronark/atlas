@@ -50,10 +50,7 @@ jobs:
         run: npm install
 
       - name: Unittests
-        uses: undefinedlabs/scope-for-javascript-action@v1
-        with:
-          dsn: ${{secrets.SCOPE_DSN}} # required
-          jest-command: npm test # optional - default is 'npm test'
+        run: npm test
 
   integration:
     needs: build
