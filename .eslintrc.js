@@ -1,7 +1,6 @@
 const jsdocRules = {
   "jsdoc/check-access": "warn",
   "jsdoc/check-values": "warn",
-  "jsdoc/newline-after-description": "warn",
   "jsdoc/check-alignment": "warn",
   "jsdoc/check-examples": "off",
   "jsdoc/check-indentation": "warn",
