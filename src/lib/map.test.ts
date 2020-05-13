@@ -17,8 +17,8 @@ describe("map.zoomTo", () => {
       zoom: tc[2],
     }
   })
-  testCases.forEach((tc) => {
-    it(`should set the correct view with lat: ${tc.lat}, lon: ${tc.lon}, zoom: ${tc.zoom}`, () => {
+  it("should set the correct view", () => {
+    testCases.forEach((tc) => {
       map.setView(tc.lon, tc.lat, tc.zoom)
       const view = map.olmap.getView()
       expect(view.getZoom()).toBe(tc.zoom)
