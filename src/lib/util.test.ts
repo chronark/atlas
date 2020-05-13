@@ -1,4 +1,5 @@
-import { bound, removeFrom, removeListFromList, unique } from "./util"
+import { bound, carthesianProduct, removeFrom, removeListFromList, unique } from "./util"
+
 describe("removeFrom()", () => {
   describe("when there are no duplicates", () => {
     const testCases = [
@@ -468,6 +469,77 @@ describe("unique()", () => {
         it("should not mutate the original array", () => {
           expect(originalArray).toEqual(tc.input.list)
         })
+      })
+    })
+  })
+})
+describe("carthesianProduct()", () => {
+  const testCases = [
+    {
+      type: "numbers",
+      array: [
+        [1, 2],
+        [1, 2],
+      ],
+      want: [
+        [1, 1],
+        [1, 2],
+        [2, 1],
+        [2, 2],
+      ],
+    },
+    {
+      type: "numbers/strings",
+      array: [
+        ["1", 2],
+        [1, "2"],
+      ],
+      want: [
+        ["1", 1],
+        ["1", "2"],
+        [2, 1],
+        [2, "2"],
+      ],
+    },
+    {
+      type: "numbers/strings/objects",
+      array: [
+        ["1", 2, { h: 1 }],
+        [1, "2"],
+      ],
+      want: [
+        ["1", 1],
+        ["1", "2"],
+        [2, 1],
+        [2, "2"],
+        [{ h: 1 }, 1],
+        [{ h: 1 }, "2"],
+      ],
+    },
+    {
+      type: "numbers",
+      array: [
+        [1, 2],
+        [1, 2],
+        [1, 2],
+      ],
+      want: [
+        [1, 1, 1],
+        [1, 1, 2],
+        [1, 2, 1],
+        [1, 2, 2],
+        [2, 1, 1],
+        [2, 1, 2],
+        [2, 2, 1],
+        [2, 2, 2],
+      ],
+    },
+  ]
+  testCases.forEach((tc) => {
+    describe(`with ${tc.array.length} vectors`, () => {
+      it(`should calculate the product correctly with ${tc.type}`, () => {
+        const result = carthesianProduct(tc.array)
+        expect(result).toEqual(tc.want)
       })
     })
   })

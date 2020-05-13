@@ -84,3 +84,23 @@ export function isSingleLocation(location: Location): location is SingleLocation
     (location as SingleLocation).lon !== undefined
   )
 }
+/**
+ * Calcualte the carthesian product of n vectors.
+ *
+ * @param array - The vectors you want to multiply.
+ * @returns Carthesian product of all vectors.
+ */
+export function carthesianProduct(array: any[][]): any[][] {
+  let results = [[]]
+  for (let i = 0; i < array.length; i++) {
+    const currentSubArray = array[i]
+    const temp = []
+    for (let j = 0; j < results.length; j++) {
+      for (let k = 0; k < currentSubArray.length; k++) {
+        temp.push(results[j].concat(currentSubArray[k]))
+      }
+    }
+    results = temp
+  }
+  return results
+}

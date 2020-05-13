@@ -1,7 +1,6 @@
 const jsdocRules = {
   "jsdoc/check-access": "warn",
   "jsdoc/check-values": "warn",
-  "jsdoc/newline-after-description": "warn",
   "jsdoc/check-alignment": "warn",
   "jsdoc/check-examples": "off",
   "jsdoc/check-indentation": "warn",
@@ -14,20 +13,20 @@ const jsdocRules = {
   "jsdoc/newline-after-description": "warn",
   "jsdoc/no-types": "error",
   "jsdoc/no-undefined-types": "off",
-  "jsdoc/require-description-complete-sentence": "warn",
-  "jsdoc/require-description": "warn",
+  "jsdoc/require-description-complete-sentence": "error",
+  "jsdoc/require-description": "error",
   "jsdoc/require-example": "off",
-  "jsdoc/require-hyphen-before-param-description": "warn",
+  "jsdoc/require-hyphen-before-param-description": "error",
   "jsdoc/require-jsdoc": "error",
   "jsdoc/require-param-description": "warn",
-  "jsdoc/require-param-name": "warn",
+  "jsdoc/require-param-name": "error",
   "jsdoc/require-param-type": "off",
-  "jsdoc/require-param": "warn",
-  "jsdoc/require-returns-check": "warn",
-  "jsdoc/require-returns-description": "warn",
+  "jsdoc/require-param": "error",
+  "jsdoc/require-returns-check": "error",
+  "jsdoc/require-returns-description": "error",
   "jsdoc/require-returns-type": "off",
-  "jsdoc/require-returns": "warn",
-  "jsdoc/valid-types": "warn",
+  "jsdoc/require-returns": "error",
+  "jsdoc/valid-types": "error",
 }
 
 module.exports = {
@@ -57,12 +56,10 @@ module.exports = {
   ],
   rules: {
     "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/ban-ts-ignore": "warn",
     "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": "error",
     "no-prototype-builtins": "off",
-    "no-use-before-define": ["error", { functions: false, classes: true, variables: true }],
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       { allowExpressions: true, allowTypedFunctionExpressions: true },
@@ -73,15 +70,6 @@ module.exports = {
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
     "no-console": "warn",
-    "sort-imports": [
-      "error",
-      {
-        ignoreCase: false,
-        ignoreDeclarationSort: false,
-        ignoreMemberSort: false,
-        memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
-      },
-    ],
     ...jsdocRules,
   },
 }
