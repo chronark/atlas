@@ -1,0 +1,23 @@
+name: Scope
+
+on: push
+jobs:
+  Scope:
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run unittests and report
+        uses: undefinedlabs/scope-for-javascript-action@v1
+        with:
+          dsn: ${{secrets.SCOPE_DSN}} # required
+          jest-command: npm test # optional - default is 'npm test'
+
