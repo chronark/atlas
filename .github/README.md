@@ -27,7 +27,7 @@
 
 1. Build project
 
-```shell
+```sh
 git clone https://github.com/chronark/atlas.git
 npm install
 npm run build
