@@ -38,7 +38,7 @@ export interface MapOpts {
    */
   extent?: Extent
   /**
-   * Initial latitude, longitude and zoom level. Default = { lat: 45, lon: 0, zoom: 2 }
+   * Initial latitude, longitude and zoom level. Default = { lat: 45, lon: 0, zoom: 2 }.
    * Providing this option will override extent.
    */
   view?: ViewOpts
@@ -328,7 +328,7 @@ export default class Map {
 
   /**
    * Create an initial viewport in the following order:
-   * 
+   *
    * 1. From a specified `view` obecjt in mapOpts.
    * 2. From a specified `extent` onject
    * 3. If neither options were given, create a default view centered on europe.
@@ -339,17 +339,17 @@ export default class Map {
    * @memberof Map
    */
   private createView(opts: MapOpts): any {
-      if (opts.view) {
-        return new View({
-          center: fromLonLat([opts.view.lon, opts.view.lat]),
-          zoom: opts.view.zoom,
-        })
-      } else if (opts.extent) {
-        const view = new View()
-        view.fit(opts.extent)
-        
-        return view
-      } else {
+    if (opts.view) {
+      return new View({
+        center: fromLonLat([opts.view.lon, opts.view.lat]),
+        zoom: opts.view.zoom,
+      })
+    } else if (opts.extent) {
+      const view = new View()
+      view.fit(opts.extent)
+
+      return view
+    } else {
       return new View({
         center: fromLonLat([0, 45]),
         zoom: 2,
