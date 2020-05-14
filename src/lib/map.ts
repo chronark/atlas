@@ -26,6 +26,24 @@ import { log } from "./logger"
 import polygonStyle from "../styles/polygon"
 import { shiftKeyOnly } from "ol/events/condition"
 
+interface ViewOpts {
+  lat: number
+  lon: number
+  zoom: number
+}
+export interface MapOpts {
+  /**
+   * Provide this if you want to show a specifig area of the map on startup.
+   * This will be overridden by view.
+   */
+  extent?: Extent
+  /**
+   * Initial latitude, longitude and zoom level. Default = { lat: 45, lon: 0, zoom: 2 }
+   * Providing this option will override extent.
+   */
+  view?: ViewOpts
+}
+
 export default class Map {
   private mapID: string
   public olmap: OLMap
@@ -33,7 +51,7 @@ export default class Map {
   private JobLayer: JobLayer
   private zIndices: Record<string, number>
 
-  public constructor(mapID: string) {
+  public constructor(mapID: string, opts?: MapOpts) {
     log.debug("Initializing map", { mapID })
     this.mapID = mapID
     this.zIndices = {
@@ -44,7 +62,7 @@ export default class Map {
     }
     this.store = newDefaultStore()
 
-    this.olmap = this.buildMap()
+    this.olmap = this.build(opts || {})
     this.addControls()
     this.addCircleSelect()
     this.addCountryLayer()
@@ -308,10 +326,40 @@ export default class Map {
     return [layer, wasCreated]
   }
 
-  private buildMap(): OLMap {
+  /**
+   * Create an initial viewport in the following order:
+   * 
+   * 1. From a specified `view` obecjt in mapOpts.
+   * 2. From a specified `extent` onject
+   * 3. If neither options were given, create a default view centered on europe.
+   *
+   * @private
+   * @param opts - View configuration should be in this object.
+   * @returns  The View object for initial map rendering.
+   * @memberof Map
+   */
+  private createView(opts: MapOpts): any {
+      if (opts.view) {
+        return new View({
+          center: fromLonLat([opts.view.lon, opts.view.lat]),
+          zoom: opts.view.zoom,
+        })
+      } else if (opts.extent) {
+        const view = new View()
+        view.fit(opts.extent)
+        
+        return view
+      } else {
+      return new View({
+        center: fromLonLat([0, 45]),
+        zoom: 2,
+      })
+    }
+  }
+
+  private build(opts: MapOpts): OLMap {
     const rasterLayer = new OSMLayer().getLayer()
     // const vectorLayer = new MapboxLayer().getLayer()
-
     const controls = [
       new Attribution({
         collapsible: true,
@@ -325,10 +373,7 @@ export default class Map {
     const olmap = new OLMap({
       target: this.mapID,
       controls: controls,
-      view: new View({
-        center: fromLonLat([0, 45]),
-        zoom: 2,
-      }),
+      view: this.createView(opts),
     })
     this.olmap = olmap
     this.addLayer(rasterLayer, { name: "rasterTiles" })
