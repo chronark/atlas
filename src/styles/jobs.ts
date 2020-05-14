@@ -7,9 +7,34 @@ import { Job } from "../types/customTypes"
 import RegularShape from "ol/style/RegularShape"
 import { bound } from "../lib/util"
 
+/**
+ * Create a style for job clusters based on their score and proximity to each other.
+ *
+ * @class JobStyle
+ */
 export default class JobStyle {
   private colorGradient: Color[]
 
+  /**
+   * Creates an instance of JobStyle.
+   *
+   * @param [colorGradient=[
+      new Color(112, 148, 194),
+      new Color(103, 142, 191),
+      new Color(93, 135, 188),
+      new Color(84, 129, 186),
+      new Color(47, 103, 174),
+      new Color(75, 122, 183),
+      new Color(65, 116, 180),
+      new Color(56, 109, 177),
+      new Color(37, 96, 171),
+      new Color(28, 90, 168),
+      new Color(19, 83, 166),
+      new Color(9, 77, 163),
+      new Color(0, 70, 160),
+    ]] - A color gradient you want to use, the length is not fixed but should be >= 2, otherwise you can use a static style.
+   * @memberof JobStyle
+   */
   public constructor(
     colorGradient: Color[] = [
       new Color(112, 148, 194),
@@ -30,6 +55,15 @@ export default class JobStyle {
     this.colorGradient = colorGradient
   }
 
+  /**
+   * Choose a color from the colorGradient by score.
+   *
+   * @private
+   * @param score
+   * @param [minScore=0.5]
+   * @returns A single color from the colorGradient.
+   * @memberof JobStyle
+   */
   private colorByScore(score: number, minScore = 0.5): Color {
     if (score < 0 || score > 1) {
       throw new RangeError("score must be between 0 and 1, including 0 and 1.")
@@ -46,6 +80,14 @@ export default class JobStyle {
     return this.colorGradient[index]
   }
 
+  /**
+   * Calculate the maximum score from a cluster of jobs.
+   *
+   * @private
+   * @param features
+   * @returns The score of the best matching job.
+   * @memberof JobStyle
+   */
   private maxScore(features: Feature[]): number {
     let maxScore = 0
     for (const feature of features) {
@@ -56,7 +98,16 @@ export default class JobStyle {
     return maxScore
   }
 
-  private polygonStyle(score: number, scale: number, size: number): Style {
+  /**
+   * Create a regular polygon as icon to display a cluster.
+   *
+   * @private
+   * @param score - Determines the color for the cluster.
+   * @param size - The size of the polygon will scale with the number of jobs inside the cluster.
+   * @returns
+   * @memberof JobStyle
+   */
+  private polygonStyle(score: number, size: number): Style {
     const radius = bound(15, size, 25)
     return new Style({
       image: new RegularShape({
@@ -83,20 +134,29 @@ export default class JobStyle {
     })
   }
 
+  /**
+   * Build the style for a job cluster.
+   *
+   * @param  cluster
+   * @returns
+   * @memberof JobStyle
+   */
   public clusterStyle(cluster: Feature): Style[] {
     const features: Feature[] = cluster.get("features")
     const size = features.length
-    if (size === 1) {
-      return this.selectedStyle(cluster)
-    } else {
-      const score = this.maxScore(features)
-      const scale = bound(0.2, size, 0.4)
-      const style = this.polygonStyle(score, scale, size)
+    const score = this.maxScore(features)
+    const style = this.polygonStyle(score, size)
 
-      return [style]
-    }
+    return [style]
   }
 
+  /**
+   * Build the style for a job area.
+   *
+   * @param  feature
+   * @returns
+   * @memberof JobStyle
+   */
   public areaStyle(feature: Feature): Style {
     const color = this.colorByScore(this.getScore(feature))
     return new Style({
@@ -110,6 +170,14 @@ export default class JobStyle {
     })
   }
 
+  /**
+   * Extract the score from a feature.
+   *
+   * @private
+   * @param  feature
+   * @returns
+   * @memberof JobStyle
+   */
   private getScore(feature: Feature): number {
     const subfeatures: Feature[] = feature.get("features")
 
@@ -119,14 +187,5 @@ export default class JobStyle {
     }
 
     return 0
-  }
-
-  private selectedStyle(cluster: Feature): Style[] {
-    const size = 1
-    const score = this.getScore(cluster)
-    // Scale is within [0.2, 0.4]
-    const scale = Math.min(0.4, Math.max(size * 0.03, 0.2))
-    const style = this.polygonStyle(score, scale, size)
-    return [style]
   }
 }

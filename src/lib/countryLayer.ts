@@ -20,6 +20,13 @@ export function convertGeoJsonToGeometries(geojson: Record<string, any>): (Geome
   }).readFeatures(geojson)
   return features.map((feature: Feature) => feature.getGeometry())
 }
+/**
+ * Try to load geometry from the store instead of making an expensive call to the backend.
+ *
+ * @param store
+ * @param event
+ * @returns
+ */
 const getCachedGeometry = (store: Store, event: MapBrowserEvent): Geometry => {
   const [lon, lat] = toLonLat(event.coordinate)
   const matches = store.getState().allGeometries.filter((geometry: Geometry) => {
@@ -27,7 +34,11 @@ const getCachedGeometry = (store: Store, event: MapBrowserEvent): Geometry => {
   })
   return matches[0]
 }
-
+/**
+ * TODO: This should be a class implementing ol/Layer #AT-13.
+ *
+ * @param map
+ */
 const countryLayer = (map: Map): void => {
   map.olmap.on("singleclick", async (event: MapBrowserEvent) => {
     const cachedGeometry = getCachedGeometry(map.store, event)
