@@ -13,20 +13,31 @@ const jsdocRules = {
   "jsdoc/newline-after-description": "warn",
   "jsdoc/no-types": "error",
   "jsdoc/no-undefined-types": "off",
-  "jsdoc/require-description-complete-sentence": "error",
+  "jsdoc/require-description-complete-sentence": "warn",
   "jsdoc/require-description": "error",
   "jsdoc/require-example": "off",
   "jsdoc/require-hyphen-before-param-description": "error",
-  "jsdoc/require-jsdoc": "error",
-  "jsdoc/require-param-description": "warn",
+  "jsdoc/require-param-description": "off",
   "jsdoc/require-param-name": "error",
   "jsdoc/require-param-type": "off",
   "jsdoc/require-param": "error",
   "jsdoc/require-returns-check": "error",
-  "jsdoc/require-returns-description": "error",
+  "jsdoc/require-returns-description": "off",
   "jsdoc/require-returns-type": "off",
   "jsdoc/require-returns": "error",
   "jsdoc/valid-types": "error",
+  "require-jsdoc": [
+    "error",
+    {
+      require: {
+        FunctionDeclaration: true,
+        MethodDefinition: true,
+        ClassDeclaration: true,
+        ArrowFunctionExpression: true,
+        FunctionExpression: true,
+      },
+    },
+  ],
 }
 
 module.exports = {
@@ -53,6 +64,12 @@ module.exports = {
         "jest/no-test-callback": "off",
       },
     },
+    {
+      files: ["**/*.test.ts"],
+      rules: {
+        "require-jsdoc": "off",
+      },
+    },
   ],
   rules: {
     "@typescript-eslint/no-var-requires": "off",
@@ -69,7 +86,13 @@ module.exports = {
       "error",
       { functions: false, classes: true, variables: true, typedefs: true },
     ],
-    "no-console": "warn",
+    "no-console": [
+      "warn",
+      {
+        allow: ["error"],
+      },
+    ],
+
     ...jsdocRules,
   },
 }

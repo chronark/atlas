@@ -2,7 +2,13 @@ import Fill from "ol/style/Fill"
 import Stroke from "ol/style/Stroke"
 import Style from "ol/style/Style"
 
-const polygonStyle = ({ isSelected = false }: { isSelected?: boolean } = {}): Style => {
+/**
+ * Create sample polygon style.
+ *
+ * @param isSelected
+ * @returns
+ */
+function polygonStyle(isSelected?: boolean): Style {
   const selectedStyle = new Style({
     fill: new Fill({
       color: "rgba(5,25,35,0.4)",

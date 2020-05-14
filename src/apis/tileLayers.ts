@@ -28,7 +28,7 @@ export class OSMLayer implements TileLayerGenerator {
   public getLayer(): BaseLayer {
     const layer = new TileLayer({
       source: new XYZ({
-        url: new Charon().getTileURL(),
+        url: new Charon().tileURL,
         attributions: '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }),
     })
@@ -37,13 +37,25 @@ export class OSMLayer implements TileLayerGenerator {
   }
 }
 
+/**
+ * Handles all communication with Mapbox.
+ *
+ * @class MapboxLayer
+ * @implements {TileLayerGenerator}
+ */
 export class MapboxLayer implements TileLayerGenerator {
+  /**
+   * Create a layer with vector tiles.
+   *
+   * @returns
+   * @memberof MapboxLayer
+   */
   public getLayer(): BaseLayer {
     const mapboxLayer = new VectorTileLayer({
       declutter: true,
       source: new VectorTileSource({
         format: new MVT(),
-        url: new Charon().getTileURL(),
+        url: new Charon().tileURL,
         attributions:
           '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>',
       }),
@@ -53,6 +65,14 @@ export class MapboxLayer implements TileLayerGenerator {
     return mapboxLayer
   }
 
+  /**
+   * Loads and applies the mapbox styles to the vector tiles.
+   *
+   * @private
+   * @param  mapboxLayer
+   * @returns
+   * @memberof MapboxLayer
+   */
   private async applyMapboxStyle(mapboxLayer: VectorTileLayer): Promise<void> {
     const glStyle = await new Charon().getStyle()
 
