@@ -69,12 +69,12 @@ jobs:
           - os: windows-latest
             brwoser: chromium:headless
 
-          - os: ubuntu-latest
-            browser: firefox:headless
-          - os: ubuntu-latest
-            browser: chrome:headless
-          - os: ubuntu-latest
-            brwoser: chromium:headless
+          # - os: ubuntu-latest
+          #   browser: firefox:headless
+          # - os: ubuntu-latest
+          #   browser: chrome:headless
+          # - os: ubuntu-latest
+          #   browser: chromium:headless
 
           # Enable these once testcafe works on github's macos machines
           # - os: macos-latest
