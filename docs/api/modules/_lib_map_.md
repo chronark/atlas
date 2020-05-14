@@ -7,3 +7,8 @@
 ### Classes
 
 * [Map](../classes/_lib_map_.map.md)
+
+### Interfaces
+
+* [MapOpts](../interfaces/_lib_map_.mapopts.md)
+* [ViewOpts](../interfaces/_lib_map_.viewopts.md)

@@ -30,6 +30,7 @@ if (searchField !== null && searchForm !== null) {
     event.preventDefault()
   })
 }
+
 // Using local source because of CORS problems.
 new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs.json").get().then((jobs) => {
   new Charon().forwardGeocoding("Bayern").then((geojson: GeocodingResponseObject | undefined) => {
