@@ -60,22 +60,26 @@ Map() accepts a config object as second parameter where you can specify an initi
 
 #### By LatLon
 
-    const mapConfig = {
-        view: {
-            lat: 0,
-            lon: 45,
-            zoom: 2,
-        }
-    }
+```javascript
+const mapConfig = {
+  view: {
+    lat: 0,
+    lon: 45,
+    zoom: 2,
+  },
+}
 
-    const map = new Map("id", mapConfig)
+const map = new Map("id", mapConfig)
+```
 
 #### By Extent
 
-    const mapConfig = {
-        extent: [1,2,3,4],
-    }
+```javascript
+const mapConfig = {
+  extent: [1, 2, 3, 4],
+}
 
-    const map = new Map("id", mapConfig)
+const map = new Map("id", mapConfig)
+```
 
 If you supply both a view and extent object, it will use only the view configuration.
