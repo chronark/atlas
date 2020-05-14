@@ -22,37 +22,68 @@ import { countryLayer } from "./countryLayer"
 import { countryLayerStyle } from "../styles/countryStyle"
 import { filterJobs } from "./geometryFilter"
 import { fromLonLat } from "ol/proj"
-import { log } from "./logger"
 import polygonStyle from "../styles/polygon"
 import { shiftKeyOnly } from "ol/events/condition"
 
-interface ViewOpts {
-  lat: number
-  lon: number
-  zoom: number
-}
+/**
+ * Initial map configuration options.
+ *
+ * @interface MapOpts
+ */
 export interface MapOpts {
   /**
    * Provide this if you want to show a specifig area of the map on startup.
    * This will be overridden by view.
+   *
+   * @type {Extent}
+   * @memberof MapOpts
    */
   extent?: Extent
   /**
    * Initial latitude, longitude and zoom level. Default = { lat: 45, lon: 0, zoom: 2 }.
    * Providing this option will override extent.
+   *
+   * @type {{
+   * lat: number
+   * lon: number
+   * zoom: number
+   * }}
+   * @memberof MapOpts
    */
-  view?: ViewOpts
+  view?: {
+    lat: number
+    lon: number
+    zoom: number
+  }
 }
 
+/**
+ * Main Map class and entrypoint.
+ *
+ * @class Map
+ */
 export default class Map {
+  /**
+   * Used to find the correct HTMLElement to attach the map.
+   *
+   * @private
+   * @type {string}
+   * @memberof Map
+   */
   private mapID: string
   public olmap: OLMap
   public store: Store
   private JobLayer: JobLayer
   private zIndices: Record<string, number>
 
+  /**
+   *Creates an instance of Map.
+   *
+   * @param mapID
+   * @param [opts]
+   * @memberof Map
+   */
   public constructor(mapID: string, opts?: MapOpts) {
-    log.debug("Initializing map", { mapID })
     this.mapID = mapID
     this.zIndices = {
       tiles: 0,
@@ -73,11 +104,20 @@ export default class Map {
     this.addVisibleJobsHook()
   }
 
+  /**
+   * Runs a user search for a place, country, etc.
+   * This requires the backend to be running and configured properly via environmental variables.
+   * See ../apis/charon.ts for more info.
+   *
+   * @param query
+   * @returns
+   * @memberof Map
+   */
   async search(query: string): Promise<void> {
     if (query.length > 0) {
       const geojson = await new Charon().forwardGeocoding(query)
       if (geojson === undefined) {
-        log.error("Could not find " + query)
+        console.error("Could not find " + query)
         return
       }
       this.addFeatureFromGeojson(geojson)
@@ -88,18 +128,34 @@ export default class Map {
     }
   }
 
+  /**
+   * Subscribes to the store to update the jobs on the map.
+   *
+   * @memberof Map
+   */
   addVisibleJobsHook(): void {
     this.store.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state) => {
       this.JobLayer.setJobs(state.visibleJobs)
     })
   }
 
+  /**
+   * Subscribes to the store to update the selected countries on the map.
+   *
+   * @memberof Map
+   */
   addGeometriesHook(): void {
     this.store.events.subscribe(["STATE_CHANGE_SELECTEDGEOMETRIES", "STATE_CHANGE_ALLJOBS"], (state) => {
       this.countryLayerFromGeometry(state.selectedGeometries)
     })
   }
 
+  /**
+   * Subscribes to the store to update state's visible jobs.
+   * Whenever the jobs change, like jobs being added or removed, or if the user (de)selects geometry, we need to update the shown jobs.
+   *
+   * @memberof Map
+   */
   addJobFilterHook(): void {
     this.store.events.subscribe(["STATE_CHANGE_ALLJOBS", "STATE_CHANGE_SELECTEDGEOMETRIES"], (state) => {
       let newShownJobs: Job[] = []
@@ -136,14 +192,29 @@ export default class Map {
     }
   }
 
+  /**
+   * TODO: refactor countryLayer.
+   *
+   * @memberof Map
+   */
   addCountryLayer(): void {
     countryLayer(this)
   }
 
+  /**
+   * Create a new Layer to display a country.
+   *
+   * TODO: Fix geometry type
+   * TODO: Refactor this with addFeatureFromGeojson.
+   *
+   * @param  geometry
+   * @returns
+   * @memberof Map
+   */
   public countryLayerFromGeometry(geometry: Record<string, any>[]): VectorLayer {
     const layerName = "countries"
     const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
-      style: polygonStyle({ isSelected: false }),
+      style: polygonStyle(false),
     })
     if (!wasCreated) {
       layer.getSource().clear()
@@ -163,10 +234,18 @@ export default class Map {
     return layer
   }
 
+  /**
+   * Create a featurelayer from geojson data
+   * TODO: Refactor this with countryLayerFromGeometry.
+   *
+   * @param geojson
+   * @returns
+   * @memberof Map
+   */
   public addFeatureFromGeojson(geojson: GeocodingResponseObject): VectorLayer {
     const layerName = "featureLayer"
     const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
-      style: countryLayerStyle({ isSelected: true }),
+      style: countryLayerStyle(true),
     })
     if (!wasCreated) {
       layer.getSource().clear()
@@ -185,6 +264,14 @@ export default class Map {
     return layer
   }
 
+  /**
+   * Add sidebar controls to the map.
+   * TODO: Move this outside of the class.
+   *
+   * @private
+   * @returns
+   * @memberof Map
+   */
   private addControls(): any {
     const mainbar = new Bar()
     mainbar.setPosition("left-top")
@@ -195,6 +282,14 @@ export default class Map {
     return mainbar
   }
 
+  /**
+   * Create a button to remove the circle selection.
+   * TODO: Move this outside of the class.
+   *
+   * @private
+   * @returns
+   * @memberof Map
+   */
   private circleSelectRemoveButton(): void {
     return new Button({
       html: "R",
@@ -206,25 +301,90 @@ export default class Map {
     })
   }
 
+  /**
+   * Remove layers from the map.
+   *
+   * @private
+   * @param names
+   * @memberof Map
+   */
   private removeLayersByNames(names: string[]): void {
     const layers = this.getLayersByNames(names)
-    log.info("layers", layers)
     layers.forEach((layer: BaseLayer) => {
-      log.info("Deleting layer", layer)
       this.olmap.removeLayer(layer)
     })
   }
 
+  /**
+   * Moves the viewport to a center and zoom level.
+   * Can be used to zoom in on clusters.
+   *
+   * @private
+   * @param  center
+   * @param [zoom=16]
+   * @memberof Map
+   */
   private zoomTo(center: number[], zoom = 16): void {
-    log.debug("Zooming", { center, zoom })
     this.olmap.getView().animate({
       center: center,
       zoom: zoom,
     })
   }
 
+  /**
+   * Add the possibility to draw a circle on the map.
+   *
+   * TODO: Refactor this outside of the map class.
+   *
+   * @private
+   * @memberof Map
+   */
   private addCircleSelect(): void {
-    const drawLayer = this.getDrawLayer({ clear: true })
+    /**
+     * Calls the necessary functions to filter through visible jobs after drawing.
+     *
+     * @param draw
+     * @param modify
+     */
+    const handleCircleSelectEvents = (draw: Draw, modify: Modify): void => {
+      /**
+       * Retrieve the circle element from the map in case it exists.
+       *
+       * @returns
+       */
+      const getCircle = (): Geometry | undefined => {
+        const source = this.getDrawLayer().getSource()
+        if (source.getFeatures().length === 1) {
+          return source.getFeatures()[0].get("geometry")
+        }
+
+        return undefined
+      }
+      /**
+       * Update the visible jobs after filtering them.
+       */
+      const onEnd = (): void => {
+        const circle = getCircle()
+        if (circle) {
+          const filteredJobs = filterJobs(this.store.getState().allJobs, {
+            geometries: this.store.getState().selectedGeometries,
+            circle: circle,
+          })
+          this.store.dispatch("setVisibleJobs", filteredJobs)
+        }
+      }
+
+      draw.on("drawend", () => {
+        this.clearSource(this.getDrawLayer())
+        onEnd()
+      })
+
+      modify.on("modifyend", () => {
+        onEnd()
+      })
+    }
+
+    const drawLayer = this.getDrawLayer(true)
     this.olmap.addLayer(drawLayer)
     const modify = new Modify({
       source: drawLayer.getSource(),
@@ -240,42 +400,19 @@ export default class Map {
       // Sets the style during first transformation
       style: polygonStyle(),
     })
-    this.handleCircleSelectEvents(draw, modify)
+    handleCircleSelectEvents(draw, modify)
     this.olmap.addInteraction(draw)
   }
 
-  private handleCircleSelectEvents(draw: Draw, modify: Modify): void {
-    const getCircle = (): Geometry | undefined => {
-      const source = this.getDrawLayer().getSource()
-      if (source.getFeatures().length === 1) {
-        return source.getFeatures()[0].get("geometry")
-      }
-
-      return undefined
-    }
-
-    const onEnd = (): void => {
-      const circle = getCircle()
-      if (circle) {
-        const filteredJobs = filterJobs(this.store.getState().allJobs, {
-          geometries: this.store.getState().selectedGeometries,
-          circle: circle,
-        })
-        this.store.dispatch("setVisibleJobs", filteredJobs)
-      }
-    }
-
-    draw.on("drawend", () => {
-      this.clearSource(this.getDrawLayer())
-      onEnd()
-    })
-
-    modify.on("modifyend", () => {
-      onEnd()
-    })
-  }
-
-  private getDrawLayer({ clear = false }: { clear?: boolean } = {}): VectorLayer {
+  /**
+   * Get or create a new layer to draw on.
+   *
+   * @private
+   * @param clear
+   * @returns
+   * @memberof Map
+   */
+  private getDrawLayer(clear?: boolean): VectorLayer {
     let [layer, wasCreated] = this.getOrCreateLayer("drawLayer", {
       source: new VectorSource(),
       // Sets the style after transformation
@@ -289,6 +426,14 @@ export default class Map {
     return layer
   }
 
+  /**
+   * Helper function to clear the source of a layer.
+   *
+   * @private
+   * @param  layer
+   * @returns
+   * @memberof Map
+   */
   private clearSource(layer: VectorLayer): VectorLayer {
     if (typeof layer.getSource === "function") {
       layer.getSource().clear()
@@ -296,6 +441,14 @@ export default class Map {
     return layer
   }
 
+  /**
+   * Filter all layers by name.
+   *
+   * @private
+   * @param  names
+   * @returns
+   * @memberof Map
+   */
   private getLayersByNames(names: string[]): VectorLayer[] {
     const allLayers = this.olmap.getLayers()
     const filteredLayers: VectorLayer[] = []
@@ -307,6 +460,15 @@ export default class Map {
     return filteredLayers
   }
 
+  /**
+   * Try to get a layer by name or create a new one if it doesn't exist.
+   *
+   * @private
+   * @param name
+   * @param  opts
+   * @returns
+   * @memberof Map
+   */
   private getOrCreateLayer(name: string, opts: Record<string, any>): [VectorLayer, boolean] {
     const layers = this.getLayersByNames([name])
     let layer: VectorLayer, wasCreated: boolean
@@ -329,7 +491,7 @@ export default class Map {
   /**
    * Create an initial viewport in the following order:
    *
-   * 1. From a specified `view` obecjt in mapOpts.
+   * 1. From a specified `view` object in mapOpts.
    * 2. From a specified `extent` onject
    * 3. If neither options were given, create a default view centered on europe.
    *
@@ -357,6 +519,15 @@ export default class Map {
     }
   }
 
+  /**
+   * Create the actual map canvas.
+   * Loads in tiles and displays the initial viewport.
+   *
+   * @private
+   * @param opts
+   * @returns
+   * @memberof Map
+   */
   private build(opts: MapOpts): OLMap {
     const rasterLayer = new OSMLayer().getLayer()
     // const vectorLayer = new MapboxLayer().getLayer()
@@ -382,6 +553,12 @@ export default class Map {
     return olmap
   }
 
+  /**
+   * TODO: Refactor  #AT-15.
+   *
+   * @private
+   * @memberof Map
+   */
   private buildJobLayer(): void {
     this.JobLayer = new JobLayer(60)
     this.JobLayer.animatedCluster.setZIndex(this.zIndices.jobs)
@@ -389,20 +566,49 @@ export default class Map {
     this.addLayer(this.JobLayer.areas, { name: "areas" })
   }
 
+  /**
+   * Loads new jobs into the store.
+   *
+   * This will overwrite the old ones, so please merge your jobs before if you wish to only add jobs.
+   *
+   * @param jobs
+   * @memberof Map
+   */
   public setJobs(jobs: Job[]): void {
     this.store.dispatch("setJobs", jobs)
   }
 
+  /**
+   * Instantly set the map viewport to center on lat/lon and zoom level.
+   *
+   * @param  lon
+   * @param  lat
+   * @param  zoom
+   * @memberof Map
+   */
   public setView(lon: number, lat: number, zoom: number): void {
     this.olmap.getView().setCenter([lat, lon])
     this.olmap.getView().setZoom(zoom)
   }
 
+  /**
+   * Calculate the required viewport to display the entire layer and set the viewport accordingly.
+   *
+   * @param layer
+   * @memberof Map
+   */
   public zoomToLayer(layer: VectorLayer): void {
     const extent = layer.getSource().getExtent()
     this.zoomToExtent(extent)
   }
 
+  /**
+   * Move the viewport to show the entire extent.
+   * This will zoom in or out as necessary.
+   *
+   * @param extent
+   * @memberof Map
+   */
   public zoomToExtent(extent: Extent): void {
     this.olmap.getView().fit(extent, { duration: 1500 })
   }

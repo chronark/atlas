@@ -50,7 +50,7 @@
     "@types/jest": "25.2.2",
     "@types/node": "14.0.1",
     "@types/ol": "6.3.1",
-    "@typescript-eslint/eslint-plugin": "2.33.0",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "2.33.0",
     "@undefinedlabs/scope-agent": "0.7.0",
     "babel-loader": "8.1.0",

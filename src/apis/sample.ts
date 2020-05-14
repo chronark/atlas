@@ -1,8 +1,21 @@
 import { Job } from "../types/customTypes"
 import axios from "axios"
-import { log } from "../lib/logger"
 
+/**
+ * Sample generator for testing.
+ *
+ * @class Sample
+ */
 export default class Sample {
+  /**
+   * Create a list of locations.
+   *
+   * @private
+   * @param  cities
+   * @param  locationCount
+   * @returns
+   * @memberof Sample
+   */
   private getLocations(cities: Record<string, any>[], locationCount: number): { lat: number; lon: number }[] {
     const locations: { lat: number; lon: number }[] = []
     for (let l = 0; l < locationCount; l++) {
@@ -15,9 +28,15 @@ export default class Sample {
     return locations
   }
 
+  /**
+   * Create a list of jobs for testing.
+   *
+   * @param  count
+   * @returns
+   * @memberof Sample
+   */
   public async jobs(count: number): Promise<Job[]> {
-    const startTime = new Date()
-    // TODO selfhost these files
+    // TODO: selfhost these files
     const cities = await axios
       .get("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json")
       .then((response) => response.data)
@@ -37,11 +56,17 @@ export default class Sample {
         url: "fake.domain.com",
       })
     }
-    const elapsedTime = Number(new Date()) - Number(startTime)
-    log.info(`Generating ${jobs.length} jobs took ${elapsedTime} ms.`)
     return jobs
   }
 
+  /**
+   * Create a random string with a specific length.
+   *
+   * @private
+   * @param  [length=4]
+   * @returns
+   * @memberof Sample
+   */
   private generateString(length = 4): string {
     let result = ""
     const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
