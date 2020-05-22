@@ -78,7 +78,7 @@
     "proxy-polyfill": "0.3.1",
     "regenerator-runtime": "0.13.5",
     "require-context.macro": "1.2.2",
-    "serve": "11.3.0",
+    "serve": "11.3.1",
     "source-map-loader": "0.2.4",
     "start-server-and-test": "1.11.0",
     "style-loader": "1.2.1",
