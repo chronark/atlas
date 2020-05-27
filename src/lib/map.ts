@@ -25,6 +25,9 @@ import { fromLonLat } from "ol/proj"
 import polygonStyle from "../styles/polygon"
 import { shiftKeyOnly } from "ol/events/condition"
 
+import {matomo, matomoTracker, logMatomo} from "../apis/matomo"
+
+
 /**
  * Initial map configuration options.
  *
@@ -35,7 +38,6 @@ export interface MapOpts {
    * Provide this if you want to show a specifig area of the map on startup.
    * This will be overridden by view.
    *
-   * @type {Extent}
    * @memberof MapOpts
    */
   extent?: Extent
@@ -43,11 +45,6 @@ export interface MapOpts {
    * Initial latitude, longitude and zoom level. Default = { lat: 45, lon: 0, zoom: 2 }.
    * Providing this option will override extent.
    *
-   * @type {{
-   * lat: number
-   * lon: number
-   * zoom: number
-   * }}
    * @memberof MapOpts
    */
   view?: {
@@ -84,6 +81,16 @@ export default class Map {
    * @memberof Map
    */
   public constructor(mapID: string, opts?: MapOpts) {
+    matomoTracker.track(
+      {
+        e_c: "Map",
+        e_a: "start",
+        e_n: "Initialized Map",
+        e_v: "0",
+        url: "localhost",
+        c_var: ["Dummy", "Value"]
+      }
+    )
     this.mapID = mapID
     this.zIndices = {
       tiles: 0,
@@ -114,6 +121,11 @@ export default class Map {
    * @memberof Map
    */
   async search(query: string): Promise<void> {
+    logMatomo({
+      action: "search" ,
+      name: "search for city",
+      value: query
+    })
     if (query.length > 0) {
       const geojson = await new Charon().forwardGeocoding(query)
       if (geojson === undefined) {
