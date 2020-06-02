@@ -52,7 +52,7 @@
     "@types/ol": "6.3.1",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
-    "@undefinedlabs/scope-agent": "0.7.1",
+    "@undefinedlabs/scope-agent": "0.7.2",
     "babel-loader": "8.1.0",
     "babel-plugin-macros": "2.8.0",
     "core-js": "3.6.5",
