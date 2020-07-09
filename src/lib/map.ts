@@ -1,14 +1,13 @@
 import { Attribution, OverviewMap, Zoom } from "ol/control"
 import { Draw, Modify } from "ol/interaction"
 import { GeocodingResponseObject, Job } from "../types/customTypes"
-import { Store, newDefaultStore } from "../state/store"
+import { Store, globalStore } from "../state/store"
 
 import Bar from "ol-ext/control/Bar"
 import BaseLayer from "ol/layer/Base"
 import Button from "ol-ext/control/Button"
 import Charon from "../apis/charon"
 import { Extent } from "ol/extent"
-import Feature from "ol/Feature"
 import FullScreen from "ol/control/FullScreen"
 import GeoJSON from "ol/format/GeoJSON"
 import Geometry from "ol/geom/Geometry"
@@ -18,13 +17,12 @@ import { OSMLayer } from "../apis/tileLayers"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import View from "ol/View"
-import { countryLayer } from "./countryLayer"
-import { countryLayerStyle } from "../styles/countryStyle"
+import { selectionStyle } from "../styles/selectionStyle"
 import { filterJobs } from "./geometryFilter"
 import { fromLonLat } from "ol/proj"
 import polygonStyle from "../styles/polygon"
 import { shiftKeyOnly } from "ol/events/condition"
-
+import SelectionLayer from "./selectionLayer"
 /**
  * Initial map configuration options.
  *
@@ -75,6 +73,7 @@ export default class Map {
   public store: Store
   private JobLayer: JobLayer
   private zIndices: Record<string, number>
+  private selectionLayer: SelectionLayer
 
   /**
    *Creates an instance of Map.
@@ -91,12 +90,13 @@ export default class Map {
       circleSelect: 10,
       jobs: 1000,
     }
-    this.store = newDefaultStore()
 
     this.olmap = this.build(opts || {})
+
+    this.selectionLayer = this.createSelectionLayer()
+
     this.addControls()
     this.addCircleSelect()
-    this.addCountryLayer()
     this.buildJobLayer()
 
     this.addGeometriesHook()
@@ -120,12 +120,25 @@ export default class Map {
         console.error("Could not find " + query)
         return
       }
-      this.addFeatureFromGeojson(geojson)
-      const layers = this.getLayersByNames(["featureLayer"])
-      if (layers.length === 1) {
-        this.zoomToLayer(layers[0])
-      }
+      const features = this.selectionLayer.addFeatureFromGeojson(geojson)
+        this.zoomToExtent(features[0].getGeometry().getExtent())
     }
+  }
+
+  /**
+   * Create a new Polygon layer and add the onClick event listener.
+   *
+   * Will be called once in the constructor.
+   *
+   * @private
+   * @returns A new polygon layer for countries or other areas the user selected.
+   * @memberof Map
+   */
+  private createSelectionLayer(): SelectionLayer {
+    const selectionLayer = new SelectionLayer()
+    this.olmap.on("singleclick", selectionLayer.onSingleClick)
+    this.olmap.addLayer(selectionLayer)
+    return selectionLayer
   }
 
   /**
@@ -134,7 +147,7 @@ export default class Map {
    * @memberof Map
    */
   addVisibleJobsHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state) => {
+    globalStore.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state) => {
       this.JobLayer.setJobs(state.visibleJobs)
     })
   }
@@ -145,8 +158,8 @@ export default class Map {
    * @memberof Map
    */
   addGeometriesHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_SELECTEDGEOMETRIES", "STATE_CHANGE_ALLJOBS"], (state) => {
-      this.countryLayerFromGeometry(state.selectedGeometries)
+    globalStore.events.subscribe(["STATE_CHANGE_SELECTEDGEOMETRIES", "STATE_CHANGE_ALLJOBS"], (state) => {
+      this.selectionLayer.setFeaturesFromGeometry(state.selectedGeometries)
     })
   }
 
@@ -157,17 +170,17 @@ export default class Map {
    * @memberof Map
    */
   addJobFilterHook(): void {
-    this.store.events.subscribe(["STATE_CHANGE_ALLJOBS", "STATE_CHANGE_SELECTEDGEOMETRIES"], (state) => {
+    globalStore.events.subscribe(["STATE_CHANGE_ALLJOBS", "STATE_CHANGE_SELECTEDGEOMETRIES"], (state) => {
       let newShownJobs: Job[] = []
 
-      if (this.store.getState().selectedGeometries.length === 0) {
+      if (globalStore.getState().selectedGeometries.length === 0) {
         newShownJobs = state.allJobs
       } else {
         newShownJobs = filterJobs(state.allJobs, {
           geometries: state.selectedGeometries,
         })
       }
-      this.store.dispatch("setVisibleJobs", newShownJobs)
+      globalStore.dispatch("setVisibleJobs", newShownJobs)
     })
   }
 
@@ -193,78 +206,6 @@ export default class Map {
   }
 
   /**
-   * TODO: refactor countryLayer.
-   *
-   * @memberof Map
-   */
-  addCountryLayer(): void {
-    countryLayer(this)
-  }
-
-  /**
-   * Create a new Layer to display a country.
-   *
-   * TODO: Fix geometry type
-   * TODO: Refactor this with addFeatureFromGeojson.
-   *
-   * @param  geometry
-   * @returns
-   * @memberof Map
-   */
-  public countryLayerFromGeometry(geometry: Record<string, any>[]): VectorLayer {
-    const layerName = "countries"
-    const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
-      style: polygonStyle(false),
-    })
-    if (!wasCreated) {
-      layer.getSource().clear()
-    }
-    const source = new VectorSource()
-    const features = geometry.map((g) => {
-      return new Feature({
-        geometry: g,
-      })
-    })
-    source.addFeatures(features)
-    layer.setSource(source)
-    if (wasCreated) {
-      this.addLayer(layer, { name: layerName })
-    }
-    layer.setZIndex(this.zIndices.countries)
-    return layer
-  }
-
-  /**
-   * Create a featurelayer from geojson data
-   * TODO: Refactor this with countryLayerFromGeometry.
-   *
-   * @param geojson
-   * @returns
-   * @memberof Map
-   */
-  public addFeatureFromGeojson(geojson: GeocodingResponseObject): VectorLayer {
-    const layerName = "featureLayer"
-    const [layer, wasCreated] = this.getOrCreateLayer(layerName, {
-      style: countryLayerStyle(true),
-    })
-    if (!wasCreated) {
-      layer.getSource().clear()
-    }
-    const source = new VectorSource({
-      features: new GeoJSON({ featureProjection: "EPSG:3857" }).readFeatures(geojson),
-
-      // url: new Charon().forwardGeocodingURL(search),
-      // format: new GeoJSON(),
-    })
-    layer.setSource(source)
-
-    if (wasCreated) {
-      this.addLayer(layer, { name: layerName })
-    }
-    return layer
-  }
-
-  /**
    * Add sidebar controls to the map.
    * TODO: Move this outside of the class.
    *
@@ -279,6 +220,7 @@ export default class Map {
     this.olmap.addControl(new FullScreen())
     this.olmap.addControl(mainbar)
     mainbar.addControl(this.circleSelectRemoveButton())
+
     return mainbar
   }
 
@@ -366,11 +308,11 @@ export default class Map {
       const onEnd = (): void => {
         const circle = getCircle()
         if (circle) {
-          const filteredJobs = filterJobs(this.store.getState().allJobs, {
-            geometries: this.store.getState().selectedGeometries,
+          const filteredJobs = filterJobs(globalStore.getState().allJobs, {
+            geometries: globalStore.getState().selectedGeometries,
             circle: circle,
           })
-          this.store.dispatch("setVisibleJobs", filteredJobs)
+          globalStore.dispatch("setVisibleJobs", filteredJobs)
         }
       }
 
@@ -575,7 +517,7 @@ export default class Map {
    * @memberof Map
    */
   public setJobs(jobs: Job[]): void {
-    this.store.dispatch("setJobs", jobs)
+    globalStore.dispatch("setJobs", jobs)
   }
 
   /**

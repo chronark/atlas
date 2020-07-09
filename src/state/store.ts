@@ -142,3 +142,5 @@ export class Store {
 export function newDefaultStore(): Store {
   return new Store(actions, mutations, initialState())
 }
+
+export const globalStore = newDefaultStore()

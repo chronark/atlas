@@ -1,19 +1,19 @@
 import Charon from "../apis/charon"
 import { Jobs } from "../apis/jobs"
-import { State } from "../state/store"
+import { State, globalStore } from "../state/store"
 import { GeocodingResponseObject } from "../types/customTypes"
 import Map from "./map"
 
 const map = new Map("map-container")
 
 // Update UI
-map.store.events.subscribe(["STATE_CHANGE_ALLJOBS"], (state: State) => {
+globalStore.events.subscribe(["STATE_CHANGE_ALLJOBS"], (state: State) => {
   const allJobsCounter = document.getElementById("allJobsCounter")
   if (allJobsCounter) {
     allJobsCounter.innerText = state.allJobs.length.toString()
   }
 })
-map.store.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state: State) => {
+globalStore.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state: State) => {
   const visibleJobsCounter = document.getElementById("visibleJobsCounter")
   if (visibleJobsCounter) {
     visibleJobsCounter.innerText = state.visibleJobs.length.toString()
