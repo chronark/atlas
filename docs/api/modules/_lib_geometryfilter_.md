@@ -16,7 +16,7 @@
 
 ▸ **areCoordinatesInGeometry**(`lonLat`: [number, number], `geometry`: Geometry, `checkExtentFirst`: boolean): *boolean*
 
-*Defined in [src/lib/geometryFilter.ts:16](https://github.com/chronark/atlas/blob/198ad53/src/lib/geometryFilter.ts#L16)*
+*Defined in [src/lib/geometryFilter.ts:16](https://github.com/chronark/atlas/blob/a1ab160/src/lib/geometryFilter.ts#L16)*
 
 FIXME: Find a more efficient way #AT-4.
 
@@ -36,7 +36,7 @@ ___
 
 ▸ **filterJobs**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[], `filter`: object): *[Job](../interfaces/_types_customtypes_.job.md)[]*
 
-*Defined in [src/lib/geometryFilter.ts:84](https://github.com/chronark/atlas/blob/198ad53/src/lib/geometryFilter.ts#L84)*
+*Defined in [src/lib/geometryFilter.ts:84](https://github.com/chronark/atlas/blob/a1ab160/src/lib/geometryFilter.ts#L84)*
 
 Differentiates between circle geometry and polygon geometries and calls the correct functions.
 
@@ -59,7 +59,7 @@ ___
 
 ▸ **filterJobsByGeometry**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[], `geometries`: Geometry[]): *[Job](../interfaces/_types_customtypes_.job.md)[]*
 
-*Defined in [src/lib/geometryFilter.ts:37](https://github.com/chronark/atlas/blob/198ad53/src/lib/geometryFilter.ts#L37)*
+*Defined in [src/lib/geometryFilter.ts:37](https://github.com/chronark/atlas/blob/a1ab160/src/lib/geometryFilter.ts#L37)*
 
 Filter all jobs that are inside the geometries.
 

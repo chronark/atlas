@@ -22,4 +22,4 @@
   }),
 })
 
-*Defined in [src/styles/selectionStyle.ts:5](https://github.com/chronark/atlas/blob/198ad53/src/styles/selectionStyle.ts#L5)*
+*Defined in [src/styles/selectionStyle.ts:5](https://github.com/chronark/atlas/blob/a1ab160/src/styles/selectionStyle.ts#L5)*

@@ -29,7 +29,7 @@ A PubSub implementation for callbacks used in atlas.
 
 \+ **new Events**(): *[Events](_state_events_.events.md)*
 
-*Defined in [src/state/events.ts:11](https://github.com/chronark/atlas/blob/198ad53/src/state/events.ts#L11)*
+*Defined in [src/state/events.ts:11](https://github.com/chronark/atlas/blob/a1ab160/src/state/events.ts#L11)*
 
 Creates an instance of Events.
 
@@ -43,7 +43,7 @@ Creates an instance of Events.
 
 • **events**: *Record‹string, any›*
 
-*Defined in [src/state/events.ts:11](https://github.com/chronark/atlas/blob/198ad53/src/state/events.ts#L11)*
+*Defined in [src/state/events.ts:11](https://github.com/chronark/atlas/blob/a1ab160/src/state/events.ts#L11)*
 
 ## Methods
 
@@ -51,7 +51,7 @@ Creates an instance of Events.
 
 ▸ **publish**(`event`: string, `state`: [State](../modules/_state_store_.md#state)): *void*
 
-*Defined in [src/state/events.ts:44](https://github.com/chronark/atlas/blob/198ad53/src/state/events.ts#L44)*
+*Defined in [src/state/events.ts:44](https://github.com/chronark/atlas/blob/a1ab160/src/state/events.ts#L44)*
 
 Calls all subscribers.
 
@@ -72,7 +72,7 @@ ___
 
 ▸ **subscribe**(`events`: string[], `callback`: [stateCallback](../modules/_state_events_.md#statecallback)): *void*
 
-*Defined in [src/state/events.ts:28](https://github.com/chronark/atlas/blob/198ad53/src/state/events.ts#L28)*
+*Defined in [src/state/events.ts:28](https://github.com/chronark/atlas/blob/a1ab160/src/state/events.ts#L28)*
 
 Subscribe to one or more events.
 

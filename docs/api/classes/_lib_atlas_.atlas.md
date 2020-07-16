@@ -57,7 +57,7 @@ Main Map class and entrypoint.
 
 \+ **new Atlas**(`mapID`: string, `opts?`: [AtlasOpts](../interfaces/_lib_atlas_.atlasopts.md)): *[Atlas](_lib_atlas_.atlas.md)*
 
-*Defined in [src/lib/atlas.ts:68](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L68)*
+*Defined in [src/lib/atlas.ts:68](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L68)*
 
 Creates an instance of Map.
 
@@ -78,7 +78,7 @@ Name | Type |
 
 • **JobLayer**: *[JobLayer](_lib_joblayer_.joblayer.md)*
 
-*Defined in [src/lib/atlas.ts:66](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L66)*
+*Defined in [src/lib/atlas.ts:66](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L66)*
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 • **map**: *Map*
 
-*Defined in [src/lib/atlas.ts:64](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L64)*
+*Defined in [src/lib/atlas.ts:64](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L64)*
 
 ___
 
@@ -94,7 +94,7 @@ ___
 
 • **mapID**: *string*
 
-*Defined in [src/lib/atlas.ts:63](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L63)*
+*Defined in [src/lib/atlas.ts:63](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L63)*
 
 Used to find the correct HTMLElement to attach the map.
 
@@ -106,7 +106,7 @@ ___
 
 • **selectionLayer**: *[SelectionLayer](_lib_selectionlayer_.selectionlayer.md)*
 
-*Defined in [src/lib/atlas.ts:68](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L68)*
+*Defined in [src/lib/atlas.ts:68](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L68)*
 
 ___
 
@@ -114,7 +114,7 @@ ___
 
 • **store**: *[Store](_state_store_.store.md)*
 
-*Defined in [src/lib/atlas.ts:65](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L65)*
+*Defined in [src/lib/atlas.ts:65](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L65)*
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 • **zIndices**: *Record‹string, number›*
 
-*Defined in [src/lib/atlas.ts:67](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L67)*
+*Defined in [src/lib/atlas.ts:67](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L67)*
 
 ## Methods
 
@@ -130,7 +130,7 @@ ___
 
 ▸ **addCircleSelect**(): *void*
 
-*Defined in [src/lib/atlas.ts:352](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L352)*
+*Defined in [src/lib/atlas.ts:352](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L352)*
 
 Add the possibility to draw a circle on the map.
 
@@ -146,7 +146,7 @@ ___
 
 ▸ **addControls**(): *any*
 
-*Defined in [src/lib/atlas.ts:284](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L284)*
+*Defined in [src/lib/atlas.ts:284](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L284)*
 
 Add sidebar controls to the map.
 TODO: Move this outside of the class.
@@ -161,7 +161,7 @@ ___
 
 ▸ **addCountries**(): *Promise‹void›*
 
-*Defined in [src/lib/atlas.ts:151](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L151)*
+*Defined in [src/lib/atlas.ts:151](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L151)*
 
 Load initial set of countries and add them to the map without showing them to the user.
 
@@ -173,7 +173,7 @@ ___
 
 ▸ **addGeometriesHook**(): *void*
 
-*Defined in [src/lib/atlas.ts:228](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L228)*
+*Defined in [src/lib/atlas.ts:228](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L228)*
 
 Subscribes to the store to update the selected countries on the map.
 
@@ -187,7 +187,7 @@ ___
 
 ▸ **addJobFilterHook**(): *void*
 
-*Defined in [src/lib/atlas.ts:240](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L240)*
+*Defined in [src/lib/atlas.ts:240](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L240)*
 
 Subscribes to the store to update state's visible jobs.
 Whenever the jobs change, like jobs being added or removed, or if the user (de)selects geometry, we need to update the shown jobs.
@@ -202,7 +202,7 @@ ___
 
 ▸ **addLayer**(`layer`: BaseLayer, `opts`: object): *void*
 
-*Defined in [src/lib/atlas.ts:265](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L265)*
+*Defined in [src/lib/atlas.ts:265](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L265)*
 
 Creates a named layer and adds it to the existing openlayers map.
 By default a layer is not overwritten.
@@ -230,7 +230,7 @@ ___
 
 ▸ **addSelect**(): *void*
 
-*Defined in [src/lib/atlas.ts:160](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L160)*
+*Defined in [src/lib/atlas.ts:160](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L160)*
 
 **Returns:** *void*
 
@@ -240,7 +240,7 @@ ___
 
 ▸ **addVisibleJobsHook**(): *void*
 
-*Defined in [src/lib/atlas.ts:217](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L217)*
+*Defined in [src/lib/atlas.ts:217](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L217)*
 
 Subscribes to the store to update the jobs on the map.
 
@@ -254,7 +254,7 @@ ___
 
 ▸ **build**(`opts`: [AtlasOpts](../interfaces/_lib_atlas_.atlasopts.md)): *Map*
 
-*Defined in [src/lib/atlas.ts:541](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L541)*
+*Defined in [src/lib/atlas.ts:541](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L541)*
 
 Create the actual map canvas.
 Loads in tiles and displays the initial viewport.
@@ -275,7 +275,7 @@ ___
 
 ▸ **buildJobLayer**(): *void*
 
-*Defined in [src/lib/atlas.ts:572](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L572)*
+*Defined in [src/lib/atlas.ts:572](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L572)*
 
 TODO: Refactor  #AT-15.
 
@@ -289,7 +289,7 @@ ___
 
 ▸ **circleSelectRemoveButton**(): *void*
 
-*Defined in [src/lib/atlas.ts:303](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L303)*
+*Defined in [src/lib/atlas.ts:303](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L303)*
 
 Create a button to remove the circle selection.
 TODO: Move this outside of the class.
@@ -304,7 +304,7 @@ ___
 
 ▸ **clearSource**(`layer`: VectorLayer): *VectorLayer*
 
-*Defined in [src/lib/atlas.ts:447](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L447)*
+*Defined in [src/lib/atlas.ts:447](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L447)*
 
 Helper function to clear the source of a layer.
 
@@ -324,7 +324,7 @@ ___
 
 ▸ **createSelectionLayer**(): *[SelectionLayer](_lib_selectionlayer_.selectionlayer.md)*
 
-*Defined in [src/lib/atlas.ts:207](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L207)*
+*Defined in [src/lib/atlas.ts:207](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L207)*
 
 Create a new Polygon layer and add the onClick event listener.
 
@@ -342,7 +342,7 @@ ___
 
 ▸ **createView**(`opts`: [AtlasOpts](../interfaces/_lib_atlas_.atlasopts.md)): *any*
 
-*Defined in [src/lib/atlas.ts:513](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L513)*
+*Defined in [src/lib/atlas.ts:513](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L513)*
 
 Create an initial viewport in the following order:
 
@@ -368,7 +368,7 @@ ___
 
 ▸ **getDrawLayer**(`clear?`: undefined | false | true): *VectorLayer*
 
-*Defined in [src/lib/atlas.ts:425](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L425)*
+*Defined in [src/lib/atlas.ts:425](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L425)*
 
 Get or create a new layer to draw on.
 
@@ -388,7 +388,7 @@ ___
 
 ▸ **getLayersByNames**(`names`: string[]): *VectorLayer[]*
 
-*Defined in [src/lib/atlas.ts:462](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L462)*
+*Defined in [src/lib/atlas.ts:462](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L462)*
 
 Filter all layers by name.
 
@@ -408,7 +408,7 @@ ___
 
 ▸ **getOrCreateLayer**(`name`: string, `opts`: Record‹string, any›): *[VectorLayer, boolean]*
 
-*Defined in [src/lib/atlas.ts:482](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L482)*
+*Defined in [src/lib/atlas.ts:482](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L482)*
 
 Try to get a layer by name or create a new one if it doesn't exist.
 
@@ -429,7 +429,7 @@ ___
 
 ▸ **removeLayersByNames**(`names`: string[]): *void*
 
-*Defined in [src/lib/atlas.ts:321](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L321)*
+*Defined in [src/lib/atlas.ts:321](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L321)*
 
 Remove layers from the map.
 
@@ -449,7 +449,7 @@ ___
 
 ▸ **search**(`query`: string): *Promise‹void›*
 
-*Defined in [src/lib/atlas.ts:136](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L136)*
+*Defined in [src/lib/atlas.ts:136](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L136)*
 
 Runs a user search for a place, country, etc.
 This requires the backend to be running and configured properly via environmental variables.
@@ -471,7 +471,7 @@ ___
 
 ▸ **setJobs**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[]): *void*
 
-*Defined in [src/lib/atlas.ts:587](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L587)*
+*Defined in [src/lib/atlas.ts:587](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L587)*
 
 Loads new jobs into the store.
 
@@ -493,7 +493,7 @@ ___
 
 ▸ **setView**(`lon`: number, `lat`: number, `zoom`: number): *void*
 
-*Defined in [src/lib/atlas.ts:599](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L599)*
+*Defined in [src/lib/atlas.ts:599](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L599)*
 
 Instantly set the map viewport to center on lat/lon and zoom level.
 
@@ -515,7 +515,7 @@ ___
 
 ▸ **subscribe**(`hooks`: string[], `callback`: function): *void*
 
-*Defined in [src/lib/atlas.ts:123](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L123)*
+*Defined in [src/lib/atlas.ts:123](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L123)*
 
 Subscribe to an event.
 
@@ -562,7 +562,7 @@ ___
 
 ▸ **zoomTo**(`center`: number[], `zoom`: number): *void*
 
-*Defined in [src/lib/atlas.ts:337](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L337)*
+*Defined in [src/lib/atlas.ts:337](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L337)*
 
 Moves the viewport to a center and zoom level.
 Can be used to zoom in on clusters.
@@ -584,7 +584,7 @@ ___
 
 ▸ **zoomToExtent**(`extent`: Extent): *void*
 
-*Defined in [src/lib/atlas.ts:622](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L622)*
+*Defined in [src/lib/atlas.ts:622](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L622)*
 
 Move the viewport to show the entire extent.
 This will zoom in or out as necessary.
@@ -605,7 +605,7 @@ ___
 
 ▸ **zoomToLayer**(`layer`: VectorLayer): *void*
 
-*Defined in [src/lib/atlas.ts:610](https://github.com/chronark/atlas/blob/198ad53/src/lib/atlas.ts#L610)*
+*Defined in [src/lib/atlas.ts:610](https://github.com/chronark/atlas/blob/a1ab160/src/lib/atlas.ts#L610)*
 
 Calculate the required viewport to display the entire layer and set the viewport accordingly.
 

@@ -37,7 +37,7 @@ TODO: Refactor to implement ol/Layer #AT-15.
 
 \+ **new JobLayer**(`distance`: number): *[JobLayer](_lib_joblayer_.joblayer.md)*
 
-*Defined in [src/lib/jobLayer.ts:26](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L26)*
+*Defined in [src/lib/jobLayer.ts:26](https://github.com/chronark/atlas/blob/a1ab160/src/lib/jobLayer.ts#L26)*
 
 Creates an instance of JobLayer.
 
@@ -57,7 +57,7 @@ Name | Type | Default |
 
 • **animatedCluster**: *VectorLayer*
 
-*Defined in [src/lib/jobLayer.ts:23](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L23)*
+*Defined in [src/lib/jobLayer.ts:23](https://github.com/chronark/atlas/blob/a1ab160/src/lib/jobLayer.ts#L23)*
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 • **areas**: *VectorLayer*
 
-*Defined in [src/lib/jobLayer.ts:24](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L24)*
+*Defined in [src/lib/jobLayer.ts:24](https://github.com/chronark/atlas/blob/a1ab160/src/lib/jobLayer.ts#L24)*
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 • **cluster**: *Cluster*
 
-*Defined in [src/lib/jobLayer.ts:22](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L22)*
+*Defined in [src/lib/jobLayer.ts:22](https://github.com/chronark/atlas/blob/a1ab160/src/lib/jobLayer.ts#L22)*
 
 ___
 
@@ -81,7 +81,7 @@ ___
 
 • **select**: *Select*
 
-*Defined in [src/lib/jobLayer.ts:26](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L26)*
+*Defined in [src/lib/jobLayer.ts:26](https://github.com/chronark/atlas/blob/a1ab160/src/lib/jobLayer.ts#L26)*
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 • **style**: *[JobStyle](_styles_jobs_.jobstyle.md)*
 
-*Defined in [src/lib/jobLayer.ts:25](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L25)*
+*Defined in [src/lib/jobLayer.ts:25](https://github.com/chronark/atlas/blob/a1ab160/src/lib/jobLayer.ts#L25)*
 
 ## Methods
 
@@ -97,7 +97,7 @@ ___
 
 ▸ **createAreaFeature**(`location`: [Area](../modules/_types_customtypes_.md#area)): *Feature*
 
-*Defined in [src/lib/jobLayer.ts:121](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L121)*
+*Defined in [src/lib/jobLayer.ts:121](https://github.com/chronark/atlas/blob/a1ab160/src/lib/jobLayer.ts#L121)*
 
 Construct a feature from an area.
 
@@ -117,7 +117,7 @@ ___
 
 ▸ **createFeatures**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[]): *object*
 
-*Defined in [src/lib/jobLayer.ts:79](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L79)*
+*Defined in [src/lib/jobLayer.ts:79](https://github.com/chronark/atlas/blob/a1ab160/src/lib/jobLayer.ts#L79)*
 
 Transform the jobs from the api specififaction into a useful format.
 
@@ -143,7 +143,7 @@ ___
 
 ▸ **createSingleLoationFeature**(`location`: [SingleLocation](../interfaces/_types_customtypes_.singlelocation.md)): *Feature*
 
-*Defined in [src/lib/jobLayer.ts:107](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L107)*
+*Defined in [src/lib/jobLayer.ts:107](https://github.com/chronark/atlas/blob/a1ab160/src/lib/jobLayer.ts#L107)*
 
 Construct a feature from a single location.
 
@@ -163,7 +163,7 @@ ___
 
 ▸ **setJobs**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[]): *void*
 
-*Defined in [src/lib/jobLayer.ts:59](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L59)*
+*Defined in [src/lib/jobLayer.ts:59](https://github.com/chronark/atlas/blob/a1ab160/src/lib/jobLayer.ts#L59)*
 
 Clears the current jobs and applies the new ones.
 
