@@ -156,7 +156,11 @@ export default class Atlas {
     globalStore.dispatch("addGeometries", geometries)
     this.selectionLayer.setFeaturesFromGeometry(geometries)
   }
-
+  /**
+   * Add the possibilty to select features.
+   * 
+   * This handles the countries to be selected as well as clicking on job clusters.
+   */
   private addSelect(): void {
     const select = new Select()
 
