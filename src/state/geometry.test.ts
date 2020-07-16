@@ -16,6 +16,7 @@ const initialState = (): State => {
   return {
     allJobs: [],
     visibleJobs: [],
+    selectedJobs: [],
     selectedGeometries: [],
     allGeometries: circles.slice(0, 1),
   }

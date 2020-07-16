@@ -2,6 +2,8 @@
 
 # Class: Color
 
+A Helper class to convert colors from rgb(a) values to strings.
+
 ## Hierarchy
 
 * **Color**
@@ -30,16 +32,20 @@
 
 \+ **new Color**(`r`: number, `g`: number, `b`: number, `a?`: undefined | number): *[Color](_styles_color_.color.md)*
 
-*Defined in [styles/color.ts:5](https://github.com/chronark/atlas/blob/a253197/src/styles/color.ts#L5)*
+*Defined in [src/styles/color.ts:10](https://github.com/chronark/atlas/blob/a1ab160/src/styles/color.ts#L10)*
+
+Creates an instance of Color.
+
+**`memberof`** Color
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`r` | number |
-`g` | number |
-`b` | number |
-`a?` | undefined &#124; number |
+Name | Type | Description |
+------ | ------ | ------ |
+`r` | number | Red value between 0 and 255. This must be an integer. |
+`g` | number | Green value between 0 and 255. This must be an integer. |
+`b` | number | Blue value between 0 and 255. This must be an integer. |
+`a?` | undefined &#124; number | - |
 
 **Returns:** *[Color](_styles_color_.color.md)*
 
@@ -49,7 +55,7 @@ Name | Type |
 
 • **a**: *number*
 
-*Defined in [styles/color.ts:5](https://github.com/chronark/atlas/blob/a253197/src/styles/color.ts#L5)*
+*Defined in [src/styles/color.ts:10](https://github.com/chronark/atlas/blob/a1ab160/src/styles/color.ts#L10)*
 
 ___
 
@@ -57,7 +63,7 @@ ___
 
 • **b**: *number*
 
-*Defined in [styles/color.ts:4](https://github.com/chronark/atlas/blob/a253197/src/styles/color.ts#L4)*
+*Defined in [src/styles/color.ts:9](https://github.com/chronark/atlas/blob/a1ab160/src/styles/color.ts#L9)*
 
 ___
 
@@ -65,7 +71,7 @@ ___
 
 • **g**: *number*
 
-*Defined in [styles/color.ts:3](https://github.com/chronark/atlas/blob/a253197/src/styles/color.ts#L3)*
+*Defined in [src/styles/color.ts:8](https://github.com/chronark/atlas/blob/a1ab160/src/styles/color.ts#L8)*
 
 ___
 
@@ -73,7 +79,7 @@ ___
 
 • **r**: *number*
 
-*Defined in [styles/color.ts:2](https://github.com/chronark/atlas/blob/a253197/src/styles/color.ts#L2)*
+*Defined in [src/styles/color.ts:7](https://github.com/chronark/atlas/blob/a1ab160/src/styles/color.ts#L7)*
 
 ## Methods
 
@@ -81,7 +87,11 @@ ___
 
 ▸ **rgb**(): *string*
 
-*Defined in [styles/color.ts:13](https://github.com/chronark/atlas/blob/a253197/src/styles/color.ts#L13)*
+*Defined in [src/styles/color.ts:33](https://github.com/chronark/atlas/blob/a1ab160/src/styles/color.ts#L33)*
+
+Turn a color into a string disregarding the alpha channel.
+
+**`memberof`** Color
 
 **Returns:** *string*
 
@@ -91,7 +101,11 @@ ___
 
 ▸ **rgba**(`a?`: undefined | number): *string*
 
-*Defined in [styles/color.ts:17](https://github.com/chronark/atlas/blob/a253197/src/styles/color.ts#L17)*
+*Defined in [src/styles/color.ts:44](https://github.com/chronark/atlas/blob/a1ab160/src/styles/color.ts#L44)*
+
+Turn a color into a string with an alpha channel.
+
+**`memberof`** Color
 
 **Parameters:**
 
