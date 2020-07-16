@@ -20,7 +20,7 @@
 
 Ƭ **Action**: *function*
 
-*Defined in [state/actions.ts:5](https://github.com/chronark/atlas/blob/a253197/src/state/actions.ts#L5)*
+*Defined in [src/state/actions.ts:5](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L5)*
 
 #### Type declaration:
 
@@ -39,7 +39,7 @@ Name | Type |
 
 ### ▪ **actions**: *object*
 
-*Defined in [state/actions.ts:27](https://github.com/chronark/atlas/blob/a253197/src/state/actions.ts#L27)*
+*Defined in [src/state/actions.ts:88](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L88)*
 
 ___
 
@@ -47,13 +47,17 @@ ___
 
 ### ▪ **geometryActions**: *object*
 
-*Defined in [state/actions.ts:7](https://github.com/chronark/atlas/blob/a253197/src/state/actions.ts#L7)*
+*Defined in [src/state/actions.ts:9](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L9)*
+
+Collection if geometry actions.
 
 ###  addGeometries
 
 ▸ **addGeometries**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: Geometry[]): *boolean*
 
-*Defined in [state/actions.ts:8](https://github.com/chronark/atlas/blob/a253197/src/state/actions.ts#L8)*
+*Defined in [src/state/actions.ts:17](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L17)*
+
+Add geometries to allGeometries.
 
 **Parameters:**
 
@@ -68,7 +72,9 @@ Name | Type |
 
 ▸ **selectGeometries**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: Geometry[]): *boolean*
 
-*Defined in [state/actions.ts:11](https://github.com/chronark/atlas/blob/a253197/src/state/actions.ts#L11)*
+*Defined in [src/state/actions.ts:27](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L27)*
+
+Add geometries to selectedGeometries.
 
 **Parameters:**
 
@@ -79,11 +85,30 @@ Name | Type |
 
 **Returns:** *boolean*
 
+###  setSelectedGeometries
+
+▸ **setSelectedGeometries**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: Record‹string, any›[]): *boolean*
+
+*Defined in [src/state/actions.ts:47](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L47)*
+
+Overwrite selectedGeometries.
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`ctx` | [Store](../classes/_state_store_.store.md) |
+`payload` | Record‹string, any›[] |
+
+**Returns:** *boolean*
+
 ###  unselectGeometries
 
 ▸ **unselectGeometries**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: Record‹string, any›[]): *boolean*
 
-*Defined in [state/actions.ts:14](https://github.com/chronark/atlas/blob/a253197/src/state/actions.ts#L14)*
+*Defined in [src/state/actions.ts:37](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L37)*
+
+Remove geometries from selectedGeometries.
 
 **Parameters:**
 
@@ -100,13 +125,34 @@ ___
 
 ### ▪ **jobActions**: *object*
 
-*Defined in [state/actions.ts:19](https://github.com/chronark/atlas/blob/a253197/src/state/actions.ts#L19)*
+*Defined in [src/state/actions.ts:54](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L54)*
+
+Collection of job actions.
 
 ###  setJobs
 
 ▸ **setJobs**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: [Job](../interfaces/_types_customtypes_.job.md)[]): *boolean*
 
-*Defined in [state/actions.ts:20](https://github.com/chronark/atlas/blob/a253197/src/state/actions.ts#L20)*
+*Defined in [src/state/actions.ts:62](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L62)*
+
+Replace jobs in allJobs.
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`ctx` | [Store](../classes/_state_store_.store.md) |
+`payload` | [Job](../interfaces/_types_customtypes_.job.md)[] |
+
+**Returns:** *boolean*
+
+###  setSelectedJobs
+
+▸ **setSelectedJobs**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: [Job](../interfaces/_types_customtypes_.job.md)[]): *boolean*
+
+*Defined in [src/state/actions.ts:83](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L83)*
+
+Replace jobs in selectedJobs.
 
 **Parameters:**
 
@@ -121,7 +167,9 @@ Name | Type |
 
 ▸ **setVisibleJobs**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: [Job](../interfaces/_types_customtypes_.job.md)[]): *boolean*
 
-*Defined in [state/actions.ts:23](https://github.com/chronark/atlas/blob/a253197/src/state/actions.ts#L23)*
+*Defined in [src/state/actions.ts:72](https://github.com/chronark/atlas/blob/198ad53/src/state/actions.ts#L72)*
+
+Replace jobs in visibleJobs.
 
 **Parameters:**
 

@@ -1,35 +1,26 @@
-import { Attribution, OverviewMap, Zoom } from "ol/control"
-import { Draw, Modify, Select } from "ol/interaction"
-import { GeocodingResponseObject, Job } from "../types/customTypes"
-import { State, Store, globalStore } from "../state/store"
-
 import Bar from "ol-ext/control/Bar"
 import BaseLayer from "ol/layer/Base"
 import Button from "ol-ext/control/Button"
 import Charon from "../apis/charon"
-import { Extent } from "ol/extent"
 import FullScreen from "ol/control/FullScreen"
-import GeoJSON from "ol/format/GeoJSON"
 import Geometry from "ol/geom/Geometry"
 import JobLayer from "./jobLayer"
-import { Map, Feature, MapEvent, MapBrowserEvent } from "ol"
-import { OSMLayer, MapboxLayer } from "../apis/tileLayers"
+import polygonStyle from "../styles/polygon"
+import SelectionLayer from "./selectionLayer"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import View from "ol/View"
-import { selectionStyle } from "../styles/selectionStyle"
+import { Attribution, OverviewMap, Zoom } from "ol/control"
+import { Draw, Modify, Select } from "ol/interaction"
+import { Extent } from "ol/extent"
 import { filterJobs } from "./geometryFilter"
-import { fromLonLat, toLonLat } from "ol/proj"
-import polygonStyle from "../styles/polygon"
-import { shiftKeyOnly, singleClick } from "ol/events/condition"
-import SelectionLayer from "./selectionLayer"
-import PopupFeature from "ol-ext/overlay/PopupFeature"
-
+import { fromLonLat } from "ol/proj"
+import { Job } from "../types/customTypes"
+import { Map, Feature } from "ol"
+import { OSMLayer } from "../apis/tileLayers"
 import { SelectEvent } from "ol/interaction/Select"
-import { Layer } from "ol/layer"
-import { FeatureLike } from "ol/Feature"
-import Cluster from "ol/source/Cluster"
-export type jobCallback = (jobs: Job[]) => void
+import { shiftKeyOnly } from "ol/events/condition"
+import { State, Store, globalStore } from "../state/store"
 
 /**
  * Initial map configuration options.
@@ -84,7 +75,6 @@ export default class Atlas {
    * @memberof Atlas
    */
   public constructor(mapID: string, opts?: AtlasOpts) {
-    console.log("Init")
     this.mapID = mapID
     this.zIndices = {
       tiles: 0,
@@ -94,9 +84,8 @@ export default class Atlas {
     }
 
     this.map = this.build(opts || {})
-
     this.selectionLayer = this.createSelectionLayer()
-
+    this.map.addLayer(this.selectionLayer)
     this.addControls()
     this.addCircleSelect()
     this.buildJobLayer()
@@ -108,9 +97,29 @@ export default class Atlas {
     this.addCountries()
 
     this.addSelect()
-    console.log("Ready")
   }
-
+  /**
+   * Subscribe to an event.
+   *
+   * Events are prefixed by `STATE_CHANGE_` and named after the field that was updated.
+   * For example `STATE_CHANGE_VISIBLEJOBS` or `STATE_CHANGE_SELECTEDGEOMETRIES`. 
+   * 
+   * This can be used to update external UI like job counters.
+   * Also used when the user clicks on a cluster to pass the job array outside of this class.
+   * You can also pass in multiple hooks and your callback will be called whenever one of the events fires.
+   * 
+   * @example:
+   * const atlas = new Atlas()
+   * atlas.subscribe([STATE_CHANGE_ALLJOBS], (state: State) => console.log(state.allJobs))
+   * atlas.setJobs(myJobsArray)
+   * 
+   * // you will now see your job array being printed in the console.
+   * 
+   * @param hooks - An array of hooks, see ../state/store.ts
+   * @param callback - Gets called with the current state as argument, do whatever you want with it except overwriting it.
+   * The state must remain immutable.
+   * @memberof Atlas
+   */
   public subscribe(hooks: string[], callback: (state: State) => void): void {
     globalStore.events.subscribe(hooks, callback)
   }
@@ -136,16 +145,16 @@ export default class Atlas {
     }
   }
 
+  /**
+   * Load initial set of countries and add them to the map without showing them to the user.
+   */
   public async addCountries(): Promise<void> {
     const geojson = await fetch(
       "https://raw.githubusercontent.com/openlayers/openlayers/main/examples/data/geojson/countries.geojson",
     ).then((res) => res.json())
     const geometries = SelectionLayer.convertGeoJsonToGeometries(geojson)
-    geometries.forEach((geometry) => {
-      globalStore.dispatch("addGeometries", [geometry])
-      globalStore.dispatch("selectGeometries", [geometry])
-    })
-    console.log(globalStore.getState())
+    globalStore.dispatch("addGeometries", geometries)
+    this.selectionLayer.setFeaturesFromGeometry(geometries)
   }
 
   private addSelect(): void {
@@ -153,59 +162,37 @@ export default class Atlas {
 
     this.map.addInteraction(select)
     select.on("select", (e: SelectEvent) => {
+      // Remove all selected geometries when the user clicks on empty space
+      if (e.selected.length === 0) {
+        globalStore.dispatch("unselectGeometries", globalStore.getState().selectedGeometries)
+      }
+
       e.target.getFeatures().forEach((f: Feature) => {
         const layerName = select.getLayer(f).get("name")
+
         switch (layerName) {
           case "cluster": {
             const clickedClusters = f.get("features")
             const clickedJobs: Job[] = clickedClusters.map((f: Feature) => f.get("job"))
 
-              globalStore.dispatch("setSelectedJobs", clickedJobs)
-
-            console.log(f)
+            globalStore.dispatch("setSelectedJobs", clickedJobs)
             break
           }
 
-          case "selectionLayer":
-            console.log(layerName)
+          case "selectionLayer": {
+            const geometry = f.getGeometry()
+            const isSelected = globalStore.getState().selectedGeometries.includes(geometry)
+            if (isSelected) {
+              globalStore.dispatch("unselectGeometries", [geometry])
+            } else {
+              globalStore.dispatch("selectGeometries", [geometry])
+            }
+
             break
-          default:
-            break
+          }
         }
       })
     })
-
-    // this.map.on("singleclick", (e: MapBrowserEvent) => {
-    //   this.map.forEachFeatureAtPixel(e.pixel, (feature: FeatureLike, layer: Layer) => {
-    //     //console.log(feature, layer.get("name"))
-
-    //     if (layer.get("name") === "cluster") {
-    //       const clickedFeatures: Feature[] = feature.get("features")
-    //       const clickedJobs: Job[] = clickedFeatures.map((f: Feature) => f.get("job"))
-
-    //       // The jobs in a cluster can shift when zooming in or out, so we cannot simply invert the selection of every job.
-    //       // If all jobs in the clicked cluster are selected we will deselect all, otherwise we will select all on first click and deselect all on the second click.
-    //       const areAllSelected = clickedJobs.every((job) => { globalStore.getState().selectedJobs.includes(job) })
-
-    //       if (areAllSelected) {
-    //         globalStore.dispatch("deselectJobs", clickedJobs)
-    //       } else {
-    //         globalStore.dispatch("selectJobs", clickedJobs)
-    //       }
-
-    //       // const matches = globalStore.getState().selectedJobs.filter((geometry: Geometry) => {
-    //       //   return areCoordinatesInGeometry([lon, lat], geometry)
-    //       // })
-    //       console.log(feature)
-    //     } else if (layer.get("name") === "selectionLayer") {
-    //       console.log(feature)
-    //       const clickedFeatures: Feature[] = feature.get("features")
-    //       const clickedPolygon = clickedFeatures.map((f: Feature) => f.get("job"))
-
-    //     }
-
-    //   })
-    // })
   }
 
   /**
@@ -219,7 +206,6 @@ export default class Atlas {
    */
   private createSelectionLayer(): SelectionLayer {
     const selectionLayer = new SelectionLayer()
-    this.map.addLayer(selectionLayer)
     return selectionLayer
   }
 
@@ -241,7 +227,7 @@ export default class Atlas {
    */
   addGeometriesHook(): void {
     globalStore.events.subscribe(["STATE_CHANGE_SELECTEDGEOMETRIES", "STATE_CHANGE_ALLJOBS"], (state) => {
-      this.selectionLayer.setFeaturesFromGeometry(state.selectedGeometries)
+      this.selectionLayer.setVisibleFeatures(state.selectedGeometries)
     })
   }
 

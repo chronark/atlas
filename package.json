@@ -11,6 +11,7 @@
   "author": "Andreas Thomas <andreas.thomas@th-nuernberg.de>",
   "scripts": {
     "build": "webpack --mode=production --progress",
+    "build:docs": "./node_modules/.bin/typedoc",
     "buildandserve": "npm run build && npm run serve",
     "dev": "webpack-dev-server --progress",
     "docker": "docker build -t chronark/atlas . && docker run --rm -p 80:80 chronark/atlas",
@@ -28,7 +29,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run tsc && lint-staged && npm run test"
+      "pre-commit": "npm run tsc && lint-staged && npm run test && npm run build:docs"
     }
   },
   "dependencies": {

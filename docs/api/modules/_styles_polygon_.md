@@ -6,22 +6,22 @@
 
 ### Functions
 
-* [polygonStyle](_styles_polygon_.md#const-polygonstyle)
+* [polygonStyle](_styles_polygon_.md#polygonstyle)
 
 ## Functions
 
-### `Const` polygonStyle
+###  polygonStyle
 
-▸ **polygonStyle**(`__namedParameters`: object): *Style*
+▸ **polygonStyle**(`isSelected?`: undefined | false | true): *Style*
 
-*Defined in [styles/polygon.ts:5](https://github.com/chronark/atlas/blob/a253197/src/styles/polygon.ts#L5)*
+*Defined in [src/styles/polygon.ts:11](https://github.com/chronark/atlas/blob/198ad53/src/styles/polygon.ts#L11)*
+
+Create sample polygon style.
 
 **Parameters:**
 
-▪`Default value`  **__namedParameters**: *object*= {}
-
-Name | Type | Default |
------- | ------ | ------ |
-`isSelected` | boolean | false |
+Name | Type |
+------ | ------ |
+`isSelected?` | undefined &#124; false &#124; true |
 
 **Returns:** *Style*

@@ -2,6 +2,10 @@
 
 # Class: Jobs
 
+Responsible for loading jobs from an endpoint.
+This is just for testing.
+In production the map will receive jobs from outside.
+
 ## Hierarchy
 
 * **Jobs**
@@ -28,7 +32,11 @@
 
 \+ **new Jobs**(`url?`: undefined | string): *[Jobs](_apis_jobs_.jobs.md)*
 
-*Defined in [apis/jobs.ts:6](https://github.com/chronark/atlas/blob/a253197/src/apis/jobs.ts#L6)*
+*Defined in [src/apis/jobs.ts:11](https://github.com/chronark/atlas/blob/198ad53/src/apis/jobs.ts#L11)*
+
+Creates an instance of Jobs.
+
+**`memberof`** Jobs
 
 **Parameters:**
 
@@ -44,7 +52,7 @@ Name | Type |
 
 • **url**: *string* = "https://jobboerse.th-nuernberg.de/srv.php/en/Suche/offers"
 
-*Defined in [apis/jobs.ts:6](https://github.com/chronark/atlas/blob/a253197/src/apis/jobs.ts#L6)*
+*Defined in [src/apis/jobs.ts:11](https://github.com/chronark/atlas/blob/198ad53/src/apis/jobs.ts#L11)*
 
 ## Methods
 
@@ -52,7 +60,11 @@ Name | Type |
 
 ▸ **fetchRawJobs**(): *Promise‹[RawSearch](../interfaces/_types_customtypes_.rawsearch.md)›*
 
-*Defined in [apis/jobs.ts:14](https://github.com/chronark/atlas/blob/a253197/src/apis/jobs.ts#L14)*
+*Defined in [src/apis/jobs.ts:32](https://github.com/chronark/atlas/blob/198ad53/src/apis/jobs.ts#L32)*
+
+Fetch data from API.
+
+**`memberof`** Jobs
 
 **Returns:** *Promise‹[RawSearch](../interfaces/_types_customtypes_.rawsearch.md)›*
 
@@ -62,7 +74,11 @@ ___
 
 ▸ **get**(): *Promise‹[Job](../interfaces/_types_customtypes_.job.md)[]›*
 
-*Defined in [apis/jobs.ts:49](https://github.com/chronark/atlas/blob/a253197/src/apis/jobs.ts#L49)*
+*Defined in [src/apis/jobs.ts:83](https://github.com/chronark/atlas/blob/198ad53/src/apis/jobs.ts#L83)*
+
+Public getter method.
+
+**`memberof`** Jobs
 
 **Returns:** *Promise‹[Job](../interfaces/_types_customtypes_.job.md)[]›*
 
@@ -72,7 +88,12 @@ ___
 
 ▸ **transform**(`rawSearch`: [RawSearch](../interfaces/_types_customtypes_.rawsearch.md)): *[Job](../interfaces/_types_customtypes_.job.md)[]*
 
-*Defined in [apis/jobs.ts:23](https://github.com/chronark/atlas/blob/a253197/src/apis/jobs.ts#L23)*
+*Defined in [src/apis/jobs.ts:50](https://github.com/chronark/atlas/blob/198ad53/src/apis/jobs.ts#L50)*
+
+Clean the jobs and transform into a useful format.
+This is only necessary because we are still loading from the old google optimized job API.
+
+**`memberof`** Jobs
 
 **Parameters:**
 

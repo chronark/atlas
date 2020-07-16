@@ -4,10 +4,10 @@ import Style from "ol/style/Style"
 
 export const selectionStyle = new Style({
   stroke: new Stroke({
-    color: "rgba(200,20,20,0.8)",
+    color: "rgba(112,148,194,1)",
     width: 1,
   }),
   fill: new Fill({
-    color: "rgba(200,20,20,0.1)",
+    color: "rgba(112,148,194,0.1)",
   }),
 })

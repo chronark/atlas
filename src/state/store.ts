@@ -53,7 +53,6 @@ export const initialState = (): State => {
 export class Store {
   private actions: Record<string, Action>
   private mutations: Record<string, Mutation>
-  private status: Status
   public events: Events
   private state: State
 
@@ -69,7 +68,6 @@ export class Store {
     this.actions = actions
     this.events = new Events()
     this.mutations = mutations
-    this.status = Status.listening
 
     this.state = new Proxy(state || initialState(), {
       set: (state: State, key: string, value: Job[] | Geometry[]): boolean => {
@@ -78,7 +76,6 @@ export class Store {
         this.events.publish("STATE_CHANGE", state)
         this.events.publish("STATE_CHANGE_" + key.toUpperCase(), state)
 
-        this.status = Status.listening
         return true
       },
     })
@@ -109,7 +106,6 @@ export class Store {
       console.error(`Action "${actionName}" doesn't exist.`)
       return false
     }
-    this.status = Status.action
     return this.actions[actionName](this, payload)
   }
 
@@ -128,8 +124,6 @@ export class Store {
       console.error(`Mutation "${mutationName}" doesn't exist`)
       return false
     }
-    this.status = Status.mutation
-
     return this.mutations[mutationName](this.state, payload)
   }
 }

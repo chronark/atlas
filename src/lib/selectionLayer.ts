@@ -2,15 +2,10 @@ import Charon from "../apis/charon"
 import Feature from "ol/Feature"
 import { GeoJSON } from "ol/format"
 import { Geometry } from "ol/geom"
-import { MapBrowserEvent } from "ol"
-import { areCoordinatesInGeometry } from "./geometryFilter"
-import { toLonLat } from "ol/proj"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
-import polygonStyle from "../styles/polygon"
-import { globalStore } from "../state/store"
 import { selectionStyle } from "../styles/selectionStyle"
-import { Style, Stroke, Fill } from "ol/style"
+import { Style, Fill } from "ol/style"
 
 /**
  * A layer to display one or multiple polygons on the map.
@@ -25,9 +20,7 @@ export default class SelectionLayer extends VectorLayer {
    * @memberof SelectionLayer
    */
   constructor() {
-    super({
-      style: selectionStyle,
-    })
+    super()
 
     this.setZIndex(10)
 
@@ -51,51 +44,41 @@ export default class SelectionLayer extends VectorLayer {
    * @param geometry
    * @memberof SelectionLayer
    */
-  public setFeaturesFromGeometry(geometry: Record<string, any>[]): void {
+  public setFeaturesFromGeometry(geometry: Geometry[]): void {
     const features = geometry.map(
       (g): Feature =>
         new Feature({
           geometry: g,
         }),
     )
-    // TODO: Figure out of removing and adding single features is more performant than clearing the source.
     this.getSource().clear()
     this.addFeatures(features)
   }
 
   /**
-   * Handle single clicks by the user.
+   * Make geometry visible to the user by applying a style.
    *
-   * Calculates the exact coordinates of the click and shows/hides the clicked on polygon if its in cache.
-   * Otherwise it sends a request to the backend to fetch the polygon and show it as soon as the request comes back.
+   * This is required because if features would have an undefined style they are not clickable.. For some reason.
    *
-   *
-   * @param event
+   * @param geometry - All geometries that you want to show. Pass in an empty array to hide everything.
    * @memberof SelectionLayer
    */
-  public onSingleClick = async (event: MapBrowserEvent): Promise<void> => {
-    const cachedGeometry = this.getCachedGeometry(event)
-    if (cachedGeometry) {
-      globalStore.getState().selectedGeometries.includes(cachedGeometry)
-        ? globalStore.dispatch("unselectGeometries", [cachedGeometry])
-        : globalStore.dispatch("selectGeometries", [cachedGeometry])
-    } else {
-      const [lon, lat] = toLonLat(event.coordinate)
-      const geojson = await new Charon().reverseGeocoding(lat, lon)
-      if (geojson) {
-        const geometries = SelectionLayer.convertGeoJsonToGeometries(geojson)
-        if (geometries) {
-          geometries.forEach((geometry) => {
-            if (geometry) {
-              if (!globalStore.getState().allGeometries.includes(geometry)) {
-                globalStore.dispatch("addGeometries", [geometry])
-              }
-              globalStore.dispatch("selectGeometries", [geometry])
-            }
-          })
+  public setVisibleFeatures(geometry: Geometry[]): void {
+    this.getSource()
+      .getFeatures()
+      .map((f: Feature) => {
+        if (geometry.includes(f.getGeometry())) {
+          f.setStyle(selectionStyle)
+        } else {
+          f.setStyle(
+            new Style({
+              fill: new Fill({
+                color: "rgba(0,0,0,0)",
+              }),
+            }),
+          )
         }
-      }
-    }
+      })
   }
 
   /**
@@ -106,7 +89,7 @@ export default class SelectionLayer extends VectorLayer {
    * @returns
    * @memberof SelectionLayer
    */
-  static convertGeoJsonToGeometries(geojson: Record<string, any>): (Geometry | undefined)[] {
+  static convertGeoJsonToGeometries(geojson: Record<string, any>): Geometry[] {
     const features: Feature[] = new GeoJSON({
       featureProjection: "EPSG:3857",
     }).readFeatures(geojson)
@@ -130,19 +113,5 @@ export default class SelectionLayer extends VectorLayer {
     )
     this.addFeatures(features)
     return features
-  }
-
-  /**
-   * Try to load geometry from the store instead of making an expensive call to the backend.
-   *
-   * @param event
-   * @returns
-   */
-  private getCachedGeometry = (event: MapBrowserEvent): Geometry => {
-    const [lon, lat] = toLonLat(event.coordinate)
-    const matches = globalStore.getState().allGeometries.filter((geometry: Geometry) => {
-      return areCoordinatesInGeometry([lon, lat], geometry)
-    })
-    return matches[0]
   }
 }

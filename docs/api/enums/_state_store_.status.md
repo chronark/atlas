@@ -2,6 +2,11 @@
 
 # Enumeration: Status
 
+The store's status can be one of the following.
+Action: The store is currently performing an action.
+Listening: The store is ready for an action.
+Mutation: The store is running a mutation right now. This is used to ensure you aren't calling a mutation by itself but always through an action.
+
 ## Index
 
 ### Enumeration members
@@ -16,7 +21,7 @@
 
 • **action**:
 
-*Defined in [state/store.ts:19](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L19)*
+*Defined in [src/state/store.ts:27](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L27)*
 
 ___
 
@@ -24,7 +29,7 @@ ___
 
 • **listening**:
 
-*Defined in [state/store.ts:20](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L20)*
+*Defined in [src/state/store.ts:28](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L28)*
 
 ___
 
@@ -32,4 +37,4 @@ ___
 
 • **mutation**:
 
-*Defined in [state/store.ts:21](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L21)*
+*Defined in [src/state/store.ts:29](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L29)*

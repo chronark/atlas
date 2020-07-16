@@ -2,6 +2,8 @@
 
 # Class: Sample
 
+Sample generator for testing.
+
 ## Hierarchy
 
 * **Sample**
@@ -20,7 +22,11 @@
 
 ▸ **generateString**(`length`: number): *string*
 
-*Defined in [apis/sample.ts:45](https://github.com/chronark/atlas/blob/a253197/src/apis/sample.ts#L45)*
+*Defined in [src/apis/sample.ts:70](https://github.com/chronark/atlas/blob/198ad53/src/apis/sample.ts#L70)*
+
+Create a random string with a specific length.
+
+**`memberof`** Sample
 
 **Parameters:**
 
@@ -36,7 +42,11 @@ ___
 
 ▸ **getLocations**(`cities`: Record‹string, any›[], `locationCount`: number): *object[]*
 
-*Defined in [apis/sample.ts:6](https://github.com/chronark/atlas/blob/a253197/src/apis/sample.ts#L6)*
+*Defined in [src/apis/sample.ts:19](https://github.com/chronark/atlas/blob/198ad53/src/apis/sample.ts#L19)*
+
+Create a list of locations.
+
+**`memberof`** Sample
 
 **Parameters:**
 
@@ -53,7 +63,11 @@ ___
 
 ▸ **jobs**(`count`: number): *Promise‹[Job](../interfaces/_types_customtypes_.job.md)[]›*
 
-*Defined in [apis/sample.ts:18](https://github.com/chronark/atlas/blob/a253197/src/apis/sample.ts#L18)*
+*Defined in [src/apis/sample.ts:38](https://github.com/chronark/atlas/blob/198ad53/src/apis/sample.ts#L38)*
+
+Create a list of jobs for testing.
+
+**`memberof`** Sample
 
 **Parameters:**
 

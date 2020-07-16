@@ -2,6 +2,10 @@
 
 # Class: JobLayer
 
+The Joblayer is responsible for displaying and animating as clusters.
+
+TODO: Refactor to implement ol/Layer #AT-15.
+
 ## Hierarchy
 
 * **JobLayer**
@@ -17,6 +21,7 @@
 * [animatedCluster](_lib_joblayer_.joblayer.md#animatedcluster)
 * [areas](_lib_joblayer_.joblayer.md#areas)
 * [cluster](_lib_joblayer_.joblayer.md#private-cluster)
+* [select](_lib_joblayer_.joblayer.md#private-select)
 * [style](_lib_joblayer_.joblayer.md#private-style)
 
 ### Methods
@@ -32,7 +37,11 @@
 
 \+ **new JobLayer**(`distance`: number): *[JobLayer](_lib_joblayer_.joblayer.md)*
 
-*Defined in [lib/jobLayer.ts:18](https://github.com/chronark/atlas/blob/a253197/src/lib/jobLayer.ts#L18)*
+*Defined in [src/lib/jobLayer.ts:26](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L26)*
+
+Creates an instance of JobLayer.
+
+**`memberof`** JobLayer
 
 **Parameters:**
 
@@ -48,7 +57,7 @@ Name | Type | Default |
 
 • **animatedCluster**: *VectorLayer*
 
-*Defined in [lib/jobLayer.ts:16](https://github.com/chronark/atlas/blob/a253197/src/lib/jobLayer.ts#L16)*
+*Defined in [src/lib/jobLayer.ts:23](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L23)*
 
 ___
 
@@ -56,7 +65,7 @@ ___
 
 • **areas**: *VectorLayer*
 
-*Defined in [lib/jobLayer.ts:17](https://github.com/chronark/atlas/blob/a253197/src/lib/jobLayer.ts#L17)*
+*Defined in [src/lib/jobLayer.ts:24](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L24)*
 
 ___
 
@@ -64,7 +73,15 @@ ___
 
 • **cluster**: *Cluster*
 
-*Defined in [lib/jobLayer.ts:15](https://github.com/chronark/atlas/blob/a253197/src/lib/jobLayer.ts#L15)*
+*Defined in [src/lib/jobLayer.ts:22](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L22)*
+
+___
+
+### `Private` select
+
+• **select**: *Select*
+
+*Defined in [src/lib/jobLayer.ts:26](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L26)*
 
 ___
 
@@ -72,7 +89,7 @@ ___
 
 • **style**: *[JobStyle](_styles_jobs_.jobstyle.md)*
 
-*Defined in [lib/jobLayer.ts:18](https://github.com/chronark/atlas/blob/a253197/src/lib/jobLayer.ts#L18)*
+*Defined in [src/lib/jobLayer.ts:25](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L25)*
 
 ## Methods
 
@@ -80,7 +97,11 @@ ___
 
 ▸ **createAreaFeature**(`location`: [Area](../modules/_types_customtypes_.md#area)): *Feature*
 
-*Defined in [lib/jobLayer.ts:75](https://github.com/chronark/atlas/blob/a253197/src/lib/jobLayer.ts#L75)*
+*Defined in [src/lib/jobLayer.ts:121](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L121)*
+
+Construct a feature from an area.
+
+**`memberof`** JobLayer
 
 **Parameters:**
 
@@ -96,7 +117,13 @@ ___
 
 ▸ **createFeatures**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[]): *object*
 
-*Defined in [lib/jobLayer.ts:49](https://github.com/chronark/atlas/blob/a253197/src/lib/jobLayer.ts#L49)*
+*Defined in [src/lib/jobLayer.ts:79](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L79)*
+
+Transform the jobs from the api specififaction into a useful format.
+
+Splits jobs into areas and points to support both areas as well as single location jobs.
+
+**`memberof`** JobLayer
 
 **Parameters:**
 
@@ -116,7 +143,11 @@ ___
 
 ▸ **createSingleLoationFeature**(`location`: [SingleLocation](../interfaces/_types_customtypes_.singlelocation.md)): *Feature*
 
-*Defined in [lib/jobLayer.ts:69](https://github.com/chronark/atlas/blob/a253197/src/lib/jobLayer.ts#L69)*
+*Defined in [src/lib/jobLayer.ts:107](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L107)*
+
+Construct a feature from a single location.
+
+**`memberof`** JobLayer
 
 **Parameters:**
 
@@ -132,7 +163,11 @@ ___
 
 ▸ **setJobs**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[]): *void*
 
-*Defined in [lib/jobLayer.ts:39](https://github.com/chronark/atlas/blob/a253197/src/lib/jobLayer.ts#L39)*
+*Defined in [src/lib/jobLayer.ts:59](https://github.com/chronark/atlas/blob/198ad53/src/lib/jobLayer.ts#L59)*
+
+Clears the current jobs and applies the new ones.
+
+**`memberof`** JobLayer
 
 **Parameters:**
 

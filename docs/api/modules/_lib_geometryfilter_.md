@@ -9,7 +9,6 @@
 * [areCoordinatesInGeometry](_lib_geometryfilter_.md#const-arecoordinatesingeometry)
 * [filterJobs](_lib_geometryfilter_.md#const-filterjobs)
 * [filterJobsByGeometry](_lib_geometryfilter_.md#const-filterjobsbygeometry)
-* [getJobsInGeometry](_lib_geometryfilter_.md#const-getjobsingeometry)
 
 ## Functions
 
@@ -17,7 +16,9 @@
 
 ▸ **areCoordinatesInGeometry**(`lonLat`: [number, number], `geometry`: Geometry, `checkExtentFirst`: boolean): *boolean*
 
-*Defined in [lib/geometryFilter.ts:8](https://github.com/chronark/atlas/blob/a253197/src/lib/geometryFilter.ts#L8)*
+*Defined in [src/lib/geometryFilter.ts:16](https://github.com/chronark/atlas/blob/198ad53/src/lib/geometryFilter.ts#L16)*
+
+FIXME: Find a more efficient way #AT-4.
 
 **Parameters:**
 
@@ -35,7 +36,9 @@ ___
 
 ▸ **filterJobs**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[], `filter`: object): *[Job](../interfaces/_types_customtypes_.job.md)[]*
 
-*Defined in [lib/geometryFilter.ts:63](https://github.com/chronark/atlas/blob/a253197/src/lib/geometryFilter.ts#L63)*
+*Defined in [src/lib/geometryFilter.ts:84](https://github.com/chronark/atlas/blob/198ad53/src/lib/geometryFilter.ts#L84)*
+
+Differentiates between circle geometry and polygon geometries and calls the correct functions.
 
 **Parameters:**
 
@@ -54,26 +57,13 @@ ___
 
 ### `Const` filterJobsByGeometry
 
-▸ **filterJobsByGeometry**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[], `geometry`: Geometry[]): *[Job](../interfaces/_types_customtypes_.job.md)[]*
+▸ **filterJobsByGeometry**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[], `geometries`: Geometry[]): *[Job](../interfaces/_types_customtypes_.job.md)[]*
 
-*Defined in [lib/geometryFilter.ts:56](https://github.com/chronark/atlas/blob/a253197/src/lib/geometryFilter.ts#L56)*
+*Defined in [src/lib/geometryFilter.ts:37](https://github.com/chronark/atlas/blob/198ad53/src/lib/geometryFilter.ts#L37)*
 
-**Parameters:**
+Filter all jobs that are inside the geometries.
 
-Name | Type |
------- | ------ |
-`jobs` | [Job](../interfaces/_types_customtypes_.job.md)[] |
-`geometry` | Geometry[] |
-
-**Returns:** *[Job](../interfaces/_types_customtypes_.job.md)[]*
-
-___
-
-### `Const` getJobsInGeometry
-
-▸ **getJobsInGeometry**(`jobs`: [Job](../interfaces/_types_customtypes_.job.md)[], `geometries`: Geometry[]): *[Job](../interfaces/_types_customtypes_.job.md)[]*
-
-*Defined in [lib/geometryFilter.ts:21](https://github.com/chronark/atlas/blob/a253197/src/lib/geometryFilter.ts#L21)*
+FIXME: Find a more efficient way #AT-4.
 
 **Parameters:**
 

@@ -2,6 +2,8 @@
 
 # Class: Charon
 
+Handles all commucation to the charon backend service.
+
 ## Hierarchy
 
 * **Charon**
@@ -15,12 +17,12 @@
 ### Properties
 
 * [serverURL](_apis_charon_.charon.md#private-serverurl)
+* [tileURL](_apis_charon_.charon.md#tileurl)
 
 ### Methods
 
 * [forwardGeocoding](_apis_charon_.charon.md#forwardgeocoding)
 * [getStyle](_apis_charon_.charon.md#getstyle)
-* [getTileURL](_apis_charon_.charon.md#gettileurl)
 * [reverseGeocoding](_apis_charon_.charon.md#reversegeocoding)
 
 ## Constructors
@@ -29,7 +31,11 @@
 
 \+ **new Charon**(): *[Charon](_apis_charon_.charon.md)*
 
-*Defined in [apis/charon.ts:5](https://github.com/chronark/atlas/blob/a253197/src/apis/charon.ts#L5)*
+*Defined in [src/apis/charon.ts:11](https://github.com/chronark/atlas/blob/198ad53/src/apis/charon.ts#L11)*
+
+Creates an instance of Charon.
+
+**`memberof`** Charon
 
 **Returns:** *[Charon](_apis_charon_.charon.md)*
 
@@ -39,7 +45,15 @@
 
 • **serverURL**: *string*
 
-*Defined in [apis/charon.ts:5](https://github.com/chronark/atlas/blob/a253197/src/apis/charon.ts#L5)*
+*Defined in [src/apis/charon.ts:10](https://github.com/chronark/atlas/blob/198ad53/src/apis/charon.ts#L10)*
+
+___
+
+###  tileURL
+
+• **tileURL**: *string*
+
+*Defined in [src/apis/charon.ts:11](https://github.com/chronark/atlas/blob/198ad53/src/apis/charon.ts#L11)*
 
 ## Methods
 
@@ -47,7 +61,11 @@
 
 ▸ **forwardGeocoding**(`query`: string): *Promise‹[GeocodingResponseObject](../interfaces/_types_customtypes_.geocodingresponseobject.md) | undefined›*
 
-*Defined in [apis/charon.ts:18](https://github.com/chronark/atlas/blob/a253197/src/apis/charon.ts#L18)*
+*Defined in [src/apis/charon.ts:39](https://github.com/chronark/atlas/blob/198ad53/src/apis/charon.ts#L39)*
+
+Perform a forward geocoding request against the backend.
+
+**`memberof`** Charon
 
 **Parameters:**
 
@@ -57,25 +75,21 @@ Name | Type |
 
 **Returns:** *Promise‹[GeocodingResponseObject](../interfaces/_types_customtypes_.geocodingresponseobject.md) | undefined›*
 
+Deserialized json or undefined if nothing was found.
+
 ___
 
 ###  getStyle
 
 ▸ **getStyle**(): *Promise‹Record‹string, any››*
 
-*Defined in [apis/charon.ts:14](https://github.com/chronark/atlas/blob/a253197/src/apis/charon.ts#L14)*
+*Defined in [src/apis/charon.ts:28](https://github.com/chronark/atlas/blob/198ad53/src/apis/charon.ts#L28)*
+
+Fetches the style from the API and deserialize it into json.
+
+**`memberof`** Charon
 
 **Returns:** *Promise‹Record‹string, any››*
-
-___
-
-###  getTileURL
-
-▸ **getTileURL**(): *string*
-
-*Defined in [apis/charon.ts:10](https://github.com/chronark/atlas/blob/a253197/src/apis/charon.ts#L10)*
-
-**Returns:** *string*
 
 ___
 
@@ -83,7 +97,11 @@ ___
 
 ▸ **reverseGeocoding**(`lat`: number, `lon`: number): *Promise‹[GeocodingResponseObject](../interfaces/_types_customtypes_.geocodingresponseobject.md) | undefined›*
 
-*Defined in [apis/charon.ts:25](https://github.com/chronark/atlas/blob/a253197/src/apis/charon.ts#L25)*
+*Defined in [src/apis/charon.ts:54](https://github.com/chronark/atlas/blob/198ad53/src/apis/charon.ts#L54)*
+
+Perform a reverse geocoding request agaisnt the backend.
+
+**`memberof`** Charon
 
 **Parameters:**
 
@@ -93,3 +111,5 @@ Name | Type |
 `lon` | number |
 
 **Returns:** *Promise‹[GeocodingResponseObject](../interfaces/_types_customtypes_.geocodingresponseobject.md) | undefined›*
+
+Deserialized json or undefined if nothing was found.

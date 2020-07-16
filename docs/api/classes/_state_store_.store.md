@@ -2,6 +2,8 @@
 
 # Class: Store
 
+State manager for all map business.
+
 ## Hierarchy
 
 * **Store**
@@ -18,7 +20,6 @@
 * [events](_state_store_.store.md#events)
 * [mutations](_state_store_.store.md#private-mutations)
 * [state](_state_store_.store.md#private-state)
-* [status](_state_store_.store.md#private-status)
 
 ### Methods
 
@@ -32,7 +33,11 @@
 
 \+ **new Store**(`actions`: Record‹string, [Action](../modules/_state_actions_.md#action)›, `mutations`: Record‹string, [Mutation](../modules/_state_mutations_.md#mutation)›, `state?`: [State](../modules/_state_store_.md#state)): *[Store](_state_store_.store.md)*
 
-*Defined in [state/store.ts:40](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L40)*
+*Defined in [src/state/store.ts:57](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L57)*
+
+Creates an instance of Store.
+
+**`memberof`** Store
 
 **Parameters:**
 
@@ -50,7 +55,7 @@ Name | Type |
 
 • **actions**: *Record‹string, [Action](../modules/_state_actions_.md#action)›*
 
-*Defined in [state/store.ts:36](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L36)*
+*Defined in [src/state/store.ts:54](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L54)*
 
 ___
 
@@ -58,7 +63,7 @@ ___
 
 • **events**: *[Events](_state_events_.events.md)*
 
-*Defined in [state/store.ts:39](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L39)*
+*Defined in [src/state/store.ts:56](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L56)*
 
 ___
 
@@ -66,7 +71,7 @@ ___
 
 • **mutations**: *Record‹string, [Mutation](../modules/_state_mutations_.md#mutation)›*
 
-*Defined in [state/store.ts:37](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L37)*
+*Defined in [src/state/store.ts:55](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L55)*
 
 ___
 
@@ -74,15 +79,7 @@ ___
 
 • **state**: *[State](../modules/_state_store_.md#state)*
 
-*Defined in [state/store.ts:40](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L40)*
-
-___
-
-### `Private` status
-
-• **status**: *[Status](../enums/_state_store_.status.md)*
-
-*Defined in [state/store.ts:38](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L38)*
+*Defined in [src/state/store.ts:57](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L57)*
 
 ## Methods
 
@@ -90,7 +87,13 @@ ___
 
 ▸ **commit**(`mutationName`: string, `payload`: any): *boolean*
 
-*Defined in [state/store.ts:75](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L75)*
+*Defined in [src/state/store.ts:122](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L122)*
+
+Run a mutation against the current state.
+
+This function is public to work properly with custom actions but you *must never* call this yourself!
+
+**`memberof`** Store
 
 **Parameters:**
 
@@ -101,13 +104,21 @@ Name | Type |
 
 **Returns:** *boolean*
 
+Return whether mutation was performed successful or not.
+
 ___
 
 ###  dispatch
 
 ▸ **dispatch**(`actionName`: string, `payload`: any): *boolean*
 
-*Defined in [state/store.ts:65](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L65)*
+*Defined in [src/state/store.ts:104](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L104)*
+
+Run an action to perform state change.
+
+Always use this if you want the state to change.
+
+**`memberof`** Store
 
 **Parameters:**
 
@@ -118,12 +129,18 @@ Name | Type |
 
 **Returns:** *boolean*
 
+Return whether action was performed successful or not.
+
 ___
 
 ###  getState
 
 ▸ **getState**(): *[State](../modules/_state_store_.md#state)*
 
-*Defined in [state/store.ts:61](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L61)*
+*Defined in [src/state/store.ts:90](https://github.com/chronark/atlas/blob/198ad53/src/state/store.ts#L90)*
+
+Getter method.
+
+**`memberof`** Store
 
 **Returns:** *[State](../modules/_state_store_.md#state)*

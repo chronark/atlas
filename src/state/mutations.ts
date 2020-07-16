@@ -40,8 +40,19 @@ export const geometryMutations = {
    * @param payload
    * @returns
    */
-  unselectGeometries(state: State, payload: Record<string, any>[]): boolean {
+  unselectGeometries(state: State, payload: Geometry[]): boolean {
     state.selectedGeometries = removeListFromList(payload, state.selectedGeometries)
+    return true
+  },
+  /**
+   * Overwrite selectedGeoemtries.
+   *
+   * @param state - The current state.
+   * @param payload
+   * @returns
+   */
+  setSelectedGeometries(state: State, payload: Geometry[]): boolean {
+    state.selectedGeometries = payload
     return true
   },
 }
@@ -81,6 +92,6 @@ export const jobMutations = {
   setSelectedJobs(state: State, payload: Job[]): boolean {
     state.selectedJobs = payload
     return true
-  }
+  },
 }
 export const mutations = { ...geometryMutations, ...jobMutations }

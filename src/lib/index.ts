@@ -8,16 +8,10 @@ const atlas = new Atlas("map-container")
 
 // Update UI
 atlas.subscribe(["STATE_CHANGE_ALLJOBS"], (state: State) => {
-  const allJobsCounter = document.getElementById("allJobsCounter")
-  if (allJobsCounter) {
-    allJobsCounter.innerText = state.allJobs.length.toString()
-  }
+  document.getElementById("allJobsCounter")!.innerText = state.allJobs.length.toString()
 })
 atlas.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state: State) => {
-  const visibleJobsCounter = document.getElementById("visibleJobsCounter")
-  if (visibleJobsCounter) {
-    visibleJobsCounter.innerText = state.visibleJobs.length.toString()
-  }
+  document.getElementById("visibleJobsCounter")!.innerText = state.visibleJobs.length.toString()
 })
 atlas.subscribe(["STATE_CHANGE_SELECTEDJOBS"], (state: State) => {
   console.log("User selected jobs: ", state.selectedJobs)

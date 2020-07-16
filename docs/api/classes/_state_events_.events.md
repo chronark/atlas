@@ -2,6 +2,8 @@
 
 # Class: Events
 
+A PubSub implementation for callbacks used in atlas.
+
 ## Hierarchy
 
 * **Events**
@@ -27,7 +29,11 @@
 
 \+ **new Events**(): *[Events](_state_events_.events.md)*
 
-*Defined in [state/events.ts:6](https://github.com/chronark/atlas/blob/a253197/src/state/events.ts#L6)*
+*Defined in [src/state/events.ts:11](https://github.com/chronark/atlas/blob/198ad53/src/state/events.ts#L11)*
+
+Creates an instance of Events.
+
+**`memberof`** Events
 
 **Returns:** *[Events](_state_events_.events.md)*
 
@@ -37,7 +43,7 @@
 
 • **events**: *Record‹string, any›*
 
-*Defined in [state/events.ts:6](https://github.com/chronark/atlas/blob/a253197/src/state/events.ts#L6)*
+*Defined in [src/state/events.ts:11](https://github.com/chronark/atlas/blob/198ad53/src/state/events.ts#L11)*
 
 ## Methods
 
@@ -45,14 +51,18 @@
 
 ▸ **publish**(`event`: string, `state`: [State](../modules/_state_store_.md#state)): *void*
 
-*Defined in [state/events.ts:20](https://github.com/chronark/atlas/blob/a253197/src/state/events.ts#L20)*
+*Defined in [src/state/events.ts:44](https://github.com/chronark/atlas/blob/198ad53/src/state/events.ts#L44)*
+
+Calls all subscribers.
+
+**`memberof`** Events
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`event` | string |
-`state` | [State](../modules/_state_store_.md#state) |
+Name | Type | Description |
+------ | ------ | ------ |
+`event` | string | The triggered event. |
+`state` | [State](../modules/_state_store_.md#state) | All subscribed callback will receive the current state as parameter. |
 
 **Returns:** *void*
 
@@ -62,13 +72,17 @@ ___
 
 ▸ **subscribe**(`events`: string[], `callback`: [stateCallback](../modules/_state_events_.md#statecallback)): *void*
 
-*Defined in [state/events.ts:11](https://github.com/chronark/atlas/blob/a253197/src/state/events.ts#L11)*
+*Defined in [src/state/events.ts:28](https://github.com/chronark/atlas/blob/198ad53/src/state/events.ts#L28)*
+
+Subscribe to one or more events.
+
+**`memberof`** Events
 
 **Parameters:**
 
-Name | Type |
------- | ------ |
-`events` | string[] |
-`callback` | [stateCallback](../modules/_state_events_.md#statecallback) |
+Name | Type | Description |
+------ | ------ | ------ |
+`events` | string[] | - |
+`callback` | [stateCallback](../modules/_state_events_.md#statecallback) | Will be called whenever one of the events fires. |
 
 **Returns:** *void*
