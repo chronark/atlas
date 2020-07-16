@@ -16,6 +16,10 @@
 
 * [State](_state_store_.md#state)
 
+### Variables
+
+* [globalStore](_state_store_.md#const-globalstore)
+
 ### Functions
 
 * [initialState](_state_store_.md#const-initialstate)
@@ -27,7 +31,7 @@
 
 Ƭ **State**: *object*
 
-*Defined in [state/store.ts:9](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L9)*
+*Defined in [src/state/store.ts:8](https://github.com/chronark/atlas/blob/a1ab160/src/state/store.ts#L8)*
 
 #### Type declaration:
 
@@ -39,9 +43,19 @@
 
 * **selectedGeometries**: *Geometry[]*
 
+* **selectedJobs**: *[Job](../interfaces/_types_customtypes_.job.md)[]*
+
 * **test**? : *undefined | string*
 
 * **visibleJobs**: *[Job](../interfaces/_types_customtypes_.job.md)[]*
+
+## Variables
+
+### `Const` globalStore
+
+• **globalStore**: *[Store](../classes/_state_store_.store.md)‹›* = newDefaultStore()
+
+*Defined in [src/state/store.ts:142](https://github.com/chronark/atlas/blob/a1ab160/src/state/store.ts#L142)*
 
 ## Functions
 
@@ -49,7 +63,10 @@
 
 ▸ **initialState**(): *[State](_state_store_.md#state)*
 
-*Defined in [state/store.ts:26](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L26)*
+*Defined in [src/state/store.ts:38](https://github.com/chronark/atlas/blob/a1ab160/src/state/store.ts#L38)*
+
+Create a fresh state.
+I had issues where the initialState was changed by side effects. So instead of defining this as an object, it returns a new object every time it is called.
 
 **Returns:** *[State](_state_store_.md#state)*
 
@@ -59,10 +76,10 @@ ___
 
 ▸ **newDefaultStore**(): *[Store](../classes/_state_store_.store.md)*
 
-*Defined in [state/store.ts:93](https://github.com/chronark/atlas/blob/a253197/src/state/store.ts#L93)*
+*Defined in [src/state/store.ts:138](https://github.com/chronark/atlas/blob/a1ab160/src/state/store.ts#L138)*
 
 NewDefaultStore creates a Store instance with the default actions, mutations, initialState and all hooks.
 
-**Returns:** *[Store](../classes/_state_store_.store.md)*
+This is mainly used for testing.
 
-A Store instance.
+**Returns:** *[Store](../classes/_state_store_.store.md)*

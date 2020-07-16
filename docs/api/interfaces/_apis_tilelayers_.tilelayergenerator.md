@@ -27,6 +27,6 @@ Interface for both OSM and Mapbox layer generation.
 
 ▸ **getLayer**(): *BaseLayer*
 
-*Defined in [apis/tileLayers.ts:16](https://github.com/chronark/atlas/blob/a253197/src/apis/tileLayers.ts#L16)*
+*Defined in [src/apis/tileLayers.ts:16](https://github.com/chronark/atlas/blob/a1ab160/src/apis/tileLayers.ts#L16)*
 
 **Returns:** *BaseLayer*

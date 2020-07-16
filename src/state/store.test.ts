@@ -34,6 +34,7 @@ describe("Store()", () => {
             },
           ],
           visibleJobs: [],
+          selectedJobs: [],
           selectedGeometries: [],
           allGeometries: [],
         }

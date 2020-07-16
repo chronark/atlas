@@ -2,6 +2,10 @@
 
 # Class: MapboxLayer
 
+Handles all communication with Mapbox.
+
+**`implements`** {TileLayerGenerator}
+
 ## Hierarchy
 
 * **MapboxLayer**
@@ -23,7 +27,11 @@
 
 ▸ **applyMapboxStyle**(`mapboxLayer`: VectorTileLayer): *Promise‹void›*
 
-*Defined in [apis/tileLayers.ts:56](https://github.com/chronark/atlas/blob/a253197/src/apis/tileLayers.ts#L56)*
+*Defined in [src/apis/tileLayers.ts:76](https://github.com/chronark/atlas/blob/a1ab160/src/apis/tileLayers.ts#L76)*
+
+Loads and applies the mapbox styles to the vector tiles.
+
+**`memberof`** MapboxLayer
 
 **Parameters:**
 
@@ -41,6 +49,10 @@ ___
 
 *Implementation of [TileLayerGenerator](../interfaces/_apis_tilelayers_.tilelayergenerator.md)*
 
-*Defined in [apis/tileLayers.ts:41](https://github.com/chronark/atlas/blob/a253197/src/apis/tileLayers.ts#L41)*
+*Defined in [src/apis/tileLayers.ts:53](https://github.com/chronark/atlas/blob/a1ab160/src/apis/tileLayers.ts#L53)*
+
+Create a layer with vector tiles.
+
+**`memberof`** MapboxLayer
 
 **Returns:** *BaseLayer*
