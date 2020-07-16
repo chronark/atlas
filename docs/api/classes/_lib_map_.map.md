@@ -16,7 +16,7 @@
 
 * [JobLayer](_lib_map_.map.md#private-joblayer)
 * [mapID](_lib_map_.map.md#private-mapid)
-* [olmap](_lib_map_.map.md#olmap)
+* [map](_lib_map_.map.md#map)
 * [store](_lib_map_.map.md#store)
 * [zIndices](_lib_map_.map.md#private-zindices)
 
@@ -83,9 +83,9 @@ ___
 
 ___
 
-###  olmap
+###  map
 
-• **olmap**: *OLMap*
+• **map**: *OLMap*
 
 *Defined in [lib/map.ts:49](https://github.com/chronark/atlas/blob/a253197/src/lib/map.ts#L49)*
 

@@ -1,7 +1,7 @@
 import { Attribution, OverviewMap, Zoom } from "ol/control"
-import { Draw, Modify } from "ol/interaction"
+import { Draw, Modify, Select } from "ol/interaction"
 import { GeocodingResponseObject, Job } from "../types/customTypes"
-import { Store, globalStore } from "../state/store"
+import { State, Store, globalStore } from "../state/store"
 
 import Bar from "ol-ext/control/Bar"
 import BaseLayer from "ol/layer/Base"
@@ -12,41 +12,43 @@ import FullScreen from "ol/control/FullScreen"
 import GeoJSON from "ol/format/GeoJSON"
 import Geometry from "ol/geom/Geometry"
 import JobLayer from "./jobLayer"
-import { Map as OLMap } from "ol"
-import { OSMLayer } from "../apis/tileLayers"
+import { Map, Feature, MapEvent, MapBrowserEvent } from "ol"
+import { OSMLayer, MapboxLayer } from "../apis/tileLayers"
 import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import View from "ol/View"
 import { selectionStyle } from "../styles/selectionStyle"
 import { filterJobs } from "./geometryFilter"
-import { fromLonLat } from "ol/proj"
+import { fromLonLat, toLonLat } from "ol/proj"
 import polygonStyle from "../styles/polygon"
-import { shiftKeyOnly } from "ol/events/condition"
+import { shiftKeyOnly, singleClick } from "ol/events/condition"
 import SelectionLayer from "./selectionLayer"
+import PopupFeature from "ol-ext/overlay/PopupFeature"
+
+import { SelectEvent } from "ol/interaction/Select"
+import { Layer } from "ol/layer"
+import { FeatureLike } from "ol/Feature"
+import Cluster from "ol/source/Cluster"
+export type jobCallback = (jobs: Job[]) => void
+
 /**
  * Initial map configuration options.
  *
- * @interface MapOpts
+ * @interface AtlasOpts
  */
-export interface MapOpts {
+export interface AtlasOpts {
   /**
    * Provide this if you want to show a specifig area of the map on startup.
    * This will be overridden by view.
    *
-   * @type {Extent}
-   * @memberof MapOpts
+   * @memberof AtlasOpts
    */
   extent?: Extent
   /**
    * Initial latitude, longitude and zoom level. Default = { lat: 45, lon: 0, zoom: 2 }.
    * Providing this option will override extent.
    *
-   * @type {{
-   * lat: number
-   * lon: number
-   * zoom: number
-   * }}
-   * @memberof MapOpts
+   * @memberof AtlasOpts
    */
   view?: {
     lat: number
@@ -58,18 +60,17 @@ export interface MapOpts {
 /**
  * Main Map class and entrypoint.
  *
- * @class Map
+ * @class Atlas
  */
-export default class Map {
+export default class Atlas {
   /**
    * Used to find the correct HTMLElement to attach the map.
    *
    * @private
-   * @type {string}
-   * @memberof Map
+   * @memberof Atlas
    */
   private mapID: string
-  public olmap: OLMap
+  public map: Map
   public store: Store
   private JobLayer: JobLayer
   private zIndices: Record<string, number>
@@ -80,9 +81,10 @@ export default class Map {
    *
    * @param mapID
    * @param [opts]
-   * @memberof Map
+   * @memberof Atlas
    */
-  public constructor(mapID: string, opts?: MapOpts) {
+  public constructor(mapID: string, opts?: AtlasOpts) {
+    console.log("Init")
     this.mapID = mapID
     this.zIndices = {
       tiles: 0,
@@ -91,7 +93,7 @@ export default class Map {
       jobs: 1000,
     }
 
-    this.olmap = this.build(opts || {})
+    this.map = this.build(opts || {})
 
     this.selectionLayer = this.createSelectionLayer()
 
@@ -102,6 +104,15 @@ export default class Map {
     this.addGeometriesHook()
     this.addJobFilterHook()
     this.addVisibleJobsHook()
+
+    this.addCountries()
+
+    this.addSelect()
+    console.log("Ready")
+  }
+
+  public subscribe(hooks: string[], callback: (state: State) => void): void {
+    globalStore.events.subscribe(hooks, callback)
   }
 
   /**
@@ -111,7 +122,7 @@ export default class Map {
    *
    * @param query
    * @returns
-   * @memberof Map
+   * @memberof Atlas
    */
   async search(query: string): Promise<void> {
     if (query.length > 0) {
@@ -121,8 +132,80 @@ export default class Map {
         return
       }
       const features = this.selectionLayer.addFeatureFromGeojson(geojson)
-        this.zoomToExtent(features[0].getGeometry().getExtent())
+      this.zoomToExtent(features[0].getGeometry().getExtent())
     }
+  }
+
+  public async addCountries(): Promise<void> {
+    const geojson = await fetch(
+      "https://raw.githubusercontent.com/openlayers/openlayers/main/examples/data/geojson/countries.geojson",
+    ).then((res) => res.json())
+    const geometries = SelectionLayer.convertGeoJsonToGeometries(geojson)
+    geometries.forEach((geometry) => {
+      globalStore.dispatch("addGeometries", [geometry])
+      globalStore.dispatch("selectGeometries", [geometry])
+    })
+    console.log(globalStore.getState())
+  }
+
+  private addSelect(): void {
+    const select = new Select()
+
+    this.map.addInteraction(select)
+    select.on("select", (e: SelectEvent) => {
+      e.target.getFeatures().forEach((f: Feature) => {
+        const layerName = select.getLayer(f).get("name")
+        switch (layerName) {
+          case "cluster": {
+            const clickedClusters = f.get("features")
+            const clickedJobs: Job[] = clickedClusters.map((f: Feature) => f.get("job"))
+
+              globalStore.dispatch("setSelectedJobs", clickedJobs)
+
+            console.log(f)
+            break
+          }
+
+          case "selectionLayer":
+            console.log(layerName)
+            break
+          default:
+            break
+        }
+      })
+    })
+
+    // this.map.on("singleclick", (e: MapBrowserEvent) => {
+    //   this.map.forEachFeatureAtPixel(e.pixel, (feature: FeatureLike, layer: Layer) => {
+    //     //console.log(feature, layer.get("name"))
+
+    //     if (layer.get("name") === "cluster") {
+    //       const clickedFeatures: Feature[] = feature.get("features")
+    //       const clickedJobs: Job[] = clickedFeatures.map((f: Feature) => f.get("job"))
+
+    //       // The jobs in a cluster can shift when zooming in or out, so we cannot simply invert the selection of every job.
+    //       // If all jobs in the clicked cluster are selected we will deselect all, otherwise we will select all on first click and deselect all on the second click.
+    //       const areAllSelected = clickedJobs.every((job) => { globalStore.getState().selectedJobs.includes(job) })
+
+    //       if (areAllSelected) {
+    //         globalStore.dispatch("deselectJobs", clickedJobs)
+    //       } else {
+    //         globalStore.dispatch("selectJobs", clickedJobs)
+    //       }
+
+    //       // const matches = globalStore.getState().selectedJobs.filter((geometry: Geometry) => {
+    //       //   return areCoordinatesInGeometry([lon, lat], geometry)
+    //       // })
+    //       console.log(feature)
+    //     } else if (layer.get("name") === "selectionLayer") {
+    //       console.log(feature)
+    //       const clickedFeatures: Feature[] = feature.get("features")
+    //       const clickedPolygon = clickedFeatures.map((f: Feature) => f.get("job"))
+
+    //     }
+
+    //   })
+    // })
   }
 
   /**
@@ -132,19 +215,18 @@ export default class Map {
    *
    * @private
    * @returns A new polygon layer for countries or other areas the user selected.
-   * @memberof Map
+   * @memberof Atlas
    */
   private createSelectionLayer(): SelectionLayer {
     const selectionLayer = new SelectionLayer()
-    this.olmap.on("singleclick", selectionLayer.onSingleClick)
-    this.olmap.addLayer(selectionLayer)
+    this.map.addLayer(selectionLayer)
     return selectionLayer
   }
 
   /**
    * Subscribes to the store to update the jobs on the map.
    *
-   * @memberof Map
+   * @memberof Atlas
    */
   addVisibleJobsHook(): void {
     globalStore.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state) => {
@@ -155,7 +237,7 @@ export default class Map {
   /**
    * Subscribes to the store to update the selected countries on the map.
    *
-   * @memberof Map
+   * @memberof Atlas
    */
   addGeometriesHook(): void {
     globalStore.events.subscribe(["STATE_CHANGE_SELECTEDGEOMETRIES", "STATE_CHANGE_ALLJOBS"], (state) => {
@@ -167,7 +249,7 @@ export default class Map {
    * Subscribes to the store to update state's visible jobs.
    * Whenever the jobs change, like jobs being added or removed, or if the user (de)selects geometry, we need to update the shown jobs.
    *
-   * @memberof Map
+   * @memberof Atlas
    */
   addJobFilterHook(): void {
     globalStore.events.subscribe(["STATE_CHANGE_ALLJOBS", "STATE_CHANGE_SELECTEDGEOMETRIES"], (state) => {
@@ -197,11 +279,11 @@ export default class Map {
   private addLayer(layer: BaseLayer, opts: { name?: string; overwrite?: boolean } = {}): void {
     const { name = "", overwrite = false } = opts
 
-    if (this.olmap.getLayers().getArray().indexOf(layer) === -1 || overwrite) {
+    if (this.map.getLayers().getArray().indexOf(layer) === -1 || overwrite) {
       if (name !== "") {
         layer.set("name", name)
       }
-      this.olmap.addLayer(layer)
+      this.map.addLayer(layer)
     }
   }
 
@@ -211,14 +293,14 @@ export default class Map {
    *
    * @private
    * @returns
-   * @memberof Map
+   * @memberof Atlas
    */
   private addControls(): any {
     const mainbar = new Bar()
     mainbar.setPosition("left-top")
 
-    this.olmap.addControl(new FullScreen())
-    this.olmap.addControl(mainbar)
+    this.map.addControl(new FullScreen())
+    this.map.addControl(mainbar)
     mainbar.addControl(this.circleSelectRemoveButton())
 
     return mainbar
@@ -230,7 +312,7 @@ export default class Map {
    *
    * @private
    * @returns
-   * @memberof Map
+   * @memberof Atlas
    */
   private circleSelectRemoveButton(): void {
     return new Button({
@@ -248,12 +330,12 @@ export default class Map {
    *
    * @private
    * @param names
-   * @memberof Map
+   * @memberof Atlas
    */
   private removeLayersByNames(names: string[]): void {
     const layers = this.getLayersByNames(names)
     layers.forEach((layer: BaseLayer) => {
-      this.olmap.removeLayer(layer)
+      this.map.removeLayer(layer)
     })
   }
 
@@ -264,10 +346,10 @@ export default class Map {
    * @private
    * @param  center
    * @param [zoom=16]
-   * @memberof Map
+   * @memberof Atlas
    */
   private zoomTo(center: number[], zoom = 16): void {
-    this.olmap.getView().animate({
+    this.map.getView().animate({
       center: center,
       zoom: zoom,
     })
@@ -279,7 +361,7 @@ export default class Map {
    * TODO: Refactor this outside of the map class.
    *
    * @private
-   * @memberof Map
+   * @memberof Atlas
    */
   private addCircleSelect(): void {
     /**
@@ -327,11 +409,11 @@ export default class Map {
     }
 
     const drawLayer = this.getDrawLayer(true)
-    this.olmap.addLayer(drawLayer)
+    this.map.addLayer(drawLayer)
     const modify = new Modify({
       source: drawLayer.getSource(),
     })
-    this.olmap.addInteraction(modify)
+    this.map.addInteraction(modify)
 
     const draw = new Draw({
       source: drawLayer.getSource(),
@@ -343,7 +425,7 @@ export default class Map {
       style: polygonStyle(),
     })
     handleCircleSelectEvents(draw, modify)
-    this.olmap.addInteraction(draw)
+    this.map.addInteraction(draw)
   }
 
   /**
@@ -352,7 +434,7 @@ export default class Map {
    * @private
    * @param clear
    * @returns
-   * @memberof Map
+   * @memberof Atlas
    */
   private getDrawLayer(clear?: boolean): VectorLayer {
     let [layer, wasCreated] = this.getOrCreateLayer("drawLayer", {
@@ -374,7 +456,7 @@ export default class Map {
    * @private
    * @param  layer
    * @returns
-   * @memberof Map
+   * @memberof Atlas
    */
   private clearSource(layer: VectorLayer): VectorLayer {
     if (typeof layer.getSource === "function") {
@@ -389,10 +471,10 @@ export default class Map {
    * @private
    * @param  names
    * @returns
-   * @memberof Map
+   * @memberof Atlas
    */
   private getLayersByNames(names: string[]): VectorLayer[] {
-    const allLayers = this.olmap.getLayers()
+    const allLayers = this.map.getLayers()
     const filteredLayers: VectorLayer[] = []
     allLayers.forEach((layer) => {
       if (names.includes(layer.get("name"))) {
@@ -409,7 +491,7 @@ export default class Map {
    * @param name
    * @param  opts
    * @returns
-   * @memberof Map
+   * @memberof Atlas
    */
   private getOrCreateLayer(name: string, opts: Record<string, any>): [VectorLayer, boolean] {
     const layers = this.getLayersByNames([name])
@@ -440,9 +522,9 @@ export default class Map {
    * @private
    * @param opts - View configuration should be in this object.
    * @returns  The View object for initial map rendering.
-   * @memberof Map
+   * @memberof Atlas
    */
-  private createView(opts: MapOpts): any {
+  private createView(opts: AtlasOpts): any {
     if (opts.view) {
       return new View({
         center: fromLonLat([opts.view.lon, opts.view.lat]),
@@ -468,9 +550,9 @@ export default class Map {
    * @private
    * @param opts
    * @returns
-   * @memberof Map
+   * @memberof Atlas
    */
-  private build(opts: MapOpts): OLMap {
+  private build(opts: AtlasOpts): Map {
     const rasterLayer = new OSMLayer().getLayer()
     // const vectorLayer = new MapboxLayer().getLayer()
     const controls = [
@@ -483,23 +565,23 @@ export default class Map {
       new Zoom(),
     ]
 
-    const olmap = new OLMap({
+    const map = new Map({
       target: this.mapID,
       controls: controls,
       view: this.createView(opts),
     })
-    this.olmap = olmap
+    this.map = map
     this.addLayer(rasterLayer, { name: "rasterTiles" })
     // this.addLayer(vectorLayer, { name: "vectorTiles" })
 
-    return olmap
+    return map
   }
 
   /**
    * TODO: Refactor  #AT-15.
    *
    * @private
-   * @memberof Map
+   * @memberof Atlas
    */
   private buildJobLayer(): void {
     this.JobLayer = new JobLayer(60)
@@ -514,7 +596,7 @@ export default class Map {
    * This will overwrite the old ones, so please merge your jobs before if you wish to only add jobs.
    *
    * @param jobs
-   * @memberof Map
+   * @memberof Atlas
    */
   public setJobs(jobs: Job[]): void {
     globalStore.dispatch("setJobs", jobs)
@@ -526,18 +608,18 @@ export default class Map {
    * @param  lon
    * @param  lat
    * @param  zoom
-   * @memberof Map
+   * @memberof Atlas
    */
   public setView(lon: number, lat: number, zoom: number): void {
-    this.olmap.getView().setCenter([lat, lon])
-    this.olmap.getView().setZoom(zoom)
+    this.map.getView().setCenter([lat, lon])
+    this.map.getView().setZoom(zoom)
   }
 
   /**
    * Calculate the required viewport to display the entire layer and set the viewport accordingly.
    *
    * @param layer
-   * @memberof Map
+   * @memberof Atlas
    */
   public zoomToLayer(layer: VectorLayer): void {
     const extent = layer.getSource().getExtent()
@@ -549,9 +631,9 @@ export default class Map {
    * This will zoom in or out as necessary.
    *
    * @param extent
-   * @memberof Map
+   * @memberof Atlas
    */
   public zoomToExtent(extent: Extent): void {
-    this.olmap.getView().fit(extent, { duration: 1500 })
+    this.map.getView().fit(extent, { duration: 1500 })
   }
 }

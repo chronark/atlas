@@ -8,6 +8,7 @@ import { Job } from "../types/customTypes"
 export type State = {
   allJobs: Job[]
   visibleJobs: Job[]
+  selectedJobs: Job[]
   allGeometries: Geometry[]
   selectedGeometries: Geometry[]
   test?: string
@@ -38,6 +39,7 @@ export const initialState = (): State => {
   return {
     allJobs: [],
     visibleJobs: [],
+    selectedJobs: [],
     allGeometries: [],
     selectedGeometries: [],
   }

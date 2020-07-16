@@ -2,22 +2,25 @@ import Charon from "../apis/charon"
 import { Jobs } from "../apis/jobs"
 import { State, globalStore } from "../state/store"
 import { GeocodingResponseObject } from "../types/customTypes"
-import Map from "./map"
+import Atlas from "./atlas"
 
-const map = new Map("map-container")
+const atlas = new Atlas("map-container")
 
 // Update UI
-globalStore.events.subscribe(["STATE_CHANGE_ALLJOBS"], (state: State) => {
+atlas.subscribe(["STATE_CHANGE_ALLJOBS"], (state: State) => {
   const allJobsCounter = document.getElementById("allJobsCounter")
   if (allJobsCounter) {
     allJobsCounter.innerText = state.allJobs.length.toString()
   }
 })
-globalStore.events.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state: State) => {
+atlas.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state: State) => {
   const visibleJobsCounter = document.getElementById("visibleJobsCounter")
   if (visibleJobsCounter) {
     visibleJobsCounter.innerText = state.visibleJobs.length.toString()
   }
+})
+atlas.subscribe(["STATE_CHANGE_SELECTEDJOBS"], (state: State) => {
+  console.log("User selected jobs: ", state.selectedJobs)
 })
 
 // Search
@@ -26,7 +29,7 @@ const searchForm = document.getElementById("searchForm")
 if (searchField !== null && searchForm !== null) {
   searchForm.addEventListener("submit", (event) => {
     const query = searchField.value
-    map.search(query)
+    atlas.search(query)
     event.preventDefault()
   })
 }
@@ -47,7 +50,7 @@ new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs
         type: "",
         url: "",
       })
-      map.setJobs(jobs)
+      atlas.setJobs(jobs)
     }
   })
 })

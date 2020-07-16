@@ -1,11 +1,11 @@
-import Map, { MapOpts } from "./map"
+import Atlas, { AtlasOpts } from "./atlas"
 import { carthesianProduct } from "./util"
 import { fromLonLat } from "ol/proj"
 describe("map.zoomTo", () => {
-  let map: Map
+  let atlas: Atlas
 
   beforeEach(() => {
-    map = new Map("div-id")
+    atlas = new Atlas("div-id")
   })
 
   const zoomLevels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
@@ -20,8 +20,8 @@ describe("map.zoomTo", () => {
   })
   it("should set the correct view", () => {
     testCases.forEach((tc) => {
-      map.setView(tc.lon, tc.lat, tc.zoom)
-      const view = map.olmap.getView()
+      atlas.setView(tc.lon, tc.lat, tc.zoom)
+      const view = atlas.map.getView()
       expect(view.getZoom()).toBe(tc.zoom)
       expect(view.getCenter()[0]).toBe(tc.lat)
       expect(view.getCenter()[1]).toBe(tc.lon)
@@ -32,13 +32,13 @@ describe("map.zoomTo", () => {
 describe("creating a View from user options", () => {
   describe("without argument", () => {
     it("returns the default view", () => {
-      const map = new Map("mapID")
-      expect(map.olmap.getView().getCenter()).toEqual(fromLonLat([0, 45]))
-      expect(map.olmap.getView().getZoom()).toBe(2)
+      const atlas = new Atlas("mapID")
+      expect(atlas.map.getView().getCenter()).toEqual(fromLonLat([0, 45]))
+      expect(atlas.map.getView().getZoom()).toBe(2)
     })
   })
   describe("with", () => {
-    const testCases: { name: string; opts: MapOpts; want: { center: any; zoom: number } }[] = [
+    const testCases: { name: string; opts: AtlasOpts; want: { center: any; zoom: number } }[] = [
       {
         name: "view",
         opts: {
@@ -81,9 +81,9 @@ describe("creating a View from user options", () => {
     ]
     testCases.forEach((tc) => {
       it(tc.name, () => {
-        const map = new Map("mapID", tc.opts)
-        expect(map.olmap.getView().getCenter()).toEqual(tc.want.center)
-        expect(map.olmap.getView().getZoom()).toBe(tc.want.zoom)
+        const atlas = new Atlas("mapID", tc.opts)
+        expect(atlas.map.getView().getCenter()).toEqual(tc.want.center)
+        expect(atlas.map.getView().getZoom()).toBe(tc.want.zoom)
       })
     })
   })

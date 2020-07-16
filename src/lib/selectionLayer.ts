@@ -32,6 +32,7 @@ export default class SelectionLayer extends VectorLayer {
     this.setZIndex(10)
 
     this.setSource(new VectorSource())
+    this.set("name", "selectionLayer")
   }
 
   /**
@@ -82,7 +83,7 @@ export default class SelectionLayer extends VectorLayer {
       const [lon, lat] = toLonLat(event.coordinate)
       const geojson = await new Charon().reverseGeocoding(lat, lon)
       if (geojson) {
-        const geometries = this.convertGeoJsonToGeometries(geojson)
+        const geometries = SelectionLayer.convertGeoJsonToGeometries(geojson)
         if (geometries) {
           geometries.forEach((geometry) => {
             if (geometry) {
@@ -105,7 +106,7 @@ export default class SelectionLayer extends VectorLayer {
    * @returns
    * @memberof SelectionLayer
    */
-  private convertGeoJsonToGeometries(geojson: Record<string, any>): (Geometry | undefined)[] {
+  static convertGeoJsonToGeometries(geojson: Record<string, any>): (Geometry | undefined)[] {
     const features: Feature[] = new GeoJSON({
       featureProjection: "EPSG:3857",
     }).readFeatures(geojson)
@@ -120,7 +121,7 @@ export default class SelectionLayer extends VectorLayer {
    * @memberof SelectionLayer
    */
   public addFeatureFromGeojson(geojson: Record<string, any>): Feature[] {
-    const geometry = this.convertGeoJsonToGeometries(geojson)
+    const geometry = SelectionLayer.convertGeoJsonToGeometries(geojson)
     const features = geometry.map(
       (g): Feature =>
         new Feature({

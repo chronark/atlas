@@ -71,5 +71,16 @@ export const jobMutations = {
     state.visibleJobs = payload
     return true
   },
+  /**
+   * Replace selectedJobs with new jobs.
+   *
+   * @param state - The current state.
+   * @param payload - New jobs that will be selected.
+   * @returns
+   */
+  setSelectedJobs(state: State, payload: Job[]): boolean {
+    state.selectedJobs = payload
+    return true
+  }
 }
 export const mutations = { ...geometryMutations, ...jobMutations }

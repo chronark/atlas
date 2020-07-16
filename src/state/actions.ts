@@ -62,5 +62,17 @@ export const jobActions: Record<string, Action> = {
   setVisibleJobs(ctx: Store, payload: Job[]) {
     return ctx.commit("setVisibleJobs", payload)
   },
+  /**
+     * Replace jobs in selectedJobs
+
+   *
+   * @param ctx
+   * @param  payload
+   * @returns
+   */
+  setSelectedJobs(ctx: Store, payload: Job[]) {
+    return ctx.commit("setSelectedJobs", payload)
+  },
 }
+
 export const actions: Record<string, Action> = { ...geometryActions, ...jobActions }

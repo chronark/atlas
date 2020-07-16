@@ -10,6 +10,7 @@ import VectorLayer from "ol/layer/Vector"
 import VectorSource from "ol/source/Vector"
 import { fromLonLat } from "ol/proj.js"
 import { isSingleLocation } from "./util"
+import { Select } from "ol/interaction"
 /**
  * The Joblayer is responsible for displaying and animating as clusters.
  *
@@ -22,6 +23,7 @@ export default class JobLayer {
   public animatedCluster: VectorLayer
   public areas: VectorLayer
   private style: JobStyle
+  private select: Select
 
   /**
    *Creates an instance of JobLayer.
