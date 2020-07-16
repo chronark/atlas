@@ -1,4 +1,4 @@
-FROM node:13 AS builder
+FROM node:14 AS builder
 
 
 WORKDIR /atlas
