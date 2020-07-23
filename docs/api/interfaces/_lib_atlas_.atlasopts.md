@@ -23,7 +23,7 @@ Initial map configuration options.
 
 • **extent**? : *Extent*
 
-*Defined in [src/lib/atlas.ts:37](https://github.com/chronark/atlas/blob/7f0bbb7/src/lib/atlas.ts#L37)*
+*Defined in [src/lib/atlas.ts:37](https://github.com/chronark/atlas/blob/3cdd76f/src/lib/atlas.ts#L37)*
 
 Provide this if you want to show a specifig area of the map on startup.
 This will be overridden by view.
@@ -36,7 +36,7 @@ ___
 
 • **view**? : *undefined | object*
 
-*Defined in [src/lib/atlas.ts:44](https://github.com/chronark/atlas/blob/7f0bbb7/src/lib/atlas.ts#L44)*
+*Defined in [src/lib/atlas.ts:44](https://github.com/chronark/atlas/blob/3cdd76f/src/lib/atlas.ts#L44)*
 
 Initial latitude, longitude and zoom level. Default = { lat: 45, lon: 0, zoom: 2 }.
 Providing this option will override extent.

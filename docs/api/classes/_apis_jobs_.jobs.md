@@ -32,7 +32,7 @@ In production the map will receive jobs from outside.
 
 \+ **new Jobs**(`url?`: undefined | string): *[Jobs](_apis_jobs_.jobs.md)*
 
-*Defined in [src/apis/jobs.ts:11](https://github.com/chronark/atlas/blob/7f0bbb7/src/apis/jobs.ts#L11)*
+*Defined in [src/apis/jobs.ts:11](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/jobs.ts#L11)*
 
 Creates an instance of Jobs.
 
@@ -52,7 +52,7 @@ Name | Type |
 
 • **url**: *string* = "https://jobboerse.th-nuernberg.de/srv.php/en/Suche/offers"
 
-*Defined in [src/apis/jobs.ts:11](https://github.com/chronark/atlas/blob/7f0bbb7/src/apis/jobs.ts#L11)*
+*Defined in [src/apis/jobs.ts:11](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/jobs.ts#L11)*
 
 ## Methods
 
@@ -60,7 +60,7 @@ Name | Type |
 
 ▸ **fetchRawJobs**(): *Promise‹[RawSearch](../interfaces/_types_customtypes_.rawsearch.md)›*
 
-*Defined in [src/apis/jobs.ts:32](https://github.com/chronark/atlas/blob/7f0bbb7/src/apis/jobs.ts#L32)*
+*Defined in [src/apis/jobs.ts:32](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/jobs.ts#L32)*
 
 Fetch data from API.
 
@@ -74,7 +74,7 @@ ___
 
 ▸ **get**(): *Promise‹[Job](../interfaces/_types_customtypes_.job.md)[]›*
 
-*Defined in [src/apis/jobs.ts:83](https://github.com/chronark/atlas/blob/7f0bbb7/src/apis/jobs.ts#L83)*
+*Defined in [src/apis/jobs.ts:83](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/jobs.ts#L83)*
 
 Public getter method.
 
@@ -88,7 +88,7 @@ ___
 
 ▸ **transform**(`rawSearch`: [RawSearch](../interfaces/_types_customtypes_.rawsearch.md)): *[Job](../interfaces/_types_customtypes_.job.md)[]*
 
-*Defined in [src/apis/jobs.ts:50](https://github.com/chronark/atlas/blob/7f0bbb7/src/apis/jobs.ts#L50)*
+*Defined in [src/apis/jobs.ts:50](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/jobs.ts#L50)*
 
 Clean the jobs and transform into a useful format.
 This is only necessary because we are still loading from the old google optimized job API.

@@ -114,9 +114,9 @@ export default class Atlas {
    * const atlas = new Atlas()
    * atlas.subscribe(["STATE_CHANGE_ALLJOBS"], (state: State) => console.log(state.allJobs))
    * atlas.setJobs(myJobsArray)
-   * ```
    *
    * // you will now see your job array being printed in the console.
+   * ```
    *
    * @param hooks - An array of hooks, see ../state/store.ts.
    * @param callback - Gets called with the current state as argument, do whatever you want with it except overwriting it.

@@ -33,7 +33,7 @@ Create a style for job clusters based on their score and proximity to each other
 
 \+ **new JobStyle**(`colorGradient`: [Color](_styles_color_.color.md)[]): *[JobStyle](_styles_jobs_.jobstyle.md)*
 
-*Defined in [src/styles/jobs.ts:16](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/jobs.ts#L16)*
+*Defined in [src/styles/jobs.ts:16](https://github.com/chronark/atlas/blob/3cdd76f/src/styles/jobs.ts#L16)*
 
 Creates an instance of JobStyle.
 
@@ -67,7 +67,7 @@ Name | Type | Default |
 
 • **colorGradient**: *[Color](_styles_color_.color.md)[]*
 
-*Defined in [src/styles/jobs.ts:16](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/jobs.ts#L16)*
+*Defined in [src/styles/jobs.ts:16](https://github.com/chronark/atlas/blob/3cdd76f/src/styles/jobs.ts#L16)*
 
 ## Methods
 
@@ -75,7 +75,7 @@ Name | Type | Default |
 
 ▸ **areaStyle**(`feature`: Feature): *Style*
 
-*Defined in [src/styles/jobs.ts:160](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/jobs.ts#L160)*
+*Defined in [src/styles/jobs.ts:160](https://github.com/chronark/atlas/blob/3cdd76f/src/styles/jobs.ts#L160)*
 
 Build the style for a job area.
 
@@ -95,7 +95,7 @@ ___
 
 ▸ **clusterStyle**(`cluster`: Feature): *Style[]*
 
-*Defined in [src/styles/jobs.ts:144](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/jobs.ts#L144)*
+*Defined in [src/styles/jobs.ts:144](https://github.com/chronark/atlas/blob/3cdd76f/src/styles/jobs.ts#L144)*
 
 Build the style for a job cluster.
 
@@ -115,7 +115,7 @@ ___
 
 ▸ **colorByScore**(`score`: number, `minScore`: number): *[Color](_styles_color_.color.md)*
 
-*Defined in [src/styles/jobs.ts:67](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/jobs.ts#L67)*
+*Defined in [src/styles/jobs.ts:67](https://github.com/chronark/atlas/blob/3cdd76f/src/styles/jobs.ts#L67)*
 
 Choose a color from the colorGradient by score.
 
@@ -138,7 +138,7 @@ ___
 
 ▸ **getScore**(`feature`: Feature): *number*
 
-*Defined in [src/styles/jobs.ts:181](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/jobs.ts#L181)*
+*Defined in [src/styles/jobs.ts:181](https://github.com/chronark/atlas/blob/3cdd76f/src/styles/jobs.ts#L181)*
 
 Extract the score from a feature.
 
@@ -158,7 +158,7 @@ ___
 
 ▸ **maxScore**(`features`: Feature[]): *number*
 
-*Defined in [src/styles/jobs.ts:91](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/jobs.ts#L91)*
+*Defined in [src/styles/jobs.ts:91](https://github.com/chronark/atlas/blob/3cdd76f/src/styles/jobs.ts#L91)*
 
 Calculate the maximum score from a cluster of jobs.
 
@@ -180,7 +180,7 @@ ___
 
 ▸ **polygonStyle**(`score`: number, `size`: number): *Style*
 
-*Defined in [src/styles/jobs.ts:110](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/jobs.ts#L110)*
+*Defined in [src/styles/jobs.ts:110](https://github.com/chronark/atlas/blob/3cdd76f/src/styles/jobs.ts#L110)*
 
 Create a regular polygon as icon to display a cluster.
 

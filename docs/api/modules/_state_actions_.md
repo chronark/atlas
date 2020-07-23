@@ -20,7 +20,7 @@
 
 Ƭ **Action**: *function*
 
-*Defined in [src/state/actions.ts:5](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L5)*
+*Defined in [src/state/actions.ts:5](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L5)*
 
 #### Type declaration:
 
@@ -39,7 +39,7 @@ Name | Type |
 
 ### ▪ **actions**: *object*
 
-*Defined in [src/state/actions.ts:88](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L88)*
+*Defined in [src/state/actions.ts:88](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L88)*
 
 ___
 
@@ -47,7 +47,7 @@ ___
 
 ### ▪ **geometryActions**: *object*
 
-*Defined in [src/state/actions.ts:9](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L9)*
+*Defined in [src/state/actions.ts:9](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L9)*
 
 Collection if geometry actions.
 
@@ -55,7 +55,7 @@ Collection if geometry actions.
 
 ▸ **addGeometries**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: Geometry[]): *boolean*
 
-*Defined in [src/state/actions.ts:17](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L17)*
+*Defined in [src/state/actions.ts:17](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L17)*
 
 Add geometries to allGeometries.
 
@@ -72,7 +72,7 @@ Name | Type |
 
 ▸ **selectGeometries**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: Geometry[]): *boolean*
 
-*Defined in [src/state/actions.ts:27](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L27)*
+*Defined in [src/state/actions.ts:27](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L27)*
 
 Add geometries to selectedGeometries.
 
@@ -89,7 +89,7 @@ Name | Type |
 
 ▸ **setSelectedGeometries**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: Record‹string, any›[]): *boolean*
 
-*Defined in [src/state/actions.ts:47](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L47)*
+*Defined in [src/state/actions.ts:47](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L47)*
 
 Overwrite selectedGeometries.
 
@@ -106,7 +106,7 @@ Name | Type |
 
 ▸ **unselectGeometries**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: Record‹string, any›[]): *boolean*
 
-*Defined in [src/state/actions.ts:37](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L37)*
+*Defined in [src/state/actions.ts:37](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L37)*
 
 Remove geometries from selectedGeometries.
 
@@ -125,7 +125,7 @@ ___
 
 ### ▪ **jobActions**: *object*
 
-*Defined in [src/state/actions.ts:54](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L54)*
+*Defined in [src/state/actions.ts:54](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L54)*
 
 Collection of job actions.
 
@@ -133,7 +133,7 @@ Collection of job actions.
 
 ▸ **setJobs**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: [Job](../interfaces/_types_customtypes_.job.md)[]): *boolean*
 
-*Defined in [src/state/actions.ts:62](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L62)*
+*Defined in [src/state/actions.ts:62](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L62)*
 
 Replace jobs in allJobs.
 
@@ -150,7 +150,7 @@ Name | Type |
 
 ▸ **setSelectedJobs**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: [Job](../interfaces/_types_customtypes_.job.md)[]): *boolean*
 
-*Defined in [src/state/actions.ts:83](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L83)*
+*Defined in [src/state/actions.ts:83](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L83)*
 
 Replace jobs in selectedJobs.
 
@@ -167,7 +167,7 @@ Name | Type |
 
 ▸ **setVisibleJobs**(`ctx`: [Store](../classes/_state_store_.store.md), `payload`: [Job](../interfaces/_types_customtypes_.job.md)[]): *boolean*
 
-*Defined in [src/state/actions.ts:72](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/actions.ts#L72)*
+*Defined in [src/state/actions.ts:72](https://github.com/chronark/atlas/blob/3cdd76f/src/state/actions.ts#L72)*
 
 Replace jobs in visibleJobs.
 
