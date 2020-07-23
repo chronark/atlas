@@ -109,7 +109,7 @@ export default class Atlas {
    * Also used when the user clicks on a cluster to pass the job array outside of this class.
    * You can also pass in multiple hooks and your callback will be called whenever one of the events fires.
    *
-   * @example:
+   * @example
    * ```typescript
    * const atlas = new Atlas()
    * atlas.subscribe(["STATE_CHANGE_ALLJOBS"], (state: State) => console.log(state.allJobs))

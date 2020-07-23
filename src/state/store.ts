@@ -16,20 +16,6 @@ export type State = {
 }
 
 /**
- * The store's status can be one of the following.
- * Action: The store is currently performing an action.
- * Listening: The store is ready for an action.
- * Mutation: The store is running a mutation right now. This is used to ensure you aren't calling a mutation by itself but always through an action.
- *
- * @enum
- */
-enum Status {
-  action,
-  listening,
-  mutation,
-}
-
-/**
  * Create a fresh state.
  * I had issues where the initialState was changed by side effects. So instead of defining this as an object, it returns a new object every time it is called.
  *

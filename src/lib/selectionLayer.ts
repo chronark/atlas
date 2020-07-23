@@ -1,4 +1,3 @@
-import Charon from "../apis/charon"
 import Feature from "ol/Feature"
 import { GeoJSON } from "ol/format"
 import { Geometry } from "ol/geom"

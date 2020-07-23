@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import Charon from "../apis/charon"
 import { Jobs } from "../apis/jobs"
-import { State, globalStore } from "../state/store"
+import { State } from "../state/store"
 import { GeocodingResponseObject } from "../types/customTypes"
 import Atlas from "./atlas"
 
