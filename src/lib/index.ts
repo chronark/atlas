@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable  */
 import Charon from "../apis/charon"
 import { Jobs } from "../apis/jobs"
 import { State } from "../state/store"
@@ -7,8 +7,6 @@ import Atlas from "./atlas"
 import { View } from "ol"
 import { fromLonLat, toLonLat } from "ol/proj"
 import { listen } from "ol/events"
-
-
 
 const zoomIn = (atlas: Atlas, jobs: Job[]) => {
   const location = jobs[0].locations[0]
@@ -19,12 +17,10 @@ const zoomIn = (atlas: Atlas, jobs: Job[]) => {
   }
 }
 
-
 const showJobs = (jobs: Job[]): void => {
-
   const ul = document.getElementById("jobs")
   ul!.innerHTML = ""
-  const selectedJobs = jobs.map(job => {
+  const selectedJobs = jobs.map((job) => {
     const div = document.createElement("div")
     const title = document.createElement("p")
     const link = document.createElement("a")
@@ -37,13 +33,11 @@ const showJobs = (jobs: Job[]): void => {
     div.append(image)
     div.appendChild(link)
     div.appendChild(title)
-div.setAttribute("style", "margin: 1em; padding: 1em; background: white; border-radius: 5px; overflow: hidden;")
+    div.setAttribute("style", "margin: 1em; padding: 1em; background: white; border-radius: 5px; overflow: hidden;")
 
     ul?.appendChild(div)
-
   })
 }
-
 
 const atlas = new Atlas("map-container")
 
