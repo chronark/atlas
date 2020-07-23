@@ -15,12 +15,15 @@ import { Draw, Modify, Select } from "ol/interaction"
 import { Extent } from "ol/extent"
 import { filterJobs } from "./geometryFilter"
 import { fromLonLat } from "ol/proj"
-import { Job } from "../types/customTypes"
+import { Job, SingleLocation, Area } from "../types/customTypes"
 import { Map, Feature } from "ol"
 import { OSMLayer } from "../apis/tileLayers"
 import { SelectEvent } from "ol/interaction/Select"
 import { shiftKeyOnly } from "ol/events/condition"
 import { State, Store, globalStore } from "../state/store"
+import TileLayer from "ol/layer/Tile"
+import OSM from "ol/source/OSM"
+import { isSingleLocation } from "./util"
 
 /**
  * Initial map configuration options.
@@ -547,7 +550,11 @@ export default class Atlas {
    * @memberof Atlas
    */
   private build(opts: AtlasOpts): Map {
-    const rasterLayer = new OSMLayer().getLayer()
+    const rasterLayer = new TileLayer({
+      source: new OSM()
+    })
+
+    // const rasterLayer = new OSMLayer().getLayer()
     // const vectorLayer = new MapboxLayer().getLayer()
     const controls = [
       new Attribution({
@@ -629,5 +636,19 @@ export default class Atlas {
    */
   public zoomToExtent(extent: Extent): void {
     this.map.getView().fit(extent, { duration: 1500 })
+  }
+
+  public zoomToLocation(location: SingleLocation | Area): void {
+    const zoom = this.map.getView().getZoom() + 1
+    let center: number[]
+    if (isSingleLocation(location)) {
+      center = fromLonLat([location.lon, location.lat])
+    } else {
+      // TODO: Calculate center of area
+      center = [0, 0]
+    }
+
+
+    this.map.getView().animate({ zoom, center })
   }
 }
