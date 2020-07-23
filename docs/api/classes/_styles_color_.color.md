@@ -32,7 +32,7 @@ A Helper class to convert colors from rgb(a) values to strings.
 
 \+ **new Color**(`r`: number, `g`: number, `b`: number, `a?`: undefined | number): *[Color](_styles_color_.color.md)*
 
-*Defined in [src/styles/color.ts:10](https://github.com/chronark/atlas/blob/f950874/src/styles/color.ts#L10)*
+*Defined in [src/styles/color.ts:10](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/color.ts#L10)*
 
 Creates an instance of Color.
 
@@ -55,7 +55,7 @@ Name | Type | Description |
 
 • **a**: *number*
 
-*Defined in [src/styles/color.ts:10](https://github.com/chronark/atlas/blob/f950874/src/styles/color.ts#L10)*
+*Defined in [src/styles/color.ts:10](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/color.ts#L10)*
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 • **b**: *number*
 
-*Defined in [src/styles/color.ts:9](https://github.com/chronark/atlas/blob/f950874/src/styles/color.ts#L9)*
+*Defined in [src/styles/color.ts:9](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/color.ts#L9)*
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 • **g**: *number*
 
-*Defined in [src/styles/color.ts:8](https://github.com/chronark/atlas/blob/f950874/src/styles/color.ts#L8)*
+*Defined in [src/styles/color.ts:8](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/color.ts#L8)*
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 • **r**: *number*
 
-*Defined in [src/styles/color.ts:7](https://github.com/chronark/atlas/blob/f950874/src/styles/color.ts#L7)*
+*Defined in [src/styles/color.ts:7](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/color.ts#L7)*
 
 ## Methods
 
@@ -87,7 +87,7 @@ ___
 
 ▸ **rgb**(): *string*
 
-*Defined in [src/styles/color.ts:33](https://github.com/chronark/atlas/blob/f950874/src/styles/color.ts#L33)*
+*Defined in [src/styles/color.ts:33](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/color.ts#L33)*
 
 Turn a color into a string disregarding the alpha channel.
 
@@ -101,7 +101,7 @@ ___
 
 ▸ **rgba**(`a?`: undefined | number): *string*
 
-*Defined in [src/styles/color.ts:44](https://github.com/chronark/atlas/blob/f950874/src/styles/color.ts#L44)*
+*Defined in [src/styles/color.ts:44](https://github.com/chronark/atlas/blob/7f0bbb7/src/styles/color.ts#L44)*
 
 Turn a color into a string with an alpha channel.
 

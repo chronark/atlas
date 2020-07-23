@@ -110,9 +110,11 @@ export default class Atlas {
    * You can also pass in multiple hooks and your callback will be called whenever one of the events fires.
    *
    * @example:
+   * ```typescript
    * const atlas = new Atlas()
-   * atlas.subscribe([STATE_CHANGE_ALLJOBS], (state: State) => console.log(state.allJobs))
+   * atlas.subscribe(["STATE_CHANGE_ALLJOBS"], (state: State) => console.log(state.allJobs))
    * atlas.setJobs(myJobsArray)
+   * ```
    *
    * // you will now see your job array being printed in the console.
    *

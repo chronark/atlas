@@ -21,7 +21,7 @@ Mutation: The store is running a mutation right now. This is used to ensure you 
 
 • **action**:
 
-*Defined in [src/state/store.ts:27](https://github.com/chronark/atlas/blob/f950874/src/state/store.ts#L27)*
+*Defined in [src/state/store.ts:27](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/store.ts#L27)*
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **listening**:
 
-*Defined in [src/state/store.ts:28](https://github.com/chronark/atlas/blob/f950874/src/state/store.ts#L28)*
+*Defined in [src/state/store.ts:28](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/store.ts#L28)*
 
 ___
 
@@ -37,4 +37,4 @@ ___
 
 • **mutation**:
 
-*Defined in [src/state/store.ts:29](https://github.com/chronark/atlas/blob/f950874/src/state/store.ts#L29)*
+*Defined in [src/state/store.ts:29](https://github.com/chronark/atlas/blob/7f0bbb7/src/state/store.ts#L29)*
