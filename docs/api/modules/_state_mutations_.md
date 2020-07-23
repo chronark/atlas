@@ -20,7 +20,7 @@
 
 Ƭ **Mutation**: *function*
 
-*Defined in [src/state/mutations.ts:7](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L7)*
+*Defined in [src/state/mutations.ts:7](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L7)*
 
 #### Type declaration:
 
@@ -39,7 +39,7 @@ Name | Type |
 
 ### ▪ **geometryMutations**: *object*
 
-*Defined in [src/state/mutations.ts:11](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L11)*
+*Defined in [src/state/mutations.ts:11](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L11)*
 
 A collection of mutations for geometry.
 
@@ -47,7 +47,7 @@ A collection of mutations for geometry.
 
 ▸ **addGeometries**(`state`: [State](_state_store_.md#state), `payload`: Geometry[]): *boolean*
 
-*Defined in [src/state/mutations.ts:19](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L19)*
+*Defined in [src/state/mutations.ts:19](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L19)*
 
 Add a list of geometries to allGeoemtries.
 
@@ -64,7 +64,7 @@ Name | Type | Description |
 
 ▸ **selectGeometries**(`state`: [State](_state_store_.md#state), `payload`: Geometry[]): *boolean*
 
-*Defined in [src/state/mutations.ts:31](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L31)*
+*Defined in [src/state/mutations.ts:31](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L31)*
 
 Add a list of geometries to selectedGeoemtries.
 
@@ -81,7 +81,7 @@ Name | Type | Description |
 
 ▸ **setSelectedGeometries**(`state`: [State](_state_store_.md#state), `payload`: Geometry[]): *boolean*
 
-*Defined in [src/state/mutations.ts:54](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L54)*
+*Defined in [src/state/mutations.ts:54](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L54)*
 
 Overwrite selectedGeoemtries.
 
@@ -98,7 +98,7 @@ Name | Type | Description |
 
 ▸ **unselectGeometries**(`state`: [State](_state_store_.md#state), `payload`: Geometry[]): *boolean*
 
-*Defined in [src/state/mutations.ts:43](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L43)*
+*Defined in [src/state/mutations.ts:43](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L43)*
 
 Remove a list of geometries from selectedGeoemtries.
 
@@ -117,7 +117,7 @@ ___
 
 ### ▪ **jobMutations**: *object*
 
-*Defined in [src/state/mutations.ts:62](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L62)*
+*Defined in [src/state/mutations.ts:62](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L62)*
 
 Collection of mutations for jobs.
 
@@ -125,7 +125,7 @@ Collection of mutations for jobs.
 
 ▸ **setJobs**(`state`: [State](_state_store_.md#state), `payload`: [Job](../interfaces/_types_customtypes_.job.md)[]): *boolean*
 
-*Defined in [src/state/mutations.ts:70](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L70)*
+*Defined in [src/state/mutations.ts:70](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L70)*
 
 Replace allJobs with new jobs.
 
@@ -142,7 +142,7 @@ Name | Type | Description |
 
 ▸ **setSelectedJobs**(`state`: [State](_state_store_.md#state), `payload`: [Job](../interfaces/_types_customtypes_.job.md)[]): *boolean*
 
-*Defined in [src/state/mutations.ts:92](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L92)*
+*Defined in [src/state/mutations.ts:92](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L92)*
 
 Replace selectedJobs with new jobs.
 
@@ -159,7 +159,7 @@ Name | Type | Description |
 
 ▸ **setVisibleJobs**(`state`: [State](_state_store_.md#state), `payload`: [Job](../interfaces/_types_customtypes_.job.md)[]): *boolean*
 
-*Defined in [src/state/mutations.ts:81](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L81)*
+*Defined in [src/state/mutations.ts:81](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L81)*
 
 Replace visibleJobs with new jobs..
 
@@ -178,4 +178,4 @@ ___
 
 ### ▪ **mutations**: *object*
 
-*Defined in [src/state/mutations.ts:97](https://github.com/chronark/atlas/blob/a1ab160/src/state/mutations.ts#L97)*
+*Defined in [src/state/mutations.ts:97](https://github.com/chronark/atlas/blob/f950874/src/state/mutations.ts#L97)*

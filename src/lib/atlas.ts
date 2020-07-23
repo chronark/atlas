@@ -98,24 +98,25 @@ export default class Atlas {
 
     this.addSelect()
   }
+
   /**
    * Subscribe to an event.
    *
    * Events are prefixed by `STATE_CHANGE_` and named after the field that was updated.
-   * For example `STATE_CHANGE_VISIBLEJOBS` or `STATE_CHANGE_SELECTEDGEOMETRIES`. 
-   * 
+   * For example `STATE_CHANGE_VISIBLEJOBS` or `STATE_CHANGE_SELECTEDGEOMETRIES`.
+   *
    * This can be used to update external UI like job counters.
    * Also used when the user clicks on a cluster to pass the job array outside of this class.
    * You can also pass in multiple hooks and your callback will be called whenever one of the events fires.
-   * 
+   *
    * @example:
    * const atlas = new Atlas()
    * atlas.subscribe([STATE_CHANGE_ALLJOBS], (state: State) => console.log(state.allJobs))
    * atlas.setJobs(myJobsArray)
-   * 
+   *
    * // you will now see your job array being printed in the console.
-   * 
-   * @param hooks - An array of hooks, see ../state/store.ts
+   *
+   * @param hooks - An array of hooks, see ../state/store.ts.
    * @param callback - Gets called with the current state as argument, do whatever you want with it except overwriting it.
    * The state must remain immutable.
    * @memberof Atlas
@@ -156,9 +157,10 @@ export default class Atlas {
     globalStore.dispatch("addGeometries", geometries)
     this.selectionLayer.setFeaturesFromGeometry(geometries)
   }
+
   /**
    * Add the possibilty to select features.
-   * 
+   *
    * This handles the countries to be selected as well as clicking on job clusters.
    */
   private addSelect(): void {

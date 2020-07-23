@@ -19,7 +19,7 @@
 
 • **lat**: *number*
 
-*Defined in [src/types/customTypes.ts:35](https://github.com/chronark/atlas/blob/a1ab160/src/types/customTypes.ts#L35)*
+*Defined in [src/types/customTypes.ts:35](https://github.com/chronark/atlas/blob/f950874/src/types/customTypes.ts#L35)*
 
 Latitude of the location.
 
@@ -29,6 +29,6 @@ ___
 
 • **lon**: *number*
 
-*Defined in [src/types/customTypes.ts:39](https://github.com/chronark/atlas/blob/a1ab160/src/types/customTypes.ts#L39)*
+*Defined in [src/types/customTypes.ts:39](https://github.com/chronark/atlas/blob/f950874/src/types/customTypes.ts#L39)*
 
 Longitude of the location.

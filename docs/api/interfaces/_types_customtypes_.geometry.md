@@ -19,7 +19,7 @@
 
 • **coordinates**: *number[]*
 
-*Defined in [src/types/customTypes.ts:124](https://github.com/chronark/atlas/blob/a1ab160/src/types/customTypes.ts#L124)*
+*Defined in [src/types/customTypes.ts:124](https://github.com/chronark/atlas/blob/f950874/src/types/customTypes.ts#L124)*
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 • **type**: *string*
 
-*Defined in [src/types/customTypes.ts:123](https://github.com/chronark/atlas/blob/a1ab160/src/types/customTypes.ts#L123)*
+*Defined in [src/types/customTypes.ts:123](https://github.com/chronark/atlas/blob/f950874/src/types/customTypes.ts#L123)*
