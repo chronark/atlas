@@ -3,7 +3,8 @@ FROM node:13 AS builder
 
 WORKDIR /atlas
 
-COPY package.json package-lock.json .
+COPY package.json .
+COPY package-lock.json .
 RUN npm install
 
 ARG CHARON_URL
