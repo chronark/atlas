@@ -15,12 +15,15 @@ import { Draw, Modify, Select } from "ol/interaction"
 import { Extent } from "ol/extent"
 import { filterJobs } from "./geometryFilter"
 import { fromLonLat } from "ol/proj"
-import { Job } from "../types/customTypes"
+import { Job, SingleLocation, Area } from "../types/customTypes"
 import { Map, Feature } from "ol"
 import { OSMLayer } from "../apis/tileLayers"
 import { SelectEvent } from "ol/interaction/Select"
 import { shiftKeyOnly } from "ol/events/condition"
 import { State, Store, globalStore } from "../state/store"
+import TileLayer from "ol/layer/Tile"
+import OSM from "ol/source/OSM"
+import { isSingleLocation } from "./util"
 
 /**
  * Initial map configuration options.
@@ -98,24 +101,27 @@ export default class Atlas {
 
     this.addSelect()
   }
+
   /**
    * Subscribe to an event.
    *
    * Events are prefixed by `STATE_CHANGE_` and named after the field that was updated.
-   * For example `STATE_CHANGE_VISIBLEJOBS` or `STATE_CHANGE_SELECTEDGEOMETRIES`. 
-   * 
+   * For example `STATE_CHANGE_VISIBLEJOBS` or `STATE_CHANGE_SELECTEDGEOMETRIES`.
+   *
    * This can be used to update external UI like job counters.
    * Also used when the user clicks on a cluster to pass the job array outside of this class.
    * You can also pass in multiple hooks and your callback will be called whenever one of the events fires.
-   * 
-   * @example:
+   *
+   * @example
+   * ```typescript
    * const atlas = new Atlas()
-   * atlas.subscribe([STATE_CHANGE_ALLJOBS], (state: State) => console.log(state.allJobs))
+   * atlas.subscribe(["STATE_CHANGE_ALLJOBS"], (state: State) => console.log(state.allJobs))
    * atlas.setJobs(myJobsArray)
-   * 
+   *
    * // you will now see your job array being printed in the console.
-   * 
-   * @param hooks - An array of hooks, see ../state/store.ts
+   * ```
+   *
+   * @param hooks - An array of hooks, see ../state/store.ts.
    * @param callback - Gets called with the current state as argument, do whatever you want with it except overwriting it.
    * The state must remain immutable.
    * @memberof Atlas
@@ -156,9 +162,10 @@ export default class Atlas {
     globalStore.dispatch("addGeometries", geometries)
     this.selectionLayer.setFeaturesFromGeometry(geometries)
   }
+
   /**
    * Add the possibilty to select features.
-   * 
+   *
    * This handles the countries to be selected as well as clicking on job clusters.
    */
   private addSelect(): void {
@@ -543,7 +550,11 @@ export default class Atlas {
    * @memberof Atlas
    */
   private build(opts: AtlasOpts): Map {
-    const rasterLayer = new OSMLayer().getLayer()
+    const rasterLayer = new TileLayer({
+      source: new OSM(),
+    })
+
+    // const rasterLayer = new OSMLayer().getLayer()
     // const vectorLayer = new MapboxLayer().getLayer()
     const controls = [
       new Attribution({
@@ -625,5 +636,23 @@ export default class Atlas {
    */
   public zoomToExtent(extent: Extent): void {
     this.map.getView().fit(extent, { duration: 1500 })
+  }
+
+  /**
+   * Zoom in a little closer towards a centerpoint.
+   *
+   * @param location - The location to use as center.
+   */
+  public zoomToLocation(location: SingleLocation | Area): void {
+    const zoom = this.map.getView().getZoom() + 1
+    let center: number[]
+    if (isSingleLocation(location)) {
+      center = fromLonLat([location.lon, location.lat])
+    } else {
+      // TODO: Calculate center of area
+      center = [0, 0]
+    }
+
+    this.map.getView().animate({ zoom, center })
   }
 }

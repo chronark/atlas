@@ -14,7 +14,7 @@
 
 ▸ **polygonStyle**(`isSelected?`: undefined | false | true): *Style*
 
-*Defined in [src/styles/polygon.ts:11](https://github.com/chronark/atlas/blob/a1ab160/src/styles/polygon.ts#L11)*
+*Defined in [src/styles/polygon.ts:11](https://github.com/chronark/atlas/blob/3cdd76f/src/styles/polygon.ts#L11)*
 
 Create sample polygon style.
 

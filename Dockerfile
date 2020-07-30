@@ -1,22 +1,20 @@
-FROM node:13 AS builder
+FROM node:14 AS builder
 
 
 WORKDIR /atlas
 
 COPY package.json .
-COPY package-lock.json .
-RUN npm install
-
-ARG CHARON_URL
+COPY yarn.lock .
+RUN yarn install
 
 COPY . .
 COPY src .
 COPY babel.config.js .
 COPY tsconfig.json .
 COPY webpack.config.js .
-RUN npm run build
+RUN yarn build
 
-FROM nginx:1.18-alpine
+FROM nginx:1.19.1-alpine
 COPY --from=builder /atlas/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

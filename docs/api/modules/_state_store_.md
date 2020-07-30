@@ -31,7 +31,7 @@
 
 Ƭ **State**: *object*
 
-*Defined in [src/state/store.ts:8](https://github.com/chronark/atlas/blob/a1ab160/src/state/store.ts#L8)*
+*Defined in [src/state/store.ts:8](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L8)*
 
 #### Type declaration:
 
@@ -55,7 +55,7 @@
 
 • **globalStore**: *[Store](../classes/_state_store_.store.md)‹›* = newDefaultStore()
 
-*Defined in [src/state/store.ts:142](https://github.com/chronark/atlas/blob/a1ab160/src/state/store.ts#L142)*
+*Defined in [src/state/store.ts:142](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L142)*
 
 ## Functions
 
@@ -63,7 +63,7 @@
 
 ▸ **initialState**(): *[State](_state_store_.md#state)*
 
-*Defined in [src/state/store.ts:38](https://github.com/chronark/atlas/blob/a1ab160/src/state/store.ts#L38)*
+*Defined in [src/state/store.ts:38](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L38)*
 
 Create a fresh state.
 I had issues where the initialState was changed by side effects. So instead of defining this as an object, it returns a new object every time it is called.
@@ -76,7 +76,7 @@ ___
 
 ▸ **newDefaultStore**(): *[Store](../classes/_state_store_.store.md)*
 
-*Defined in [src/state/store.ts:138](https://github.com/chronark/atlas/blob/a1ab160/src/state/store.ts#L138)*
+*Defined in [src/state/store.ts:138](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L138)*
 
 NewDefaultStore creates a Store instance with the default actions, mutations, initialState and all hooks.
 
