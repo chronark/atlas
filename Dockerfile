@@ -7,6 +7,8 @@ COPY package.json .
 COPY yarn.lock .
 RUN yarn install
 
+ARG CHARON_URL
+
 COPY . .
 COPY src .
 COPY babel.config.js .
