@@ -17,7 +17,7 @@ console.log(typeof process.env.TEST_DISPLAY_ALWAYS)
 const showJobs = (jobs: Job[]): void => {
   const ul = document.getElementById("jobs") as HTMLUListElement
   ul.innerHTML = ""
-  jobs.forEach((job) => {
+    jobs.forEach((job) => {
     const div = document.createElement("div")
     const title = document.createElement("p")
     const link = document.createElement("a")
@@ -65,6 +65,7 @@ const handleClick = (atlas: Atlas, jobs: Job[]): void => {
     }
   }
 }
+
 
 const atlas = new Atlas("map-container")
 
