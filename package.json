@@ -74,7 +74,7 @@
     "husky": "4.2.5",
     "jest": "26.1.0",
     "jest-canvas-mock": "2.2.0",
-    "lint-staged": "10.2.10",
+    "lint-staged": "10.2.11",
     "prettier": "2.0.5",
     "proxy-polyfill": "0.3.2",
     "regenerator-runtime": "0.13.5",
