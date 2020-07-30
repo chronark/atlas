@@ -8,14 +8,14 @@ COPY package-lock.json .
 RUN yarn install
 
 ARG CHARON_URL
-ARG TEST_MAX_ZOOM
+ARG TEST_DISPLAY_ALWAYS
 
 COPY . .
 COPY src .
 COPY babel.config.js .
 COPY tsconfig.json .
 COPY webpack.config.js .
-RUN npm run build
+RUN yarn build
 
 FROM nginx:1.19.1-alpine
 COPY --from=builder /atlas/dist /usr/share/nginx/html
