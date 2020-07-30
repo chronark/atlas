@@ -551,7 +551,7 @@ export default class Atlas {
    */
   private build(opts: AtlasOpts): Map {
     const rasterLayer = new TileLayer({
-      source: new OSM()
+      source: new OSM(),
     })
 
     // const rasterLayer = new OSMLayer().getLayer()
@@ -647,7 +647,6 @@ export default class Atlas {
       // TODO: Calculate center of area
       center = [0, 0]
     }
-
 
     this.map.getView().animate({ zoom, center })
   }

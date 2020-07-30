@@ -60,7 +60,7 @@ module.exports = {
     }),
     new webpack.EnvironmentPlugin({
       CHARON_URL: "http://jbs-osm-test.informatik.fh-nuernberg.de",
-      TEST_DISPLAY_ALWAYS: false,
+      TEST_DISPLAY_ALWAYS: "false",
     }),
   ],
 }
