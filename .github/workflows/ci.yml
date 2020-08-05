@@ -96,7 +96,7 @@ jobs:
         run: npm install
 
       - name: Load build directory
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2.0.4
         with:
           name: dist
 
