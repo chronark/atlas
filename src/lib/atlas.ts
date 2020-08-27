@@ -16,7 +16,7 @@ import { Extent, boundingExtent, buffer } from "ol/extent"
 import { filterJobs } from "./geometryFilter"
 import { fromLonLat, transformExtent } from "ol/proj"
 import { Job, SingleLocation, Area } from "../types/customTypes"
-import { Map, Feature } from "ol"
+import { Map, Feature, Tile } from "ol"
 import { OSMLayer } from "../apis/tileLayers"
 import { SelectEvent } from "ol/interaction/Select"
 import { shiftKeyOnly } from "ol/events/condition"
@@ -24,6 +24,7 @@ import { State, Store, globalStore } from "../state/store"
 import TileLayer from "ol/layer/Tile"
 import OSM from "ol/source/OSM"
 import { isSingleLocation } from "./util"
+import { metrics } from "./tracking"
 
 /**
  * Initial map configuration options.
@@ -173,6 +174,7 @@ export default class Atlas {
 
     this.map.addInteraction(select)
     select.on("select", (e: SelectEvent) => {
+      metrics.addSelect()
       // Remove all selected geometries when the user clicks on empty space
       if (e.selected.length === 0) {
         globalStore.dispatch("unselectGeometries", globalStore.getState().selectedGeometries)
@@ -550,8 +552,15 @@ export default class Atlas {
    * @memberof Atlas
    */
   private build(opts: AtlasOpts): Map {
+    const source = new OSM()
+
+    source.on("tileloadstart", () => {
+      console.log("loading")
+      metrics.addtileLoad()
+    })
+
     const rasterLayer = new TileLayer({
-      source: new OSM(),
+      source,
     })
 
     // const rasterLayer = new OSMLayer().getLayer()

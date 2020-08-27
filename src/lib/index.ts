@@ -5,7 +5,7 @@ import { State } from "../state/store"
 import { Job, GeocodingResponseObject, SingleLocation } from "../types/customTypes"
 import Atlas from "./atlas"
 import { isSingleLocation } from "./util"
-
+import { metrics } from "./tracking"
 console.log(process.env.TEST_DISPLAY_ALWAYS)
 console.log(typeof process.env.TEST_DISPLAY_ALWAYS)
 
@@ -111,4 +111,25 @@ new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs
       atlas.setJobs(jobs)
     }
   })
+})
+
+const startButton = document.getElementById("start")
+const stopButton = document.getElementById("stop")
+/* eslint-disable-next-line */
+startButton?.addEventListener("click", () => {
+  metrics.reset()
+  startButton.innerText = "Reset"
+})
+
+atlas.map.on("click", () => {
+  metrics.addClick()
+})
+/* eslint-disable-next-line */
+stopButton?.addEventListener("click", () => {
+  metrics.stop()
+
+  alert("Bitte den untenstehenden Text kopieren\n\n" + metrics.getResult())
+
+  console.log(metrics.getResult())
+  startButton!.innerText = "Start"
 })
