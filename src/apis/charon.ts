@@ -1,5 +1,6 @@
 import Axios from "axios"
 import { GeocodingResponseObject } from "../types/customTypes"
+import { metrics } from "../lib/tracking"
 
 /**
  * Handles all commucation to the charon backend service.
@@ -37,6 +38,8 @@ export default class Charon {
    * @memberof Charon
    */
   public async forwardGeocoding(query: string): Promise<GeocodingResponseObject | undefined> {
+    metrics.addGeocoding()
+    metrics.addGeocoding()
     const response = await Axios.get(this.serverURL + `/geocoding/forward/?query=${query}`)
     if (response.status === 200) {
       return response.data
@@ -52,6 +55,8 @@ export default class Charon {
    * @memberof Charon
    */
   public async reverseGeocoding(lat: number, lon: number): Promise<GeocodingResponseObject | undefined> {
+    metrics.addGeocoding()
+
     const url = this.serverURL + `/geocoding/reverse/?lat=${lat}&lon=${lon}`
     const response = await Axios.get(url)
     if (response.status === 200) {
