@@ -15,7 +15,7 @@ COPY src .
 COPY babel.config.js .
 COPY tsconfig.json .
 COPY webpack.config.js .
-RUN yarn build
+RUN npm run build
 
 FROM nginx:1.19.1-alpine
 COPY --from=builder /atlas/dist /usr/share/nginx/html

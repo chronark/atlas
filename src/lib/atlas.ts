@@ -16,13 +16,15 @@ import { Extent, boundingExtent, buffer } from "ol/extent"
 import { filterJobs } from "./geometryFilter"
 import { fromLonLat, transformExtent } from "ol/proj"
 import { Job, SingleLocation, Area } from "../types/customTypes"
-import { Map, Feature } from "ol"
+import { Map, Feature, Tile } from "ol"
+import { OSMLayer } from "../apis/tileLayers"
 import { SelectEvent } from "ol/interaction/Select"
 import { shiftKeyOnly } from "ol/events/condition"
 import { State, Store, globalStore } from "../state/store"
 import TileLayer from "ol/layer/Tile"
 import OSM from "ol/source/OSM"
 import { isSingleLocation } from "./util"
+import { metrics } from "./tracking"
 
 /**
  * Initial map configuration options.
@@ -149,6 +151,16 @@ export default class Atlas {
       this.zoomToExtent(features[0].getGeometry().getExtent())
     }
   }
+ /**
+   * Move the viewport to show the entire extent.
+   * This will zoom in or out as necessary.
+   *
+   * @param extent
+   * @memberof Atlas
+   */
+  public zoomToExtent(extent: Extent): void {
+    this.map.getView().fit(extent, { duration: 1500 })
+  }
 
   /**
    * Load initial set of countries and add them to the map without showing them to the user.
@@ -172,6 +184,7 @@ export default class Atlas {
 
     this.map.addInteraction(select)
     select.on("select", (e: SelectEvent) => {
+      metrics.addSelect()
       // Remove all selected geometries when the user clicks on empty space
       if (e.selected.length === 0) {
         globalStore.dispatch("unselectGeometries", globalStore.getState().selectedGeometries)
@@ -549,8 +562,15 @@ export default class Atlas {
    * @memberof Atlas
    */
   private build(opts: AtlasOpts): Map {
+    const source = new OSM()
+
+    source.on("tileloadstart", () => {
+      console.log("loading")
+      metrics.addtileLoad()
+    })
+
     const rasterLayer = new TileLayer({
-      source: new OSM(),
+      source,
     })
 
     // const rasterLayer = new OSMLayer().getLayer()
@@ -619,16 +639,6 @@ export default class Atlas {
    * Move the viewport to show the entire extent.
    * This will zoom in or out as necessary.
    *
-   * @param extent
-   * @memberof Atlas
-   */
-  public zoomToExtent(extent: Extent): void {
-    this.map.getView().fit(extent, { duration: 1500 })
-  }
-
-  /**
-   * Zoom in on a cluster.
-   *
    * The new view is set to contain all individual job locations.
    *
    * @param locations
@@ -642,23 +652,5 @@ export default class Atlas {
     const extent = transformExtent(boundingExtent(coordinates), "EPSG:4326", "EPSG:3857")
 
     this.zoomToExtent(buffer(extent, 100_000 / this.map.getView().getZoom()))
-  }
-
-  /**
-   * Zoom in a little closer towards a centerpoint.
-   *
-   * @param location - The location to use as center.
-   */
-  public zoomToLocation(location: SingleLocation | Area): void {
-    const zoom = this.map.getView().getZoom() + 1
-    let center: number[]
-    if (isSingleLocation(location)) {
-      center = fromLonLat([location.lon, location.lat])
-    } else {
-      // TODO: Calculate center of area
-      center = [0, 0]
-    }
-
-    this.map.getView().animate({ zoom, center })
   }
 }
