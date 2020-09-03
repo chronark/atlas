@@ -592,7 +592,7 @@ export default class Atlas {
         collapsible: true,
       }),
       new OverviewMap({
-        layers: [rasterLayer],
+        layers: [new TileLayer({source: new OSM()})],
       }),
       new Zoom(),
     ]
@@ -648,9 +648,6 @@ export default class Atlas {
   }
 
   /**
-   * Move the viewport to show the entire extent.
-   * This will zoom in or out as necessary.
-   *
    * The new view is set to contain all individual job locations.
    *
    * @param locations
