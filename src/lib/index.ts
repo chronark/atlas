@@ -6,8 +6,6 @@ import { Job, GeocodingResponseObject, SingleLocation } from "../types/customTyp
 import Atlas from "./atlas"
 import { isSingleLocation } from "./util"
 import { metrics } from "./tracking"
-console.log(process.env.TEST_DISPLAY_ALWAYS)
-console.log(typeof process.env.TEST_DISPLAY_ALWAYS)
 
 /**
  * Displays a list of jobs under the map.
@@ -76,7 +74,6 @@ atlas.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state: State) => {
   document.getElementById("visibleJobsCounter")!.innerText = state.visibleJobs.length.toString()
 })
 atlas.subscribe(["STATE_CHANGE_SELECTEDJOBS"], (state: State) => {
-  console.log("User selected jobs: ", state.selectedJobs)
   handleClick(atlas, state.selectedJobs)
 })
 
