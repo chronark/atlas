@@ -635,23 +635,6 @@ export default class Atlas {
   }
 
   /**
-   * Move the viewport to show the entire extent.
-   * This will zoom in or out as necessary.
-   *
-   * The new view is set to contain all individual job locations.
-   *
-   * @param locations
-   * @memberof Atlas
-   */
-  public zoomToLocationCluster(locations: SingleLocation[]): void {
-    const coordinates = locations.map((loc) => {
-      return [loc.lon, loc.lat]
-    })
-
-
-  /**
-   * Zoom in on a cluster.
-   *
    * The new view is set to contain all individual job locations.
    *
    * @param locations
