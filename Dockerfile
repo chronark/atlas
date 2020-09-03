@@ -4,8 +4,11 @@ FROM node:14 AS builder
 WORKDIR /atlas
 
 COPY package.json .
-COPY yarn.lock .
-RUN yarn install
+COPY package-lock.json .
+RUN npm install
+
+ARG CHARON_URL
+ARG TEST_DISPLAY_ALWAYS
 
 COPY . .
 COPY src .

@@ -1,26 +1,23 @@
-/* eslint-disable  */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import Charon from "../apis/charon"
 import { Jobs } from "../apis/jobs"
 import { State } from "../state/store"
-import { Job, GeocodingResponseObject } from "../types/customTypes"
+import { Job, GeocodingResponseObject, SingleLocation } from "../types/customTypes"
 import Atlas from "./atlas"
-import { View } from "ol"
-import { fromLonLat, toLonLat } from "ol/proj"
-import { listen } from "ol/events"
+import { isSingleLocation } from "./util"
 
-const zoomIn = (atlas: Atlas, jobs: Job[]) => {
-  const location = jobs[0].locations[0]
-  if (process.env.TEST_MAX_ZOOM) {
-    atlas.zoomToLocation(location)
-  } else {
-    atlas.zoomToLocation(location)
-  }
-}
+console.log(process.env.TEST_DISPLAY_ALWAYS)
+console.log(typeof process.env.TEST_DISPLAY_ALWAYS)
 
+/**
+ * Displays a list of jobs under the map.
+ *
+ * @param jobs - The jobs the user clicked on.
+ */
 const showJobs = (jobs: Job[]): void => {
-  const ul = document.getElementById("jobs")
-  ul!.innerHTML = ""
-  const selectedJobs = jobs.map((job) => {
+  const ul = document.getElementById("jobs") as HTMLUListElement
+  ul.innerHTML = ""
+    jobs.forEach((job) => {
     const div = document.createElement("div")
     const title = document.createElement("p")
     const link = document.createElement("a")
@@ -35,9 +32,40 @@ const showJobs = (jobs: Job[]): void => {
     div.appendChild(title)
     div.setAttribute("style", "margin: 1em; padding: 1em; background: white; border-radius: 5px; overflow: hidden;")
 
-    ul?.appendChild(div)
+    ul.appendChild(div)
   })
 }
+/**
+ * Gets called when the user clicks on a cluster.
+ *
+ * Depending on our test setup we either zoom in and display jobs only if we cannot zoom in any further.
+ * Or we zoom in and show always.
+ *
+ * @param atlas
+ * @param jobs
+ */
+const handleClick = (atlas: Atlas, jobs: Job[]): void => {
+  if (process.env.TEST_DISPLAY_ALWAYS === "true") {
+    showJobs(jobs)
+  } else {
+    const locations: SingleLocation[] = []
+    jobs.forEach((job) => {
+      job.locations.forEach((location) => {
+        if (isSingleLocation(location)) {
+          locations.push(location)
+        }
+      })
+    })
+    const areEqual = locations.every((location, i, arr) => location.lat === arr[0].lat && location.lon === arr[0].lon)
+
+    if (areEqual) {
+      showJobs(jobs)
+    } else {
+      atlas.zoomToLocationCluster(locations)
+    }
+  }
+}
+
 
 const atlas = new Atlas("map-container")
 
@@ -50,9 +78,7 @@ atlas.subscribe(["STATE_CHANGE_VISIBLEJOBS"], (state: State) => {
 })
 atlas.subscribe(["STATE_CHANGE_SELECTEDJOBS"], (state: State) => {
   console.log("User selected jobs: ", state.selectedJobs)
-  zoomIn(atlas, state.selectedJobs)
-
-  showJobs(state.selectedJobs)
+  handleClick(atlas, state.selectedJobs)
 })
 
 // Search

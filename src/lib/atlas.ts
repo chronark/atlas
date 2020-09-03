@@ -12,12 +12,11 @@ import VectorSource from "ol/source/Vector"
 import View from "ol/View"
 import { Attribution, OverviewMap, Zoom } from "ol/control"
 import { Draw, Modify, Select } from "ol/interaction"
-import { Extent } from "ol/extent"
+import { Extent, boundingExtent, buffer } from "ol/extent"
 import { filterJobs } from "./geometryFilter"
-import { fromLonLat } from "ol/proj"
+import { fromLonLat, transformExtent } from "ol/proj"
 import { Job, SingleLocation, Area } from "../types/customTypes"
 import { Map, Feature } from "ol"
-import { OSMLayer } from "../apis/tileLayers"
 import { SelectEvent } from "ol/interaction/Select"
 import { shiftKeyOnly } from "ol/events/condition"
 import { State, Store, globalStore } from "../state/store"
@@ -617,17 +616,6 @@ export default class Atlas {
   }
 
   /**
-   * Calculate the required viewport to display the entire layer and set the viewport accordingly.
-   *
-   * @param layer
-   * @memberof Atlas
-   */
-  public zoomToLayer(layer: VectorLayer): void {
-    const extent = layer.getSource().getExtent()
-    this.zoomToExtent(extent)
-  }
-
-  /**
    * Move the viewport to show the entire extent.
    * This will zoom in or out as necessary.
    *
@@ -636,6 +624,24 @@ export default class Atlas {
    */
   public zoomToExtent(extent: Extent): void {
     this.map.getView().fit(extent, { duration: 1500 })
+  }
+
+  /**
+   * Zoom in on a cluster.
+   *
+   * The new view is set to contain all individual job locations.
+   *
+   * @param locations
+   * @memberof Atlas
+   */
+  public zoomToLocationCluster(locations: SingleLocation[]): void {
+    const coordinates = locations.map((loc) => {
+      return [loc.lon, loc.lat]
+    })
+
+    const extent = transformExtent(boundingExtent(coordinates), "EPSG:4326", "EPSG:3857")
+
+    this.zoomToExtent(buffer(extent, 100_000 / this.map.getView().getZoom()))
   }
 
   /**
