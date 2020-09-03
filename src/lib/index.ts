@@ -5,7 +5,7 @@ import { State } from "../state/store"
 import { Job, GeocodingResponseObject, SingleLocation } from "../types/customTypes"
 import Atlas from "./atlas"
 import { isSingleLocation } from "./util"
-
+import { metrics } from "./tracking"
 console.log(process.env.TEST_DISPLAY_ALWAYS)
 console.log(typeof process.env.TEST_DISPLAY_ALWAYS)
 
@@ -17,7 +17,7 @@ console.log(typeof process.env.TEST_DISPLAY_ALWAYS)
 const showJobs = (jobs: Job[]): void => {
   const ul = document.getElementById("jobs") as HTMLUListElement
   ul.innerHTML = ""
-    jobs.forEach((job) => {
+  jobs.forEach((job) => {
     const div = document.createElement("div")
     const title = document.createElement("p")
     const link = document.createElement("a")
@@ -66,7 +66,6 @@ const handleClick = (atlas: Atlas, jobs: Job[]): void => {
   }
 }
 
-
 const atlas = new Atlas("map-container")
 
 // Update UI
@@ -112,4 +111,25 @@ new Jobs("https://raw.githubusercontent.com/chronark/atlas/master/static/rawJobs
       atlas.setJobs(jobs)
     }
   })
+})
+
+const startButton = document.getElementById("start")
+const stopButton = document.getElementById("stop")
+/* eslint-disable-next-line */
+startButton?.addEventListener("click", () => {
+  metrics.reset()
+  startButton.innerText = "Reset"
+})
+
+atlas.map.on("click", () => {
+  metrics.addClick()
+})
+/* eslint-disable-next-line */
+stopButton?.addEventListener("click", () => {
+  metrics.stop()
+
+  alert("Bitte den untenstehenden Text kopieren\n\n" + metrics.getResult())
+
+  console.log(metrics.getResult())
+  startButton!.innerText = "Start"
 })
