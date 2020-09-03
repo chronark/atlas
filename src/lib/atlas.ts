@@ -565,7 +565,6 @@ export default class Atlas {
     const source = new OSM()
 
     source.on("tileloadstart", () => {
-      console.log("loading")
       metrics.addtileLoad()
     })
 
@@ -580,7 +579,7 @@ export default class Atlas {
         collapsible: true,
       }),
       new OverviewMap({
-        layers: [rasterLayer],
+        layers: [new TileLayer({source: new OSM()})],
       }),
       new Zoom(),
     ]
