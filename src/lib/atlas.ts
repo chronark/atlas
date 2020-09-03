@@ -565,7 +565,6 @@ export default class Atlas {
     const source = new OSM()
 
     source.on("tileloadstart", () => {
-      console.log("loading")
       metrics.addtileLoad()
     })
 
