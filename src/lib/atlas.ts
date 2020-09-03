@@ -151,7 +151,8 @@ export default class Atlas {
       this.zoomToExtent(features[0].getGeometry().getExtent())
     }
   }
- /**
+
+  /**
    * Move the viewport to show the entire extent.
    * This will zoom in or out as necessary.
    *

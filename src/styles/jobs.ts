@@ -18,21 +18,7 @@ export default class JobStyle {
   /**
    * Creates an instance of JobStyle.
    *
-   * @param [colorGradient=[
-      new Color(112, 148, 194),
-      new Color(103, 142, 191),
-      new Color(93, 135, 188),
-      new Color(84, 129, 186),
-      new Color(47, 103, 174),
-      new Color(75, 122, 183),
-      new Color(65, 116, 180),
-      new Color(56, 109, 177),
-      new Color(37, 96, 171),
-      new Color(28, 90, 168),
-      new Color(19, 83, 166),
-      new Color(9, 77, 163),
-      new Color(0, 70, 160),
-    ]] - A color gradient you want to use, the length is not fixed but should be >= 2, otherwise you can use a static style.
+   * @param colorGradient
    * @memberof JobStyle
    */
   public constructor(
