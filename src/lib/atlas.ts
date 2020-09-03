@@ -15,15 +15,13 @@ import { Draw, Modify, Select } from "ol/interaction"
 import { Extent, boundingExtent, buffer } from "ol/extent"
 import { filterJobs } from "./geometryFilter"
 import { fromLonLat, transformExtent } from "ol/proj"
-import { Job, SingleLocation, Area } from "../types/customTypes"
-import { Map, Feature, Tile } from "ol"
-import { OSMLayer } from "../apis/tileLayers"
+import { Job, SingleLocation } from "../types/customTypes"
+import { Map, Feature } from "ol"
 import { SelectEvent } from "ol/interaction/Select"
 import { shiftKeyOnly } from "ol/events/condition"
 import { State, Store, globalStore } from "../state/store"
 import TileLayer from "ol/layer/Tile"
 import OSM from "ol/source/OSM"
-import { isSingleLocation } from "./util"
 import { metrics } from "./tracking"
 
 /**
@@ -151,7 +149,8 @@ export default class Atlas {
       this.zoomToExtent(features[0].getGeometry().getExtent())
     }
   }
- /**
+
+  /**
    * Move the viewport to show the entire extent.
    * This will zoom in or out as necessary.
    *
@@ -395,9 +394,23 @@ export default class Atlas {
       }
       /**
        * Update the visible jobs after filtering them.
+       *
+       * The getCircle method in itself is not async, however the underlying code
+       * seems to to store the circle asyncronously.
+       *
+       * Heres a little hack to wait up to 1 second and retry every 100ms to load
+       * the circle and apply the selection.
        */
-      const onEnd = (): void => {
-        const circle = getCircle()
+      const onEnd = async (): Promise<void> => {
+        let circle: any
+        let limit = 1000
+        const interval = 100
+        while (!circle && limit > 0) {
+          circle = getCircle()
+          limit -= interval
+          await new Promise((resolve) => setTimeout(resolve, interval))
+        }
+
         if (circle) {
           const filteredJobs = filterJobs(globalStore.getState().allJobs, {
             geometries: globalStore.getState().selectedGeometries,
@@ -408,8 +421,8 @@ export default class Atlas {
       }
 
       draw.on("drawend", () => {
-        this.clearSource(this.getDrawLayer())
         onEnd()
+        this.clearSource(this.getDrawLayer())
       })
 
       modify.on("modifyend", () => {
@@ -635,9 +648,6 @@ export default class Atlas {
   }
 
   /**
-   * Move the viewport to show the entire extent.
-   * This will zoom in or out as necessary.
-   *
    * The new view is set to contain all individual job locations.
    *
    * @param locations
