@@ -81,7 +81,7 @@
     "require-context.macro": "1.2.2",
     "serve": "11.3.2",
     "source-map-loader": "1.1.0",
-    "start-server-and-test": "1.11.2",
+    "start-server-and-test": "1.11.3",
     "style-loader": "1.2.1",
     "testcafe": "1.8.8",
     "ts-jest": "26.1.4",
