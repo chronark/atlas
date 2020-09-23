@@ -39,8 +39,11 @@ export default class Charon {
    */
   public async forwardGeocoding(query: string): Promise<GeocodingResponseObject | undefined> {
     metrics.addGeocoding()
-    metrics.addGeocoding()
-    const response = await Axios.get(this.serverURL + `/geocoding/forward/?query=${query}`)
+    const response = await Axios.get(this.serverURL + `/geocoding/forward/?query=${query}`, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
     if (response.status === 200) {
       return response.data
     }
@@ -58,7 +61,11 @@ export default class Charon {
     metrics.addGeocoding()
 
     const url = this.serverURL + `/geocoding/reverse/?lat=${lat}&lon=${lon}`
-    const response = await Axios.get(url)
+    const response = await Axios.get(url, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
     if (response.status === 200) {
       const json = response.data
       return json
