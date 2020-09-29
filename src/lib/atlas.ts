@@ -592,7 +592,7 @@ export default class Atlas {
         collapsible: true,
       }),
       new OverviewMap({
-        layers: [new TileLayer({source: new OSM()})],
+        layers: [new TileLayer({ source: new OSM() })],
       }),
       new Zoom(),
     ]
