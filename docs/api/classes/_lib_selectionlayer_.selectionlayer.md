@@ -89,7 +89,7 @@ A layer to display one or multiple polygons on the map.
 
 *Overrides void*
 
-*Defined in [src/lib/selectionLayer.ts:16](https://github.com/chronark/atlas/blob/3cdd76f/src/lib/selectionLayer.ts#L16)*
+*Defined in [src/lib/selectionLayer.ts:15](https://github.com/chronark/atlas/blob/f6d4b61/src/lib/selectionLayer.ts#L15)*
 
 Creates an instance of SelectionLayer.
 
@@ -122,7 +122,7 @@ ___
 
 ▸ **addFeatureFromGeojson**(`geojson`: Record‹string, any›): *Feature[]*
 
-*Defined in [src/lib/selectionLayer.ts:106](https://github.com/chronark/atlas/blob/3cdd76f/src/lib/selectionLayer.ts#L106)*
+*Defined in [src/lib/selectionLayer.ts:105](https://github.com/chronark/atlas/blob/f6d4b61/src/lib/selectionLayer.ts#L105)*
 
 Add a geojson object as feature to the layer.
 
@@ -144,7 +144,7 @@ ___
 
 ▸ **addFeatures**(`features`: Feature[]): *void*
 
-*Defined in [src/lib/selectionLayer.ts:37](https://github.com/chronark/atlas/blob/3cdd76f/src/lib/selectionLayer.ts#L37)*
+*Defined in [src/lib/selectionLayer.ts:36](https://github.com/chronark/atlas/blob/f6d4b61/src/lib/selectionLayer.ts#L36)*
 
 Add one or multiple features to the layer.
 
@@ -1469,7 +1469,7 @@ ___
 
 ▸ **setFeaturesFromGeometry**(`geometry`: Geometry[]): *void*
 
-*Defined in [src/lib/selectionLayer.ts:47](https://github.com/chronark/atlas/blob/3cdd76f/src/lib/selectionLayer.ts#L47)*
+*Defined in [src/lib/selectionLayer.ts:46](https://github.com/chronark/atlas/blob/f6d4b61/src/lib/selectionLayer.ts#L46)*
 
 Transform a geometry object into features and add them to the layer.
 
@@ -1688,7 +1688,7 @@ ___
 
 ▸ **setVisibleFeatures**(`geometry`: Geometry[]): *void*
 
-*Defined in [src/lib/selectionLayer.ts:66](https://github.com/chronark/atlas/blob/3cdd76f/src/lib/selectionLayer.ts#L66)*
+*Defined in [src/lib/selectionLayer.ts:65](https://github.com/chronark/atlas/blob/f6d4b61/src/lib/selectionLayer.ts#L65)*
 
 Make geometry visible to the user by applying a style.
 
@@ -2111,7 +2111,7 @@ ___
 
 ▸ **convertGeoJsonToGeometries**(`geojson`: Record‹string, any›): *Geometry[]*
 
-*Defined in [src/lib/selectionLayer.ts:92](https://github.com/chronark/atlas/blob/3cdd76f/src/lib/selectionLayer.ts#L92)*
+*Defined in [src/lib/selectionLayer.ts:91](https://github.com/chronark/atlas/blob/f6d4b61/src/lib/selectionLayer.ts#L91)*
 
 Create a list of Features from a geojson object.
 

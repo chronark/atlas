@@ -25,7 +25,8 @@
     "tsc": "npm run tsc:default && npm run tsc:testcafe",
     "tsc:testcafe": "npm run tsc:default -- -p ./tsconfig.testcafe.json",
     "tsc:default": "./node_modules/.bin/tsc --noEmit --pretty",
-    "updateJobs": "curl https://jobboerse.th-nuernberg.de/srv.php/en/Suche/offers > ./static/rawJobs.json && prettier --write ./static/rawJobs.json"
+    "updateJobs": "curl https://jobboerse.th-nuernberg.de/srv.php/en/Suche/offers > ./static/rawJobs.json && prettier --write ./static/rawJobs.json",
+    "typedoc": "./node_modules/.bin/typedoc"
   },
   "husky": {
     "hooks": {

@@ -22,7 +22,7 @@ Sample generator for testing.
 
 ▸ **generateString**(`length`: number): *string*
 
-*Defined in [src/apis/sample.ts:70](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/sample.ts#L70)*
+*Defined in [src/apis/sample.ts:70](https://github.com/chronark/atlas/blob/f6d4b61/src/apis/sample.ts#L70)*
 
 Create a random string with a specific length.
 
@@ -42,7 +42,7 @@ ___
 
 ▸ **getLocations**(`cities`: Record‹string, any›[], `locationCount`: number): *object[]*
 
-*Defined in [src/apis/sample.ts:19](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/sample.ts#L19)*
+*Defined in [src/apis/sample.ts:19](https://github.com/chronark/atlas/blob/f6d4b61/src/apis/sample.ts#L19)*
 
 Create a list of locations.
 
@@ -63,7 +63,7 @@ ___
 
 ▸ **jobs**(`count`: number): *Promise‹[Job](../interfaces/_types_customtypes_.job.md)[]›*
 
-*Defined in [src/apis/sample.ts:38](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/sample.ts#L38)*
+*Defined in [src/apis/sample.ts:38](https://github.com/chronark/atlas/blob/f6d4b61/src/apis/sample.ts#L38)*
 
 Create a list of jobs for testing.
 
