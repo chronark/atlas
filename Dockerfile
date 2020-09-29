@@ -11,10 +11,6 @@ ARG CHARON_URL
 ARG TEST_DISPLAY_ALWAYS
 
 COPY . .
-COPY src .
-COPY babel.config.js .
-COPY tsconfig.json .
-COPY webpack.config.js .
 RUN npm run build
 
 FROM nginx:1.19.2-alpine
