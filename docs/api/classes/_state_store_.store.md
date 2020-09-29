@@ -33,7 +33,7 @@ State manager for all map business.
 
 \+ **new Store**(`actions`: Record‹string, [Action](../modules/_state_actions_.md#action)›, `mutations`: Record‹string, [Mutation](../modules/_state_mutations_.md#mutation)›, `state?`: [State](../modules/_state_store_.md#state)): *[Store](_state_store_.store.md)*
 
-*Defined in [src/state/store.ts:57](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L57)*
+*Defined in [src/state/store.ts:43](https://github.com/chronark/atlas/blob/f6d4b61/src/state/store.ts#L43)*
 
 Creates an instance of Store.
 
@@ -55,7 +55,7 @@ Name | Type |
 
 • **actions**: *Record‹string, [Action](../modules/_state_actions_.md#action)›*
 
-*Defined in [src/state/store.ts:54](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L54)*
+*Defined in [src/state/store.ts:40](https://github.com/chronark/atlas/blob/f6d4b61/src/state/store.ts#L40)*
 
 ___
 
@@ -63,7 +63,7 @@ ___
 
 • **events**: *[Events](_state_events_.events.md)*
 
-*Defined in [src/state/store.ts:56](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L56)*
+*Defined in [src/state/store.ts:42](https://github.com/chronark/atlas/blob/f6d4b61/src/state/store.ts#L42)*
 
 ___
 
@@ -71,7 +71,7 @@ ___
 
 • **mutations**: *Record‹string, [Mutation](../modules/_state_mutations_.md#mutation)›*
 
-*Defined in [src/state/store.ts:55](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L55)*
+*Defined in [src/state/store.ts:41](https://github.com/chronark/atlas/blob/f6d4b61/src/state/store.ts#L41)*
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 • **state**: *[State](../modules/_state_store_.md#state)*
 
-*Defined in [src/state/store.ts:57](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L57)*
+*Defined in [src/state/store.ts:43](https://github.com/chronark/atlas/blob/f6d4b61/src/state/store.ts#L43)*
 
 ## Methods
 
@@ -87,7 +87,7 @@ ___
 
 ▸ **commit**(`mutationName`: string, `payload`: any): *boolean*
 
-*Defined in [src/state/store.ts:122](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L122)*
+*Defined in [src/state/store.ts:108](https://github.com/chronark/atlas/blob/f6d4b61/src/state/store.ts#L108)*
 
 Run a mutation against the current state.
 
@@ -112,7 +112,7 @@ ___
 
 ▸ **dispatch**(`actionName`: string, `payload`: any): *boolean*
 
-*Defined in [src/state/store.ts:104](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L104)*
+*Defined in [src/state/store.ts:90](https://github.com/chronark/atlas/blob/f6d4b61/src/state/store.ts#L90)*
 
 Run an action to perform state change.
 
@@ -137,7 +137,7 @@ ___
 
 ▸ **getState**(): *[State](../modules/_state_store_.md#state)*
 
-*Defined in [src/state/store.ts:90](https://github.com/chronark/atlas/blob/3cdd76f/src/state/store.ts#L90)*
+*Defined in [src/state/store.ts:76](https://github.com/chronark/atlas/blob/f6d4b61/src/state/store.ts#L76)*
 
 Getter method.
 

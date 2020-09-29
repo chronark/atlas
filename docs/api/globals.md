@@ -17,6 +17,7 @@
 * ["lib/index"](modules/_lib_index_.md)
 * ["lib/jobLayer"](modules/_lib_joblayer_.md)
 * ["lib/selectionLayer"](modules/_lib_selectionlayer_.md)
+* ["lib/tracking"](modules/_lib_tracking_.md)
 * ["lib/util"](modules/_lib_util_.md)
 * ["lib/util.test"](modules/_lib_util_test_.md)
 * ["state/actions"](modules/_state_actions_.md)

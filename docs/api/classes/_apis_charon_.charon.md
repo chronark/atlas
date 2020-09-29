@@ -31,7 +31,7 @@ Handles all commucation to the charon backend service.
 
 \+ **new Charon**(): *[Charon](_apis_charon_.charon.md)*
 
-*Defined in [src/apis/charon.ts:11](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/charon.ts#L11)*
+*Defined in [src/apis/charon.ts:12](https://github.com/chronark/atlas/blob/f6d4b61/src/apis/charon.ts#L12)*
 
 Creates an instance of Charon.
 
@@ -45,7 +45,7 @@ Creates an instance of Charon.
 
 • **serverURL**: *string*
 
-*Defined in [src/apis/charon.ts:10](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/charon.ts#L10)*
+*Defined in [src/apis/charon.ts:11](https://github.com/chronark/atlas/blob/f6d4b61/src/apis/charon.ts#L11)*
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 • **tileURL**: *string*
 
-*Defined in [src/apis/charon.ts:11](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/charon.ts#L11)*
+*Defined in [src/apis/charon.ts:12](https://github.com/chronark/atlas/blob/f6d4b61/src/apis/charon.ts#L12)*
 
 ## Methods
 
@@ -61,7 +61,7 @@ ___
 
 ▸ **forwardGeocoding**(`query`: string): *Promise‹[GeocodingResponseObject](../interfaces/_types_customtypes_.geocodingresponseobject.md) | undefined›*
 
-*Defined in [src/apis/charon.ts:39](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/charon.ts#L39)*
+*Defined in [src/apis/charon.ts:40](https://github.com/chronark/atlas/blob/f6d4b61/src/apis/charon.ts#L40)*
 
 Perform a forward geocoding request against the backend.
 
@@ -83,7 +83,7 @@ ___
 
 ▸ **getStyle**(): *Promise‹Record‹string, any››*
 
-*Defined in [src/apis/charon.ts:28](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/charon.ts#L28)*
+*Defined in [src/apis/charon.ts:29](https://github.com/chronark/atlas/blob/f6d4b61/src/apis/charon.ts#L29)*
 
 Fetches the style from the API and deserialize it into json.
 
@@ -97,7 +97,7 @@ ___
 
 ▸ **reverseGeocoding**(`lat`: number, `lon`: number): *Promise‹[GeocodingResponseObject](../interfaces/_types_customtypes_.geocodingresponseobject.md) | undefined›*
 
-*Defined in [src/apis/charon.ts:54](https://github.com/chronark/atlas/blob/3cdd76f/src/apis/charon.ts#L54)*
+*Defined in [src/apis/charon.ts:57](https://github.com/chronark/atlas/blob/f6d4b61/src/apis/charon.ts#L57)*
 
 Perform a reverse geocoding request agaisnt the backend.
 
