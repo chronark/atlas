@@ -12,7 +12,7 @@ jobs:
         run: npm install
 
       - name: Hadolint Action
-        uses: brpaz/hadolint-action@v1.0.2
+        uses: brpaz/hadolint-action@v1.3.1
 
       - name: eslint
         run: npm run lint
