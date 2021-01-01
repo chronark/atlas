@@ -87,7 +87,7 @@
     "testcafe": "1.8.8",
     "ts-jest": "26.1.4",
     "ts-loader": "8.0.1",
-    "typedoc": "0.17.8",
+    "typedoc": "0.20.6",
     "typedoc-plugin-markdown": "2.3.1",
     "typescript": "3.9.7",
     "webpack": "4.44.1",
