@@ -34,7 +34,7 @@
     }
   },
   "dependencies": {
-    "axios": "0.20.0",
+    "axios": "0.21.1",
     "ol": "6.4.3",
     "ol-ext": "3.1.14",
     "ol-mapbox-style": "6.1.2"
